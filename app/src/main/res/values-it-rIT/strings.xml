@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyTrainer</string>
+    <string name="ToRegistrate">Se non sei ancora registrato,\nclicca qui!</string>
+    <string name="insert_password">Inserisci Password</string>
+    <string name="insert_email">Inserisci E-mail</string>
+    <string name="appName">MyTrainer</string>
+    <string name="login">Login</string>
+</resources>

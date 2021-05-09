@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MyTrainer</string>
+    <string name="ToRegistrate">If you are not already registered,\nplease click here!</string>
+    <string name="insert_password">Insert Password</string>
+    <string name="insert_email">Insert E-mail</string>
+    <string name="appName">MyTrainer</string>
+    <string name="login">Login</string>
 </resources>
