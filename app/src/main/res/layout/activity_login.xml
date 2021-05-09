@@ -14,6 +14,7 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:src="@mipmap/ic_backgroundlogin_foreground"
+        android:alpha="0.80"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,23 +25,26 @@
         android:id="@+id/titleApp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/carter_one"
+        android:fontFamily="@font/audiowide"
         android:text="@string/appName"
         android:textColor="@android:color/holo_orange_dark"
-        android:textSize="50sp"
+        android:textSize="55sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.16" />
+        app:layout_constraintVertical_bias="0.1" />
 
     <EditText
         android:id="@+id/emailField"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="4dp"
         android:autofillHints="emailAddress"
         android:backgroundTint="@color/white"
+        android:textSize="20sp"
         android:ems="10"
         android:hint="@string/insert_email"
         android:inputType="textEmailAddress"
@@ -55,11 +59,14 @@
 
     <EditText
         android:id="@+id/passwordField"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:autofillHints="password"
         android:backgroundTint="@color/white"
+        android:textSize="20sp"
         android:ems="10"
         android:hint="@string/insert_password"
         android:inputType="textPassword"
@@ -72,9 +79,10 @@
 
     <Button
         android:id="@+id/loginBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="8dp"
+        android:textSize="20sp"
         android:text="@string/login"
         app:layout_constraintBottom_toTopOf="@id/registration"
         app:layout_constraintEnd_toEndOf="parent"
@@ -88,7 +96,7 @@
         android:gravity="center"
         android:text="@string/ToRegistrate"
         android:textColor="@color/purple_700"
-        android:textSize="15sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -104,7 +112,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.47" />
+        app:layout_constraintVertical_bias="0.65" />
 
 
 
