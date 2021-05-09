@@ -5,4 +5,8 @@
     <string name="insert_email">Insert E-mail</string>
     <string name="appName">MyTrainer</string>
     <string name="login">Login</string>
+    <string name="textChoiceAtl">You want to be a real athlete? You want to be able to reach your goals, personalize your experience and have a direct contact with your trainer?</string>
+    <string name="textChoiceTra">You want to start a new experience like a real trainer? Whit this app you will be able to make a program for your athlete, choosing above over 150 exercises, with the possibility to personalize the whole program.</string>
+    <string name="sign_in_trainer">Join now as trainer</string>
+    <string name="sign_in_athlete">Join now as athlete</string>
 </resources>

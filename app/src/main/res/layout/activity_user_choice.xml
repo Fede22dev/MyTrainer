@@ -5,13 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login">
-
+    tools:context=".UserChoice" >
 
     <ImageView
-        android:id="@+id/imgBackgroundLogin"
+        android:id="@+id/imgBackgroundChoice"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:alpha="0.75"
         android:scaleType="centerCrop"
         android:src="@mipmap/ic_backgroundlogin_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -27,85 +27,68 @@
         android:fontFamily="@font/carter_one"
         android:text="@string/appName"
         android:textColor="@android:color/holo_orange_dark"
-        android:textSize="50sp"
+        android:textSize="65sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.16" />
-
-    <EditText
-        android:id="@+id/emailField"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:autofillHints="emailAddress"
-        android:backgroundTint="@color/white"
-        android:ems="10"
-        android:hint="@string/insert_email"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:layout_constraintBottom_toTopOf="@id/passwordField"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.71"
-        app:layout_constraintVertical_chainStyle="packed" />
-
-    <EditText
-        android:id="@+id/passwordField"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:autofillHints="password"
-        android:backgroundTint="@color/white"
-        android:ems="10"
-        android:hint="@string/insert_password"
-        android:inputType="textPassword"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:layout_constraintBottom_toTopOf="@id/loginBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/emailField" />
-
-    <Button
-        android:id="@+id/loginBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="@string/login"
-        app:layout_constraintBottom_toTopOf="@id/registration"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordField" />
+        app:layout_constraintVertical_bias="0.1" />
 
     <TextView
-        android:id="@+id/registration"
-        android:layout_width="wrap_content"
+        android:id="@+id/textViewAthlete"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/francois_one"
         android:gravity="center"
-        android:text="@string/ToRegistrate"
-        android:textColor="@color/purple_700"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loginBtn" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/textChoiceAtl"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/signInAtl"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.47" />
+        app:layout_constraintVertical_bias="0.80"
+        app:layout_constraintVertical_chainStyle="packed" />
 
+    <Button
+        android:id="@+id/signInAtl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:text="@string/sign_in_athlete"
+        app:layout_constraintBottom_toTopOf="@id/textViewTrainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewAthlete" />
 
+    <TextView
+        android:id="@+id/textViewTrainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/francois_one"
+        android:gravity="center"
+        android:text="@string/textChoiceTra"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/signInTra"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signInAtl" />
+
+    <Button
+        android:id="@+id/signInTra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sign_in_trainer"
+        app:layout_constraintBottom_toBottomOf="@+id/imgBackgroundChoice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewTrainer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

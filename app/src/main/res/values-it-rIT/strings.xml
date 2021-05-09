@@ -6,4 +6,8 @@
     <string name="insert_email">Inserisci E-mail</string>
     <string name="appName">MyTrainer</string>
     <string name="login">Login</string>
+    <string name="textChoiceAtl">Vuoi diventare un vero atleta? Vuoi essere in grado di raggiungere i tuoi obbiettivi, personalizzare la tua esperienza e avere un contatto diretto con il tuo trainer?</string>
+    <string name="textChoiceTra">Vuoi iniziare una nuova esperienza come un vero trainer? Con questa app sarai in grade di creare un programma per il tuo atleta, scegliendo tra oltre 150 esercizi, con la possibilità di personalizzare l\'intero programma.</string>
+    <string name="sign_in_trainer">Registati ora come trainer</string>
+    <string name="sign_in_athlete">Registrati ora come atleta</string>
 </resources>
