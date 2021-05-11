@@ -11,7 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyTrainer">
-        <activity android:name=".ActivityRegistrationTrainer"></activity>
+        <activity android:name=".ActivityCalendar"/>
+        <activity android:name=".ActivityRegistrationTrainer" />
+        <activity android:name=".ActivityUserChoice" />
+        <activity android:name=".ActivityRegistrationAthlete" />
+
         <activity android:name=".ActivityLogin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,8 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityUserChoice" />
-        <activity android:name=".ActivityRegistrationAthlete" />
     </application>
 
 </manifest>
