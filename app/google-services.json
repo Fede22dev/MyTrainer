@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "805197150300",
+    "project_id": "mytrainer-af86e",
+    "storage_bucket": "mytrainer-af86e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:805197150300:android:116a672640bb5fa6730e99",
+        "android_client_info": {
+          "package_name": "it.app.mytrainer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "805197150300-ne8be7jjfmsdni2jcfddch2sbgbv77ev.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvVBVszO1U_pC3xgurhFssu5IxZvNgMzU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "805197150300-ne8be7jjfmsdni2jcfddch2sbgbv77ev.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

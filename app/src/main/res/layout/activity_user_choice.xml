@@ -5,13 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserChoice" >
+    tools:context=".ActivityUserChoice" >
 
     <ImageView
         android:id="@+id/imgBackgroundChoice"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:alpha="0.75"
+        android:alpha="0.80"
         android:scaleType="centerCrop"
         android:src="@mipmap/ic_backgroundlogin_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
