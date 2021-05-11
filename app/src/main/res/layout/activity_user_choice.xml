@@ -28,11 +28,11 @@
         android:text="@string/appName"
         android:textColor="@android:color/holo_orange_dark"
         android:textSize="55sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/textViewAthlete"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintVertical_bias="0.40" />
 
     <TextView
         android:id="@+id/textViewAthlete"
@@ -59,6 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
         android:text="@string/sign_in_athlete"
+        android:onClick="onClickAthlete"
         app:layout_constraintBottom_toTopOf="@id/textViewTrainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,6 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/sign_in_trainer"
+        android:onClick="onClickTrainer"
         app:layout_constraintBottom_toBottomOf="@+id/imgBackgroundChoice"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
