@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/teal_200"
-    tools:context=".FragmentDataAthlete">
+    tools:context=".FragmentDataTrainer">
 
 
     <EditText
@@ -14,38 +13,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Insert E-mail"
+        android:hint="@string/insert_email"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toTopOf="@+id/passwordFieldRegistTra"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/passwordFieldRegistTra"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Insert Password"
+        android:hint="@string/insert_password"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/nameAtl"
+        app:layout_constraintBottom_toTopOf="@+id/nameTrainer"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailFieldRegistTra" />
 
     <EditText
-        android:id="@+id/nameAtl"
+        android:id="@+id/nameTrainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="@string/name"
         android:inputType="textPersonName"
-        android:hint="Insert name"
         app:layout_constraintBottom_toTopOf="@+id/surnameTrainer"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordFieldRegistTra" />
 
@@ -54,22 +49,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="@string/surname"
         android:inputType="textPersonName"
-        android:hint="Insert Surname"
         app:layout_constraintBottom_toTopOf="@+id/dateOfBirth"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameAtl" />
+        app:layout_constraintTop_toBottomOf="@+id/nameTrainer" />
 
     <TextView
         android:id="@+id/dateOfBirth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:hint="Date"
         app:layout_constraintBottom_toTopOf="@+id/btnSelectDate"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/surnameTrainer" />
 
@@ -77,10 +70,9 @@
         android:id="@+id/btnSelectDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select date of birth"
+        android:text="@string/selectDate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dateOfBirth" />
 

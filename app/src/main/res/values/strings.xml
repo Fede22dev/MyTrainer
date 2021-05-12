@@ -10,5 +10,18 @@
     <string name="sign_in_trainer">Join now as trainer</string>
     <string name="sign_in_athlete">Join now as athlete</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="saveTrainer">Save</string>
+    <string name="bodyweightTrainer">BodyWeight</string>
+    <string name="crossfitTrainer">Crossfit</string>
+    <string name="functionalTrainer">Functional</string>
+    <string name="wellnessTrainer">Wellness</string>
+    <string name="powerliftingTrainer">Powerlifting</string>
+    <string name="calisthenicsTrainer">Calisthenics</string>
+    <string name="yogaTrainer">Yoga</string>
+    <string name="mixed_martial_artsTrainer">Mixed martial arts</string>
+    <string name="bodybuildingTrainer">Bodybuilding</string>
+    <string name="name">Insert name</string>
+    <string name="surname">Insert Surname</string>
+    <string name="selectDate">Select date of birth</string>
+    <string name="gymTrainer">Insert the Gym</string>
 </resources>

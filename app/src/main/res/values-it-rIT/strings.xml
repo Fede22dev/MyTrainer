@@ -10,4 +10,18 @@
     <string name="textChoiceTra">Vuoi iniziare una nuova esperienza come un vero trainer? Con questa app sarai in grade di creare un programma per il tuo atleta, scegliendo tra oltre 150 esercizi, avendo la possibilità di personalizzare l\'intero programma.</string>
     <string name="sign_in_trainer">Registati ora come trainer</string>
     <string name="sign_in_athlete">Registrati ora come atleta</string>
+    <string name="saveTrainer">"Salva "</string>
+    <string name="bodyweightTrainer">Corpo Libero</string>
+    <string name="crossfitTrainer">Crossfit</string>
+    <string name="functionalTrainer">Funzionale</string>
+    <string name="wellnessTrainer">Salute</string>
+    <string name="powerliftingTrainer">Pwerlifting</string>
+    <string name="calisthenicsTrainer">Calisthenics</string>
+    <string name="yogaTrainer">Yoga</string>
+    <string name="mixed_martial_artsTrainer">Arti Marziali</string>
+    <string name="bodybuildingTrainer">Bodybuilding</string>
+    <string name="name">Inserisci nome</string>
+    <string name="surname">Insersci cognome</string>
+    <string name="selectDate">Seleziona data di nascita</string>
+    <string name="gymTrainer">Inserisci palestra di riferimento</string>
 </resources>

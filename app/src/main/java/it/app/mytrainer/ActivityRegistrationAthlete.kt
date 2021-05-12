@@ -10,10 +10,6 @@ class ActivityRegistrationAthlete: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration_athlete)
 
-        btnSelectDate.setOnClickListener {
-            val intent = Intent(this, ActivityCalendar::class.java)
-            startActivity(intent)
-        }
     }
 
 
