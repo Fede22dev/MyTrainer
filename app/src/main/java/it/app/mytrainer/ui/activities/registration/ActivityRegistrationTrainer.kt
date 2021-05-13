@@ -1,10 +1,13 @@
-package it.app.mytrainer
+package it.app.mytrainer.ui.activities.registration
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
+import it.app.mytrainer.R
+import it.app.mytrainer.ui.fragments.registrationTrainer.FragmentDataTrainer
+import it.app.mytrainer.ui.fragments.registrationTrainer.FragmentInfoTrainer
 
 class ActivityRegistrationTrainer : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,19 +15,17 @@ class ActivityRegistrationTrainer : AppCompatActivity() {
         setContentView(R.layout.activity_registration_trainer)
     }
 
-    fun onClickDataTra(v: View){
+    fun onClickDataTra(v: View) {
         supportFragmentManager.commit {
             setReorderingAllowed(true)
             replace<FragmentDataTrainer>(R.id.fragmentContainerTra)
         }
     }
 
-    fun onClickInfoTra(v: View){
+    fun onClickInfoTra(v: View) {
         supportFragmentManager.commit {
             setReorderingAllowed(true)
             replace<FragmentInfoTrainer>(R.id.fragmentContainerTra)
         }
     }
-
-
 }

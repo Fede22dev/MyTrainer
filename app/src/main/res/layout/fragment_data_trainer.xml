@@ -5,23 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/teal_200"
-    tools:context=".FragmentDataTrainer">
-
+    tools:context=".ui.fragments.registrationTrainer.FragmentDataTrainer">
 
     <EditText
-        android:id="@+id/emailFieldRegistTra"
+        android:id="@+id/emailFieldRegistAthl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/insert_email"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/passwordFieldRegistTra"
+        app:layout_constraintBottom_toTopOf="@+id/passwordFieldRegistAthl"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/passwordFieldRegistTra"
+        android:id="@+id/passwordFieldRegistAthl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -30,7 +29,7 @@
         app:layout_constraintBottom_toTopOf="@+id/nameTrainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailFieldRegistTra" />
+        app:layout_constraintTop_toBottomOf="@+id/emailFieldRegistAthl" />
 
     <EditText
         android:id="@+id/nameTrainer"
@@ -39,42 +38,41 @@
         android:ems="10"
         android:hint="@string/name"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/surnameTrainer"
+        app:layout_constraintBottom_toTopOf="@+id/surnameAthl"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordFieldRegistTra" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordFieldRegistAthl" />
 
     <EditText
-        android:id="@+id/surnameTrainer"
+        android:id="@+id/surnameAthl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/surname"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/dateOfBirth"
+        app:layout_constraintBottom_toTopOf="@+id/dateOfBirthAthl"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameTrainer" />
 
     <TextView
-        android:id="@+id/dateOfBirth"
+        android:id="@+id/dateOfBirthAthl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Date"
-        app:layout_constraintBottom_toTopOf="@+id/btnSelectDate"
+        app:layout_constraintBottom_toTopOf="@+id/btnSelectDateAthl"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/surnameTrainer" />
+        app:layout_constraintTop_toBottomOf="@+id/surnameAthl" />
 
     <Button
-        android:id="@+id/btnSelectDate"
+        android:id="@+id/btnSelectDateAthl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/selectDate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateOfBirth" />
-
+        app:layout_constraintTop_toBottomOf="@+id/dateOfBirthAthl" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,13 +1,13 @@
-package it.app.mytrainer
+package it.app.mytrainer.ui.fragments.registrationTrainer
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.google.android.material.chip.Chip
+import it.app.mytrainer.R
+import it.app.mytrainer.firestore.SaveTrainer
 import kotlinx.android.synthetic.main.fragment_info_trainer.*
 import kotlinx.android.synthetic.main.fragment_info_trainer.view.*
 

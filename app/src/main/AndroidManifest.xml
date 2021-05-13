@@ -11,12 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyTrainer">
-        <activity android:name=".ActivityCalendar"/>
-        <activity android:name=".ActivityRegistrationTrainer" />
-        <activity android:name=".ActivityUserChoice" />
-        <activity android:name=".ActivityRegistrationAthlete" />
+        <activity android:name=".ui.ActivityCalendar"/>
+        <activity android:name=".ui.activities.registration.ActivityRegistrationTrainer" />
+        <activity android:name=".ui.activities.registration.ActivityUserChoice" />
+        <activity android:name=".ui.activities.registration.ActivityRegistrationAthlete" />
 
-        <activity android:name=".ActivityLogin">
+        <activity android:name=".ui.activities.ActivityLogin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,4 +1,4 @@
-package it.app.mytrainer
+package it.app.mytrainer.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import it.app.mytrainer.R
+import it.app.mytrainer.ui.activities.registration.ActivityUserChoice
 import kotlinx.android.synthetic.main.activity_login.*
 
 class ActivityLogin : AppCompatActivity() {

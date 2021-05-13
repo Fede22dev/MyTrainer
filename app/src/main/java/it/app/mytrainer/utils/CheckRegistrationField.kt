@@ -1,4 +1,4 @@
-package it.app.mytrainer
+package it.app.mytrainer.utils
 
 import java.util.regex.Pattern
 

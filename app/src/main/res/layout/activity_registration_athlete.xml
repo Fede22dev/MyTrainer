@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ActivityRegistrationAthlete"
+    tools:context=".ui.activities.registration.ActivityRegistrationAthlete"
     android:background="@color/black">
 
     <TextView
@@ -22,8 +22,8 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerTra"
-        android:name="it.app.mytrainer.FragmentDataAthlete"
+        android:id="@+id/fragmentContainerAthl"
+        android:name="it.app.mytrainer.ui.fragments.registrationAthlete.FragmentDataAthlete"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/linearBtnTra"
@@ -36,7 +36,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/fragmentContainerTra"
+        app:layout_constraintTop_toBottomOf="@id/fragmentContainerAthl"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -47,7 +47,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:text="Button" />
+            android:text="Button"
+            android:onClick="onClickDataAthlete"/>
 
         <Button
             android:id="@+id/button2"
@@ -55,7 +56,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:text="Button" />
+            android:text="Button"
+            android:onClick="onClickGoalsAthlete"/>
     </LinearLayout>
 
     <ProgressBar
@@ -66,7 +68,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titleApp"
-        app:layout_constraintBottom_toTopOf="@id/fragmentContainerTra"/>
-
+        app:layout_constraintBottom_toTopOf="@id/fragmentContainerAthl"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
