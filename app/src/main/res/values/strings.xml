@@ -24,4 +24,8 @@
     <string name="surname">Insert Surname</string>
     <string name="selectDate">Select date of birth</string>
     <string name="gymTrainer">Insert the Gym</string>
+    <string name="ErrorName">Invalid name</string>
+    <string name="ErrorrSurname">Invalid surname</string>
+    <string name="ErrorEmail">Invalid E-mail</string>
+    <string name="ErrorPassword">Invalid Password</string>
 </resources>

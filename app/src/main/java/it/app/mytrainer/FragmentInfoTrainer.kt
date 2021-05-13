@@ -17,7 +17,10 @@ class FragmentInfoTrainer : Fragment() {
     private lateinit var chipList: MutableList<String>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+
         val view: View = inflater.inflate(R.layout.fragment_info_trainer, container, false)
+
+        val saveTrainer = SaveTrainer()
 
         chipList= ArrayList<String>()
 
@@ -58,7 +61,7 @@ class FragmentInfoTrainer : Fragment() {
         }
 
         view.btnSaveTrainer.setOnClickListener {
-            Log.d("---------------------3", "$chipList")
+
         }
 
         return view
