@@ -1,15 +1,14 @@
-package it.app.mytrainer.firestore
+package it.app.mytrainer.firebase
 
-import it.app.mytrainer.utils.CheckRegistrationField
 
-class SaveTrainer() {
+/*class SaveTrainer() {
     //Creation of the map to save data into firesStore
     companion object {
         private var hashMapTrainer: HashMap<String, Any> = HashMap()
     }
 
     //Creation of the object to call the method for the check
-    private val checkField = CheckRegistrationField()
+    private val checkField = CheckRegistrationFieldUser()
 
     //Setting of the email in the hash map
     fun setEmailTrainer(name: String): Boolean {
@@ -81,4 +80,4 @@ class SaveTrainer() {
     //Saving on firestore
 
 
-}
+}*/

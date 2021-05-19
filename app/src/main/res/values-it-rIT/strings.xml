@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MyTrainer</string>
-    <string name="ToRegistrate">Se non sei ancora registrato,\nclicca qui!</string>
+    <string name="alreadyHaveAccount">Se non sei ancora registrato,\nclicca qui!</string>
     <string name="insert_password">Inserisci Password</string>
     <string name="insert_email">Inserisci E-mail</string>
     <string name="appName">MyTrainer</string>
     <string name="login">Login</string>
-    <string name="textChoiceAtl">Vuoi diventare un vero atleta? Vuoi essere in grado di raggiungere i tuoi obbiettivi, personalizzare la tua esperienza e avere un contatto diretto con il tuo trainer?</string>
-    <string name="textChoiceTra">Vuoi iniziare una nuova esperienza come un vero trainer? Con questa app sarai in grade di creare un programma per il tuo atleta, scegliendo tra oltre 150 esercizi, avendo la possibilità di personalizzare l\'intero programma.</string>
+    <string name="textChoiceAthlete">Vuoi diventare un vero atleta? Vuoi essere in grado di raggiungere i tuoi obbiettivi, personalizzare la tua esperienza e avere un contatto diretto con il tuo trainer?</string>
+    <string name="textChoiceTrainer">Vuoi iniziare una nuova esperienza come un vero trainer? Con questa app sarai in grado di creare un programma per il tuo atleta, scegliendo tra oltre 150 esercizi, avendo la possibilità di personalizzare l\'intero programma.</string>
     <string name="sign_in_trainer">Registati ora come trainer</string>
     <string name="sign_in_athlete">Registrati ora come atleta</string>
     <string name="saveTrainer">"Salva "</string>
@@ -20,8 +20,16 @@
     <string name="yogaTrainer">Yoga</string>
     <string name="mixed_martial_artsTrainer">Arti Marziali</string>
     <string name="bodybuildingTrainer">Bodybuilding</string>
-    <string name="name">Inserisci nome</string>
-    <string name="surname">Insersci cognome</string>
-    <string name="selectDate">Seleziona data di nascita</string>
-    <string name="gymTrainer">Inserisci palestra di riferimento</string>
+    <string name="insertName">Inserisci nome</string>
+    <string name="insertSurname">Insersci cognome</string>
+    <string name="selectDateOfBirth">Seleziona data di nascita</string>
+    <string name="insertGymTrainer">Inserisci palestra di riferimento</string>
+    <string name="invalidName">Nome non valido</string>
+    <string name="invalidSurname">Cognome non valido</string>
+    <string name="invalidEmail">E-mail non valida</string>
+    <string name="invalidPassword">Password non valida</string>
+    <string name="frag1RegistrationAthleteName">DATI PERSONALI</string>
+    <string name="frag2RegistrationAthleteName">OBBIETTIVI</string>
+    <string name="frag3RegistrationAthleteName">TIPO ALLENAMENTO</string>
+    <string name="frag4RegistrationAthleteName">INFO EXTRA</string>
 </resources>

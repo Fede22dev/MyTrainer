@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.registration.ActivityRegistrationTrainer"
-    android:background="@color/black">
+    android:background="@color/black"
+    tools:context=".ui.activities.registration.ActivityRegistrationTrainer">
 
     <TextView
         android:id="@+id/titleApp"
         android:layout_width="wrap_content"
         android:layout_height="150dp"
-        android:gravity="center"
         android:fontFamily="@font/audiowide"
+        android:gravity="center"
         android:text="@string/appName"
         android:textColor="@android:color/holo_orange_dark"
         android:textSize="55sp"
@@ -36,26 +35,24 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/fragmentContainerTra"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragmentContainerTra">
 
         <Button
             android:id="@+id/btnDateTrainer"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:onClick="onClickDataTra"
             android:layout_weight="1"
             android:text="1" />
 
         <Button
             android:id="@+id/btnSpecTrainer"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:onClick="onClickInfoTra"
             android:layout_weight="1"
             android:text="2" />
     </LinearLayout>

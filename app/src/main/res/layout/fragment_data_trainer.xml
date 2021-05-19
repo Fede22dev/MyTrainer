@@ -4,75 +4,79 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_200"
+    android:background="@color/registrationBackground"
     tools:context=".ui.fragments.registrationTrainer.FragmentDataTrainer">
 
     <EditText
-        android:id="@+id/emailFieldRegistAthl"
+        android:id="@+id/emailFieldRegistTrainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/insert_email"
+        android:importantForAutofill="no"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/passwordFieldRegistAthl"
+        app:layout_constraintBottom_toTopOf="@+id/passwordFieldRegistTrainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/passwordFieldRegistAthl"
+        android:id="@+id/passwordFieldRegistTrainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/insert_password"
+        android:importantForAutofill="no"
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/nameTrainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailFieldRegistAthl" />
+        app:layout_constraintTop_toBottomOf="@+id/emailFieldRegistTrainer" />
 
     <EditText
         android:id="@+id/nameTrainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/name"
+        android:hint="@string/insertName"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/surnameAthl"
+        app:layout_constraintBottom_toTopOf="@+id/surnameTrainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordFieldRegistAthl" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordFieldRegistTrainer" />
 
     <EditText
-        android:id="@+id/surnameAthl"
+        android:id="@+id/surnameTrainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/surname"
+        android:hint="@string/insertSurname"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/dateOfBirthAthl"
+        app:layout_constraintBottom_toTopOf="@+id/dateOfBirthTrainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameTrainer" />
 
     <TextView
-        android:id="@+id/dateOfBirthAthl"
+        android:id="@+id/dateOfBirthTrainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Date"
-        app:layout_constraintBottom_toTopOf="@+id/btnSelectDateAthl"
+        android:hint=""
+        app:layout_constraintBottom_toTopOf="@+id/btnSelectDateTrainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/surnameAthl" />
+        app:layout_constraintTop_toBottomOf="@+id/surnameTrainer" />
 
     <Button
-        android:id="@+id/btnSelectDateAthl"
+        android:id="@+id/btnSelectDateTrainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/selectDate"
+        android:text="@string/selectDateOfBirth"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateOfBirthAthl" />
+        app:layout_constraintTop_toBottomOf="@+id/dateOfBirthTrainer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

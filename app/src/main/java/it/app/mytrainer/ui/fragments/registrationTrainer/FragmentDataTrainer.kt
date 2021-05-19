@@ -1,12 +1,13 @@
 package it.app.mytrainer.ui.fragments.registrationTrainer
-
+/*
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import it.app.mytrainer.R
-import it.app.mytrainer.firestore.SaveTrainer
+import it.app.mytrainer.firebase.SaveTrainer
+import kotlinx.android.synthetic.main.fragment_data_athlete.*
 import kotlinx.android.synthetic.main.fragment_data_athlete.view.*
 import kotlinx.android.synthetic.main.fragment_data_trainer.*
 
@@ -21,7 +22,7 @@ class FragmentDataTrainer : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val view: View = inflater.inflate(R.layout.fragment_data_trainer, container, false)
-        view.btnSelectDateAthl.setOnClickListener {
+        view.btnSelectDateAthlete.setOnClickListener {
             val name = saveTrainer.setNameTrainer(nameTrainer.text.toString())
             //Print in the field for eventual error
             if (!name) {
@@ -29,31 +30,31 @@ class FragmentDataTrainer : Fragment() {
             }
 
             //Check for the surname
-            val surname = saveTrainer.setSurnameTrainer(surnameAthl.text.toString())
+            val surname = saveTrainer.setSurnameTrainer(surnameTrainer.text.toString())
             //Print in the field for eventual error
             if (!surname) {
-                surnameAthl.error = getString(R.string.ErrorrSurname)
+                surnameTrainer.error = getString(R.string.ErrorSurname)
             }
 
             //Check for the email
-            val email = saveTrainer.setEmailTrainer(emailFieldRegistAthl.text.toString())
+            val email = saveTrainer.setEmailTrainer(emailFieldRegistTrainer.text.toString())
             //Print in the field for eventual error
             if (!email) {
-                emailFieldRegistAthl.error = getString(R.string.ErrorEmail)
+                emailFieldRegistTrainer.error = getString(R.string.ErrorEmail)
             }
 
             //Check for the pass
-            val pass = saveTrainer.setPassTrainer(passwordFieldRegistAthl.text.toString())
+            val pass = saveTrainer.setPassTrainer(passwordFieldRegistTrainer.text.toString())
             //Print in the field for eventual error
             if (!pass) {
-                passwordFieldRegistAthl.error = getString(R.string.ErrorPassword)
+                passwordFieldRegistTrainer.error = getString(R.string.ErrorPassword)
             }
 
             //Check for the birth
-            val birth = saveTrainer.setBirthTrainer(dateOfBirthAthl.text.toString())
+            val birth = saveTrainer.setBirthTrainer(dateOfBirthAthlete.text.toString())
             //Print in the field for eventual error
             if (!birth) {
-                dateOfBirthAthl.error = getString(R.string.ErrorPassword)
+                dateOfBirthAthlete.error = getString(R.string.ErrorPassword)
             }
         }
 
@@ -63,4 +64,4 @@ class FragmentDataTrainer : Fragment() {
         return view
     }
 
-}
+}*/

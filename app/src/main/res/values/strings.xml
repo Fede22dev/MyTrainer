@@ -1,15 +1,14 @@
 <resources>
     <string name="app_name">MyTrainer</string>
-    <string name="ToRegistrate">If you are not already registered,\nplease click here!</string>
+    <string name="alreadyHaveAccount">If you are not already registered,\nplease click here!</string>
     <string name="insert_password">Insert Password</string>
     <string name="insert_email">Insert E-mail</string>
     <string name="appName">MyTrainer</string>
     <string name="login">Login</string>
-    <string name="textChoiceAtl">You want to be a real athlete? You want to be able to reach your goals, personalize your experience and have a direct contact with your trainer?</string>
-    <string name="textChoiceTra">You want to start a new experience like a real trainer? With this app you will be able to make a program for your athlete, choosing above over 150 exercises, having the possibility to personalize the whole program.</string>
+    <string name="textChoiceAthlete">You want to be a real athlete? You want to be able to reach your goals, personalize your experience and have a direct contact with your trainer?</string>
+    <string name="textChoiceTrainer">You want to start a new experience like a real trainer? With this app you will be able to make a program for your athlete, choosing above over 150 exercises, having the possibility to personalize the whole program.</string>
     <string name="sign_in_trainer">Join now as trainer</string>
     <string name="sign_in_athlete">Join now as athlete</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="saveTrainer">Save</string>
     <string name="bodyweightTrainer">BodyWeight</string>
     <string name="crossfitTrainer">Crossfit</string>
@@ -20,14 +19,17 @@
     <string name="yogaTrainer">Yoga</string>
     <string name="mixed_martial_artsTrainer">Mixed martial arts</string>
     <string name="bodybuildingTrainer">Bodybuilding</string>
-    <string name="name">Insert name</string>
-    <string name="surname">Insert Surname</string>
-    <string name="selectDate">Select date of birth</string>
-    <string name="gymTrainer">Insert the Gym</string>
-    <string name="ErrorName">Invalid name</string>
-    <string name="ErrorrSurname">Invalid surname</string>
-    <string name="ErrorEmail">Invalid E-mail</string>
-    <string name="ErrorPassword">Invalid Password</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="insertName">Insert name</string>
+    <string name="insertSurname">Insert Surname</string>
+    <string name="selectDateOfBirth">Select date of birth</string>
+    <string name="insertGymTrainer">Insert the Gym</string>
+    <string name="invalidName">Invalid name</string>
+    <string name="invalidSurname">Invalid surname</string>
+    <string name="invalidEmail">Invalid E-mail</string>
+    <string name="invalidPassword">Invalid Password</string>
+    <string name="frag1RegistrationAthleteName">PERSONAL DATA</string>
+    <string name="frag2RegistrationAthleteName">GOALS</string>
+    <string name="frag3RegistrationAthleteName">TRAINING TYPE</string>
+    <string name="frag4RegistrationAthleteName">EXTRA INFO</string>
+
 </resources>

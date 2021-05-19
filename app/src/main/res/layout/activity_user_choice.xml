@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.registration.ActivityUserChoice" >
+    tools:context=".ui.activities.registration.ActivityUserChoice">
 
     <ImageView
         android:id="@+id/imgBackgroundChoice"
@@ -43,7 +42,7 @@
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/francois_one"
         android:gravity="center"
-        android:text="@string/textChoiceAtl"
+        android:text="@string/textChoiceAthlete"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@id/signInAtl"
@@ -58,8 +57,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
-        android:text="@string/sign_in_athlete"
         android:onClick="onClickAthlete"
+        android:text="@string/sign_in_athlete"
         app:layout_constraintBottom_toTopOf="@id/textViewTrainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,7 +73,7 @@
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/francois_one"
         android:gravity="center"
-        android:text="@string/textChoiceTra"
+        android:text="@string/textChoiceTrainer"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@id/signInTra"
@@ -86,8 +85,8 @@
         android:id="@+id/signInTra"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sign_in_trainer"
         android:onClick="onClickTrainer"
+        android:text="@string/sign_in_trainer"
         app:layout_constraintBottom_toBottomOf="@+id/imgBackgroundChoice"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

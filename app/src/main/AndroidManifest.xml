@@ -11,18 +11,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyTrainer">
-        <activity android:name=".ui.ActivityCalendar"/>
-        <activity android:name=".ui.activities.registration.ActivityRegistrationTrainer" />
-        <activity android:name=".ui.activities.registration.ActivityUserChoice" />
-        <activity android:name=".ui.activities.registration.ActivityRegistrationAthlete" />
 
-        <activity android:name=".ui.activities.ActivityLogin">
+        <activity
+            android:name=".ui.activities.registration.ActivityRegistrationTrainer"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activities.registration.ActivityUserChoice"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activities.registration.ActivityRegistrationAthlete"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.activities.ActivityLogin"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

@@ -11,12 +11,12 @@
         android:id="@+id/editTextGym"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:autofillHints="no"
         android:ems="10"
-        android:hint="@string/gymTrainer"
+        android:hint="@string/insertGymTrainer"
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/chipGroup"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,12 +25,13 @@
         android:id="@+id/chipGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="25dp"
+        app:chipSpacingHorizontal="25dp"
+        app:chipSpacingVertical="10dp"
         app:layout_constraintBottom_toTopOf="@+id/btnSaveTrainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextGym"
-        app:chipSpacingHorizontal="25dp"
-        android:padding="25dp"
         app:selectionRequired="true">
 
         <com.google.android.material.chip.Chip
@@ -96,6 +97,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/bodyweightTrainer" />
+
     </com.google.android.material.chip.ChipGroup>
 
     <Button
@@ -105,7 +107,7 @@
         android:text="@string/saveTrainer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chipGroup" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
