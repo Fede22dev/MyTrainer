@@ -5,78 +5,117 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/registrationBackground"
+    android:padding="24dp"
     tools:context=".ui.fragments.registrationTrainer.FragmentDataTrainer">
 
-    <EditText
-        android:id="@+id/emailFieldRegistTrainer"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutTrainerEditTextEmail"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:hint="@string/insert_email"
-        android:importantForAutofill="no"
-        android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/passwordFieldRegistTrainer"
+        android:textColorHint="@color/white"
+        app:errorEnabled="true"
+        app:layout_constraintBottom_toTopOf="@+id/layoutTrainerEditTextPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.35"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:startIconDrawable="@android:drawable/ic_dialog_email">
 
-    <EditText
-        android:id="@+id/passwordFieldRegistTrainer"
-        android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emailFieldTrainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutTrainerEditTextPassword"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:layout_marginBottom="10dp"
         android:hint="@string/insert_password"
-        android:importantForAutofill="no"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/nameTrainer"
+        android:textColorHint="@color/white"
+        app:endIconTint="@color/white"
+        app:endIconMode="password_toggle"
+        app:errorEnabled="true"
+        app:layout_constraintBottom_toTopOf="@+id/layoutTrainerEditTextName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailFieldRegistTrainer" />
+        app:layout_constraintTop_toBottomOf="@+id/layoutTrainerEditTextEmail"
+        app:startIconDrawable="@android:drawable/ic_lock_lock">
 
-    <EditText
-        android:id="@+id/nameTrainer"
-        android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwordFieldTrainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutTrainerEditTextName"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:hint="@string/insertName"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/surnameTrainer"
+        app:errorEnabled="true"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/layoutTrainerEditTextSurname"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordFieldRegistTrainer" />
+        app:layout_constraintTop_toBottomOf="@+id/layoutTrainerEditTextPassword">
 
-    <EditText
-        android:id="@+id/surnameTrainer"
-        android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/nameFieldTrainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutTrainerEditTextSurname"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:layout_marginBottom="16dp"
         android:hint="@string/insertSurname"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
+        android:textColorHint="@color/white"
+        app:errorEnabled="true"
         app:layout_constraintBottom_toTopOf="@+id/dateOfBirthTrainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameTrainer" />
+        app:layout_constraintTop_toBottomOf="@+id/layoutTrainerEditTextName">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/surnameFieldTrainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/dateOfBirthTrainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint=""
-        app:layout_constraintBottom_toTopOf="@+id/btnSelectDateTrainer"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@id/btnSelectDateTrainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/surnameTrainer" />
+        app:layout_constraintTop_toBottomOf="@+id/layoutTrainerEditTextSurname" />
 
     <Button
         android:id="@+id/btnSelectDateTrainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/selectDateOfBirth"
+        android:backgroundTint="@color/buttonRegistration"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dateOfBirthTrainer" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,7 +5,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayout
 import it.app.mytrainer.R
-import it.app.mytrainer.ui.adapter.SectionsPagerAdapter
+import it.app.mytrainer.ui.adapter.AthleteRegistrationPageAdapter
 import kotlinx.android.synthetic.main.activity_registration_athlete.*
 
 class ActivityRegistrationAthlete : AppCompatActivity() {
@@ -26,7 +26,7 @@ class ActivityRegistrationAthlete : AppCompatActivity() {
             tabsBarAthlete.newTab().setText(getString(R.string.frag4RegistrationAthleteName))
         )
 
-        viewPagerAthlete.adapter = SectionsPagerAdapter(this, tabsBarAthlete.tabCount)
+        viewPagerAthlete.adapter = AthleteRegistrationPageAdapter(this, tabsBarAthlete.tabCount)
 
         tabsBarAthlete.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {

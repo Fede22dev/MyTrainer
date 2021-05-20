@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="registrationBackground">#2f3136</color>
     <color name="buttonRegistration">#dd4b39</color>
+    <color name="backgroundTitleAppBar">#202225</color>
 </resources>

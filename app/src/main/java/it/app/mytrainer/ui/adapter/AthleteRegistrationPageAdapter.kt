@@ -7,10 +7,8 @@ import it.app.mytrainer.ui.fragments.registrationAthlete.FragmentDataAthlete
 import it.app.mytrainer.ui.fragments.registrationAthlete.FragmentGoalsAthlete
 
 
-class SectionsPagerAdapter(
-    fa: FragmentActivity,
-    private val tabCount: Int
-) : FragmentStateAdapter(fa) {
+class AthleteRegistrationPageAdapter(fa: FragmentActivity, private val tabCount: Int) :
+    FragmentStateAdapter(fa) {
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {

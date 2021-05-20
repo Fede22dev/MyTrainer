@@ -1,67 +1,107 @@
 package it.app.mytrainer.ui.fragments.registrationTrainer
-/*
+
+import android.app.DatePickerDialog
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.DatePicker
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import it.app.mytrainer.R
-import it.app.mytrainer.firebase.SaveTrainer
-import kotlinx.android.synthetic.main.fragment_data_athlete.*
-import kotlinx.android.synthetic.main.fragment_data_athlete.view.*
+import it.app.mytrainer.models.Trainer
+import it.app.mytrainer.utils.CheckRegistrationFieldUser
 import kotlinx.android.synthetic.main.fragment_data_trainer.*
+import kotlinx.android.synthetic.main.fragment_data_trainer.view.*
+import java.util.*
 
-class FragmentDataTrainer : Fragment() {
+class FragmentDataTrainer : Fragment(), DatePickerDialog.OnDateSetListener {
 
-    //create an object of the class with the save method
-    private val saveTrainer = SaveTrainer()
+    private var day = 0
+    private var month = 0
+    private var year = 0
+
+    private fun getCurrentDataCalendar() {
+        val cal = Calendar.getInstance()
+        day = cal.get(Calendar.DAY_OF_MONTH)
+        month = cal.get(Calendar.MONTH)
+        year = cal.get(Calendar.YEAR)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view: View = inflater.inflate(R.layout.fragment_data_trainer, container, false)
-        view.btnSelectDateAthlete.setOnClickListener {
-            val name = saveTrainer.setNameTrainer(nameTrainer.text.toString())
-            //Print in the field for eventual error
-            if (!name) {
-                nameTrainer.error = getString(R.string.ErrorName)
-            }
-
-            //Check for the surname
-            val surname = saveTrainer.setSurnameTrainer(surnameTrainer.text.toString())
-            //Print in the field for eventual error
-            if (!surname) {
-                surnameTrainer.error = getString(R.string.ErrorSurname)
-            }
-
-            //Check for the email
-            val email = saveTrainer.setEmailTrainer(emailFieldRegistTrainer.text.toString())
-            //Print in the field for eventual error
-            if (!email) {
-                emailFieldRegistTrainer.error = getString(R.string.ErrorEmail)
-            }
-
-            //Check for the pass
-            val pass = saveTrainer.setPassTrainer(passwordFieldRegistTrainer.text.toString())
-            //Print in the field for eventual error
-            if (!pass) {
-                passwordFieldRegistTrainer.error = getString(R.string.ErrorPassword)
-            }
-
-            //Check for the birth
-            val birth = saveTrainer.setBirthTrainer(dateOfBirthAthlete.text.toString())
-            //Print in the field for eventual error
-            if (!birth) {
-                dateOfBirthAthlete.error = getString(R.string.ErrorPassword)
+        val view = inflater.inflate(R.layout.fragment_data_trainer, container, false)
+        getCurrentDataCalendar()
+        view.btnSelectDateTrainer.setOnClickListener {
+            context?.let { it1 ->
+                DatePickerDialog(it1, this, year, month, day).show()
             }
         }
-
-        //Check for the name
-
-
         return view
     }
 
-}*/
+    override fun onStart() {
+        super.onStart()
+        //Insert the email in the hashMap of the trainer if valid
+        emailFieldTrainer.doOnTextChanged { text, start, before, count ->
+            if (CheckRegistrationFieldUser.checkEmail(text.toString())) {
+                Trainer.putEmail(text.toString())
+                emailFieldTrainer.error = null
+                layoutTrainerEditTextSurname.boxStrokeColor = Color.GREEN
+            } else {
+                emailFieldTrainer.error = getString(R.string.invalidEmail)
+                layoutTrainerEditTextSurname.boxStrokeColor = Color.RED
+            }
+        }
+
+        //Checking if the pass is valid
+        passwordFieldTrainer.doOnTextChanged { text, start, before, count ->
+            if (CheckRegistrationFieldUser.checkPass(text.toString())) {
+                passwordFieldTrainer.error = null
+                layoutTrainerEditTextSurname.boxStrokeColor = Color.GREEN
+            } else {
+                passwordFieldTrainer.error = getString(R.string.invalidPassword)
+                layoutTrainerEditTextSurname.boxStrokeColor = Color.RED
+            }
+        }
+
+        //Insert the name in the hashmap of the trainer if valid
+        nameFieldTrainer.doOnTextChanged { text, start, before, count ->
+            if (CheckRegistrationFieldUser.checkName(text.toString())) {
+                Trainer.putName(text.toString())
+                nameFieldTrainer.error = null
+                layoutTrainerEditTextSurname.boxStrokeColor = Color.GREEN
+            } else {
+                nameFieldTrainer.error = getString(R.string.invalidName)
+                layoutTrainerEditTextSurname.boxStrokeColor = Color.RED
+            }
+        }
+
+        //Insert the surname in the hashmap of trainer if valid
+        surnameFieldTrainer.doOnTextChanged { text, start, before, count ->
+            if (CheckRegistrationFieldUser.checkSurname(text.toString())) {
+                Trainer.putSurname(text.toString())
+                layoutTrainerEditTextSurname.boxStrokeColor = Color.GREEN
+                surnameFieldTrainer.error = null
+            } else {
+                surnameFieldTrainer.error = getString(R.string.invalidSurname)
+                layoutTrainerEditTextSurname.boxStrokeColor = Color.RED
+            }
+        }
+    }
+
+    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        val date = "$year/$month/$dayOfMonth"
+        dateOfBirthTrainer.text = date
+        if (CheckRegistrationFieldUser.checkDateOfBirth(year.toString())) {
+            Trainer.putDate(date)
+            dateOfBirthTrainer.error = null
+        } else {
+            dateOfBirthTrainer.error
+        }
+    }
+}

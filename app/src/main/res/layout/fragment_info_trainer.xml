@@ -4,34 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/registrationBackground"
+    android:padding="24dp"
     tools:context=".ui.fragments.registrationTrainer.FragmentInfoTrainer">
 
-
-    <EditText
-        android:id="@+id/editTextGym"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutTrainerEditTextGym"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:autofillHints="no"
-        android:ems="10"
+        android:layout_marginBottom="24dp"
         android:hint="@string/insertGymTrainer"
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/chipGroup"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/textViewInfoTrainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.35"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:helperText="Optional*"
+        app:helperTextEnabled="true"
+        app:helperTextTextColor="@color/white">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/gymFieldTrainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textViewInfoTrainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/info_specialization_trainer"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@id/chipGroup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutTrainerEditTextGym" />
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chipGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="25dp"
-        app:chipSpacingHorizontal="25dp"
+        android:layout_marginBottom="32dp"
+        app:chipSpacingHorizontal="10dp"
         app:chipSpacingVertical="10dp"
         app:layout_constraintBottom_toTopOf="@+id/btnSaveTrainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextGym"
+        app:layout_constraintTop_toBottomOf="@id/textViewInfoTrainer"
         app:selectionRequired="true">
 
         <com.google.android.material.chip.Chip
@@ -104,10 +129,12 @@
         android:id="@+id/btnSaveTrainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/buttonRegistration"
         android:text="@string/saveTrainer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chipGroup" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

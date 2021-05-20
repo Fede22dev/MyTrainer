@@ -4,57 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
     tools:context=".ui.activities.registration.ActivityRegistrationTrainer">
 
-    <TextView
-        android:id="@+id/titleApp"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatActionBtnSaveTrainer"
         android:layout_width="wrap_content"
-        android:layout_height="150dp"
-        android:fontFamily="@font/audiowide"
-        android:gravity="center"
-        android:text="@string/appName"
-        android:textColor="@android:color/holo_orange_dark"
-        android:textSize="55sp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_save"
+        tools:ignore="ContentDescription" />
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/AppBarLayoutTrainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/backgroundTitleAppBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerTra"
-        android:name="it.app.mytrainer.ui.fragments.registrationTrainer.FragmentDataTrainer"
+        <TextView
+            android:id="@+id/titleAppTrainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/audiowide"
+            android:text="@string/appName"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textSize="45sp" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabsBarTrainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPagerTrainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/linearBtnTra"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleApp" />
-
-    <LinearLayout
-        android:id="@+id/linearBtnTra"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragmentContainerTra">
+        app:layout_constraintTop_toBottomOf="@+id/AppBarLayoutTrainer" />
 
-        <Button
-            android:id="@+id/btnDateTrainer"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:text="1" />
-
-        <Button
-            android:id="@+id/btnSpecTrainer"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:text="2" />
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

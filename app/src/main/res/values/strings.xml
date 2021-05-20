@@ -31,5 +31,8 @@
     <string name="frag2RegistrationAthleteName">GOALS</string>
     <string name="frag3RegistrationAthleteName">TRAINING TYPE</string>
     <string name="frag4RegistrationAthleteName">EXTRA INFO</string>
+    <string name="frag1RegistrationTrainerName">"PERSONAL DATA "</string>
+    <string name="frag2RegistrationTrainerName">EXTRA INFO</string>
+    <string name="info_specialization_trainer">Select one or more specialization!</string>
 
 </resources>

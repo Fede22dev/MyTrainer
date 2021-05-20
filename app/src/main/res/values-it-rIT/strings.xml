@@ -32,4 +32,7 @@
     <string name="frag2RegistrationAthleteName">OBBIETTIVI</string>
     <string name="frag3RegistrationAthleteName">TIPO ALLENAMENTO</string>
     <string name="frag4RegistrationAthleteName">INFO EXTRA</string>
+    <string name="frag1RegistrationTrainerName">DATI PERSONALI</string>
+    <string name="frag2RegistrationTrainerName">INFO EXTRA</string>
+    <string name="info_specialization_trainer">Seleziona una o più specializzazioni!</string>
 </resources>

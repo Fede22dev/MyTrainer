@@ -41,20 +41,6 @@ class FragmentDataAthlete : Fragment(), DatePickerDialog.OnDateSetListener {
         return view
     }
 
-    override fun onResume() {
-        super.onResume()
-        if (nameAthlete.text.toString().isBlank()) {
-            //nameAthlete.error =
-        } else {
-            //nameAthlete.text = Athlete.getName()
-        }
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Athlete.putName(nameAthlete.text.toString())
-    }
-
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
         val date = "$year/$month/$dayOfMonth"
         dateOfBirthAthlete.text = date
