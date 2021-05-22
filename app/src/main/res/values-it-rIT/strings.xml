@@ -7,7 +7,7 @@
     <string name="appName">MyTrainer</string>
     <string name="login">Login</string>
     <string name="textChoiceAthlete">Vuoi diventare un vero atleta? Vuoi essere in grado di raggiungere i tuoi obbiettivi, personalizzare la tua esperienza e avere un contatto diretto con il tuo trainer?</string>
-    <string name="textChoiceTrainer">Vuoi iniziare una nuova esperienza come un vero trainer? Con questa app sarai in grado di creare un programma per il tuo atleta, scegliendo tra oltre 150 esercizi, avendo la possibilità di personalizzare l\'intero programma.</string>
+    <string name="textChoiceTrainer">Inizia una nuova esperienza come un vero trainer! Con questa app sarai in grado di creare un programma per il tuo atleta, scegliendo tra oltre 150 esercizi.</string>
     <string name="sign_in_trainer">Registati ora come trainer</string>
     <string name="sign_in_athlete">Registrati ora come atleta</string>
     <string name="saveTrainer">"Salva "</string>
@@ -15,7 +15,7 @@
     <string name="crossfitTrainer">Crossfit</string>
     <string name="functionalTrainer">Funzionale</string>
     <string name="wellnessTrainer">Salute</string>
-    <string name="powerliftingTrainer">Pwerlifting</string>
+    <string name="powerliftingTrainer">Powerlifting</string>
     <string name="calisthenicsTrainer">Calisthenics</string>
     <string name="yogaTrainer">Yoga</string>
     <string name="mixed_martial_artsTrainer">Arti Marziali</string>
@@ -34,6 +34,10 @@
     <string name="frag4RegistrationAthleteName">INFO EXTRA</string>
     <string name="frag1RegistrationTrainerName">DATI PERSONALI</string>
     <string name="frag2RegistrationTrainerName">INFO EXTRA</string>
-    <string name="info_specialization_trainer">Seleziona una o più specializzazioni!</string>
+    <string name="info_specialization_trainer">Seleziona una specializzazione!</string>
     <string name="optionalField">*Opzionale</string>
+    <string name="tabUserChoiceAthlete">ATLETA</string>
+    <string name="tabUserChoiceTrainer">TRAINER</string>
+    <string name="RegistrationToast">REGISTRAZIONE INIZIATA. L\'APP SARA\' PRONTA A BREVE! ;)</string>
+    <string name="RegistrationErrorToast">UNO O PIU\' CAMPI NON SONO CORRETTI. PERFAVORE RIPROVA!</string>
 </resources>

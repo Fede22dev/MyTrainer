@@ -53,6 +53,7 @@ class FragmentDataTrainer : Fragment(), DatePickerDialog.OnDateSetListener {
                 layoutTrainerEditTextEmail.error = null
                 layoutTrainerEditTextEmail.boxStrokeColor = Color.GREEN
             } else {
+                Trainer.removeEmail()
                 layoutTrainerEditTextEmail.error = getString(R.string.invalidEmail)
                 layoutTrainerEditTextEmail.errorIconDrawable = null
             }
@@ -61,9 +62,11 @@ class FragmentDataTrainer : Fragment(), DatePickerDialog.OnDateSetListener {
         //Checking if the pass is valid
         passwordFieldTrainer.doOnTextChanged { text, _, _, _ ->
             if (CheckRegistrationFieldUser.checkPass(text.toString())) {
+                Trainer.putPass(text.toString())
                 layoutTrainerEditTextPassword.error = null
                 layoutTrainerEditTextPassword.boxStrokeColor = Color.GREEN
             } else {
+                Trainer.removePass()
                 layoutTrainerEditTextPassword.error = getString(R.string.invalidPassword)
                 layoutTrainerEditTextPassword.errorIconDrawable = null
             }
@@ -76,6 +79,7 @@ class FragmentDataTrainer : Fragment(), DatePickerDialog.OnDateSetListener {
                 layoutTrainerEditTextName.error = null
                 layoutTrainerEditTextName.boxStrokeColor = Color.GREEN
             } else {
+                Trainer.removeName()
                 layoutTrainerEditTextName.error = getString(R.string.invalidName)
                 layoutTrainerEditTextName.errorIconDrawable = null
             }
@@ -88,6 +92,7 @@ class FragmentDataTrainer : Fragment(), DatePickerDialog.OnDateSetListener {
                 layoutTrainerEditTextSurname.boxStrokeColor = Color.GREEN
                 layoutTrainerEditTextSurname.error = null
             } else {
+                Trainer.removeSurname()
                 layoutTrainerEditTextSurname.error = getString(R.string.invalidSurname)
                 layoutTrainerEditTextSurname.errorIconDrawable = null
             }
@@ -101,6 +106,7 @@ class FragmentDataTrainer : Fragment(), DatePickerDialog.OnDateSetListener {
             Trainer.putDate(date)
             dateOfBirthTrainer.error = null
         } else {
+            Trainer.removeDate()
             dateOfBirthTrainer.error
         }
     }

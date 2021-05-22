@@ -6,7 +6,7 @@
     <string name="appName">MyTrainer</string>
     <string name="login">Login</string>
     <string name="textChoiceAthlete">You want to be a real athlete? You want to be able to reach your goals, personalize your experience and have a direct contact with your trainer?</string>
-    <string name="textChoiceTrainer">You want to start a new experience like a real trainer? With this app you will be able to make a program for your athlete, choosing above over 150 exercises, having the possibility to personalize the whole program.</string>
+    <string name="textChoiceTrainer">Start a new experience like a real trainer! With this app you will be able to make a program for your athlete, choosing above over 150 exercises.</string>
     <string name="sign_in_trainer">Join now as trainer</string>
     <string name="sign_in_athlete">Join now as athlete</string>
     <string name="saveTrainer">Save</string>
@@ -33,7 +33,11 @@
     <string name="frag4RegistrationAthleteName">EXTRA INFO</string>
     <string name="frag1RegistrationTrainerName">"PERSONAL DATA "</string>
     <string name="frag2RegistrationTrainerName">EXTRA INFO</string>
-    <string name="info_specialization_trainer">Select one or more specialization!</string>
+    <string name="info_specialization_trainer">Select one specialization!</string>
     <string name="optionalField">*Optional</string>
+    <string name="tabUserChoiceAthlete">ATHLETE</string>
+    <string name="tabUserChoiceTrainer">TRAINER</string>
+    <string name="RegistrationToast">USER REGISTRATION STARTED. THE APP WILL BE READY SOON! ;)</string>
+    <string name="RegistrationErrorToast">ONE OR MORE FIELD ARE UNCORRECTED. PLEASE RETRY!</string>
 
 </resources>

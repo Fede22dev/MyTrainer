@@ -16,6 +16,8 @@
         android:layout_marginBottom="24dp"
         android:hint="@string/insertGymTrainer"
         android:textColorHint="@color/white"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/white"
         app:helperText="@string/optionalField"
         app:helperTextEnabled="true"
         app:helperTextTextColor="@color/white"
@@ -30,8 +32,9 @@
             android:id="@+id/gymFieldTrainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:inputType="textPersonName"/>
+            android:inputType="textPersonName"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -58,7 +61,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textViewInfoTrainer"
-        app:selectionRequired="true">
+        app:selectionRequired="true"
+        app:singleSelection="true">
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip1"

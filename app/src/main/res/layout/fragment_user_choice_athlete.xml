@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/registrationBackground"
-    android:padding="12dp"
+    android:padding="15dp"
     tools:context=".ui.fragments.userChoice.FragmentUserChoiceAthlete">
 
 
@@ -14,9 +14,6 @@
         android:id="@+id/textViewChoiceAthlete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="40dp"
         android:fontFamily="@font/francois_one"
         android:gravity="center"
         android:text="@string/textChoiceAthlete"
@@ -25,19 +22,15 @@
         app:layout_constraintBottom_toTopOf="@+id/btnChoiceAthlete"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnChoiceAthlete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="24dp"
         android:backgroundTint="@color/buttonRegistration"
         android:text="@string/sign_in_athlete"
-        android:textSize="18sp"
+        android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

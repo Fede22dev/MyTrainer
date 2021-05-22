@@ -14,7 +14,7 @@ class FireAuth {
 
         private const val TAG = "FIREAUTH [DEBUG]"
 
-        //Initiaize of th Fb authentication
+        //Initialize of the Fb authentication
         private fun initializeFbAuth() {
             auth = Firebase.auth
         }

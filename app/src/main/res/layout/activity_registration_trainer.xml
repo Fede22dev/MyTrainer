@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.registration.ActivityRegistrationTrainer">
 
+    <ProgressBar
+        android:id="@+id/progressBarRegistrationTrainer"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/viewPagerTrainer" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatActionBtnSaveTrainer"
         android:layout_width="wrap_content"
@@ -14,7 +26,7 @@
         android:layout_marginBottom="24dp"
         android:clickable="true"
         android:focusable="true"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_baseline_save_24"
@@ -57,6 +69,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AppBarLayoutTrainer" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

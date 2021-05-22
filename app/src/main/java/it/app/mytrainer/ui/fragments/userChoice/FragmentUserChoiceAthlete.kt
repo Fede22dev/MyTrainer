@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import it.app.mytrainer.R
 import it.app.mytrainer.ui.activities.registration.ActivityRegistrationAthlete
-import kotlinx.android.synthetic.main.fragment_user_choice_athlete.*
 import kotlinx.android.synthetic.main.fragment_user_choice_athlete.view.*
 
 class FragmentUserChoiceAthlete : Fragment() {
@@ -22,6 +21,7 @@ class FragmentUserChoiceAthlete : Fragment() {
         view.btnChoiceAthlete.setOnClickListener {
             val intent = Intent(context, ActivityRegistrationAthlete::class.java)
             startActivity(intent)
+            activity?.finish()
         }
         return view
     }

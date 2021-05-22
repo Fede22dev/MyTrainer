@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.DatePicker
 import androidx.fragment.app.Fragment
 import it.app.mytrainer.R
-import it.app.mytrainer.models.Athlete
 import kotlinx.android.synthetic.main.fragment_data_athlete.*
 import kotlinx.android.synthetic.main.fragment_data_athlete.view.*
 import java.util.*

@@ -14,8 +14,8 @@ class ActivityUserChoice : AppCompatActivity() {
         setContentView(R.layout.activity_user_choice)
 
         val tabsName = arrayOf(
-            "JOIN AS ATHLETE",
-            "JOIN AS TRAINER"
+            getString(R.string.tabUserChoiceAthlete),
+            getString(R.string.tabUserChoiceTrainer)
         )
 
         tabsBarUserChoice.addTab(
@@ -41,5 +41,13 @@ class ActivityUserChoice : AppCompatActivity() {
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
+    }
+
+    override fun onBackPressed() {
+        if (viewPagerUserChoice.currentItem == 0) {
+            super.onBackPressed()
+        } else {
+            viewPagerUserChoice.currentItem = viewPagerUserChoice.currentItem - 1
+        }
     }
 }
