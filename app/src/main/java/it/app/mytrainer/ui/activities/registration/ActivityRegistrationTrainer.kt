@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import it.app.mytrainer.R
 import it.app.mytrainer.models.Trainer
 import it.app.mytrainer.ui.adapter.AthleteRegistrationPageAdapter
@@ -15,14 +16,24 @@ class ActivityRegistrationTrainer : AppCompatActivity() { override fun onCreate(
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration_trainer)
 
+        val tabsName = arrayOf(
+            getString(R.string.frag1RegistrationTrainerName),
+            getString(R.string.frag2RegistrationTrainerName)
+        )
+
         tabsBarTrainer.addTab(
-            tabsBarTrainer.newTab().setText(getString(R.string.frag1RegistrationTrainerName))
+            tabsBarTrainer.newTab().setText(tabsName[0])
         )
         tabsBarTrainer.addTab(
-            tabsBarTrainer.newTab().setText(getString(R.string.frag2RegistrationTrainerName))
+            tabsBarTrainer.newTab().setText(tabsName[1])
         )
 
         viewPagerTrainer.adapter = TrainerRegistrationPageAdapter(this, tabsBarTrainer.tabCount)
+
+        TabLayoutMediator(tabsBarTrainer, viewPagerTrainer) {tab, position ->
+            tab.text=tabsName[position]
+            tabsBarTrainer.selectTab(tab)
+        }.attach()
 
         tabsBarTrainer.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {

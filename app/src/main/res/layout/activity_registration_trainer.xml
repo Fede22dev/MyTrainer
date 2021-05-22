@@ -14,10 +14,10 @@
         android:layout_marginBottom="24dp"
         android:clickable="true"
         android:focusable="true"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_save"
+        app:srcCompat="@drawable/ic_baseline_save_24"
         tools:ignore="ContentDescription" />
 
     <com.google.android.material.appbar.AppBarLayout

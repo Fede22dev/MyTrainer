@@ -61,10 +61,6 @@ class FragmentInfoTrainer : Fragment() {
             listManager(chip9, isChecked)
         }
 
-        view.btnSaveTrainer.setOnClickListener {
-
-        }
-
         return view
     }
 

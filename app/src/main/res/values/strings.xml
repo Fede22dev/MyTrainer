@@ -26,7 +26,7 @@
     <string name="invalidName">Invalid name</string>
     <string name="invalidSurname">Invalid surname</string>
     <string name="invalidEmail">Invalid E-mail</string>
-    <string name="invalidPassword">Invalid Password</string>
+    <string name="invalidPassword">Need 8 char(1 upper), 1 special, 1 num.</string>
     <string name="frag1RegistrationAthleteName">PERSONAL DATA</string>
     <string name="frag2RegistrationAthleteName">GOALS</string>
     <string name="frag3RegistrationAthleteName">TRAINING TYPE</string>
@@ -34,5 +34,6 @@
     <string name="frag1RegistrationTrainerName">"PERSONAL DATA "</string>
     <string name="frag2RegistrationTrainerName">EXTRA INFO</string>
     <string name="info_specialization_trainer">Select one or more specialization!</string>
+    <string name="optionalField">*Optional</string>
 
 </resources>

@@ -1,26 +1,45 @@
 package it.app.mytrainer.ui.activities.registration
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import it.app.mytrainer.R
+import it.app.mytrainer.ui.adapter.UserChoiceRegistrationPageAdapter
+import kotlinx.android.synthetic.main.activity_user_choice.*
 
 class ActivityUserChoice : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_choice)
-    }
 
-    fun onClickAthlete(v: View) {
-        val intent = Intent(this, ActivityRegistrationAthlete::class.java)
-        startActivity(intent)
-        finish()
-    }
+        val tabsName = arrayOf(
+            "JOIN AS ATHLETE",
+            "JOIN AS TRAINER"
+        )
 
-    fun onClickTrainer(v: View) {
-        val intent = Intent(this, ActivityRegistrationTrainer::class.java)
-        startActivity(intent)
-        finish()
+        tabsBarUserChoice.addTab(
+            tabsBarUserChoice.newTab().setText(tabsName[0])
+        )
+        tabsBarUserChoice.addTab(
+            tabsBarUserChoice.newTab().setText(tabsName[1])
+        )
+
+        viewPagerUserChoice.adapter =
+            UserChoiceRegistrationPageAdapter(this, tabsBarUserChoice.tabCount)
+
+        TabLayoutMediator(tabsBarUserChoice, viewPagerUserChoice) { tab, position ->
+            tab.text = tabsName[position]
+            tabsBarUserChoice.selectTab(tab)
+        }.attach()
+
+        tabsBarUserChoice.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                viewPagerUserChoice.currentItem = tab.position
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+            override fun onTabReselected(tab: TabLayout.Tab) {}
+        })
     }
 }

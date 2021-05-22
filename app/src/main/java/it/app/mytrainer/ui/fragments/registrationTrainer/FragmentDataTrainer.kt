@@ -47,49 +47,49 @@ class FragmentDataTrainer : Fragment(), DatePickerDialog.OnDateSetListener {
     override fun onStart() {
         super.onStart()
         //Insert the email in the hashMap of the trainer if valid
-        emailFieldTrainer.doOnTextChanged { text, start, before, count ->
+        emailFieldTrainer.doOnTextChanged { text, _, _, _ ->
             if (CheckRegistrationFieldUser.checkEmail(text.toString())) {
                 Trainer.putEmail(text.toString())
-                emailFieldTrainer.error = null
-                layoutTrainerEditTextSurname.boxStrokeColor = Color.GREEN
+                layoutTrainerEditTextEmail.error = null
+                layoutTrainerEditTextEmail.boxStrokeColor = Color.GREEN
             } else {
-                emailFieldTrainer.error = getString(R.string.invalidEmail)
-                layoutTrainerEditTextSurname.boxStrokeColor = Color.RED
+                layoutTrainerEditTextEmail.error = getString(R.string.invalidEmail)
+                layoutTrainerEditTextEmail.errorIconDrawable = null
             }
         }
 
         //Checking if the pass is valid
-        passwordFieldTrainer.doOnTextChanged { text, start, before, count ->
+        passwordFieldTrainer.doOnTextChanged { text, _, _, _ ->
             if (CheckRegistrationFieldUser.checkPass(text.toString())) {
-                passwordFieldTrainer.error = null
-                layoutTrainerEditTextSurname.boxStrokeColor = Color.GREEN
+                layoutTrainerEditTextPassword.error = null
+                layoutTrainerEditTextPassword.boxStrokeColor = Color.GREEN
             } else {
-                passwordFieldTrainer.error = getString(R.string.invalidPassword)
-                layoutTrainerEditTextSurname.boxStrokeColor = Color.RED
+                layoutTrainerEditTextPassword.error = getString(R.string.invalidPassword)
+                layoutTrainerEditTextPassword.errorIconDrawable = null
             }
         }
 
         //Insert the name in the hashmap of the trainer if valid
-        nameFieldTrainer.doOnTextChanged { text, start, before, count ->
+        nameFieldTrainer.doOnTextChanged { text, _, _, _ ->
             if (CheckRegistrationFieldUser.checkName(text.toString())) {
                 Trainer.putName(text.toString())
-                nameFieldTrainer.error = null
-                layoutTrainerEditTextSurname.boxStrokeColor = Color.GREEN
+                layoutTrainerEditTextName.error = null
+                layoutTrainerEditTextName.boxStrokeColor = Color.GREEN
             } else {
-                nameFieldTrainer.error = getString(R.string.invalidName)
-                layoutTrainerEditTextSurname.boxStrokeColor = Color.RED
+                layoutTrainerEditTextName.error = getString(R.string.invalidName)
+                layoutTrainerEditTextName.errorIconDrawable = null
             }
         }
 
         //Insert the surname in the hashmap of trainer if valid
-        surnameFieldTrainer.doOnTextChanged { text, start, before, count ->
+        surnameFieldTrainer.doOnTextChanged { text, _, _, _ ->
             if (CheckRegistrationFieldUser.checkSurname(text.toString())) {
                 Trainer.putSurname(text.toString())
                 layoutTrainerEditTextSurname.boxStrokeColor = Color.GREEN
-                surnameFieldTrainer.error = null
+                layoutTrainerEditTextSurname.error = null
             } else {
-                surnameFieldTrainer.error = getString(R.string.invalidSurname)
-                layoutTrainerEditTextSurname.boxStrokeColor = Color.RED
+                layoutTrainerEditTextSurname.error = getString(R.string.invalidSurname)
+                layoutTrainerEditTextSurname.errorIconDrawable = null
             }
         }
     }

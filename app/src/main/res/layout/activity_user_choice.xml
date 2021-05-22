@@ -6,90 +6,43 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.registration.ActivityUserChoice">
 
-    <ImageView
-        android:id="@+id/imgBackgroundChoice"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/AppBarLayoutUserChoice"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:alpha="0.80"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/ic_backgroundlogin_foreground"
+        android:layout_height="wrap_content"
+        android:background="@color/backgroundTitleAppBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/titleAppUserChoice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/audiowide"
+            android:text="@string/appName"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textSize="45sp" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabsBarUserChoice"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPagerUserChoice"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/AppBarLayoutUserChoice" />
 
-    <TextView
-        android:id="@+id/titleApp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/audiowide"
-        android:text="@string/appName"
-        android:textColor="@android:color/holo_orange_dark"
-        android:textSize="55sp"
-        app:layout_constraintBottom_toTopOf="@id/textViewAthlete"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.40" />
-
-    <TextView
-        android:id="@+id/textViewAthlete"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/francois_one"
-        android:gravity="center"
-        android:text="@string/textChoiceAthlete"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@id/signInAtl"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.80"
-        app:layout_constraintVertical_chainStyle="packed" />
-
-    <Button
-        android:id="@+id/signInAtl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
-        android:onClick="onClickAthlete"
-        android:text="@string/sign_in_athlete"
-        app:layout_constraintBottom_toTopOf="@id/textViewTrainer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewAthlete" />
-
-    <TextView
-        android:id="@+id/textViewTrainer"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/francois_one"
-        android:gravity="center"
-        android:text="@string/textChoiceTrainer"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@id/signInTra"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/signInAtl" />
-
-    <Button
-        android:id="@+id/signInTra"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onClickTrainer"
-        android:text="@string/sign_in_trainer"
-        app:layout_constraintBottom_toBottomOf="@+id/imgBackgroundChoice"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewTrainer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
