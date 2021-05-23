@@ -1,62 +1,119 @@
 package it.app.mytrainer.models
 
-import android.view.View
-import it.app.mytrainer.utils.CheckRegistrationFieldUser
+import android.util.Log
 
 class Athlete {
     companion object {
-        private var hashMap = HashMap<String, Any>()
-        private var hashCheck = HashMap<String, Boolean>()
+        private const val TAG = "HASH MAP ATHLETE"
+        private var hashMapAthlete = HashMap<String, String>()
+        private val arrayKey =
+            arrayOf(
+                "Email",
+                "Password",
+                "Name",
+                "Surname",
+                "BirthDate",
+                "Height",
+                "Weight",
+                "TypeOfWO",
+                "Goal"
+            )
 
-        fun putName(name: String) {
-            val nameOk = CheckRegistrationFieldUser.checkName(name)
-            if (nameOk) {
-                hashMap["Name"] = name
-                hashCheck["Name"] = true
-            } else {
-                hashCheck["Name"] = false
-            }
+        //Creation of yhe method to fill the hashmap (First Fragment)
+        fun putEmail(email: String) {
+            hashMapAthlete["Email"] = email
         }
 
-        /*fun saveOnFireStore() {
-            if (controllers()) {
-                Firestore.saveAthlete(hashMap)
-            }
-        }*/
+        fun putPass(pass: String) {
+            hashMapAthlete["Password"] = pass
+        }
+
+        fun putName(name: String) {
+            hashMapAthlete["Name"] = name
+        }
+
+        fun putSurname(surname: String) {
+            hashMapAthlete["Surname"] = surname
+        }
+
+        fun putDate(dateOfBirth: String) {
+            hashMapAthlete["BirthDate"] = dateOfBirth
+        }
+
+        //Creation of yhe method to fill the hashmap (Second Fragment)
+        fun putHeight(height: String) {
+            hashMapAthlete["Height"] = height
+        }
+
+        fun putWeight(weight: String) {
+            hashMapAthlete["Weight"] = weight
+        }
+
+        fun putTypeOfWO(type: String) {
+            hashMapAthlete["TypeOfWO"] = type
+        }
+
+        fun putGoal(goal: String) {
+            hashMapAthlete["Goal"] = goal
+        }
+
+        //Creation the method to remove the element from the hashmap (First Fragment)
+        fun removeEmail() {
+            hashMapAthlete.remove("Email")
+        }
+
+        fun removePass() {
+            hashMapAthlete.remove("Password")
+        }
+
+        fun removeName() {
+            hashMapAthlete.remove("Name")
+        }
+
+        fun removeSurname() {
+            hashMapAthlete.remove("Surname")
+        }
+
+        fun removeDate() {
+            hashMapAthlete.remove("BirthDate")
+        }
+
+        //Creation the method to remove the element from the hashmap (Second Fragment)
+        fun removeHeight() {
+            hashMapAthlete.remove("Height")
+        }
+
+        fun removeWeight() {
+            hashMapAthlete.remove("Weight")
+        }
+
+        fun removeTypeOfWO() {
+            hashMapAthlete.remove("TypeOfWO")
+        }
+
+        fun removeGoal() {
+            hashMapAthlete.remove("Goal")
+        }
 
 
-        private fun controlHash(v: View) {
-            /*hashCheck.forEach { (key, value) ->
-                if (key == "Name" && !value) {
-                    v.nameAthlete.error =
+        //Utilities
+        fun printHashMap() {
+            Log.d(TAG, hashMapAthlete.toString())
+        }
+
+        fun clearHashMap() {
+            hashMapAthlete.clear()
+        }
+
+        //Check if all the required field is fill
+        fun hashMapReadyToSave(): Boolean {
+            var numFieldRequired = 0
+            arrayKey.forEach { str ->
+                if (hashMapAthlete.contains(str)) {
+                    numFieldRequired++
                 }
-                if (key == "Surname" && !value) {
-                    v.surnameAthlete.error =
-                }
-                if (key == "Email" && !value) {
-                    v.emailFieldRegistAthlete.error =
-                }
-                if (key == "Password" && !value) {
-                    v.passwordFieldRegistAthlete.error =
-                }
-                if (key == "DateOfBirth" && !value) {
-                    v.dateOfBirthAthlete.error =
-                }*/
-            /*if(key.equals("Goals")&&value==false){
-                v..error
             }
-            if(key.equals("Height")&&value==false){
-                v..error
-            }
-            if(key.equals("Weigth")&&value==false){
-                v.dateOfBirthAthlete.error
-            }
-            if(key.equals("TypeOfWorhout")&&value==false){
-                v..error
-            }
-            if(key.equals("Times")&&value==false){
-                v..error
-            }*/
+            return numFieldRequired == 6
         }
     }
 }

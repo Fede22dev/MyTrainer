@@ -4,7 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/registrationBackground"
     tools:context=".ui.activities.registration.ActivityRegistrationAthlete">
+
+    <ProgressBar
+        android:id="@+id/progressBarRegistrationAthlete"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/viewPagerAthlete" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatActionBtnSaveAthlete"
@@ -17,14 +30,14 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_save"
+        app:srcCompat="@drawable/ic_baseline_save_24"
         tools:ignore="ContentDescription" />
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/AppBarLayoutAthlete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#202225"
+        android:background="@color/backgroundTitleAppBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -45,13 +58,14 @@
             android:id="@+id/tabsBarAthlete"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/teal_200"
             app:tabMode="scrollable" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPagerAthlete"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintBottom_toBottomOf="parent"

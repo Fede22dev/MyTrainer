@@ -9,9 +9,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import it.app.mytrainer.R
 import it.app.mytrainer.models.Trainer
 import it.app.mytrainer.ui.adapter.TrainerRegistrationPageAdapter
-import it.app.mytrainer.utils.CheckRegistrationFieldUser
 import kotlinx.android.synthetic.main.activity_registration_trainer.*
-import kotlinx.android.synthetic.main.fragment_data_trainer.*
 
 class ActivityRegistrationTrainer : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

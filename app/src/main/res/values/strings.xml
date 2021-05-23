@@ -39,5 +39,16 @@
     <string name="tabUserChoiceTrainer">TRAINER</string>
     <string name="RegistrationToast">USER REGISTRATION STARTED. THE APP WILL BE READY SOON! ;)</string>
     <string name="RegistrationErrorToast">ONE OR MORE FIELD ARE UNCORRECTED. PLEASE RETRY!</string>
+    <string name="bodyInfoAthlete">Body info</string>
+    <string name="insertHeightAthlete">Insert height</string>
+    <string name="insertWeightAthlete">Insert weight</string>
+    <string name="choiceTypeOfWorkoutAthlete">Choice type of workout</string>
+    <string name="selectsYourGoalsAthlete">Selects your goals</string>
+    <string name="fatLoss">Fat loss</string>
+    <string name="gainMuscle">Gain muscle</string>
+    <string name="athleticPreparation">Athletic preparation</string>
+    <string name="selfDefence">Self-Defence</string>
+    <string name="innerPeace">Inner Peace</string>
+    <string name="endurance">Endurance</string>
 
 </resources>

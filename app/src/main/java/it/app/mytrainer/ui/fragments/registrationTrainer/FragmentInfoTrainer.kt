@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
-import com.google.android.material.chip.Chip
 import it.app.mytrainer.R
 import it.app.mytrainer.models.Trainer
 import kotlinx.android.synthetic.main.fragment_info_trainer.*
@@ -27,39 +26,39 @@ class FragmentInfoTrainer : Fragment() {
 
         chipList = ArrayList()
 
-        view.chip1.setOnCheckedChangeListener { buttonView, _ ->
+        view.chip1SpecTrainer.setOnCheckedChangeListener { buttonView, _ ->
             Trainer.putSpec(buttonView.text.toString())
         }
 
-        view.chip2.setOnCheckedChangeListener { buttonView, _ ->
+        view.chip2SpecTrainer.setOnCheckedChangeListener { buttonView, _ ->
             Trainer.putSpec(buttonView.text.toString())
         }
 
-        view.chip3.setOnCheckedChangeListener { buttonView, _ ->
+        view.chip3SpecTrainer.setOnCheckedChangeListener { buttonView, _ ->
             Trainer.putSpec(buttonView.text.toString())
         }
 
-        view.chip4.setOnCheckedChangeListener { buttonView, _ ->
+        view.chip4SpecTrainer.setOnCheckedChangeListener { buttonView, _ ->
             Trainer.putSpec(buttonView.text.toString())
         }
 
-        view.chip5.setOnCheckedChangeListener { buttonView, _ ->
+        view.chip5SpecTrainer.setOnCheckedChangeListener { buttonView, _ ->
             Trainer.putSpec(buttonView.text.toString())
         }
 
-        view.chip6.setOnCheckedChangeListener { buttonView, _ ->
+        view.chip6SpecTrainer.setOnCheckedChangeListener { buttonView, _ ->
             Trainer.putSpec(buttonView.text.toString())
         }
 
-        view.chip7.setOnCheckedChangeListener { buttonView, _ ->
+        view.chip7SpecTrainer.setOnCheckedChangeListener { buttonView, _ ->
             Trainer.putSpec(buttonView.text.toString())
         }
 
-        view.chip8.setOnCheckedChangeListener { buttonView, _ ->
+        view.chip8SpecTrainer.setOnCheckedChangeListener { buttonView, _ ->
             Trainer.putSpec(buttonView.text.toString())
         }
 
-        view.chip9.setOnCheckedChangeListener { buttonView, _ ->
+        view.chip9SpecTrainer.setOnCheckedChangeListener { buttonView, _ ->
             Trainer.putSpec(buttonView.text.toString())
         }
 

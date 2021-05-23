@@ -4,7 +4,9 @@ import java.util.regex.Pattern
 
 //Class for the common field
 class CheckRegistrationFieldUser {
+
     companion object {
+
         //Check for the eventual empty name field
         fun checkName(name: String): Boolean {
             return name.isNotBlank()
@@ -36,6 +38,6 @@ class CheckRegistrationFieldUser {
         fun checkDateOfBirth(birthYear: String): Boolean {
             return birthYear <= "2010" && birthYear >= "1920"
         }
-    }
 
+    }
 }

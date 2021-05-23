@@ -5,98 +5,124 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/registrationBackground"
+    android:padding="24dp"
     tools:context=".ui.fragments.registrationAthlete.FragmentDataAthlete">
 
-    <EditText
-        android:id="@+id/emailFieldRegistAthlete"
-        android:layout_width="0dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutAthleteEditTextEmail"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/white"
-        android:ems="10"
         android:hint="@string/insert_email"
-        android:importantForAutofill="no"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/white"
         android:textColorHint="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/passwordFieldRegistAthlete"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/white"
+        app:errorEnabled="true"
+        app:layout_constraintBottom_toTopOf="@+id/layoutAthleteEditTextPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintVertical_bias="0.35"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:startIconDrawable="@android:drawable/ic_dialog_email"
+        app:startIconTint="@color/white">
 
-    <EditText
-        android:id="@+id/passwordFieldRegistAthlete"
-        android:layout_width="0dp"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emailFieldAthlete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/white" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutAthleteEditTextPassword"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="64dp"
-        android:backgroundTint="@color/white"
-        android:ems="10"
+        android:layout_marginBottom="10dp"
         android:hint="@string/insert_password"
-        android:importantForAutofill="no"
-        android:inputType="textPassword"
-        android:textColor="@color/white"
         android:textColorHint="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/nameAthlete"
+        app:endIconMode="password_toggle"
+        app:endIconTint="@color/white"
+        app:errorEnabled="true"
+        app:layout_constraintBottom_toTopOf="@+id/layoutAthleteEditTextName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailFieldRegistAthlete" />
+        app:layout_constraintTop_toBottomOf="@+id/layoutAthleteEditTextEmail"
+        app:startIconDrawable="@android:drawable/ic_lock_lock"
+        app:startIconTint="@color/white">
 
-    <EditText
-        android:id="@+id/nameAthlete"
-        android:layout_width="0dp"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwordFieldAthlete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:textColor="@color/white" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutAthleteEditTextName"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/white"
-        android:ems="10"
         android:hint="@string/insertName"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        android:textColor="@color/white"
         android:textColorHint="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/surnameAthlete"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/white"
+        app:errorEnabled="true"
+        app:layout_constraintBottom_toTopOf="@+id/layoutAthleteEditTextSurname"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordFieldRegistAthlete" />
+        app:layout_constraintTop_toBottomOf="@+id/layoutAthleteEditTextPassword"
+        app:startIconDrawable="@drawable/ic_baseline_person_24"
+        app:startIconTint="@color/white">
 
-    <EditText
-        android:id="@+id/surnameAthlete"
-        android:layout_width="0dp"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/nameFieldAthlete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:textColor="@color/white" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutAthleteEditTextSurname"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="48dp"
-        android:backgroundTint="@color/white"
-        android:ems="10"
+        android:layout_marginBottom="16dp"
         android:hint="@string/insertSurname"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        android:textColor="@color/white"
         android:textColorHint="@color/white"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/white"
+        app:errorEnabled="true"
         app:layout_constraintBottom_toTopOf="@+id/dateOfBirthAthlete"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameAthlete" />
+        app:layout_constraintTop_toBottomOf="@+id/layoutAthleteEditTextName"
+        app:startIconDrawable="@drawable/ic_baseline_person_24"
+        app:startIconTint="@color/white">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/surnameFieldAthlete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:textColor="@color/white" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/dateOfBirthAthlete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:text=""
+        android:layout_marginBottom="8dp"
         android:textColor="@color/white"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnSelectDateAthlete"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toTopOf="@id/btnSelectDateAthlete"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/surnameAthlete" />
+        app:layout_constraintTop_toBottomOf="@+id/layoutAthleteEditTextSurname" />
 
     <Button
         android:id="@+id/btnSelectDateAthlete"
@@ -104,10 +130,10 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/buttonRegistration"
         android:text="@string/selectDateOfBirth"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dateOfBirthAthlete" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
