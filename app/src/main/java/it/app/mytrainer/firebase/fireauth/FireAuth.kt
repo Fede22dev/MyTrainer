@@ -1,5 +1,6 @@
 package it.app.mytrainer.firebase.fireauth
 
+import android.app.Activity
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -26,10 +27,6 @@ class FireAuth {
             return currentUser
         }
 
-        private fun getCurrentUserId(): String? {
-            return getCurrentUser()?.uid
-        }
-
         //Fun to check the email and pass
         fun login(email: String, password: String, callback: (Boolean) -> Unit) {
             if (email.isBlank() || password.isBlank()) {
@@ -41,8 +38,8 @@ class FireAuth {
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             // Sign in success
-                            Log.d(TAG, "signInWithEmail:success")
-                            val currentUserId = getCurrentUserId()
+                            val currentUserId = auth.currentUser?.uid
+                            Log.d(TAG, "signInWithEmail:success --- $currentUserId")
 
 
                             //ESEMPIO FireStore.cerca documento con stesso nome in firestore e returna il tipo(athlete / trainer)
@@ -56,6 +53,29 @@ class FireAuth {
                         callback(bool)
                     }
             }
+        }
+
+        fun createAccount(
+            email: String,
+            password: String,
+            activity: Activity,
+            callback: (Boolean, String) -> Unit
+        ) {
+            var bool = false
+            var currentUserId = ""
+            auth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(activity) { task ->
+                    if (task.isSuccessful) {
+                        // Sign in success
+                        currentUserId = auth.currentUser?.uid.toString()
+                        Log.d(TAG, "createUserWithEmail:success --- $currentUserId")
+                        bool = true
+                    } else {
+                        // If sign in fails
+                        Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                    }
+                    callback(bool, currentUserId)
+                }
         }
     }
 }

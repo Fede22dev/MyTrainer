@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import it.app.mytrainer.R
+import it.app.mytrainer.firebase.fireauth.FireAuth
 import it.app.mytrainer.models.Trainer
 import it.app.mytrainer.ui.adapter.TrainerRegistrationPageAdapter
 import kotlinx.android.synthetic.main.activity_registration_trainer.*
@@ -18,8 +19,8 @@ class ActivityRegistrationTrainer : AppCompatActivity() {
 
         //Creating the name of the tab
         val tabsName = arrayOf(
-            getString(R.string.frag1RegistrationTrainerName),
-            getString(R.string.frag2RegistrationTrainerName)
+            getString(R.string.frag_1_registration_trainer_name),
+            getString(R.string.frag_2_registration_trainer_name)
         )
 
         //Setting the name of the tab according to the fragment
@@ -56,29 +57,51 @@ class ActivityRegistrationTrainer : AppCompatActivity() {
 
         //Setting the action of the saving on FS and turning visible the progress bar
         floatActionBtnSaveTrainer.setOnClickListener {
-
             if (Trainer.hashMapReadyToSave()) {
+
                 floatActionBtnSaveTrainer.visibility = View.INVISIBLE
                 viewPagerTrainer.visibility = View.INVISIBLE
                 tabsBarTrainer.visibility = View.INVISIBLE
                 progressBarRegistrationTrainer.visibility = View.VISIBLE
+
                 Toast.makeText(
                     this,
-                    getString(R.string.RegistrationToast),
+                    getString(R.string.registration_success_toast),
                     Toast.LENGTH_LONG
                 ).show()
 
-
                 //CREA ACCOUNT AUTH
+                FireAuth.createAccount(
+                    Trainer.getEmail(),
+                    Trainer.getPass(),
+                    this
+                ) { result, currentUserId ->
+                    if (result) {
+                        Trainer.removePass()
+                        Trainer.printHashMap()
+
+                        //SALVARE SU FIRESTORE
 
 
-                //SALVARE SU FIRESTORE
+                        //FINITO TUTTO TORNO ALLA LOGIN
+                        finish()
+                    } else {
+                        Toast.makeText(
+                            this,
+                            getString(R.string.error_creation_user_auth),
+                            Toast.LENGTH_LONG
+                        ).show()
+                        Trainer.clearHashMap()
+                        finish()
+                    }
+                }
 
                 Trainer.printHashMap()
+
             } else {
                 Toast.makeText(
                     this,
-                    getString(R.string.RegistrationErrorToast),
+                    getString(R.string.registration_error_toast),
                     Toast.LENGTH_LONG
                 ).show()
                 Trainer.printHashMap()

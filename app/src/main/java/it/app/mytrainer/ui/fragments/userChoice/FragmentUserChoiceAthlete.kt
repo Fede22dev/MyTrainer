@@ -15,14 +15,16 @@ class FragmentUserChoiceAthlete : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         val view: View = inflater.inflate(R.layout.fragment_user_choice_athlete, container, false)
+
         view.btnChoiceAthlete.setOnClickListener {
             val intent = Intent(context, ActivityRegistrationAthlete::class.java)
             startActivity(intent)
             activity?.finish()
         }
+
         return view
     }
 }

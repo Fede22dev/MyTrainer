@@ -5,7 +5,7 @@ import android.util.Log
 class Trainer {
     companion object {
         private const val TAG = "HASH MAP TRAINER"
-        private var hashMapTrainer = HashMap<String, String>()
+        private var hashMapTrainer = HashMap<String, Any>()
         private val arrayKey =
             arrayOf("Email", "Password", "Name", "Surname", "BirthDate", "Specialization")
 
@@ -63,6 +63,16 @@ class Trainer {
             hashMapTrainer.remove("Gym")
         }
 
+        //Get
+        fun getEmail(): String {
+            return hashMapTrainer["Email"].toString()
+        }
+
+        fun getPass(): String {
+            return hashMapTrainer["Password"].toString()
+        }
+
+        //Utilities
         fun printHashMap() {
             Log.d(TAG, hashMapTrainer.toString())
         }

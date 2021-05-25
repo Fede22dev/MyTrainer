@@ -28,7 +28,7 @@ class CheckRegistrationFieldUser {
         fun checkPass(pass: String): Boolean {
             val pattern = Pattern.compile(
                 "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)" +
-                        "(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$"
+                        "(?=.*[@$!%*?&.:;,-])[A-Za-z\\d@$!%*?&.:;,-]{8,}$"
             )  //min 8 char, 1 upper case, 1 lower case, 1 number, 1 special char
             val matcher = pattern.matcher(pass)
             return matcher.matches()
@@ -38,6 +38,5 @@ class CheckRegistrationFieldUser {
         fun checkDateOfBirth(birthYear: String): Boolean {
             return birthYear <= "2010" && birthYear >= "1920"
         }
-
     }
 }

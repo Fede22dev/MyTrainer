@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import it.app.mytrainer.ui.fragments.registrationTrainer.FragmentDataTrainer
-import it.app.mytrainer.ui.fragments.registrationTrainer.FragmentInfoTrainer
+import it.app.mytrainer.ui.fragments.registrationTrainer.FragmentExtraInfoTrainer
 
 class TrainerRegistrationPageAdapter(fa: FragmentActivity, private val tabCount: Int) :
     FragmentStateAdapter(fa) {
@@ -12,7 +12,7 @@ class TrainerRegistrationPageAdapter(fa: FragmentActivity, private val tabCount:
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> FragmentDataTrainer()
-            1 -> FragmentInfoTrainer()
+            1 -> FragmentExtraInfoTrainer()
             else -> createFragment(position)
         }
     }

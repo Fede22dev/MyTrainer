@@ -10,12 +10,13 @@ import it.app.mytrainer.R
 import it.app.mytrainer.ui.activities.registration.ActivityRegistrationTrainer
 import kotlinx.android.synthetic.main.fragment_user_choice_trainer.view.*
 
-
 class FragmentUserChoiceTrainer : Fragment() {
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+
         val view: View = inflater.inflate(R.layout.fragment_user_choice_trainer, container, false)
 
         view.btnChoiceTrainer.setOnClickListener {
@@ -23,6 +24,7 @@ class FragmentUserChoiceTrainer : Fragment() {
             startActivity(intent)
             activity?.finish()
         }
+
         return view
     }
 }

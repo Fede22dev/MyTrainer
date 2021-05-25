@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/registrationBackground"
+    android:background="@color/registration_background"
     android:padding="24dp"
     tools:context=".ui.fragments.registrationTrainer.FragmentDataTrainer">
 
@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.35"
         app:layout_constraintVertical_chainStyle="packed"
-        app:startIconDrawable="@android:drawable/ic_dialog_email"
+        app:startIconDrawable="@drawable/ic_email"
         app:startIconTint="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -50,7 +50,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layoutTrainerEditTextEmail"
-        app:startIconDrawable="@android:drawable/ic_lock_lock"
+        app:startIconDrawable="@drawable/ic_lock"
         app:startIconTint="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -66,7 +66,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/insertName"
+        android:hint="@string/insert_name"
         android:textColorHint="@color/white"
         app:endIconMode="clear_text"
         app:endIconTint="@color/white"
@@ -74,7 +74,9 @@
         app:layout_constraintBottom_toTopOf="@+id/layoutTrainerEditTextSurname"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layoutTrainerEditTextPassword">
+        app:layout_constraintTop_toBottomOf="@+id/layoutTrainerEditTextPassword"
+        app:startIconDrawable="@drawable/ic_person"
+        app:startIconTint="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/nameFieldTrainer"
@@ -90,7 +92,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:hint="@string/insertSurname"
+        android:hint="@string/insert_surname"
         android:textColorHint="@color/white"
         app:endIconMode="clear_text"
         app:endIconTint="@color/white"
@@ -98,7 +100,9 @@
         app:layout_constraintBottom_toTopOf="@+id/dateOfBirthTrainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layoutTrainerEditTextName">
+        app:layout_constraintTop_toBottomOf="@+id/layoutTrainerEditTextName"
+        app:startIconDrawable="@drawable/ic_person"
+        app:startIconTint="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/surnameFieldTrainer"
@@ -113,8 +117,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:text="@string/first_select_date"
         android:textColor="@color/white"
-        android:textSize="28sp"
+        android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@id/btnSelectDateTrainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -124,8 +129,8 @@
         android:id="@+id/btnSelectDateTrainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/buttonRegistration"
-        android:text="@string/selectDateOfBirth"
+        android:backgroundTint="@color/button_red"
+        android:text="@string/select_date_of_birth"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

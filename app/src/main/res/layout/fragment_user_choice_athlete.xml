@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/registrationBackground"
+    android:background="@color/registration_background"
     android:padding="15dp"
     tools:context=".ui.fragments.userChoice.FragmentUserChoiceAthlete">
 
@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/francois_one"
         android:gravity="center"
-        android:text="@string/textChoiceAthlete"
+        android:text="@string/text_choice_athlete"
         android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/btnChoiceAthlete"
@@ -28,7 +28,7 @@
         android:id="@+id/btnChoiceAthlete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/buttonRegistration"
+        android:backgroundTint="@color/button_red"
         android:text="@string/sign_in_athlete"
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"

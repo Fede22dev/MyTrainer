@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/registrationBackground"
+    android:background="@color/registration_background"
+    android:elevation="100dp"
     tools:context=".ui.activities.registration.ActivityRegistrationAthlete">
 
     <ProgressBar
@@ -23,21 +24,25 @@
         android:id="@+id/floatActionBtnSaveAthlete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:clickable="true"
         android:focusable="true"
+        android:outlineProvider="paddedBounds"
         android:visibility="invisible"
+        app:backgroundTint="@color/green_float_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_baseline_save_24"
+        app:srcCompat="@drawable/ic_save"
         tools:ignore="ContentDescription" />
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/AppBarLayoutAthlete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/backgroundTitleAppBar"
+        android:background="@color/background_title_app_bar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -50,15 +55,14 @@
             android:layout_marginTop="4dp"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/audiowide"
-            android:text="@string/appName"
-            android:textColor="@android:color/holo_orange_dark"
+            android:text="@string/app_name"
+            android:textColor="@color/orange_title_app"
             android:textSize="45sp" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabsBarAthlete"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/teal_200"
             app:tabMode="scrollable" />
 
     </com.google.android.material.appbar.AppBarLayout>

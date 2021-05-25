@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/registrationBackground"
+    android:background="@color/registration_background"
     android:padding="24dp"
-    tools:context=".ui.fragments.registrationAthlete.FragmentGoalsAthlete">
+    tools:context=".ui.fragments.registrationAthlete.FragmentBodyInfoTypeWOGoalAthlete">
 
     <TextView
         android:id="@+id/textViewInfoBodyAthlete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="@string/bodyInfoAthlete"
+        android:text="@string/body_Info_athlete"
         android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@id/linerLayoutInfoBodyAthlete"
@@ -21,6 +21,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.35"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <LinearLayout
@@ -42,11 +43,13 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
             android:layout_weight="1"
-            android:hint="@string/insertHeightAthlete"
+            android:hint="@string/insert_height_athlete"
             android:textColorHint="@color/white"
             app:endIconMode="clear_text"
             app:endIconTint="@color/white"
             app:errorEnabled="true"
+            app:startIconDrawable="@drawable/ic_height"
+            app:startIconTint="@color/white"
             app:suffixText="Cm."
             app:suffixTextColor="@color/white">
 
@@ -66,11 +69,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_weight="1"
-            android:hint="@string/insertWeightAthlete"
+            android:hint="@string/insert_weight_athlete"
             android:textColorHint="@color/white"
             app:endIconMode="clear_text"
             app:endIconTint="@color/white"
             app:errorEnabled="true"
+            app:startIconDrawable="@drawable/ic_weight"
+            app:startIconTint="@color/white"
             app:suffixText="Kg."
             app:suffixTextColor="@color/white">
 
@@ -90,13 +95,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:hint="@string/choiceTypeOfWorkoutAthlete"
+        android:hint="@string/choice_type_of_workout_athlete"
         android:textColorHint="@color/white"
         app:endIconTint="@color/white"
         app:layout_constraintBottom_toTopOf="@id/textViewInfoGoalsAthlete"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linerLayoutInfoBodyAthlete">
+        app:layout_constraintTop_toBottomOf="@id/linerLayoutInfoBodyAthlete"
+        app:startIconDrawable="@drawable/ic_dumbbells"
+        app:startIconTint="@color/white">
 
         <AutoCompleteTextView
             android:id="@+id/autoTextViewDropMenuTypeOfWorkAthlete"
@@ -112,7 +119,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="@string/selectsYourGoalsAthlete"
+        android:text="@string/selects_your_goals_athlete"
         android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@id/chipGroupGoalsAthlete"
@@ -135,42 +142,42 @@
         app:singleSelection="true">
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chip1GoalsAthlete"
+            android:id="@+id/chip1GoalAthlete"
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/fatLoss" />
+            android:text="@string/fat_loss" />
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chip2GoalsAthlete"
+            android:id="@+id/chip2GoalAthlete"
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/gainMuscle" />
+            android:text="@string/gain_muscle" />
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chip3GoalsAthlete"
+            android:id="@+id/chip3GoalAthlete"
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/athleticPreparation" />
+            android:text="@string/athletic_preparation" />
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chip4GoalsAthlete"
+            android:id="@+id/chip4GoalAthlete"
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/selfDefence" />
+            android:text="@string/self_defence" />
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chip5GoalsAthlete"
+            android:id="@+id/chip5GoalAthlete"
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/innerPeace" />
+            android:text="@string/reduce_stress" />
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chip6GoalsAthlete"
+            android:id="@+id/chip6GoalAthlete"
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

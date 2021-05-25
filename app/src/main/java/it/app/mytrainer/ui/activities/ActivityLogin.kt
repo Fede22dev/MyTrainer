@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.doOnTextChanged
 import it.app.mytrainer.R
 import it.app.mytrainer.firebase.fireauth.FireAuth
 import it.app.mytrainer.ui.activities.registration.ActivityUserChoice
@@ -15,6 +16,14 @@ class ActivityLogin : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        emailFieldLogin.doOnTextChanged { _, _, _, _ ->
+            layoutLoginEditTextEmail.error = null
+        }
+
+        passwordFieldLogin.doOnTextChanged { _, _, _, _ ->
+            layoutLoginEditTextPassword.error = null
+        }
     }
 
     public override fun onStart() {
@@ -33,8 +42,19 @@ class ActivityLogin : AppCompatActivity() {
     }
 
     fun onClickLogin(v: View) {
-        val email = emailField.text.toString().trim()
-        val password = passwordField.text.toString().trim()
+
+        val email = emailFieldLogin.text.toString().trim()
+        val password = passwordFieldLogin.text.toString().trim()
+
+        progressBarLogin.visibility = View.VISIBLE
+        imageViewBackgroundLogin.visibility = View.INVISIBLE
+        layoutLoginEditTextEmail.visibility = View.INVISIBLE
+        layoutLoginEditTextPassword.visibility = View.INVISIBLE
+        loginBtn.visibility = View.INVISIBLE
+        textViewCreateAccount.visibility = View.INVISIBLE
+        layoutLoginEditTextEmail.error = null
+        layoutLoginEditTextPassword.error = null
+
         //Call to the method in FireAuth to check if the user exist in the FireAuthentication
         FireAuth.login(email, password) { result ->
             //if the auth is ok, the user is redirect on his home page
@@ -50,19 +70,33 @@ class ActivityLogin : AppCompatActivity() {
                           val intent = Intent(this, ANDIAMO ALLA HOME trainer)
                                 startActivity(intent)
                     }
+
+
                     finish()*/
             } else {
                 //Toast in case of failed auth
                 Toast.makeText(
-                    this, "Authentication failed.",
+                    this, getString(R.string.authentication_failed),
                     Toast.LENGTH_SHORT
                 ).show()
-                //setting blank the field
-                emailField.setText("")
-                passwordField.setText("")
+
+                //setting blank the field and restore visibility
+                progressBarLogin.visibility = View.INVISIBLE
+                imageViewBackgroundLogin.visibility = View.VISIBLE
+                layoutLoginEditTextEmail.visibility = View.VISIBLE
+                layoutLoginEditTextPassword.visibility = View.VISIBLE
+                loginBtn.visibility = View.VISIBLE
+                textViewCreateAccount.visibility = View.VISIBLE
+
+                emailFieldLogin.setText("")
+                passwordFieldLogin.setText("")
+
+                layoutLoginEditTextEmail.error = getString(R.string.fields_not_correct)
+                layoutLoginEditTextEmail.errorIconDrawable = null
+                layoutLoginEditTextPassword.error = getString(R.string.fields_not_correct)
+                layoutLoginEditTextPassword.errorIconDrawable = null
             }
         }
-
     }
 
     //Starting the choice activity
@@ -70,6 +104,4 @@ class ActivityLogin : AppCompatActivity() {
         val intent = Intent(this, ActivityUserChoice::class.java)
         startActivity(intent)
     }
-
-
 }

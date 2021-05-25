@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import it.app.mytrainer.R
+import it.app.mytrainer.firebase.fireauth.FireAuth
 import it.app.mytrainer.models.Athlete
 import it.app.mytrainer.ui.adapter.AthleteRegistrationPageAdapter
 import kotlinx.android.synthetic.main.activity_registration_athlete.*
@@ -18,10 +19,9 @@ class ActivityRegistrationAthlete : AppCompatActivity() {
 
         //Creating the name of the tab
         val tabsName = arrayOf(
-            getString(R.string.frag1RegistrationAthleteName),
-            getString(R.string.frag2RegistrationAthleteName),
-            getString(R.string.frag3RegistrationAthleteName),
-            getString(R.string.frag4RegistrationAthleteName)
+            getString(R.string.frag_1_registration_athlete_name),
+            getString(R.string.frag_2_registration_athlete_name),
+            getString(R.string.frag_3_registration_athlete_name),
         )
 
         //Setting the name of the tab according to the fragment
@@ -33,9 +33,6 @@ class ActivityRegistrationAthlete : AppCompatActivity() {
         )
         tabsBarAthlete.addTab(
             tabsBarAthlete.newTab().setText(tabsName[2])
-        )
-        tabsBarAthlete.addTab(
-            tabsBarAthlete.newTab().setText(tabsName[3])
         )
 
         //Insert
@@ -51,7 +48,7 @@ class ActivityRegistrationAthlete : AppCompatActivity() {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 viewPagerAthlete.currentItem = tab.position
                 //To show the save button at the last page
-                if (tab.position == 3) {
+                if (tab.position == tabsName.size - 1) {
                     floatActionBtnSaveAthlete.visibility = View.VISIBLE
                 } else {
                     floatActionBtnSaveAthlete.visibility = View.INVISIBLE
@@ -64,29 +61,51 @@ class ActivityRegistrationAthlete : AppCompatActivity() {
 
         //Setting the action of the saving on FS and turning visible the progress bar
         floatActionBtnSaveAthlete.setOnClickListener {
-
             if (Athlete.hashMapReadyToSave()) {
+
                 floatActionBtnSaveAthlete.visibility = View.INVISIBLE
                 viewPagerAthlete.visibility = View.INVISIBLE
                 tabsBarAthlete.visibility = View.INVISIBLE
                 progressBarRegistrationAthlete.visibility = View.VISIBLE
+
                 Toast.makeText(
                     this,
-                    getString(R.string.RegistrationToast),
+                    getString(R.string.registration_success_toast),
                     Toast.LENGTH_LONG
                 ).show()
 
-
                 //CREA ACCOUNT AUTH
+                FireAuth.createAccount(
+                    Athlete.getEmail(),
+                    Athlete.getPass(),
+                    this
+                ) { result, currentUserId ->
+                    if (result) {
+                        Athlete.removePass()
+                        Athlete.printHashMap()
+
+                        //SALVARE SU FIRESTORE
 
 
-                //SALVARE SU FIRESTORE
+                        //FINITO TUTTO TORNO ALLA LOGIN
+                        finish()
+                    } else {
+                        Toast.makeText(
+                            this,
+                            getString(R.string.error_creation_user_auth),
+                            Toast.LENGTH_LONG
+                        ).show()
+                        Athlete.clearHashMap()
+                        finish()
+                    }
+                }
 
                 Athlete.printHashMap()
+
             } else {
                 Toast.makeText(
                     this,
-                    getString(R.string.RegistrationErrorToast),
+                    getString(R.string.registration_error_toast),
                     Toast.LENGTH_LONG
                 ).show()
                 Athlete.printHashMap()

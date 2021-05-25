@@ -5,7 +5,7 @@ import android.util.Log
 class Athlete {
     companion object {
         private const val TAG = "HASH MAP ATHLETE"
-        private var hashMapAthlete = HashMap<String, String>()
+        private var hashMapAthlete = HashMap<String, Any>()
         private val arrayKey =
             arrayOf(
                 "Email",
@@ -16,10 +16,13 @@ class Athlete {
                 "Height",
                 "Weight",
                 "TypeOfWO",
-                "Goal"
+                "Goal",
+                "Level",
+                "DaysOfWorkout",
+                "Equipment"
             )
 
-        //Creation of yhe method to fill the hashmap (First Fragment)
+        //Creation of the method to fill the hashmap (First Fragment)
         fun putEmail(email: String) {
             hashMapAthlete["Email"] = email
         }
@@ -40,7 +43,7 @@ class Athlete {
             hashMapAthlete["BirthDate"] = dateOfBirth
         }
 
-        //Creation of yhe method to fill the hashmap (Second Fragment)
+        //Creation of the method to fill the hashmap (Second Fragment)
         fun putHeight(height: String) {
             hashMapAthlete["Height"] = height
         }
@@ -55,6 +58,19 @@ class Athlete {
 
         fun putGoal(goal: String) {
             hashMapAthlete["Goal"] = goal
+        }
+
+        //Creation of the method to fill the hashmap (Third Fragment)
+        fun putLevel(level: String) {
+            hashMapAthlete["Level"] = level
+        }
+
+        fun putNumberOfWOWeek(days: String) {
+            hashMapAthlete["DaysOfWorkout"] = days
+        }
+
+        fun putEquipment(list: MutableList<String>) {
+            hashMapAthlete["Equipment"] = list
         }
 
         //Creation the method to remove the element from the hashmap (First Fragment)
@@ -87,14 +103,18 @@ class Athlete {
             hashMapAthlete.remove("Weight")
         }
 
-        fun removeTypeOfWO() {
-            hashMapAthlete.remove("TypeOfWO")
+        fun removeEquipment() {
+            hashMapAthlete.remove("Equipment")
         }
 
-        fun removeGoal() {
-            hashMapAthlete.remove("Goal")
+        //Get
+        fun getEmail(): String {
+            return hashMapAthlete["Email"].toString()
         }
 
+        fun getPass(): String {
+            return hashMapAthlete["Password"].toString()
+        }
 
         //Utilities
         fun printHashMap() {
@@ -113,7 +133,7 @@ class Athlete {
                     numFieldRequired++
                 }
             }
-            return numFieldRequired == 6
+            return numFieldRequired == 12
         }
     }
 }

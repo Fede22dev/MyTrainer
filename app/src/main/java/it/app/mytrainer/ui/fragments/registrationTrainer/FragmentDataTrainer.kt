@@ -37,9 +37,7 @@ class FragmentDataTrainer : Fragment(), DatePickerDialog.OnDateSetListener {
         val view = inflater.inflate(R.layout.fragment_data_trainer, container, false)
         getCurrentDataCalendar()
         view.btnSelectDateTrainer.setOnClickListener {
-            context?.let { it1 ->
-                DatePickerDialog(it1, this, year, month, day).show()
-            }
+            DatePickerDialog(requireContext(), this, year, month, day).show()
         }
         return view
     }
@@ -48,52 +46,56 @@ class FragmentDataTrainer : Fragment(), DatePickerDialog.OnDateSetListener {
         super.onStart()
         //Insert the email in the hashMap of the trainer if valid
         emailFieldTrainer.doOnTextChanged { text, _, _, _ ->
-            if (CheckRegistrationFieldUser.checkEmail(text.toString())) {
-                Trainer.putEmail(text.toString())
+            val txt = text.toString().trim()
+            if (CheckRegistrationFieldUser.checkEmail(txt)) {
+                Trainer.putEmail(txt)
                 layoutTrainerEditTextEmail.error = null
                 layoutTrainerEditTextEmail.boxStrokeColor = Color.GREEN
             } else {
                 Trainer.removeEmail()
-                layoutTrainerEditTextEmail.error = getString(R.string.invalidEmail)
+                layoutTrainerEditTextEmail.error = getString(R.string.invalid_email)
                 layoutTrainerEditTextEmail.errorIconDrawable = null
             }
         }
 
         //Checking if the pass is valid
         passwordFieldTrainer.doOnTextChanged { text, _, _, _ ->
-            if (CheckRegistrationFieldUser.checkPass(text.toString())) {
-                Trainer.putPass(text.toString())
+            val txt = text.toString().trim()
+            if (CheckRegistrationFieldUser.checkPass(txt)) {
+                Trainer.putPass(txt)
                 layoutTrainerEditTextPassword.error = null
                 layoutTrainerEditTextPassword.boxStrokeColor = Color.GREEN
             } else {
                 Trainer.removePass()
-                layoutTrainerEditTextPassword.error = getString(R.string.invalidPassword)
+                layoutTrainerEditTextPassword.error = getString(R.string.invalid_password)
                 layoutTrainerEditTextPassword.errorIconDrawable = null
             }
         }
 
         //Insert the name in the hashmap of the trainer if valid
         nameFieldTrainer.doOnTextChanged { text, _, _, _ ->
-            if (CheckRegistrationFieldUser.checkName(text.toString())) {
-                Trainer.putName(text.toString())
+            val txt = text.toString().trim()
+            if (CheckRegistrationFieldUser.checkName(txt)) {
+                Trainer.putName(txt)
                 layoutTrainerEditTextName.error = null
                 layoutTrainerEditTextName.boxStrokeColor = Color.GREEN
             } else {
                 Trainer.removeName()
-                layoutTrainerEditTextName.error = getString(R.string.invalidName)
+                layoutTrainerEditTextName.error = getString(R.string.invalid_name)
                 layoutTrainerEditTextName.errorIconDrawable = null
             }
         }
 
         //Insert the surname in the hashmap of trainer if valid
         surnameFieldTrainer.doOnTextChanged { text, _, _, _ ->
-            if (CheckRegistrationFieldUser.checkSurname(text.toString())) {
-                Trainer.putSurname(text.toString())
+            val txt = text.toString().trim()
+            if (CheckRegistrationFieldUser.checkSurname(txt)) {
+                Trainer.putSurname(txt)
                 layoutTrainerEditTextSurname.boxStrokeColor = Color.GREEN
                 layoutTrainerEditTextSurname.error = null
             } else {
                 Trainer.removeSurname()
-                layoutTrainerEditTextSurname.error = getString(R.string.invalidSurname)
+                layoutTrainerEditTextSurname.error = getString(R.string.invalid_surname)
                 layoutTrainerEditTextSurname.errorIconDrawable = null
             }
         }
@@ -101,13 +103,14 @@ class FragmentDataTrainer : Fragment(), DatePickerDialog.OnDateSetListener {
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
         val date = "$year/$month/$dayOfMonth"
-        dateOfBirthTrainer.text = date
         if (CheckRegistrationFieldUser.checkDateOfBirth(year.toString())) {
+            dateOfBirthTrainer.text = date
+            dateOfBirthTrainer.setTextColor(Color.WHITE)
             Trainer.putDate(date)
-            dateOfBirthTrainer.error = null
         } else {
             Trainer.removeDate()
-            dateOfBirthTrainer.error
+            dateOfBirthTrainer.text = getString(R.string.error_invalid_date)
+            dateOfBirthTrainer.setTextColor(Color.RED)
         }
     }
 }

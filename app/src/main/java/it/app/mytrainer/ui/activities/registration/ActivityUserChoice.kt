@@ -14,8 +14,8 @@ class ActivityUserChoice : AppCompatActivity() {
         setContentView(R.layout.activity_user_choice)
 
         val tabsName = arrayOf(
-            getString(R.string.tabUserChoiceAthlete),
-            getString(R.string.tabUserChoiceTrainer)
+            getString(R.string.tab_user_choice_athlete),
+            getString(R.string.tab_user_choice_trainer)
         )
 
         tabsBarUserChoice.addTab(
