@@ -108,15 +108,25 @@
         android:id="@+id/loginBtn"
         android:layout_width="110dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="@color/button_red"
         android:onClick="onClickLogin"
         android:text="@string/login"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@id/textViewCreateAccount"
+        app:layout_constraintBottom_toTopOf="@id/btnLoginFacebook"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layoutLoginEditTextPassword" />
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/btnLoginFacebook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="@id/textViewCreateAccount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/loginBtn" />
 
     <TextView
         android:id="@+id/textViewCreateAccount"
@@ -130,6 +140,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loginBtn" />
+        app:layout_constraintTop_toBottomOf="@id/btnLoginFacebook" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

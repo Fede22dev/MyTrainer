@@ -72,6 +72,10 @@ class Trainer {
             return hashMapTrainer["Password"].toString()
         }
 
+        fun getHashMap(): HashMap<String, Any> {
+            return hashMapTrainer
+        }
+
         //Utilities
         fun printHashMap() {
             Log.d(TAG, hashMapTrainer.toString())

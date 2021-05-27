@@ -116,6 +116,10 @@ class Athlete {
             return hashMapAthlete["Password"].toString()
         }
 
+        fun getHashMap(): HashMap<String, Any> {
+            return hashMapAthlete
+        }
+
         //Utilities
         fun printHashMap() {
             Log.d(TAG, hashMapAthlete.toString())

@@ -1,6 +1,7 @@
 package it.app.mytrainer.ui.activities.registration
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -8,9 +9,11 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import it.app.mytrainer.R
 import it.app.mytrainer.firebase.fireauth.FireAuth
+import it.app.mytrainer.firebase.firestore.FireStore
 import it.app.mytrainer.models.Athlete
 import it.app.mytrainer.ui.adapter.AthleteRegistrationPageAdapter
 import kotlinx.android.synthetic.main.activity_registration_athlete.*
+import kotlinx.android.synthetic.main.fragment_data_athlete.*
 
 class ActivityRegistrationAthlete : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,7 +77,7 @@ class ActivityRegistrationAthlete : AppCompatActivity() {
                     Toast.LENGTH_LONG
                 ).show()
 
-                //CREA ACCOUNT AUTH
+                //Creation of the auth account
                 FireAuth.createAccount(
                     Athlete.getEmail(),
                     Athlete.getPass(),
@@ -84,10 +87,21 @@ class ActivityRegistrationAthlete : AppCompatActivity() {
                         Athlete.removePass()
                         Athlete.printHashMap()
 
-                        //SALVARE SU FIRESTORE
+                        //Saving the data of user on firestore
+                        val fireStore = FireStore()
+                        fireStore.saveAthlete(currentUserId) { saveOk ->
+                            //If is not ok, delete the previous current user on auth and go back in login
+                            if (!saveOk) {
+                                FireAuth.deleteCurrentUser()
+                                Toast.makeText(
+                                    this,
+                                    getString(R.string.error_creation_user_auth),
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                        }
 
-
-                        //FINITO TUTTO TORNO ALLA LOGIN
+                        //Calling the finish we go back on the login activity, with the created account
                         finish()
                     } else {
                         Toast.makeText(
@@ -111,6 +125,18 @@ class ActivityRegistrationAthlete : AppCompatActivity() {
                 Athlete.printHashMap()
             }
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val currentUser = FireAuth.getCurrentUserAuth()
+        if (currentUser != null){
+            Toast.makeText(this,"${currentUser.metadata}",Toast.LENGTH_LONG).show()
+            Log.d("AFKFJJLLASfPOAWEFPOjaj", "${currentUser.photoUrl}")
+            //emailFieldAthlete.setText(currentUser.email)
+            //nameFieldAthlete.setText(currentUser.displayName)
+        }
+
     }
 
     override fun onBackPressed() {

@@ -8,6 +8,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import it.app.mytrainer.R
 import it.app.mytrainer.firebase.fireauth.FireAuth
+import it.app.mytrainer.firebase.firestore.FireStore
 import it.app.mytrainer.models.Trainer
 import it.app.mytrainer.ui.adapter.TrainerRegistrationPageAdapter
 import kotlinx.android.synthetic.main.activity_registration_trainer.*
@@ -80,10 +81,21 @@ class ActivityRegistrationTrainer : AppCompatActivity() {
                         Trainer.removePass()
                         Trainer.printHashMap()
 
-                        //SALVARE SU FIRESTORE
+                        //Saving the data of user on firestore
+                        val fireStore = FireStore()
+                        fireStore.saveTrainer(currentUserId) { saveOk ->
+                            //If is not ok, delete the previous current user on auth and go back in login
+                            if (!saveOk) {
+                                FireAuth.deleteCurrentUser()
+                                Toast.makeText(
+                                    this,
+                                    getString(R.string.error_creation_user_auth),
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                        }
 
-
-                        //FINITO TUTTO TORNO ALLA LOGIN
+                        //Calling the finish we go back on the login activity, with the created account
                         finish()
                     } else {
                         Toast.makeText(
