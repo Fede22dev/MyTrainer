@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyTrainer">
 
-        <!--For facebook-->
+        <!-- Start For facebook -->
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -34,6 +34,7 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
+        <!-- End For facebook -->
 
         <activity
             android:name=".ui.activities.home.ActivityHomeAthlete"
@@ -58,13 +59,17 @@
             android:windowSoftInputMode="adjustNothing" />
 
         <activity
-            android:name=".ui.activities.ActivityLogin"
+            android:name=".ui.activities.starter.ActivityLogin"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.activities.starter.ActivityMain"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
+
 </manifest>

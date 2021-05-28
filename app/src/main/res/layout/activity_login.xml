@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.ActivityLogin">
+    android:background="@color/app_background"
+    tools:context=".ui.activities.starter.ActivityLogin">
 
     <ProgressBar
         android:id="@+id/progressBarLogin"
@@ -55,7 +56,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="4dp"
-        android:backgroundTint="@color/registration_background"
+        android:backgroundTint="@color/app_background"
         android:hint="@string/insert_email"
         android:textColorHint="@color/white"
         app:endIconMode="clear_text"

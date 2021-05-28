@@ -77,4 +77,8 @@
     <string name="error_login_user_not_found">ERROR: USER NOT FOUND OR NOT REGISTERED</string>
     <string name="welcome_back_trainer_login">WELCOME BACK TRAINER</string>
     <string name="welcome_back_athlete_login">WELCOME BACK ATHLETE</string>
+    <string name="string_welcome_main" translatable="false">Train like there\'s no\ntomorrow!</string>
+    <string name="home" translatable="false">Home</string>
+    <string name="profile">Profile</string>
+    <string name="sign_out">Logout</string>
 </resources>

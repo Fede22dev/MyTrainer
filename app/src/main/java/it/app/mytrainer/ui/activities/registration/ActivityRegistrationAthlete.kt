@@ -12,6 +12,7 @@ import it.app.mytrainer.firebase.fireauth.FireAuth
 import it.app.mytrainer.firebase.firestore.FireStore
 import it.app.mytrainer.models.Athlete
 import it.app.mytrainer.ui.activities.home.ActivityHomeAthlete
+import it.app.mytrainer.ui.activities.starter.ActivityLogin
 import it.app.mytrainer.ui.adapter.AthleteRegistrationPageAdapter
 import kotlinx.android.synthetic.main.activity_registration_athlete.*
 
@@ -155,9 +156,13 @@ class ActivityRegistrationAthlete : AppCompatActivity() {
     //Adjust the back press button
     override fun onBackPressed() {
         if (viewPagerAthlete.currentItem == 0) {
-            FireAuth.deleteCurrentUser()
             Athlete.clearHashMap()
+            FireAuth.deleteCurrentUser()
+            FireAuth.signOut()
+            val intent = Intent(this, ActivityLogin::class.java)
+            startActivity(intent)
             super.onBackPressed()
+            finish()
         } else {
             viewPagerAthlete.currentItem = viewPagerAthlete.currentItem - 1
         }

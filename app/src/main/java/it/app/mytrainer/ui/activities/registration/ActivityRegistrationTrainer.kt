@@ -12,6 +12,7 @@ import it.app.mytrainer.firebase.fireauth.FireAuth
 import it.app.mytrainer.firebase.firestore.FireStore
 import it.app.mytrainer.models.Trainer
 import it.app.mytrainer.ui.activities.home.ActivityHomeTrainer
+import it.app.mytrainer.ui.activities.starter.ActivityLogin
 import it.app.mytrainer.ui.adapter.TrainerRegistrationPageAdapter
 import kotlinx.android.synthetic.main.activity_registration_trainer.*
 
@@ -153,7 +154,11 @@ class ActivityRegistrationTrainer : AppCompatActivity() {
         if (viewPagerTrainer.currentItem == 0) {
             Trainer.clearHashMap()
             FireAuth.deleteCurrentUser()
+            FireAuth.signOut()
+            val intent = Intent(this, ActivityLogin::class.java)
+            startActivity(intent)
             super.onBackPressed()
+            finish()
         } else {
             viewPagerTrainer.currentItem = viewPagerTrainer.currentItem - 1
         }

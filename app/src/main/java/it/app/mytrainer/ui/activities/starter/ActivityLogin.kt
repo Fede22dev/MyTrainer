@@ -1,4 +1,4 @@
-package it.app.mytrainer.ui.activities
+package it.app.mytrainer.ui.activities.starter
 
 import android.content.Intent
 import android.os.Bundle
@@ -38,6 +38,15 @@ class ActivityLogin : AppCompatActivity() {
         btnLoginFacebook.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
                 Log.d(TAG, "facebook: onSuccess: $loginResult")
+
+                progressBarLogin.visibility = View.VISIBLE
+                btnLoginFacebook.visibility = View.INVISIBLE
+                imageViewBackgroundLogin.visibility = View.INVISIBLE
+                layoutLoginEditTextEmail.visibility = View.INVISIBLE
+                layoutLoginEditTextPassword.visibility = View.INVISIBLE
+                loginBtn.visibility = View.INVISIBLE
+                textViewCreateAccount.visibility = View.INVISIBLE
+
                 handleFacebookAccessToken(loginResult.accessToken)
             }
 
@@ -104,6 +113,14 @@ class ActivityLogin : AppCompatActivity() {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithCredential: failure", task.exception)
 
+                    progressBarLogin.visibility = View.INVISIBLE
+                    btnLoginFacebook.visibility = View.VISIBLE
+                    imageViewBackgroundLogin.visibility = View.VISIBLE
+                    layoutLoginEditTextEmail.visibility = View.VISIBLE
+                    layoutLoginEditTextPassword.visibility = View.VISIBLE
+                    loginBtn.visibility = View.VISIBLE
+                    textViewCreateAccount.visibility = View.VISIBLE
+
                     Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -113,36 +130,6 @@ class ActivityLogin : AppCompatActivity() {
         // Pass the activity result back to the Facebook SDK
         callbackManager.onActivityResult(requestCode, resultCode, data)
         super.onActivityResult(requestCode, resultCode, data)
-    }
-
-    public override fun onStart() {
-        super.onStart()
-        FireAuth.getCurrentUser { type ->
-            // Check if the user is already logged in
-            if (type != -1) {
-                when (type) {
-                    0 -> {
-                        val intent = Intent(this, ActivityHomeTrainer::class.java)
-                        Toast.makeText(
-                            this, getString(R.string.welcome_back_trainer_login),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        startActivity(intent)
-                        finish()
-                    }
-
-                    1 -> {
-                        val intent = Intent(this, ActivityHomeAthlete::class.java)
-                        Toast.makeText(
-                            this, getString(R.string.welcome_back_athlete_login),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        startActivity(intent)
-                        finish()
-                    }
-                }
-            }
-        }
     }
 
     fun onClickLogin(v: View) {
