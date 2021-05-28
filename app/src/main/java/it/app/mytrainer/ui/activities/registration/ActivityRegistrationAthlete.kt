@@ -1,7 +1,7 @@
 package it.app.mytrainer.ui.activities.registration
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -11,9 +11,9 @@ import it.app.mytrainer.R
 import it.app.mytrainer.firebase.fireauth.FireAuth
 import it.app.mytrainer.firebase.firestore.FireStore
 import it.app.mytrainer.models.Athlete
+import it.app.mytrainer.ui.activities.home.ActivityHomeAthlete
 import it.app.mytrainer.ui.adapter.AthleteRegistrationPageAdapter
 import kotlinx.android.synthetic.main.activity_registration_athlete.*
-import kotlinx.android.synthetic.main.fragment_data_athlete.*
 
 class ActivityRegistrationAthlete : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,44 +77,69 @@ class ActivityRegistrationAthlete : AppCompatActivity() {
                     Toast.LENGTH_LONG
                 ).show()
 
-                //Creation of the auth account
-                FireAuth.createAccount(
-                    Athlete.getEmail(),
-                    Athlete.getPass(),
-                    this
-                ) { result, currentUserId ->
-                    if (result) {
-                        Athlete.removePass()
-                        Athlete.printHashMap()
+                val currUser = FireAuth.getCurrentUserAuth()
+                if (currUser == null) {
 
-                        //Saving the data of user on firestore
-                        val fireStore = FireStore()
-                        fireStore.saveAthlete(currentUserId) { saveOk ->
-                            //If is not ok, delete the previous current user on auth and go back in login
-                            if (!saveOk) {
-                                FireAuth.deleteCurrentUser()
-                                Toast.makeText(
-                                    this,
-                                    getString(R.string.error_creation_user_auth),
-                                    Toast.LENGTH_LONG
-                                ).show()
+                    //Creation of the auth account
+                    FireAuth.createAccount(
+                        Athlete.getEmail(),
+                        Athlete.getPass(),
+                        this
+                    ) { result, currentUserId ->
+                        if (result) {
+                            Athlete.removePass()
+                            Athlete.printHashMap()
+
+                            //Saving the data of user on firestore
+                            val fireStore = FireStore()
+                            fireStore.saveAthlete(currentUserId) { saveOk ->
+                                //If is not ok, delete the previous current user on auth and go back in login
+                                if (!saveOk) {
+                                    FireAuth.deleteCurrentUser()
+                                    Toast.makeText(
+                                        this,
+                                        getString(R.string.error_creation_user_auth),
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                }
                             }
+
+                            //Calling the finish we go back on the login activity, with the created account
+                            finish()
+                        } else {
+                            Toast.makeText(
+                                this,
+                                getString(R.string.error_creation_user_auth),
+                                Toast.LENGTH_LONG
+                            ).show()
+                            Athlete.clearHashMap()
+                            finish()
                         }
-
-                        //Calling the finish we go back on the login activity, with the created account
-                        finish()
-                    } else {
-                        Toast.makeText(
-                            this,
-                            getString(R.string.error_creation_user_auth),
-                            Toast.LENGTH_LONG
-                        ).show()
-                        Athlete.clearHashMap()
-                        finish()
                     }
-                }
 
-                Athlete.printHashMap()
+                    Athlete.printHashMap()
+
+                } else {
+                    Athlete.removePass()
+                    Athlete.printHashMap()
+
+                    val fireStore = FireStore()
+                    fireStore.saveAthlete(currUser.uid) { saveOk ->
+                        //If is not ok, delete the previous current user on auth and go back in login
+                        if (!saveOk) {
+                            FireAuth.deleteCurrentUser()
+                            Toast.makeText(
+                                this,
+                                getString(R.string.error_creation_user_auth),
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }
+
+                    val intent = Intent(this, ActivityHomeAthlete::class.java)
+                    startActivity(intent)
+                    finish()
+                }
 
             } else {
                 Toast.makeText(
@@ -127,20 +152,10 @@ class ActivityRegistrationAthlete : AppCompatActivity() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        val currentUser = FireAuth.getCurrentUserAuth()
-        if (currentUser != null){
-            Toast.makeText(this,"${currentUser.metadata}",Toast.LENGTH_LONG).show()
-            Log.d("AFKFJJLLASfPOAWEFPOjaj", "${currentUser.photoUrl}")
-            //emailFieldAthlete.setText(currentUser.email)
-            //nameFieldAthlete.setText(currentUser.displayName)
-        }
-
-    }
-
+    //Adjust the back press button
     override fun onBackPressed() {
         if (viewPagerAthlete.currentItem == 0) {
+            FireAuth.deleteCurrentUser()
             Athlete.clearHashMap()
             super.onBackPressed()
         } else {

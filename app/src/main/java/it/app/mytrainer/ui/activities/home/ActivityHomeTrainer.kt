@@ -14,8 +14,10 @@ class ActivityHomeTrainer : AppCompatActivity() {
         setContentView(R.layout.activity_home_trainer)
     }
 
-    fun onClick(v: View){
+    fun onClick(v: View) {
         FireAuth.signOut()
+        val intent = Intent(this, ActivityLogin::class.java)
+        startActivity(intent)
         finish()
     }
 }

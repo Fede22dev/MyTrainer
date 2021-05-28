@@ -1,5 +1,6 @@
 package it.app.mytrainer.ui.activities.registration
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -10,6 +11,7 @@ import it.app.mytrainer.R
 import it.app.mytrainer.firebase.fireauth.FireAuth
 import it.app.mytrainer.firebase.firestore.FireStore
 import it.app.mytrainer.models.Trainer
+import it.app.mytrainer.ui.activities.home.ActivityHomeTrainer
 import it.app.mytrainer.ui.adapter.TrainerRegistrationPageAdapter
 import kotlinx.android.synthetic.main.activity_registration_trainer.*
 
@@ -71,44 +73,69 @@ class ActivityRegistrationTrainer : AppCompatActivity() {
                     Toast.LENGTH_LONG
                 ).show()
 
-                //CREA ACCOUNT AUTH
-                FireAuth.createAccount(
-                    Trainer.getEmail(),
-                    Trainer.getPass(),
-                    this
-                ) { result, currentUserId ->
-                    if (result) {
-                        Trainer.removePass()
-                        Trainer.printHashMap()
+                val currUser = FireAuth.getCurrentUserAuth()
+                if (currUser == null) {
 
-                        //Saving the data of user on firestore
-                        val fireStore = FireStore()
-                        fireStore.saveTrainer(currentUserId) { saveOk ->
-                            //If is not ok, delete the previous current user on auth and go back in login
-                            if (!saveOk) {
-                                FireAuth.deleteCurrentUser()
-                                Toast.makeText(
-                                    this,
-                                    getString(R.string.error_creation_user_auth),
-                                    Toast.LENGTH_LONG
-                                ).show()
+                    //Creation of the auth account
+                    FireAuth.createAccount(
+                        Trainer.getEmail(),
+                        Trainer.getPass(),
+                        this
+                    ) { result, currentUserId ->
+                        if (result) {
+                            Trainer.removePass()
+                            Trainer.printHashMap()
+
+                            //Saving the data of user on firestore
+                            val fireStore = FireStore()
+                            fireStore.saveTrainer(currentUserId) { saveOk ->
+                                //If is not ok, delete the previous current user on auth and go back in login
+                                if (!saveOk) {
+                                    FireAuth.deleteCurrentUser()
+                                    Toast.makeText(
+                                        this,
+                                        getString(R.string.error_creation_user_auth),
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                }
                             }
+
+                            //Calling the finish we go back on the login activity, with the created account
+                            finish()
+                        } else {
+                            Toast.makeText(
+                                this,
+                                getString(R.string.error_creation_user_auth),
+                                Toast.LENGTH_LONG
+                            ).show()
+                            Trainer.clearHashMap()
+                            finish()
                         }
-
-                        //Calling the finish we go back on the login activity, with the created account
-                        finish()
-                    } else {
-                        Toast.makeText(
-                            this,
-                            getString(R.string.error_creation_user_auth),
-                            Toast.LENGTH_LONG
-                        ).show()
-                        Trainer.clearHashMap()
-                        finish()
                     }
-                }
 
-                Trainer.printHashMap()
+                    Trainer.printHashMap()
+
+                } else {
+                    Trainer.removePass()
+                    Trainer.printHashMap()
+
+                    val fireStore = FireStore()
+                    fireStore.saveTrainer(currUser.uid) { saveOk ->
+                        //If is not ok, delete the previous current user on auth and go back in login
+                        if (!saveOk) {
+                            FireAuth.deleteCurrentUser()
+                            Toast.makeText(
+                                this,
+                                getString(R.string.error_creation_user_auth),
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }
+
+                    val intent = Intent(this, ActivityHomeTrainer::class.java)
+                    startActivity(intent)
+                    finish()
+                }
 
             } else {
                 Toast.makeText(
@@ -125,6 +152,7 @@ class ActivityRegistrationTrainer : AppCompatActivity() {
     override fun onBackPressed() {
         if (viewPagerTrainer.currentItem == 0) {
             Trainer.clearHashMap()
+            FireAuth.deleteCurrentUser()
             super.onBackPressed()
         } else {
             viewPagerTrainer.currentItem = viewPagerTrainer.currentItem - 1

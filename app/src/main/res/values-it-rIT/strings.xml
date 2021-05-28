@@ -72,4 +72,7 @@
     <string name="first_select_date">Prima seleziona la data</string>
     <string name="error_invalid_date">La data deve essere compresa tra il 2010-1920</string>
     <string name="error_creation_user_auth">CREAZIONE DELL\'UTENTE FALLITA, RIPROVA!</string>
+    <string name="welcome_back_trainer_login">BENTORNATO TRAINER</string>
+    <string name="welcome_back_athlete_login">BENTORNATO ATLETA</string>
+    <string name="error_login_user_not_found">ERRORE: UTENTE NON TROVATO O NON REGISTRATO</string>
 </resources>

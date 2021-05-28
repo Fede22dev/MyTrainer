@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import it.app.mytrainer.R
+import it.app.mytrainer.firebase.fireauth.FireAuth
 import it.app.mytrainer.ui.adapter.UserChoiceRegistrationPageAdapter
 import kotlinx.android.synthetic.main.activity_user_choice.*
 
@@ -45,6 +46,7 @@ class ActivityUserChoice : AppCompatActivity() {
 
     override fun onBackPressed() {
         if (viewPagerUserChoice.currentItem == 0) {
+            FireAuth.deleteCurrentUser()
             super.onBackPressed()
         } else {
             viewPagerUserChoice.currentItem = viewPagerUserChoice.currentItem - 1

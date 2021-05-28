@@ -2,8 +2,6 @@ package it.app.mytrainer.firebase.fireauth
 
 import android.app.Activity
 import android.util.Log
-import com.facebook.AccessToken
-import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
@@ -21,7 +19,7 @@ class FireAuth {
         fun getCurrentUser(callback: (Int) -> Unit) {
             val currentUser = auth.currentUser
             if (currentUser != null) {
-                Log.d(TAG, "--------------Going to find out the type of:  ${currentUser.uid}")
+                Log.d(TAG, "Going to find out the type of:  ${currentUser.uid}")
                 val fireStore = FireStore()
                 fireStore.findType(currentUser.uid) { type ->
                     callback(type)
@@ -29,10 +27,6 @@ class FireAuth {
             } else {
                 callback(-1)
             }
-        }
-
-        fun getCurrentUserAuth(): FirebaseUser? {
-            return auth.currentUser
         }
 
         //Fun to check the email and pass
@@ -63,7 +57,6 @@ class FireAuth {
                             Log.w(TAG, "signInWithEmail:failure", task.exception)
                             callback(false, -1)
                         }
-
                     }
             }
         }
@@ -89,11 +82,15 @@ class FireAuth {
                 }
         }
 
+        fun getCurrentUserAuth(): FirebaseUser? {
+            return auth.currentUser
+        }
+
         fun deleteCurrentUser() {
             auth.currentUser?.delete()
         }
 
-        fun signOut(){
+        fun signOut() {
             auth.signOut()
         }
     }

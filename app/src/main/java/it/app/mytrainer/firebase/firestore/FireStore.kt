@@ -59,13 +59,13 @@ class FireStore {
                             }
                         }
                         .addOnFailureListener { e ->
-                            Log.d(TAG, "Failed connection", e)
+                            Log.w(TAG, "Failed connection", e)
                             callback(-1)
                         }
                 }
             }
             .addOnFailureListener { e ->
-                Log.d(TAG, "Failed connection", e)
+                Log.w(TAG, "Failed connection", e)
                 callback(-1)
             }
     }

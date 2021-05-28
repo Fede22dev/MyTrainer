@@ -72,9 +72,9 @@
     <string name="advanced_athlete">Advanced</string>
     <string name="error_toast_equipment_athlete">ERROR: Select at least one type of equipment</string>
     <string name="first_select_date">First select date</string>
-    <string name="error_invalid_date">Date must be between 2010-1920</string>
+    <string name="error_invalid_date">Date must be between 2010 – 1920</string>
     <string name="error_creation_user_auth">CREATION OF THE USER FAILED, RETRY!</string>
     <string name="error_login_user_not_found">ERROR: USER NOT FOUND OR NOT REGISTERED</string>
-    <string name="welcome_back_trainer_login">Welcome back Trainer</string>
-    <string name="welcome_back_athlete_login">Welcome back Athlete</string>
+    <string name="welcome_back_trainer_login">WELCOME BACK TRAINER</string>
+    <string name="welcome_back_athlete_login">WELCOME BACK ATHLETE</string>
 </resources>
