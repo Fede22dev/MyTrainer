@@ -19,7 +19,7 @@ class ActivityMain : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         thread {
-            Thread.sleep(750)
+            Thread.sleep(625)
             FireAuth.getCurrentUser { type ->
                 // Check if the user is already logged in
                 when (type) {

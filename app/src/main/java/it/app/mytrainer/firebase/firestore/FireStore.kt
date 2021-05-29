@@ -69,4 +69,25 @@ class FireStore {
                 callback(-1)
             }
     }
+
+    fun getTrainer(currentUserId: String, callback: (Map<String, Any>?) -> Unit) {
+        db.collection(COLLECTIONTRAINER).document(currentUserId).get()
+            .addOnSuccessListener { document ->
+                Log.d(TAG, "DocumentSnapshot data: ${document.data}")
+                callback(document.data)
+            }
+            .addOnFailureListener { e ->
+                Log.d(TAG, "Get failed with ", e)
+            }
+    }
+
+    fun updateTrainer(currentUserId: String, gym: String, specialization: String) {
+        db.collection(COLLECTIONTRAINER).document(currentUserId).update("Gym", gym)
+        db.collection(COLLECTIONTRAINER).document(currentUserId).update("Specialization", specialization)
+    }
+
+    fun deleteTrainer(currentUserId: String){
+        db.collection(COLLECTIONTRAINER).document(currentUserId).delete()
+    }
+
 }
