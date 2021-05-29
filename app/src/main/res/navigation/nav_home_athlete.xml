@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_home_athlete"
+    app:startDestination="@id/fragmentScheduleAthlete">
+
+    <fragment
+        android:id="@+id/fragmentScheduleAthlete"
+        android:name="it.app.mytrainer.ui.fragments.homeAthlete.FragmentScheduleAthlete"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_schedule_athlete" />
+
+    <fragment
+        android:id="@+id/fragmentProfileAthlete"
+        android:name="it.app.mytrainer.ui.fragments.homeAthlete.FragmentProfileAthlete"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile_athlete" />
+
+</navigation>
