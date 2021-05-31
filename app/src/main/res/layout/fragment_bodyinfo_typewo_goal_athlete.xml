@@ -1,187 +1,193 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/app_background"
-    android:padding="24dp"
-    tools:context=".ui.fragments.registrationAthlete.FragmentBodyInfoTypeWOGoalAthlete">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textViewInfoBodyAthlete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="@string/body_Info_athlete"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@id/linerLayoutInfoBodyAthlete"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35"
-        app:layout_constraintVertical_chainStyle="packed" />
-
-    <LinearLayout
-        android:id="@+id/linerLayoutInfoBodyAthlete"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:baselineAligned="false"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/layoutDropMenuAthleteTypeWorkout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewInfoBodyAthlete">
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layoutAthleteEditTextHeight"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:layout_weight="1"
-            android:hint="@string/insert_height_athlete"
-            android:textColorHint="@color/white"
-            app:endIconMode="clear_text"
-            app:endIconTint="@color/white"
-            app:errorEnabled="true"
-            app:startIconDrawable="@drawable/ic_height"
-            app:startIconTint="@color/white"
-            app:suffixText="Cm."
-            app:suffixTextColor="@color/white">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/heightFieldAthlete"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:maxLength="3"
-                android:textColor="@color/white" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layoutAthleteEditTextWeight"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_weight="1"
-            android:hint="@string/insert_weight_athlete"
-            android:textColorHint="@color/white"
-            app:endIconMode="clear_text"
-            app:endIconTint="@color/white"
-            app:errorEnabled="true"
-            app:startIconDrawable="@drawable/ic_weight"
-            app:startIconTint="@color/white"
-            app:suffixText="Kg."
-            app:suffixTextColor="@color/white">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/weightFieldAthlete"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:maxLength="3"
-                android:textColor="@color/white" />
-        </com.google.android.material.textfield.TextInputLayout>
-    </LinearLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layoutDropMenuAthleteTypeWorkout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:hint="@string/choice_type_of_workout_athlete"
-        android:textColorHint="@color/white"
-        app:endIconTint="@color/white"
-        app:layout_constraintBottom_toTopOf="@id/textViewInfoGoalsAthlete"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linerLayoutInfoBodyAthlete"
-        app:startIconDrawable="@drawable/ic_dumbbells"
-        app:startIconTint="@color/white">
+        android:background="@color/app_background"
+        android:padding="24dp"
+        tools:context=".ui.fragments.registrationAthlete.FragmentBodyInfoTypeWOGoalAthlete">
 
-        <AutoCompleteTextView
-            android:id="@+id/autoTextViewDropMenuTypeOfWorkAthlete"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/textViewInfoBodyAthlete"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="none"
+            android:layout_marginBottom="16dp"
+            android:text="@string/body_Info_athlete"
             android:textColor="@color/white"
-            tools:ignore="LabelFor" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@id/linerLayoutInfoBodyAthlete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.35"
+            app:layout_constraintVertical_chainStyle="packed" />
 
-    <TextView
-        android:id="@+id/textViewInfoGoalsAthlete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="@string/selects_your_goals_athlete"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@id/chipGroupGoalsAthlete"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layoutDropMenuAthleteTypeWorkout" />
+        <LinearLayout
+            android:id="@+id/linerLayoutInfoBodyAthlete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/layoutDropMenuAthleteTypeWorkout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewInfoBodyAthlete">
 
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/chipGroupGoalsAthlete"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:chipSpacingHorizontal="10dp"
-        app:chipSpacingVertical="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewInfoGoalsAthlete"
-        app:selectionRequired="true"
-        app:singleSelection="true">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutAthleteEditTextHeight"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:hint="@string/insert_height_athlete"
+                android:textColorHint="@color/white"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/white"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_height"
+                app:startIconTint="@color/white"
+                app:suffixText="Cm."
+                app:suffixTextColor="@color/white">
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip1GoalAthlete"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/heightFieldAthlete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:textColor="@color/white" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutAthleteEditTextWeight"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_weight="1"
+                android:hint="@string/insert_weight_athlete"
+                android:textColorHint="@color/white"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/white"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_weight"
+                app:startIconTint="@color/white"
+                app:suffixText="Kg."
+                app:suffixTextColor="@color/white">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/weightFieldAthlete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:textColor="@color/white" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutDropMenuAthleteTypeWorkout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:hint="@string/choice_type_of_workout_athlete"
+            android:textColorHint="@color/white"
+            app:endIconTint="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/textViewInfoGoalsAthlete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linerLayoutInfoBodyAthlete"
+            app:startIconDrawable="@drawable/ic_dumbbells"
+            app:startIconTint="@color/white">
+
+            <AutoCompleteTextView
+                android:id="@+id/autoTextViewDropMenuTypeOfWorkAthlete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:textColor="@color/white"
+                tools:ignore="LabelFor" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textViewInfoGoalsAthlete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/fat_loss" />
+            android:layout_marginBottom="16dp"
+            android:text="@string/selects_your_goals_athlete"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@id/chipGroupGoalsAthlete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutDropMenuAthleteTypeWorkout" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip2GoalAthlete"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupGoalsAthlete"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/gain_muscle" />
+            app:chipSpacingHorizontal="10dp"
+            app:chipSpacingVertical="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewInfoGoalsAthlete"
+            app:selectionRequired="true"
+            app:singleSelection="true">
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip3GoalAthlete"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/athletic_preparation" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip1GoalAthlete"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fat_loss" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip4GoalAthlete"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/self_defence" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip2GoalAthlete"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gain_muscle" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip5GoalAthlete"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/reduce_stress" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip3GoalAthlete"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/athletic_preparation" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip6GoalAthlete"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/endurance" />
-    </com.google.android.material.chip.ChipGroup>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip4GoalAthlete"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/self_defence" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip5GoalAthlete"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reduce_stress" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip6GoalAthlete"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/endurance" />
+        </com.google.android.material.chip.ChipGroup>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

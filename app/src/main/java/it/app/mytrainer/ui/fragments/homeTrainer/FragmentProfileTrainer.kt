@@ -26,10 +26,10 @@ import java.io.ByteArrayOutputStream
 class FragmentProfileTrainer : Fragment() {
 
     private val REQUEST_IMAGE_CAPTURE = 1
-    lateinit var mapTrainer: Map<String, Any>
+    private lateinit var mapTrainer: Map<String, Any>
     private lateinit var storage: StorageReference
     private val currentUserId = FireAuth.getCurrentUserAuth()?.uid
-    val TAG = "FRAGMENT_HOME_PROFILE_TRAINER"
+    private val TAG = "FRAGMENT_HOME_PROFILE_TRAINER"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,8 +67,10 @@ class FragmentProfileTrainer : Fragment() {
                     nameFieldTrainerEditable.setText(trainer["Name"].toString())
                     surnameFieldTrainerEditable.setText(trainer["Surname"].toString())
                     textViewDateDataProfileTrainer.text = trainer["BirthDate"].toString()
-                    gymFieldTrainerEditable.setText(trainer["Gym"].toString())
-                    layoutTrainerEditTextGymEditable.endIconMode = TextInputLayout.END_ICON_NONE
+                    if (trainer["Gym"] != null) {
+                        gymFieldTrainerEditable.setText(trainer["Gym"].toString())
+                        layoutTrainerEditTextGymEditable.endIconMode = TextInputLayout.END_ICON_NONE
+                    }
                     autoTextViewDropMenuSpecializationProfileTrainer.setText(trainer["Specialization"].toString())
                 }
             }
@@ -128,6 +130,7 @@ class FragmentProfileTrainer : Fragment() {
 
             val newGym = gymFieldTrainerEditable.text.toString()
             val newSpec = autoTextViewDropMenuSpecializationProfileTrainer.text.toString()
+
 
             if (currentUserId != null) {
                 fireStore.updateTrainer(currentUserId, newGym, newSpec)

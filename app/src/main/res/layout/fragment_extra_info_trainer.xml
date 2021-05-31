@@ -1,137 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/app_background"
-    android:padding="24dp"
-    tools:context=".ui.fragments.registrationTrainer.FragmentExtraInfoTrainer">
+    android:layout_height="match_parent">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layoutTrainerEditTextGym"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
-        android:hint="@string/insert_gym_trainer"
-        android:textColorHint="@color/white"
-        app:endIconMode="clear_text"
-        app:endIconTint="@color/white"
-        app:helperText="@string/optional_field"
-        app:helperTextEnabled="true"
-        app:helperTextTextColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@id/textViewInfoSpecializationTrainer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35"
-        app:layout_constraintVertical_chainStyle="packed"
-        app:startIconDrawable="@drawable/ic_dumbbells"
-        app:startIconTint="@color/white">
+        android:background="@color/app_background"
+        android:padding="24dp"
+        tools:context=".ui.fragments.registrationTrainer.FragmentExtraInfoTrainer">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/gymFieldTrainer"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutTrainerEditTextGym"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
+            android:layout_marginBottom="48dp"
+            android:hint="@string/insert_gym_trainer"
+            android:textColorHint="@color/white"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/white"
+            app:helperText="@string/optional_field"
+            app:helperTextEnabled="true"
+            app:helperTextTextColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/textViewInfoSpecializationTrainer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.35"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:startIconDrawable="@drawable/ic_dumbbells"
+            app:startIconTint="@color/white">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/gymFieldTrainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textViewInfoSpecializationTrainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/info_specialization_trainer"
             android:textColor="@color/white"
-            android:textSize="20sp" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@id/chipGroupSpecializationTrainer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutTrainerEditTextGym" />
 
-    <TextView
-        android:id="@+id/textViewInfoSpecializationTrainer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="@string/info_specialization_trainer"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@id/chipGroupSpecializationTrainer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layoutTrainerEditTextGym" />
-
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/chipGroupSpecializationTrainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        app:chipSpacingHorizontal="10dp"
-        app:chipSpacingVertical="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewInfoSpecializationTrainer"
-        app:selectionRequired="true"
-        app:singleSelection="true">
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip1SpecTrainer"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupSpecializationTrainer"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/bodybuilding_trainer" />
+            android:layout_marginBottom="32dp"
+            app:chipSpacingHorizontal="10dp"
+            app:chipSpacingVertical="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewInfoSpecializationTrainer"
+            app:selectionRequired="true"
+            app:singleSelection="true">
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip2SpecTrainer"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/mixed_martial_arts_trainer" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip1SpecTrainer"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bodybuilding_trainer" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip3SpecTrainer"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/yoga_trainer" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip2SpecTrainer"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mixed_martial_arts_trainer" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip4SpecTrainer"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/calisthenics_trainer" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip3SpecTrainer"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/yoga_trainer" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip5SpecTrainer"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/powerlifting_trainer" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip4SpecTrainer"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/calisthenics_trainer" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip6SpecTrainer"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/wellness_trainer" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip5SpecTrainer"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/powerlifting_trainer" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip7SpecTrainer"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/functional_trainer" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip6SpecTrainer"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/wellness_trainer" />
 
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip8SpecTrainer"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/crossfit_trainer" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip9SpecTrainer"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/bodyweight_trainer" />
-
-    </com.google.android.material.chip.ChipGroup>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip7SpecTrainer"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/functional_trainer" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip8SpecTrainer"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/crossfit_trainer" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip9SpecTrainer"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bodyweight_trainer" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

@@ -1,14 +1,563 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<!--DECLARATION OF THE SCROLL VIEW-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragments.homeAthlete.FragmentProfileAthlete">
+    android:layout_height="match_parent">
 
-    <TextView
+    <!--COSTRAINT-->
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="234sp"
-        android:text="GGGGGGGGGGGGGGGGGGGGGGGGGG" />
+        android:layout_height="wrap_content"
+        android:background="@color/app_background"
+        android:padding="24dp"
+        tools:context="ui.fragments.homeAthlete.FragmentProfileAthlete">
 
-</FrameLayout>
+        <!--LINEAR LAYOUT FOR IMAGE+LINEAR FOR NAME AND SURNAME-->
+        <LinearLayout
+            android:id="@+id/linerLayoutImageAndNameAndSurname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/buttonCameraAthlete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.05"
+            app:layout_constraintVertical_chainStyle="packed">
+
+            <ImageView
+                android:id="@+id/imageViewPersonalAthlete"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:src="@drawable/person_placeholder"
+                app:layout_constraintEnd_toStartOf="@id/linerLayoutEditProfileAthlete"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <!--LINEAR LAYOUT FOR NAME AND SURNAME-->
+            <LinearLayout
+                android:id="@+id/linerLayoutEditProfileAthlete"
+                android:layout_width="match_parent"
+                android:layout_height="125dp"
+                android:layout_marginStart="16dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imageViewPersonalAthlete"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutAthleteEditTextNameEditable"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textColorHint="@color/white"
+                    app:startIconDrawable="@drawable/ic_person"
+                    app:startIconTint="@color/white">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/nameFieldAthleteEditable"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/white" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutAthleteEditTextSurnameEditable"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textColorHint="@color/white"
+                    app:startIconDrawable="@drawable/ic_person"
+                    app:startIconTint="@color/white">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/surnameFieldAthleteEditable"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/white" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--BUTTON FOR THE IMAGE-->
+        <Button
+            android:id="@+id/buttonCameraAthlete"
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:backgroundTint="@color/button_red"
+            android:text="@string/change_image"
+            app:icon="@drawable/ic_photo_camera"
+            app:layout_constraintBottom_toTopOf="@id/linearLayoutDataProfileAthlete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linerLayoutImageAndNameAndSurname" />
+
+        <!--LINEAR LAYOUT FOR DATEOFBIRTH-->
+        <LinearLayout
+            android:id="@+id/linearLayoutDataProfileAthlete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/linearLayoutHeightProfileAthlete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonCameraAthlete">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:text="@string/birth_profile"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/textViewDateDataProfileAthlete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textSize="25sp" />
+
+        </LinearLayout>
+
+        <!--LINEAR LAYOUT FOR HEIGHT-->
+        <LinearLayout
+            android:id="@+id/linearLayoutHeightProfileAthlete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@id/linearLayoutWeightProfileAthlete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayoutDataProfileAthlete">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:text="@string/height_profile_athlete"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutAthleteEditTextHeightEditable"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColorHint="@color/white"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/white"
+                app:startIconDrawable="@drawable/ic_height"
+                app:startIconTint="@color/white">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/heightFieldAthleteEditable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/white" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <!--LINEAR LAYOUT FOR WEIGHT-->
+        <LinearLayout
+            android:id="@+id/linearLayoutWeightProfileAthlete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@id/linearLayoutTypeOfWOProfileAthlete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayoutHeightProfileAthlete">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:text="@string/weight_profile_athlete"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutAthleteEditTextWeightEditable"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColorHint="@color/white"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/white"
+                app:startIconDrawable="@drawable/ic_weight"
+                app:startIconTint="@color/white">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/weightFieldAthleteEditable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/white" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <!--LINEAR LAYOUT FOR TYOEOFWO-->
+        <LinearLayout
+            android:id="@+id/linearLayoutTypeOfWOProfileAthlete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@id/linearLayoutGoalProfileAthlete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayoutWeightProfileAthlete">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:text="@string/type_of_workout_profile_athlete"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutDropMenuTypeOfWOProfileAthlete"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:endIconMode="none"
+                app:endIconTint="@color/white"
+                app:startIconDrawable="@drawable/ic_dumbbells"
+                app:startIconTint="@color/white">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoTextViewDropMenuTypeOfWOProfileAthlete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:inputType="none"
+                    android:textColor="@color/white"
+                    tools:ignore="LabelFor" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <!--LINEAR LAYOUT FOR GOAL-->
+        <LinearLayout
+            android:id="@+id/linearLayoutGoalProfileAthlete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@id/linearLayoutLevelProfileAthlete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayoutTypeOfWOProfileAthlete">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:text="@string/goal_profile_athlete"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutDropMenuGoalProfileAthlete"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:endIconMode="none"
+                app:endIconTint="@color/white"
+                app:startIconTint="@color/white">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoTextViewDropMenuGoalProfileAthlete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:inputType="none"
+                    android:textColor="@color/white"
+                    tools:ignore="LabelFor" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <!--LINEAR LAYOUT FOR LEVEL ATHLETE-->
+        <LinearLayout
+            android:id="@+id/linearLayoutLevelProfileAthlete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@id/linearLayoutNumOfWOProfileAthlete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayoutGoalProfileAthlete">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:text="@string/level_profile_athlete"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutDropMenuLevelProfileAthlete"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:endIconMode="none"
+                app:endIconTint="@color/white"
+                app:startIconTint="@color/white">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoTextViewDropMenuLevelProfileAthlete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:inputType="none"
+                    android:textColor="@color/white"
+                    tools:ignore="LabelFor" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <!--LINEAR LAYOUT FOR NUM OF WO-->
+        <LinearLayout
+            android:id="@+id/linearLayoutNumOfWOProfileAthlete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toTopOf="@id/textViewEquipmentProfileAthlete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayoutLevelProfileAthlete">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.7"
+                android:text="@string/number_of_workout_profile_athlete"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutDropMenuNumOfWOProfileAthlete"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:endIconMode="none"
+                app:endIconTint="@color/white"
+                app:startIconDrawable="@drawable/ic_dumbbells"
+                app:startIconTint="@color/white">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoTextViewDropMenuNumOfWOProfileAthlete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:inputType="none"
+                    android:textColor="@color/white"
+                    tools:ignore="LabelFor" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <!--TEXT VIEW FOR EQUIPMENT-->
+        <TextView
+            android:id="@+id/textViewEquipmentProfileAthlete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/equipment_profile_athlete"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@id/linearLayoutCheckBoxEquipmentsProfileAthlete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayoutNumOfWOProfileAthlete" />
+
+        <!--LAYOUT FOR CHECKBOX EQUIPMENT-->
+        <LinearLayout
+            android:id="@+id/linearLayoutCheckBoxEquipmentsProfileAthlete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/floatingActionButtonEditProfileAthlete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewEquipmentProfileAthlete">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/checkbox1ProfileAthlete"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/white"
+                    android:enabled="false"
+                    android:text="@string/dumbbells_athlete"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+
+                <CheckBox
+                    android:id="@+id/checkbox2ProfileAthlete"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/white"
+                    android:enabled="false"
+                    android:text="@string/rope_athlete"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+
+                <CheckBox
+                    android:id="@+id/checkbox3ProfileAthlete"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/white"
+                    android:enabled="false"
+                    android:text="@string/rack_athlete"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/checkbox4ProfileAthlete"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/white"
+                    android:enabled="false"
+                    android:text="@string/benches_athlete"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+
+                <CheckBox
+                    android:id="@+id/checkbox5ProfileAthlete"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/white"
+                    android:enabled="false"
+                    android:text="@string/pull_up_bar_athlete"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+
+                <CheckBox
+                    android:id="@+id/checkbox6ProfileAthlete"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/white"
+                    android:enabled="false"
+                    android:text="@string/dip_station_athlete"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/checkbox7ProfileAthlete"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/white"
+                    android:enabled="false"
+                    android:text="@string/barbell_and_discs_athlete"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+
+                <CheckBox
+                    android:id="@+id/checkbox8ProfileAthlete"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/white"
+                    android:enabled="false"
+                    android:text="@string/gym_membership_athlete"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--EDIT BUTTON-->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButtonEditProfileAthlete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@color/green_float_button"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_editable_pencil"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <!--SAVE BUTTON-->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButtonSaveProfileAthlete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@color/green_float_button"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_save"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="ContentDescription" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

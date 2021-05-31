@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="facebook_app_id" translatable="false">1299783663749043</string>
     <string name="fb_login_protocol_scheme" translatable="false">fb1299783663749043</string>
     <string name="app_name" translatable="false">MyTrainer</string>
@@ -86,4 +86,16 @@
     <string name="specialization">Specialization:</string>
     <string name="change_image">CHANGE IMAGE</string>
     <string name="delete_account">Delete account</string>
+    <string name="delete_account_text">"Are you sure to delete the whole account? This operation is not reversible! "</string>
+    <string name="cancel_button" tools:ignore="ButtonCase">CANCEL</string>
+    <string name="accept_button">ACCEPT</string>
+    <string name="type_of_workout_profile_athlete">Type of workout:</string>
+    <string name="goal_profile_athlete">Goal:</string>
+    <string name="level_profile_athlete">Level:</string>
+    <string name="equipment_profile_athlete">Available equipment</string>
+    <string name="error_edit_profile_athlete">ERROR: HEIGHT, WEIGHT OR EQUIPMENT HAS AN ERROR. UPDATE FAILED</string>
+    <string name="scroll_the_slider_registration_athlete">Scroll the slider!</string>
+    <string name="height_profile_athlete">Height:</string>
+    <string name="weight_profile_athlete">Weight:</string>
+    <string name="number_of_workout_profile_athlete">Number of workout:</string>
 </resources>

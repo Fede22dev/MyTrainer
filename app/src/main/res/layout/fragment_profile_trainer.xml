@@ -1,77 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/app_background"
-    android:padding="24dp"
-    tools:context="ui.fragments.homeTrainer.FragmentProfileTrainer">
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/linerLayoutImageAndNameAndSurname"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/buttonCameraTrainer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35"
-        app:layout_constraintVertical_chainStyle="packed">
-
-        <ImageView
-            android:id="@+id/imageViewPersonalTrainer"
-            android:layout_width="125dp"
-            android:layout_height="125dp"
-            android:src="@drawable/person_placeholder"
-            app:layout_constraintEnd_toStartOf="@id/linerLayoutEditProfileTrainer"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription" />
+        android:background="@color/app_background"
+        android:padding="24dp"
+        tools:context="ui.fragments.homeTrainer.FragmentProfileTrainer">
 
         <LinearLayout
-            android:id="@+id/linerLayoutEditProfileTrainer"
+            android:id="@+id/linerLayoutImageAndNameAndSurname"
             android:layout_width="match_parent"
-            android:layout_height="125dp"
-            android:layout_marginStart="16dp"
-            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/buttonCameraTrainer"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/imageViewPersonalTrainer"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.35"
+            app:layout_constraintVertical_chainStyle="packed">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layoutTrainerEditTextNameEditable"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <ImageView
+                android:id="@+id/imageViewPersonalTrainer"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:src="@drawable/person_placeholder"
+                app:layout_constraintEnd_toStartOf="@id/linerLayoutEditProfileTrainer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <LinearLayout
+                android:id="@+id/linerLayoutEditProfileTrainer"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:textColorHint="@color/white"
-                app:startIconDrawable="@drawable/ic_person"
-                app:startIconTint="@color/white">
+                android:layout_height="125dp"
+                android:layout_marginStart="16dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imageViewPersonalTrainer"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/nameFieldTrainerEditable"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutTrainerEditTextNameEditable"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:enabled="false"
-                    android:inputType="textPersonName"
-                    android:textColor="@color/white" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_gravity="center_vertical"
+                    android:textColorHint="@color/white"
+                    app:startIconDrawable="@drawable/ic_person"
+                    app:startIconTint="@color/white">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/nameFieldTrainerEditable"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/white" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutTrainerEditTextSurnameEditable"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textColorHint="@color/white"
+                    app:startIconDrawable="@drawable/ic_person"
+                    app:startIconTint="@color/white">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/surnameFieldTrainerEditable"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/white" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonCameraTrainer"
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="120dp"
+            android:backgroundTint="@color/button_red"
+            android:text="@string/change_image"
+            app:icon="@drawable/ic_photo_camera"
+            app:layout_constraintBottom_toTopOf="@id/linearLayoutDataProfileTrainer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linerLayoutImageAndNameAndSurname" />
+
+        <LinearLayout
+            android:id="@+id/linearLayoutDataProfileTrainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/linearLayoutGymProfileTrainer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonCameraTrainer">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:text="@string/birth_profile"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/textViewDateDataProfileTrainer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textSize="25sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutGymProfileTrainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@id/linearLayoutSpecProfileTrainer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayoutDataProfileTrainer">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:text="@string/gym_profile"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layoutTrainerEditTextSurnameEditable"
+                android:id="@+id/layoutTrainerEditTextGymEditable"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
                 android:textColorHint="@color/white"
-                app:startIconDrawable="@drawable/ic_person"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/white"
+                app:startIconDrawable="@drawable/ic_dumbbells"
                 app:startIconTint="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/surnameFieldTrainerEditable"
+                    android:id="@+id/gymFieldTrainerEditable"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:enabled="false"
@@ -81,157 +173,72 @@
 
         </LinearLayout>
 
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/buttonCameraTrainer"
-        style="@style/Widget.MaterialComponents.Button.Icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="120dp"
-        android:backgroundTint="@color/button_red"
-        android:text="@string/change_image"
-        app:icon="@drawable/ic_photo_camera"
-        app:layout_constraintBottom_toTopOf="@id/linearLayoutDataProfileTrainer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linerLayoutImageAndNameAndSurname" />
-
-    <LinearLayout
-        android:id="@+id/linearLayoutDataProfileTrainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/linearLayoutGymProfileTrainer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/buttonCameraTrainer">
-
-        <TextView
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/linearLayoutSpecProfileTrainer"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.7"
-            android:text="@string/birth_profile"
-            android:textColor="@color/white"
-            android:textSize="17sp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayoutGymProfileTrainer">
 
-        <TextView
-            android:id="@+id/textViewDateDataProfileTrainer"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@color/white"
-            android:textSize="25sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayoutGymProfileTrainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@id/linearLayoutSpecProfileTrainer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayoutDataProfileTrainer">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.7"
-            android:text="@string/gym_profile"
-            android:textColor="@color/white"
-            android:textSize="17sp" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layoutTrainerEditTextGymEditable"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColorHint="@color/white"
-            app:endIconMode="clear_text"
-            app:endIconTint="@color/white"
-            app:startIconDrawable="@drawable/ic_dumbbells"
-            app:startIconTint="@color/white">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/gymFieldTrainerEditable"
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:enabled="false"
-                android:inputType="textPersonName"
-                android:textColor="@color/white" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayoutSpecProfileTrainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayoutGymProfileTrainer">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.7"
-            android:text="@string/specialization"
-            android:textColor="@color/white"
-            android:textSize="17sp" />
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layoutDropMenuSpecializationProfileTrainer"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:endIconMode="none"
-            app:endIconTint="@color/white"
-            app:startIconDrawable="@drawable/ic_dumbbells"
-            app:startIconTint="@color/white">
-
-            <AutoCompleteTextView
-                android:id="@+id/autoTextViewDropMenuSpecializationProfileTrainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="false"
-                android:inputType="none"
+                android:layout_weight="0.7"
+                android:text="@string/specialization"
                 android:textColor="@color/white"
-                tools:ignore="LabelFor" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:textSize="17sp" />
 
-    </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButtonEditProfileTrainer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/green_float_button"
-        android:clickable="true"
-        android:focusable="true"
-        android:src="@drawable/ic_editable_pencil"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="ContentDescription" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutDropMenuSpecializationProfileTrainer"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:endIconMode="none"
+                app:endIconTint="@color/white"
+                app:startIconDrawable="@drawable/ic_dumbbells"
+                app:startIconTint="@color/white">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButtonSaveProfileTrainer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/green_float_button"
-        android:clickable="true"
-        android:focusable="true"
-        android:src="@drawable/ic_save"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="ContentDescription" />
+                <AutoCompleteTextView
+                    android:id="@+id/autoTextViewDropMenuSpecializationProfileTrainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:inputType="none"
+                    android:textColor="@color/white"
+                    tools:ignore="LabelFor" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButtonEditProfileTrainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/green_float_button"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_editable_pencil"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButtonSaveProfileTrainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/green_float_button"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_save"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="ContentDescription" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

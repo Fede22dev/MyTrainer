@@ -90,4 +90,29 @@ class FireStore {
         db.collection(COLLECTIONTRAINER).document(currentUserId).delete()
     }
 
+    fun deleteAthlete(currentUserId: String) {
+        db.collection(COLLECTIONATHLETE).document(currentUserId).delete()
+    }
+
+    fun updateAthlete(currentUserId: String, height: String, weight: String, typeOfWo: String, goal: String, level: String, numOfWO: String, listCheckBox: ArrayList<String>) {
+        db.collection(COLLECTIONATHLETE).document(currentUserId).update("Height", height)
+        db.collection(COLLECTIONATHLETE).document(currentUserId).update("Weight", weight)
+        db.collection(COLLECTIONATHLETE).document(currentUserId).update("TypeOfWO", typeOfWo)
+        db.collection(COLLECTIONATHLETE).document(currentUserId).update("Goal", goal)
+        db.collection(COLLECTIONATHLETE).document(currentUserId).update("Level", level)
+        db.collection(COLLECTIONATHLETE).document(currentUserId).update("DaysOfWorkout", numOfWO)
+        db.collection(COLLECTIONATHLETE).document(currentUserId).update("Equipment", listCheckBox)
+    }
+
+    fun getAthlete(currentUserId: String, callback: (Map<String, Any>?) -> Unit) {
+        db.collection(COLLECTIONATHLETE).document(currentUserId).get()
+            .addOnSuccessListener { document ->
+                Log.d(TAG, "DocumentSnapshot data: ${document.data}")
+                callback(document.data)
+            }
+            .addOnFailureListener { e ->
+                Log.d(TAG, "Get failed with ", e)
+            }
+    }
+
 }
