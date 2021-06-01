@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--DECLARING THE SCROLL VIEW-->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!--COSTRAINT FOR THE WHOLE LAYOUT-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,6 +15,7 @@
         android:padding="24dp"
         tools:context=".ui.fragments.registrationTrainer.FragmentDataTrainer">
 
+        <!--LAYOUT FOR THE EMAIL-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layoutTrainerEditTextEmail"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -28,11 +31,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.30"
             app:layout_constraintVertical_chainStyle="packed"
             app:startIconDrawable="@drawable/ic_email"
             app:startIconTint="@color/white">
 
+            <!--TEXT FIELD FOR EMAIL-->
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/emailFieldTrainer"
                 android:layout_width="match_parent"
@@ -41,6 +44,7 @@
                 android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!--LAYOUT FOR THE PASSWORD-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layoutTrainerEditTextPassword"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -59,6 +63,7 @@
             app:startIconDrawable="@drawable/ic_lock"
             app:startIconTint="@color/white">
 
+            <!--TEXT FIELD FOR PASSWORD-->
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordFieldTrainer"
                 android:layout_width="match_parent"
@@ -67,6 +72,7 @@
                 android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!--LAYOUT FOR NAME-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layoutTrainerEditTextName"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -85,6 +91,7 @@
             app:startIconDrawable="@drawable/ic_person"
             app:startIconTint="@color/white">
 
+            <!--TEXT FIELD FOR NAME-->
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/nameFieldTrainer"
                 android:layout_width="match_parent"
@@ -93,6 +100,7 @@
                 android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!--LAYOUT FOR THE SURNAME-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layoutTrainerEditTextSurname"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -111,6 +119,7 @@
             app:startIconDrawable="@drawable/ic_person"
             app:startIconTint="@color/white">
 
+            <!--TEXT FIELD FOR SURNAME-->
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/surnameFieldTrainer"
                 android:layout_width="match_parent"
@@ -119,6 +128,7 @@
                 android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!--TEXT VIEW DATE OF BIRTH-->
         <TextView
             android:id="@+id/dateOfBirthTrainer"
             android:layout_width="wrap_content"
@@ -126,19 +136,20 @@
             android:layout_marginBottom="16dp"
             android:text="@string/first_select_date"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@id/btnSelectDateTrainer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layoutTrainerEditTextSurname" />
 
+        <!--BUTTON FOR THE SELECT THE DATE-->
         <Button
             android:id="@+id/btnSelectDateTrainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/button_red"
             android:text="@string/select_date_of_birth"
-            android:textSize="15sp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

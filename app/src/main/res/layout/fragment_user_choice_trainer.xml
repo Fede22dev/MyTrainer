@@ -9,7 +9,7 @@
     android:padding="15dp"
     tools:context=".ui.fragments.userChoice.FragmentUserChoiceTrainer">
 
-
+    <!--TEXT VIEW FOR INFO-->
     <TextView
         android:id="@+id/textViewChoiceTrainer"
         android:layout_width="wrap_content"
@@ -24,6 +24,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!--BUTTON TO START TRAINER REGISTRATION-->
     <Button
         android:id="@+id/btnChoiceTrainer"
         android:layout_width="wrap_content"

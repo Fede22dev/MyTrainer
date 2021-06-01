@@ -26,28 +26,8 @@ class FragmentExtraInfoAthlete : Fragment() {
 
         //Listener to manage the slider and change text view level
         view.sliderLevelAthlete.addOnChangeListener { _, value, _ ->
-            when (value) {
-                1f -> {
-                    val textBeginner = getString(R.string.beginner_athlete)
-                    textViewLevelAthlete.text = textBeginner
-                    Athlete.putLevel(textBeginner)
-                }
-                2f -> {
-                    val textIntermediate = getString(R.string.intermediate_athlete)
-                    textViewLevelAthlete.text = textIntermediate
-                    Athlete.putLevel(textIntermediate)
-                }
-                3f -> {
-                    val textAdvanced = getString(R.string.advanced_athlete)
-                    textViewLevelAthlete.text = textAdvanced
-                    Athlete.putLevel(textAdvanced)
-                }
-                4f -> {
-                    val textVeteran = getString(R.string.veteran_athlete)
-                    textViewLevelAthlete.text = textVeteran
-                    Athlete.putLevel(textVeteran)
-                }
-            }
+            //Setting the slider
+            setSliderLevel(value)
         }
 
         view.checkbox1Athlete.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -89,22 +69,35 @@ class FragmentExtraInfoAthlete : Fragment() {
             // Responds to checkbox being checked/unchecked
             managerList(buttonView, isChecked)
         }
+
         return view
     }
 
-    override fun onStart() {
-        super.onStart()
-        //DROPDOWN MENU DAYS
-        val days = arrayOf("1", "2", "3", "4", "5", "6", "7")
-        val adapter =
-            ArrayAdapter(
-                requireContext(),
-                R.layout.drop_menu_item_list,
-                days
-            )
-        autoTextViewDropMenuDaysOfWorkOut.setAdapter(adapter)
-        autoTextViewDropMenuDaysOfWorkOut.setOnItemClickListener { _, _, position, _ ->
-            Athlete.putNumberOfWOWeek(days[position])
+    private fun setSliderLevel(value: Float) {
+        when (value) {
+            1f -> {
+                val textBeginner = getString(R.string.beginner_athlete)
+                textViewLevelAthlete.text = textBeginner
+                Athlete.putLevel(textBeginner)
+            }
+
+            2f -> {
+                val textIntermediate = getString(R.string.intermediate_athlete)
+                textViewLevelAthlete.text = textIntermediate
+                Athlete.putLevel(textIntermediate)
+            }
+
+            3f -> {
+                val textAdvanced = getString(R.string.advanced_athlete)
+                textViewLevelAthlete.text = textAdvanced
+                Athlete.putLevel(textAdvanced)
+            }
+
+            4f -> {
+                val textVeteran = getString(R.string.veteran_athlete)
+                textViewLevelAthlete.text = textVeteran
+                Athlete.putLevel(textVeteran)
+            }
         }
     }
 
@@ -124,6 +117,28 @@ class FragmentExtraInfoAthlete : Fragment() {
                     Toast.LENGTH_LONG
                 ).show()
             }
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        //Setting dropdown menu for the num of workout
+        setDropDownDaysOfWO()
+    }
+
+    private fun setDropDownDaysOfWO() {
+        val days = arrayOf("1", "2", "3", "4", "5", "6", "7")
+
+        val adapter =
+            ArrayAdapter(
+                requireContext(),
+                R.layout.drop_menu_item_list,
+                days
+            )
+
+        autoTextViewDropMenuDaysOfWorkOut.setAdapter(adapter)
+        autoTextViewDropMenuDaysOfWorkOut.setOnItemClickListener { _, _, position, _ ->
+            Athlete.putNumberOfWOWeek(days[position])
         }
     }
 }

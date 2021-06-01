@@ -5,12 +5,14 @@
     android:id="@+id/nav_home_trainer"
     app:startDestination="@id/fragmentListClientTrainer">
 
+    <!--FRAGMENT HOME TRAINER-->
     <fragment
         android:id="@+id/fragmentListClientTrainer"
         android:name="it.app.mytrainer.ui.fragments.homeTrainer.FragmentListClientTrainer"
         android:label="@string/home"
         tools:layout="@layout/fragment_list_client_trainer" />
 
+    <!--FRAGMENT PROFILE TRAINER-->
     <fragment
         android:id="@+id/fragmentProfileTrainer"
         android:name="it.app.mytrainer.ui.fragments.homeTrainer.FragmentProfileTrainer"

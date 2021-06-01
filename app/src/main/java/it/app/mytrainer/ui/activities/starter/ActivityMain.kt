@@ -11,6 +11,7 @@ import it.app.mytrainer.ui.activities.home.ActivityHomeTrainer
 import kotlin.concurrent.thread
 
 class ActivityMain : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -18,38 +19,54 @@ class ActivityMain : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        startRightActivity()
+    }
+
+    private fun startRightActivity() {
         thread {
             Thread.sleep(600)
             FireAuth.getCurrentUser { type ->
                 // Check if the user is already logged in
                 when (type) {
                     0 -> {
-                        val intent = Intent(this, ActivityHomeTrainer::class.java)
-                        Toast.makeText(
-                            this, getString(R.string.welcome_back_trainer_login),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        startActivity(intent)
-                        finish()
+                        startHomeTrainer()
                     }
 
                     1 -> {
-                        val intent = Intent(this, ActivityHomeAthlete::class.java)
-                        Toast.makeText(
-                            this, getString(R.string.welcome_back_athlete_login),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        startActivity(intent)
-                        finish()
+                        startHomeAthlete()
                     }
 
                     -1 -> {
-                        val intent = Intent(this, ActivityLogin::class.java)
-                        startActivity(intent)
-                        finish()
+                        startLogin()
                     }
                 }
             }
         }
+    }
+
+    private fun startHomeTrainer() {
+        val intent = Intent(this, ActivityHomeTrainer::class.java)
+        Toast.makeText(
+            this, getString(R.string.welcome_back_trainer_login),
+            Toast.LENGTH_SHORT
+        ).show()
+        startActivity(intent)
+        finish()
+    }
+
+    private fun startHomeAthlete() {
+        val intent = Intent(this, ActivityHomeAthlete::class.java)
+        Toast.makeText(
+            this, getString(R.string.welcome_back_athlete_login),
+            Toast.LENGTH_SHORT
+        ).show()
+        startActivity(intent)
+        finish()
+    }
+
+    private fun startLogin() {
+        val intent = Intent(this, ActivityLogin::class.java)
+        startActivity(intent)
+        finish()
     }
 }

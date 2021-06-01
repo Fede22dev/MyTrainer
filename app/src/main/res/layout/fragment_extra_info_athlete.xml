@@ -13,6 +13,7 @@
         android:padding="24dp"
         tools:context="ui.fragments.registrationAthlete.FragmentExtraInfoAthlete">
 
+        <!--TEXT VIEW FOR QUESTION LEVEL-->
         <TextView
             android:id="@+id/textViewLevelQuestionAthlete"
             android:layout_width="wrap_content"
@@ -25,22 +26,23 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.35"
             app:layout_constraintVertical_chainStyle="packed" />
 
+        <!--TEXT VIEW FOR LEVEL-->
         <TextView
             android:id="@+id/textViewLevelAthlete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:textColor="@color/white"
             android:text="@string/scroll_the_slider_registration_athlete"
+            android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@id/sliderLevelAthlete"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewLevelQuestionAthlete" />
 
+        <!--SLIDER FOR LEVEL-->
         <com.google.android.material.slider.Slider
             android:id="@+id/sliderLevelAthlete"
             android:layout_width="wrap_content"
@@ -53,6 +55,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewLevelAthlete" />
 
+        <!--LAYOUT FOR INDICATION MIN MAX-->
         <LinearLayout
             android:id="@+id/linearLayoutTextViewForSliderAthlete"
             android:layout_width="match_parent"
@@ -64,6 +67,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/sliderLevelAthlete">
 
+            <!--TEXT VIEW MIN LEVEL-->
             <TextView
                 android:id="@+id/textViewLeftForSliderAthlete"
                 android:layout_width="0dp"
@@ -73,6 +77,7 @@
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
+            <!--TEXT VIEW MAX LEVEL-->
             <TextView
                 android:id="@+id/textViewRightForSliderAthlete"
                 android:layout_width="0dp"
@@ -84,6 +89,7 @@
                 android:textSize="18sp" />
         </LinearLayout>
 
+        <!--LAYOUT FOR NUMBER OF WORKOUT FOR WEEK-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/dropMenuDaysOfWorkoutAthlete"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -97,9 +103,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linearLayoutTextViewForSliderAthlete"
-            app:startIconDrawable="@drawable/ic_dumbbells"
+            app:startIconDrawable="@drawable/ic_sun"
             app:startIconTint="@color/white">
 
+            <!--DROP MENU NUMBER OF WORKOUT FO WEEK-->
             <AutoCompleteTextView
                 android:id="@+id/autoTextViewDropMenuDaysOfWorkOut"
                 android:layout_width="match_parent"
@@ -109,6 +116,7 @@
                 tools:ignore="LabelFor" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!--TEXT VIEW QUESTION FOR EQUIPMENT-->
         <TextView
             android:id="@+id/textViewAvailableEquipmentAthlete"
             android:layout_width="wrap_content"
@@ -122,6 +130,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/dropMenuDaysOfWorkoutAthlete" />
 
+        <!--LAYOUT FOR CHECK BOX EQUIPMENT FOR ROW-->
         <LinearLayout
             android:id="@+id/linearLayoutCheckBoxEquipments"
             android:layout_width="match_parent"
@@ -132,11 +141,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewAvailableEquipmentAthlete">
 
+            <!--LAYOUT FOR COLUMNS (ROW 1)-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
+                <!--CHECK BOX DUMBBELLS-->
                 <CheckBox
                     android:id="@+id/checkbox1Athlete"
                     android:layout_width="0dp"
@@ -147,6 +158,7 @@
                     android:textColor="@color/white"
                     android:textSize="17sp" />
 
+                <!--CHECK BOX ROPE-->
                 <CheckBox
                     android:id="@+id/checkbox2Athlete"
                     android:layout_width="0dp"
@@ -157,6 +169,7 @@
                     android:textColor="@color/white"
                     android:textSize="17sp" />
 
+                <!--CHECK BOX RACK-->
                 <CheckBox
                     android:id="@+id/checkbox3Athlete"
                     android:layout_width="0dp"
@@ -168,11 +181,13 @@
                     android:textSize="17sp" />
             </LinearLayout>
 
+            <!--LAYOUT FOR COLUMNS (ROW 2)-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
+                <!--CHECK BOX BENCHES-->
                 <CheckBox
                     android:id="@+id/checkbox4Athlete"
                     android:layout_width="0dp"
@@ -183,6 +198,7 @@
                     android:textColor="@color/white"
                     android:textSize="17sp" />
 
+                <!--CHECK BOX PULL UP BAR-->
                 <CheckBox
                     android:id="@+id/checkbox5Athlete"
                     android:layout_width="0dp"
@@ -193,6 +209,7 @@
                     android:textColor="@color/white"
                     android:textSize="17sp" />
 
+                <!--CHECK BOX DIP STATION-->
                 <CheckBox
                     android:id="@+id/checkbox6Athlete"
                     android:layout_width="0dp"
@@ -205,11 +222,13 @@
 
             </LinearLayout>
 
+            <!--LAYOUT FOR COLUMNS (ROW 3)-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
+                <!--CHECK BOX BARBELL AND DISCS-->
                 <CheckBox
                     android:id="@+id/checkbox7Athlete"
                     android:layout_width="0dp"
@@ -220,6 +239,7 @@
                     android:textColor="@color/white"
                     android:textSize="17sp" />
 
+                <!--CHECK BOX GYM MEMBERSHIP-->
                 <CheckBox
                     android:id="@+id/checkbox8Athlete"
                     android:layout_width="0dp"

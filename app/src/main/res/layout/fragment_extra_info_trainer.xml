@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--DECLARING THE SCROLL VIEW-->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!--COSTRAINT FOR THE WHOLE LAYOUT-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,6 +15,7 @@
         android:padding="24dp"
         tools:context=".ui.fragments.registrationTrainer.FragmentExtraInfoTrainer">
 
+        <!--LAYOUT FOR GYM FIELD-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layoutTrainerEditTextGym"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -30,11 +33,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.35"
             app:layout_constraintVertical_chainStyle="packed"
-            app:startIconDrawable="@drawable/ic_dumbbells"
+            app:startIconDrawable="@drawable/ic_gym"
             app:startIconTint="@color/white">
 
+            <!--TEXT FIELD FOR GYM-->
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/gymFieldTrainer"
                 android:layout_width="match_parent"
@@ -44,6 +47,7 @@
                 android:textSize="20sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!--TEXT VIEW FOR SPEC-->
         <TextView
             android:id="@+id/textViewInfoSpecializationTrainer"
             android:layout_width="wrap_content"
@@ -58,6 +62,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layoutTrainerEditTextGym" />
 
+        <!--CHIP-->
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chipGroupSpecializationTrainer"
             android:layout_width="match_parent"
@@ -72,6 +77,7 @@
             app:selectionRequired="true"
             app:singleSelection="true">
 
+            <!--CHIP FOR BODYBUILDING-->
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip1SpecTrainer"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
@@ -79,6 +85,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/bodybuilding_trainer" />
 
+            <!--CHIP FOR MARTIAL ARTS-->
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip2SpecTrainer"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
@@ -86,6 +93,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/mixed_martial_arts_trainer" />
 
+            <!--YOGA-->
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip3SpecTrainer"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
@@ -93,6 +101,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/yoga_trainer" />
 
+            <!--CHIP FOR CALISTHENISC-->
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip4SpecTrainer"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
@@ -100,6 +109,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/calisthenics_trainer" />
 
+            <!--CHIP FOR POWER LIFTING-->
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip5SpecTrainer"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
@@ -107,6 +117,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/powerlifting_trainer" />
 
+            <!--CHIP FOR WELLNESS-->
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip6SpecTrainer"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
@@ -114,6 +125,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/wellness_trainer" />
 
+            <!--CHIP FOR FUNCTIONAL-->
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip7SpecTrainer"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
@@ -121,7 +133,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/functional_trainer" />
 
-
+            <!--CHIP FOR CROSSFIT-->
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip8SpecTrainer"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
@@ -129,6 +141,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/crossfit_trainer" />
 
+            <!--CHIP FOR BODYWEIGHT-->
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip9SpecTrainer"
                 style="@style/Widget.MaterialComponents.Chip.Choice"

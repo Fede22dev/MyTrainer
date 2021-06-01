@@ -51,12 +51,12 @@ dependencies {
     //Firebase
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation platform('com.google.firebase:firebase-bom:27.1.0')
-    implementation 'com.google.firebase:firebase-auth-ktx'
-    implementation 'com.google.firebase:firebase-firestore-ktx'
-    implementation 'com.google.firebase:firebase-storage-ktx'
-    implementation 'com.firebaseui:firebase-ui-storage:6.4.0'
+    implementation 'com.google.firebase:firebase-auth-ktx'  //Auth
+    implementation 'com.google.firebase:firebase-firestore-ktx' //Firestore
+    implementation 'com.google.firebase:firebase-storage-ktx'   //Storage
+    implementation 'com.firebaseui:firebase-ui-storage:6.4.0'   //Glide
 
-    //Facebook
+    //Facebook sdk
     implementation 'com.facebook.android:facebook-android-sdk:[8,9)'
 
     testImplementation 'junit:junit:4.13.2'

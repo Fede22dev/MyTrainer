@@ -7,6 +7,7 @@
     android:background="@color/app_background"
     tools:context=".ui.activities.home.ActivityHomeTrainer">
 
+    <!--APP BAR LAYOUT-->
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayoutHomeTrainer"
         android:layout_width="match_parent"
@@ -15,6 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <!--APP BAR-->
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBarHomeTrainer"
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
@@ -26,6 +28,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <!--FRAGMENT FOR NAV HOST-->
     <fragment
         android:id="@+id/navHostFragmentHomeTrainer"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -38,6 +41,7 @@
         app:layout_constraintTop_toBottomOf="@id/appBarLayoutHomeTrainer"
         app:navGraph="@navigation/nav_home_trainer" />
 
+    <!--BOTTOM NAV-->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavHomeTrainer"
         android:layout_width="match_parent"

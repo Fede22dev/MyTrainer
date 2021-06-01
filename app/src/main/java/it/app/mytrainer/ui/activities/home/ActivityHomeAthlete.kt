@@ -17,8 +17,8 @@ import kotlinx.android.synthetic.main.activity_home_athlete.*
 
 class ActivityHomeAthlete : AppCompatActivity() {
 
-    lateinit var fireStore: FireStore
-    lateinit var storage: StorageReference
+    private lateinit var fireStore: FireStore
+    private lateinit var storage: StorageReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,49 +31,58 @@ class ActivityHomeAthlete : AppCompatActivity() {
             when (menuItem.itemId) {
 
                 R.id.signOut -> {
-                    FireAuth.signOut()
-                    val intent = Intent(this, ActivityLogin::class.java)
-                    startActivity(intent)
-                    finish()
+                    //Calling the fun to get out from the account
+                    signOut()
                     true
                 }
 
                 R.id.deleteAccount -> {
-
-                    MaterialAlertDialogBuilder(this)
-                        .setTitle(getString(R.string.delete_account))
-                        .setMessage(getString(R.string.delete_account_text))
-
-                        //If cancel has pressed anything happens
-                        .setNegativeButton(getString(R.string.cancel_button)) { _, _ ->
-
-                        }
-
-                        //If accept button has pressed, the current id will be delte from auth, store and storage
-                        .setPositiveButton(getString(R.string.accept_button)) { _, _ ->
-
-                            storage = Firebase.storage.reference
-                            fireStore = FireStore()
-
-                            val currentUserId = FireAuth.getCurrentUserAuth()?.uid
-                            FireAuth.deleteCurrentUser()
-
-                            if (currentUserId != null) {
-                                fireStore.deleteAthlete(currentUserId)
-                                storage.child("Photos").child(currentUserId).delete()
-                            }
-
-
-                            val intent = Intent(this, ActivityLogin::class.java)
-                            startActivity(intent)
-                            finish()
-                        }.show()
-
+                    //Calling the fun for the pop-up and the eventual deleting of the account
+                    deleteAccount()
                     true
                 }
+
                 else -> false
             }
-
         }
+    }
+
+    private fun signOut() {
+        FireAuth.signOut()
+        val intent = Intent(this, ActivityLogin::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun deleteAccount() {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(getString(R.string.delete_account))
+            .setMessage(getString(R.string.delete_account_text))
+
+            //If cancel has pressed anything happens
+            .setNegativeButton(getString(R.string.cancel_button)) { _, _ ->
+
+            }
+            //If accept button has pressed, the current id will be delete from auth, store and storage
+            .setPositiveButton(getString(R.string.accept_button)) { _, _ ->
+
+                deleteAllDataOfAccount()
+
+                val intent = Intent(this, ActivityLogin::class.java)
+                startActivity(intent)
+                finish()
+
+            }.show()
+    }
+
+    private fun deleteAllDataOfAccount() {
+        storage = Firebase.storage.reference
+        fireStore = FireStore()
+
+        val currentUserId = FireAuth.getCurrentUserAuth()?.uid!!
+        FireAuth.deleteCurrentUser()
+
+        fireStore.deleteAthlete(currentUserId)
+        storage.child("Photos").child(currentUserId).delete()
     }
 }

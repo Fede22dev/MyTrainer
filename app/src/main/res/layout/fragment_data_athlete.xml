@@ -13,6 +13,7 @@
         android:padding="24dp"
         tools:context=".ui.fragments.registrationAthlete.FragmentDataAthlete">
 
+        <!--LAYOUT FOR EMAIL-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layoutAthleteEditTextEmail"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -28,11 +29,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.30"
             app:layout_constraintVertical_chainStyle="packed"
             app:startIconDrawable="@drawable/ic_email"
             app:startIconTint="@color/white">
 
+            <!--TEXT FIELD EMAIL-->
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/emailFieldAthlete"
                 android:layout_width="match_parent"
@@ -41,6 +42,7 @@
                 android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!--LAYOUT FOR PASSWORD -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layoutAthleteEditTextPassword"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -59,6 +61,7 @@
             app:startIconDrawable="@drawable/ic_lock"
             app:startIconTint="@color/white">
 
+            <!--TEXT FIELD PASSWORD-->
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordFieldAthlete"
                 android:layout_width="match_parent"
@@ -67,6 +70,7 @@
                 android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!--LAYOUT FOR NAME-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layoutAthleteEditTextName"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -85,6 +89,7 @@
             app:startIconDrawable="@drawable/ic_person"
             app:startIconTint="@color/white">
 
+            <!--TEXT FIELD FOR NAME-->
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/nameFieldAthlete"
                 android:layout_width="match_parent"
@@ -93,6 +98,7 @@
                 android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!--LAYOUT FOR SURNAME-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layoutAthleteEditTextSurname"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -111,6 +117,7 @@
             app:startIconDrawable="@drawable/ic_person"
             app:startIconTint="@color/white">
 
+            <!--TEXT FIELD FOR NAME-->
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/surnameFieldAthlete"
                 android:layout_width="match_parent"
@@ -119,6 +126,7 @@
                 android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!--TEXT VIEW DATE SELECTED-->
         <TextView
             android:id="@+id/dateOfBirthAthlete"
             android:layout_width="wrap_content"
@@ -127,19 +135,20 @@
             android:gravity="center"
             android:text="@string/first_select_date"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@id/btnSelectDateAthlete"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layoutAthleteEditTextSurname" />
 
+        <!--BUTTON FOR SELECT DATE-->
         <Button
             android:id="@+id/btnSelectDateAthlete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/button_red"
             android:text="@string/select_date_of_birth"
-            android:textSize="15sp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

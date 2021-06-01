@@ -26,10 +26,11 @@ import java.io.ByteArrayOutputStream
 class FragmentProfileTrainer : Fragment() {
 
     private val REQUEST_IMAGE_CAPTURE = 1
+    private val TAG = "FRAGMENT_HOME_PROFILE_TRAINER"
     private lateinit var mapTrainer: Map<String, Any>
     private lateinit var storage: StorageReference
-    private val currentUserId = FireAuth.getCurrentUserAuth()?.uid
-    private val TAG = "FRAGMENT_HOME_PROFILE_TRAINER"
+    private val currentUserId = FireAuth.getCurrentUserAuth()?.uid!!
+    private val fireStore = FireStore()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,12 +41,8 @@ class FragmentProfileTrainer : Fragment() {
 
         storage = Firebase.storage.reference
 
-        if (currentUserId != null) {
-            storage.child("Photos").child(currentUserId).downloadUrl.addOnSuccessListener { uri ->
-                Glide.with(this).load(uri).into(view.imageViewPersonalTrainer)
-                Log.d(TAG, "Found and downloaded the target picture for: $currentUserId")
-            }
-        }
+        //Loading the photo
+        loadPhotoOnImageView()
 
         view.buttonCameraTrainer.setOnClickListener {
             val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -55,12 +52,66 @@ class FragmentProfileTrainer : Fragment() {
         return view
     }
 
+    private fun loadPhotoOnImageView() {
+        storage.child("Photos").child(currentUserId).downloadUrl.addOnSuccessListener { uri ->
+            Glide.with(this).load(uri).into(imageViewPersonalTrainer)
+            Log.d(TAG, "Found and downloaded the target picture for: $currentUserId")
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+
+            val imageBitmap = data?.extras?.get("data") as Bitmap
+            imageViewPersonalTrainer.setImageBitmap(imageBitmap)
+
+            compressAndUploadPhoto(imageBitmap)
+        }
+    }
+
+    private fun compressAndUploadPhoto(imageBitmap: Bitmap) {
+        val savePathPhoto = currentUserId.let { storage.child("Photos").child(it) }
+
+        val arrayByte = ByteArrayOutputStream()
+        imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, arrayByte)
+        val imageByte = arrayByte.toByteArray()
+
+        savePathPhoto.putBytes(imageByte).addOnSuccessListener {
+            Log.d(TAG, "Picture uploaded successfully")
+        }
+    }
+
     override fun onStart() {
         super.onStart()
 
-        val fireStore = FireStore()
+        //Filling the field of the profile fragment
+        insertField()
 
-        currentUserId?.let {
+        floatingActionButtonEditProfileTrainer.setOnClickListener {
+
+            //Setting the visibility for the edit
+            setVisibilityForEdit()
+
+            //Set the possibility for the dropdownMenu choiche
+            setDropDownMenu()
+
+        }
+
+        floatingActionButtonSaveProfileTrainer.setOnClickListener {
+
+            //Setting the visibility for save operation
+            setVisibilityForSave()
+
+            //Saving the changes
+            saveNewStats()
+
+        }
+    }
+
+    //Filling the field with the data on firestore
+    private fun insertField() {
+        currentUserId.let {
             fireStore.getTrainer(it) { trainer ->
                 if (trainer != null) {
                     mapTrainer = trainer
@@ -75,85 +126,70 @@ class FragmentProfileTrainer : Fragment() {
                 }
             }
         }
-
-        floatingActionButtonEditProfileTrainer.setOnClickListener {
-
-            floatingActionButtonSaveProfileTrainer.visibility = View.VISIBLE
-            floatingActionButtonEditProfileTrainer.visibility = View.INVISIBLE
-
-            layoutTrainerEditTextNameEditable.alpha = 0.5f
-            layoutTrainerEditTextSurnameEditable.alpha = 0.5f
-            textViewDateDataProfileTrainer.alpha = 0.5f
-
-            gymFieldTrainerEditable.isEnabled = true
-            layoutTrainerEditTextGymEditable.endIconMode = TextInputLayout.END_ICON_CLEAR_TEXT
-            autoTextViewDropMenuSpecializationProfileTrainer.isEnabled = true
-            layoutDropMenuSpecializationProfileTrainer.endIconMode =
-                TextInputLayout.END_ICON_DROPDOWN_MENU
-
-            val specializations = arrayOf(
-                getString(R.string.bodyweight_trainer),
-                getString(R.string.crossfit_trainer),
-                getString(R.string.functional_trainer),
-                getString(R.string.wellness_trainer),
-                getString(R.string.powerlifting_trainer),
-                getString(R.string.calisthenics_trainer),
-                getString(R.string.yoga_trainer),
-                getString(R.string.mixed_martial_arts_trainer),
-                getString(R.string.bodybuilding_trainer)
-            )
-
-            val adapter =
-                ArrayAdapter(
-                    requireContext(),
-                    R.layout.drop_menu_item_list,
-                    specializations
-                )
-
-            autoTextViewDropMenuSpecializationProfileTrainer.setAdapter(adapter)
-        }
-
-        floatingActionButtonSaveProfileTrainer.setOnClickListener {
-
-            floatingActionButtonEditProfileTrainer.visibility = View.VISIBLE
-            floatingActionButtonSaveProfileTrainer.visibility = View.INVISIBLE
-
-            layoutTrainerEditTextNameEditable.alpha = 1f
-            layoutTrainerEditTextSurnameEditable.alpha = 1f
-            textViewDateDataProfileTrainer.alpha = 1f
-
-            gymFieldTrainerEditable.isEnabled = false
-            layoutTrainerEditTextGymEditable.endIconMode = TextInputLayout.END_ICON_NONE
-            autoTextViewDropMenuSpecializationProfileTrainer.isEnabled = false
-            layoutDropMenuSpecializationProfileTrainer.endIconMode =
-                TextInputLayout.END_ICON_NONE
-
-            val newGym = gymFieldTrainerEditable.text.toString()
-            val newSpec = autoTextViewDropMenuSpecializationProfileTrainer.text.toString()
-
-
-            if (currentUserId != null) {
-                fireStore.updateTrainer(currentUserId, newGym, newSpec)
-            }
-        }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+    //Setting the visibility for edit
+    private fun setVisibilityForEdit() {
 
-            val imageBitmap = data?.extras?.get("data") as Bitmap
-            imageViewPersonalTrainer.setImageBitmap(imageBitmap)
+        floatingActionButtonSaveProfileTrainer.visibility = View.VISIBLE
+        floatingActionButtonEditProfileTrainer.visibility = View.INVISIBLE
 
-            val savePathPhoto = currentUserId?.let { storage.child("Photos").child(it) }
+        layoutTrainerEditTextNameEditable.alpha = 0.5f
+        layoutTrainerEditTextSurnameEditable.alpha = 0.5f
+        textViewDateDataProfileTrainer.alpha = 0.5f
 
-            val arrayByte = ByteArrayOutputStream()
-            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, arrayByte)
-            val imageByte = arrayByte.toByteArray()
+        gymFieldTrainerEditable.isEnabled = true
+        layoutTrainerEditTextGymEditable.endIconMode = TextInputLayout.END_ICON_CLEAR_TEXT
+        autoTextViewDropMenuSpecializationProfileTrainer.isEnabled = true
+        layoutDropMenuSpecializationProfileTrainer.endIconMode =
+            TextInputLayout.END_ICON_DROPDOWN_MENU
+    }
 
-            savePathPhoto?.putBytes(imageByte)?.addOnSuccessListener {
-                Log.d(TAG, "Picture uploaded successfully")
-            }
-        }
+    //Filling the dropdown
+    private fun setDropDownMenu() {
+        val specializations = arrayOf(
+            getString(R.string.bodyweight_trainer),
+            getString(R.string.crossfit_trainer),
+            getString(R.string.functional_trainer),
+            getString(R.string.wellness_trainer),
+            getString(R.string.powerlifting_trainer),
+            getString(R.string.calisthenics_trainer),
+            getString(R.string.yoga_trainer),
+            getString(R.string.mixed_martial_arts_trainer),
+            getString(R.string.bodybuilding_trainer)
+        )
+
+        val adapter =
+            ArrayAdapter(
+                requireContext(),
+                R.layout.drop_menu_item_list,
+                specializations
+            )
+
+        autoTextViewDropMenuSpecializationProfileTrainer.setAdapter(adapter)
+    }
+
+    //Setting the visibility for save
+    private fun setVisibilityForSave() {
+        floatingActionButtonEditProfileTrainer.visibility = View.VISIBLE
+        floatingActionButtonSaveProfileTrainer.visibility = View.INVISIBLE
+
+        layoutTrainerEditTextNameEditable.alpha = 1f
+        layoutTrainerEditTextSurnameEditable.alpha = 1f
+        textViewDateDataProfileTrainer.alpha = 1f
+
+        gymFieldTrainerEditable.isEnabled = false
+        layoutTrainerEditTextGymEditable.endIconMode = TextInputLayout.END_ICON_NONE
+        autoTextViewDropMenuSpecializationProfileTrainer.isEnabled = false
+        layoutDropMenuSpecializationProfileTrainer.endIconMode =
+            TextInputLayout.END_ICON_NONE
+    }
+
+    //Saving new stats
+    private fun saveNewStats() {
+        val newGym = gymFieldTrainerEditable.text.toString()
+        val newSpec = autoTextViewDropMenuSpecializationProfileTrainer.text.toString()
+
+        fireStore.updateTrainer(currentUserId, newGym, newSpec)
     }
 }

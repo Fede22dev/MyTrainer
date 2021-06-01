@@ -5,12 +5,14 @@
     android:id="@+id/nav_home_athlete"
     app:startDestination="@id/fragmentScheduleAthlete">
 
+    <!--FRAGMENT HOME ATHLETE-->
     <fragment
         android:id="@+id/fragmentScheduleAthlete"
         android:name="it.app.mytrainer.ui.fragments.homeAthlete.FragmentScheduleAthlete"
         android:label="@string/home"
         tools:layout="@layout/fragment_schedule_athlete" />
 
+    <!--FRAGMENT PROFILE ATHLETE-->
     <fragment
         android:id="@+id/fragmentProfileAthlete"
         android:name="it.app.mytrainer.ui.fragments.homeAthlete.FragmentProfileAthlete"

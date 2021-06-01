@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--COSTRAINT-->
+    <!--CONSTRAINT-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,7 +15,7 @@
         android:padding="24dp"
         tools:context="ui.fragments.homeAthlete.FragmentProfileAthlete">
 
-        <!--LINEAR LAYOUT FOR IMAGE+LINEAR FOR NAME AND SURNAME-->
+        <!--LINEAR LAYOUT FOR IMAGE + LINEAR FOR NAME AND SURNAME-->
         <LinearLayout
             android:id="@+id/linerLayoutImageAndNameAndSurname"
             android:layout_width="match_parent"
@@ -26,9 +26,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.05"
             app:layout_constraintVertical_chainStyle="packed">
 
+            <!--IMAGE VIEW FOR USER PHOTO-->
             <ImageView
                 android:id="@+id/imageViewPersonalAthlete"
                 android:layout_width="125dp"
@@ -50,6 +50,7 @@
                 app:layout_constraintStart_toEndOf="@id/imageViewPersonalAthlete"
                 app:layout_constraintTop_toTopOf="parent">
 
+                <!--LAYOUT FOR NAME-->
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/layoutAthleteEditTextNameEditable"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -60,6 +61,7 @@
                     app:startIconDrawable="@drawable/ic_person"
                     app:startIconTint="@color/white">
 
+                    <!--FIELD NAME-->
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/nameFieldAthleteEditable"
                         android:layout_width="match_parent"
@@ -69,6 +71,7 @@
                         android:textColor="@color/white" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <!--LAYOUT FOR SURNAME-->
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/layoutAthleteEditTextSurnameEditable"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -79,6 +82,7 @@
                     app:startIconDrawable="@drawable/ic_person"
                     app:startIconTint="@color/white">
 
+                    <!--FIELD SURNAME-->
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/surnameFieldAthleteEditable"
                         android:layout_width="match_parent"
@@ -108,7 +112,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linerLayoutImageAndNameAndSurname" />
 
-        <!--LINEAR LAYOUT FOR DATEOFBIRTH-->
+        <!--LINEAR LAYOUT FOR DATE OF BIRTH-->
         <LinearLayout
             android:id="@+id/linearLayoutDataProfileAthlete"
             android:layout_width="match_parent"
@@ -120,6 +124,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/buttonCameraAthlete">
 
+            <!--TEXT VIEW DATE-->
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -128,11 +133,13 @@
                 android:textColor="@color/white"
                 android:textSize="17sp" />
 
+            <!--DATE-->
             <TextView
                 android:id="@+id/textViewDateDataProfileAthlete"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:textColor="@color/white"
                 android:textSize="25sp" />
 
@@ -149,6 +156,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linearLayoutDataProfileAthlete">
 
+            <!--TEXT VIEW HEIGHT-->
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -157,6 +165,7 @@
                 android:textColor="@color/white"
                 android:textSize="17sp" />
 
+            <!--LAYOUT FOR HEIGHT-->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layoutAthleteEditTextHeightEditable"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -169,12 +178,13 @@
                 app:startIconDrawable="@drawable/ic_height"
                 app:startIconTint="@color/white">
 
+                <!--EDIT TEXT FOR HEIGHT-->
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/heightFieldAthleteEditable"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:enabled="false"
-                    android:inputType="textPersonName"
+                    android:inputType="number"
                     android:textColor="@color/white" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -191,6 +201,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linearLayoutHeightProfileAthlete">
 
+            <!--TEXT VIEW WEIGHT-->
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -199,7 +210,7 @@
                 android:textColor="@color/white"
                 android:textSize="17sp" />
 
-
+            <!--LAYOUT FOR WEIGHT-->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layoutAthleteEditTextWeightEditable"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -212,18 +223,19 @@
                 app:startIconDrawable="@drawable/ic_weight"
                 app:startIconTint="@color/white">
 
+                <!--EDIT TEXT FOR WEIGHT-->
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/weightFieldAthleteEditable"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:enabled="false"
-                    android:inputType="textPersonName"
+                    android:inputType="number"
                     android:textColor="@color/white" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 
-        <!--LINEAR LAYOUT FOR TYOEOFWO-->
+        <!--LINEAR LAYOUT FOR TYPE OF WO-->
         <LinearLayout
             android:id="@+id/linearLayoutTypeOfWOProfileAthlete"
             android:layout_width="match_parent"
@@ -234,6 +246,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linearLayoutWeightProfileAthlete">
 
+            <!--TEXT VIEW FOR TYPE OF WO-->
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -242,7 +255,7 @@
                 android:textColor="@color/white"
                 android:textSize="17sp" />
 
-
+            <!--LAYOUT FOR TYPE OF WO-->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layoutDropMenuTypeOfWOProfileAthlete"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -254,6 +267,7 @@
                 app:startIconDrawable="@drawable/ic_dumbbells"
                 app:startIconTint="@color/white">
 
+                <!--DROP MENU FOR TYPE OF WO-->
                 <AutoCompleteTextView
                     android:id="@+id/autoTextViewDropMenuTypeOfWOProfileAthlete"
                     android:layout_width="match_parent"
@@ -277,6 +291,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linearLayoutTypeOfWOProfileAthlete">
 
+            <!--TEXT VIEW FOR GOAL-->
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -286,6 +301,7 @@
                 android:textSize="17sp" />
 
 
+            <!--LAYOUT FOR GOAL-->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layoutDropMenuGoalProfileAthlete"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -294,8 +310,10 @@
                 android:layout_weight="1"
                 app:endIconMode="none"
                 app:endIconTint="@color/white"
+                app:startIconDrawable="@drawable/ic_goal"
                 app:startIconTint="@color/white">
 
+                <!--DROP MENU FOR GOAL-->
                 <AutoCompleteTextView
                     android:id="@+id/autoTextViewDropMenuGoalProfileAthlete"
                     android:layout_width="match_parent"
@@ -319,6 +337,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linearLayoutGoalProfileAthlete">
 
+            <!--TEXT VIEW FOR LEVEL-->
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -327,6 +346,7 @@
                 android:textColor="@color/white"
                 android:textSize="17sp" />
 
+            <!--LAYOUT FOR LEVEL-->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layoutDropMenuLevelProfileAthlete"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -335,8 +355,10 @@
                 android:layout_weight="1"
                 app:endIconMode="none"
                 app:endIconTint="@color/white"
+                app:startIconDrawable="@drawable/ic_level"
                 app:startIconTint="@color/white">
 
+                <!--DROP MENU FOR LEVEL-->
                 <AutoCompleteTextView
                     android:id="@+id/autoTextViewDropMenuLevelProfileAthlete"
                     android:layout_width="match_parent"
@@ -360,6 +382,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linearLayoutLevelProfileAthlete">
 
+            <!--TEXT VIEW FOR NUMBER OF WORK OUT-->
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -369,7 +392,7 @@
                 android:textColor="@color/white"
                 android:textSize="17sp" />
 
-
+            <!--LAYOUT FOR NUMBER OF WO-->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layoutDropMenuNumOfWOProfileAthlete"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -378,9 +401,10 @@
                 android:layout_weight="1"
                 app:endIconMode="none"
                 app:endIconTint="@color/white"
-                app:startIconDrawable="@drawable/ic_dumbbells"
+                app:startIconDrawable="@drawable/ic_sun"
                 app:startIconTint="@color/white">
 
+                <!--DROP MENU FOR NUMBER OF WO-->
                 <AutoCompleteTextView
                     android:id="@+id/autoTextViewDropMenuNumOfWOProfileAthlete"
                     android:layout_width="match_parent"
@@ -401,13 +425,14 @@
             android:layout_marginBottom="8dp"
             android:text="@string/equipment_profile_athlete"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="22sp"
             app:layout_constraintBottom_toTopOf="@id/linearLayoutCheckBoxEquipmentsProfileAthlete"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linearLayoutNumOfWOProfileAthlete" />
 
-        <!--LAYOUT FOR CHECKBOX EQUIPMENT-->
+        <!--LAYOUT FOR CHECKBOX EQUIPMENT FOR ROW-->
         <LinearLayout
             android:id="@+id/linearLayoutCheckBoxEquipmentsProfileAthlete"
             android:layout_width="match_parent"
@@ -419,11 +444,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewEquipmentProfileAthlete">
 
+            <!--LAYOUT FOR COLUMNS (ROW 1)-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
+                <!--CHECK BOX DUMBBELLS-->
                 <CheckBox
                     android:id="@+id/checkbox1ProfileAthlete"
                     android:layout_width="0dp"
@@ -435,6 +462,7 @@
                     android:textColor="@color/white"
                     android:textSize="17sp" />
 
+                <!--CHECK BOX ROPE-->
                 <CheckBox
                     android:id="@+id/checkbox2ProfileAthlete"
                     android:layout_width="0dp"
@@ -446,6 +474,7 @@
                     android:textColor="@color/white"
                     android:textSize="17sp" />
 
+                <!--CHECK BOX RACK-->
                 <CheckBox
                     android:id="@+id/checkbox3ProfileAthlete"
                     android:layout_width="0dp"
@@ -458,11 +487,13 @@
                     android:textSize="17sp" />
             </LinearLayout>
 
+            <!--LAYOUT FOR COLUMNS (ROW 1)-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
+                <!--CHECK BOX BENCHES-->
                 <CheckBox
                     android:id="@+id/checkbox4ProfileAthlete"
                     android:layout_width="0dp"
@@ -474,6 +505,7 @@
                     android:textColor="@color/white"
                     android:textSize="17sp" />
 
+                <!--CHECK BOX PULL UP BAR-->
                 <CheckBox
                     android:id="@+id/checkbox5ProfileAthlete"
                     android:layout_width="0dp"
@@ -485,6 +517,7 @@
                     android:textColor="@color/white"
                     android:textSize="17sp" />
 
+                <!--CHECK BOX DIP STATION-->
                 <CheckBox
                     android:id="@+id/checkbox6ProfileAthlete"
                     android:layout_width="0dp"
@@ -498,11 +531,13 @@
 
             </LinearLayout>
 
+            <!--LAYOUT FOR COLUMNS (ROW 3)-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
+                <!--CHECK BOX BARBELL AND DISCS-->
                 <CheckBox
                     android:id="@+id/checkbox7ProfileAthlete"
                     android:layout_width="0dp"
@@ -514,6 +549,7 @@
                     android:textColor="@color/white"
                     android:textSize="17sp" />
 
+                <!--CHECK BOX GYM MEMBERSHIP-->
                 <CheckBox
                     android:id="@+id/checkbox8ProfileAthlete"
                     android:layout_width="0dp"

@@ -4,6 +4,7 @@ import android.util.Log
 
 class Trainer {
     companion object {
+
         private const val TAG = "HASH MAP TRAINER"
         private var hashMapTrainer = HashMap<String, Any>()
         private val arrayKey =

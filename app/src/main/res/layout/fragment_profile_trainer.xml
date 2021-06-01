@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!--CONSTRAINT-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,6 +14,7 @@
         android:padding="24dp"
         tools:context="ui.fragments.homeTrainer.FragmentProfileTrainer">
 
+        <!--LAYOUT FOR PHOTO USER AND NAME + SURNAME-->
         <LinearLayout
             android:id="@+id/linerLayoutImageAndNameAndSurname"
             android:layout_width="match_parent"
@@ -23,9 +25,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.35"
             app:layout_constraintVertical_chainStyle="packed">
 
+            <!--PHOTO USER-->
             <ImageView
                 android:id="@+id/imageViewPersonalTrainer"
                 android:layout_width="125dp"
@@ -36,6 +38,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription" />
 
+            <!--LAYOUT FOR NAME AND SURNAME-->
             <LinearLayout
                 android:id="@+id/linerLayoutEditProfileTrainer"
                 android:layout_width="match_parent"
@@ -46,6 +49,7 @@
                 app:layout_constraintStart_toEndOf="@id/imageViewPersonalTrainer"
                 app:layout_constraintTop_toTopOf="parent">
 
+                <!--LAYOUT PER N-->
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/layoutTrainerEditTextNameEditable"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -56,6 +60,7 @@
                     app:startIconDrawable="@drawable/ic_person"
                     app:startIconTint="@color/white">
 
+                    <!--EDIT TEXT FOR NAME-->
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/nameFieldTrainerEditable"
                         android:layout_width="match_parent"
@@ -65,6 +70,7 @@
                         android:textColor="@color/white" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <!--LAYOUT FOR SURNAME-->
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/layoutTrainerEditTextSurnameEditable"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -75,6 +81,7 @@
                     app:startIconDrawable="@drawable/ic_person"
                     app:startIconTint="@color/white">
 
+                    <!--EDIT TEXT FOR SURNAME-->
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/surnameFieldTrainerEditable"
                         android:layout_width="match_parent"
@@ -88,12 +95,13 @@
 
         </LinearLayout>
 
+        <!--BUTTON TO CHANGE IMAGE USER-->
         <Button
             android:id="@+id/buttonCameraTrainer"
             style="@style/Widget.MaterialComponents.Button.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="120dp"
+            android:layout_marginBottom="80dp"
             android:backgroundTint="@color/button_red"
             android:text="@string/change_image"
             app:icon="@drawable/ic_photo_camera"
@@ -103,6 +111,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linerLayoutImageAndNameAndSurname" />
 
+        <!--LAYOUT FOR DATE-->
         <LinearLayout
             android:id="@+id/linearLayoutDataProfileTrainer"
             android:layout_width="match_parent"
@@ -114,6 +123,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/buttonCameraTrainer">
 
+            <!--TEXT VIEW FOR DATE-->
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -122,16 +132,19 @@
                 android:textColor="@color/white"
                 android:textSize="17sp" />
 
+            <!--TEXT DATE-->
             <TextView
                 android:id="@+id/textViewDateDataProfileTrainer"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:textColor="@color/white"
                 android:textSize="25sp" />
 
         </LinearLayout>
 
+        <!--LINEAR LAYOUT FOR GYM-->
         <LinearLayout
             android:id="@+id/linearLayoutGymProfileTrainer"
             android:layout_width="match_parent"
@@ -142,6 +155,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linearLayoutDataProfileTrainer">
 
+            <!--TEXT FIELD FOR THE LABEL-->
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -150,6 +164,7 @@
                 android:textColor="@color/white"
                 android:textSize="17sp" />
 
+            <!--LAYOUT FOR GYM-->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layoutTrainerEditTextGymEditable"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -159,9 +174,10 @@
                 android:textColorHint="@color/white"
                 app:endIconMode="clear_text"
                 app:endIconTint="@color/white"
-                app:startIconDrawable="@drawable/ic_dumbbells"
+                app:startIconDrawable="@drawable/ic_gym"
                 app:startIconTint="@color/white">
 
+                <!--EDIT TEXT FOR GYM-->
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/gymFieldTrainerEditable"
                     android:layout_width="match_parent"
@@ -173,15 +189,18 @@
 
         </LinearLayout>
 
+        <!--LAYOUT FOR SPEC OF TRAINER-->
         <LinearLayout
             android:id="@+id/linearLayoutSpecProfileTrainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toTopOf="@id/floatingActionButtonEditProfileTrainer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linearLayoutGymProfileTrainer">
 
+            <!--TEXT VIEW FOR SPEC LABEL-->
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -190,7 +209,7 @@
                 android:textColor="@color/white"
                 android:textSize="17sp" />
 
-
+            <!--DROP MENU FOR SPEC TRAINER-->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layoutDropMenuSpecializationProfileTrainer"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -199,9 +218,10 @@
                 android:layout_weight="1"
                 app:endIconMode="none"
                 app:endIconTint="@color/white"
-                app:startIconDrawable="@drawable/ic_dumbbells"
+                app:startIconDrawable="@drawable/ic_badge_specialization"
                 app:startIconTint="@color/white">
 
+                <!--TEXT FIELD FOR SPEC-->
                 <AutoCompleteTextView
                     android:id="@+id/autoTextViewDropMenuSpecializationProfileTrainer"
                     android:layout_width="match_parent"
@@ -214,6 +234,7 @@
 
         </LinearLayout>
 
+        <!--FAB FOR THE EDIT MODE-->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButtonEditProfileTrainer"
             android:layout_width="wrap_content"
@@ -226,6 +247,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="ContentDescription" />
 
+        <!--FAB FOR THE SAVE MODE-->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButtonSaveProfileTrainer"
             android:layout_width="wrap_content"

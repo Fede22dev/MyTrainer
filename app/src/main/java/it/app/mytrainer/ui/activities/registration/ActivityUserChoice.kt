@@ -12,40 +12,27 @@ import it.app.mytrainer.ui.adapter.UserChoiceRegistrationPageAdapter
 import kotlinx.android.synthetic.main.activity_user_choice.*
 
 class ActivityUserChoice : AppCompatActivity() {
+
+    private lateinit var tabsName: Array<String>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_choice)
 
-        val tabsName = arrayOf(
+        //Setting the name
+        tabsName = arrayOf(
             getString(R.string.tab_user_choice_athlete),
             getString(R.string.tab_user_choice_trainer)
         )
 
-        tabsBarUserChoice.addTab(
-            tabsBarUserChoice.newTab().setText(tabsName[0])
-        )
-        tabsBarUserChoice.addTab(
-            tabsBarUserChoice.newTab().setText(tabsName[1])
-        )
+        //Creating the bar
+        setTabBar()
 
-        viewPagerUserChoice.adapter =
-            UserChoiceRegistrationPageAdapter(this, tabsBarUserChoice.tabCount)
-
-        TabLayoutMediator(tabsBarUserChoice, viewPagerUserChoice) { tab, position ->
-            tab.text = tabsName[position]
-            tabsBarUserChoice.selectTab(tab)
-        }.attach()
-
-        tabsBarUserChoice.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                viewPagerUserChoice.currentItem = tab.position
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {}
-            override fun onTabReselected(tab: TabLayout.Tab) {}
-        })
+        //Calling the fun for the setting of the view pager
+        setViewPager()
     }
 
+    //Adjust the back press button
     override fun onBackPressed() {
         if (viewPagerUserChoice.currentItem == 0) {
             FireAuth.deleteCurrentUser()
@@ -57,5 +44,36 @@ class ActivityUserChoice : AppCompatActivity() {
         } else {
             viewPagerUserChoice.currentItem = viewPagerUserChoice.currentItem - 1
         }
+    }
+
+    private fun setTabBar() {
+        //Setting the name of the tab according to the fragment
+        tabsBarUserChoice.addTab(
+            tabsBarUserChoice.newTab().setText(tabsName[0])
+        )
+        tabsBarUserChoice.addTab(
+            tabsBarUserChoice.newTab().setText(tabsName[1])
+        )
+
+        tabsBarUserChoice.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                viewPagerUserChoice.currentItem = tab.position
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+            override fun onTabReselected(tab: TabLayout.Tab) {}
+        })
+    }
+
+    private fun setViewPager() {
+        //Set adapter of view pager
+        viewPagerUserChoice.adapter =
+            UserChoiceRegistrationPageAdapter(this, tabsBarUserChoice.tabCount)
+
+        //To avoid the problem on the tab while switching manually the fragment
+        TabLayoutMediator(tabsBarUserChoice, viewPagerUserChoice) { tab, position ->
+            tab.text = tabsName[position]
+            tabsBarUserChoice.selectTab(tab)
+        }.attach()
     }
 }

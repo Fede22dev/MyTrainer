@@ -7,6 +7,7 @@
     android:background="@color/app_background"
     tools:context=".ui.activities.registration.ActivityRegistrationAthlete">
 
+    <!--DECLARING THE PROGRESS BAR-->
     <ProgressBar
         android:id="@+id/progressBarRegistrationAthlete"
         style="?android:attr/progressBarStyle"
@@ -19,6 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/viewPagerAthlete" />
 
+    <!--FAB FOR SAVE-->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatActionBtnSaveAthlete"
         android:layout_width="wrap_content"
@@ -37,6 +39,7 @@
         app:srcCompat="@drawable/ic_save"
         tools:ignore="ContentDescription" />
 
+    <!--APP BAR LAYOUT-->
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/AppBarLayoutAthlete"
         android:layout_width="match_parent"
@@ -46,6 +49,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <!--TITLE OF THE APP-->
         <TextView
             android:id="@+id/titleAppAthlete"
             android:layout_width="match_parent"
@@ -58,6 +62,7 @@
             android:textColor="@color/orange_title_app"
             android:textSize="45sp" />
 
+        <!--TAB BAR (WITH THE FRAGMENT NAME)-->
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabsBarAthlete"
             android:layout_width="match_parent"
@@ -66,6 +71,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <!--VIEW PAGER-->
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPagerAthlete"
         android:layout_width="match_parent"
@@ -74,8 +80,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AppBarLayoutAthlete">
-
-    </androidx.viewpager2.widget.ViewPager2>
+        app:layout_constraintTop_toBottomOf="@+id/AppBarLayoutAthlete" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

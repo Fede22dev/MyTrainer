@@ -29,6 +29,20 @@ class ActivityLogin : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        //Setting the onClick and the login with FB
+        loginFB()
+
+        emailFieldLogin.doOnTextChanged { _, _, _, _ ->
+            layoutLoginEditTextEmail.error = null
+        }
+
+        passwordFieldLogin.doOnTextChanged { _, _, _, _ ->
+            layoutLoginEditTextPassword.error = null
+        }
+    }
+
+    //Login with FB
+    private fun loginFB() {
         //Initialize facebook SDK
         FacebookSdk.sdkInitialize(this)
 
@@ -39,13 +53,8 @@ class ActivityLogin : AppCompatActivity() {
             override fun onSuccess(loginResult: LoginResult) {
                 Log.d(TAG, "facebook: onSuccess: $loginResult")
 
-                progressBarLogin.visibility = View.VISIBLE
-                btnLoginFacebook.visibility = View.INVISIBLE
-                imageViewBackgroundLogin.visibility = View.INVISIBLE
-                layoutLoginEditTextEmail.visibility = View.INVISIBLE
-                layoutLoginEditTextPassword.visibility = View.INVISIBLE
-                loginBtn.visibility = View.INVISIBLE
-                textViewCreateAccount.visibility = View.INVISIBLE
+                //Setting the visibility for FB Login
+                setVisibilityForLoginFB()
 
                 handleFacebookAccessToken(loginResult.accessToken)
             }
@@ -58,85 +67,10 @@ class ActivityLogin : AppCompatActivity() {
                 Log.w(TAG, "facebook: onError ", error)
             }
         })
-
-        emailFieldLogin.doOnTextChanged { _, _, _, _ ->
-            layoutLoginEditTextEmail.error = null
-        }
-
-        passwordFieldLogin.doOnTextChanged { _, _, _, _ ->
-            layoutLoginEditTextPassword.error = null
-        }
     }
 
-    private fun handleFacebookAccessToken(token: AccessToken) {
-        Log.d(TAG, "handleFacebookAccessToken: $token")
-
-        val credential = FacebookAuthProvider.getCredential(token.token)
-        auth.signInWithCredential(credential)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d(TAG, "signInWithCredential: success ($credential)")
-
-                    FireAuth.getCurrentUser { type ->
-                        // Check if the user is already logged in
-                        when (type) {
-                            0 -> {
-                                val intent = Intent(this, ActivityHomeTrainer::class.java)
-                                Toast.makeText(
-                                    this, getString(R.string.welcome_back_trainer_login),
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                                startActivity(intent)
-                                finish()
-                            }
-
-                            1 -> {
-                                val intent = Intent(this, ActivityHomeAthlete::class.java)
-                                Toast.makeText(
-                                    this, getString(R.string.welcome_back_athlete_login),
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                                startActivity(intent)
-                                finish()
-                            }
-
-                            -1 -> {
-                                val intent = Intent(this, ActivityUserChoice::class.java)
-                                startActivity(intent)
-                                finish()
-                            }
-                        }
-                    }
-
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w(TAG, "signInWithCredential: failure", task.exception)
-
-                    progressBarLogin.visibility = View.INVISIBLE
-                    btnLoginFacebook.visibility = View.VISIBLE
-                    imageViewBackgroundLogin.visibility = View.VISIBLE
-                    layoutLoginEditTextEmail.visibility = View.VISIBLE
-                    layoutLoginEditTextPassword.visibility = View.VISIBLE
-                    loginBtn.visibility = View.VISIBLE
-                    textViewCreateAccount.visibility = View.VISIBLE
-
-                    Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
-                }
-            }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        // Pass the activity result back to the Facebook SDK
-        callbackManager.onActivityResult(requestCode, resultCode, data)
-        super.onActivityResult(requestCode, resultCode, data)
-    }
-
-    fun onClickLogin(v: View) {
-
-        val email = emailFieldLogin.text.toString().trim()
-        val password = passwordFieldLogin.text.toString().trim()
-
+    //Visibility FB
+    private fun setVisibilityForLoginFB() {
         progressBarLogin.visibility = View.VISIBLE
         btnLoginFacebook.visibility = View.INVISIBLE
         imageViewBackgroundLogin.visibility = View.INVISIBLE
@@ -144,8 +78,118 @@ class ActivityLogin : AppCompatActivity() {
         layoutLoginEditTextPassword.visibility = View.INVISIBLE
         loginBtn.visibility = View.INVISIBLE
         textViewCreateAccount.visibility = View.INVISIBLE
-        layoutLoginEditTextEmail.error = null
-        layoutLoginEditTextPassword.error = null
+    }
+
+    //Access in the app with FBToken
+    private fun handleFacebookAccessToken(token: AccessToken) {
+        Log.d(TAG, "handleFacebookAccessToken: $token")
+
+        val credential = FacebookAuthProvider.getCredential(token.token)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(TAG, "signInWithCredential: success ($credential)")
+
+                    //Get the right activity
+                    startRightActivity()
+
+                } else {
+
+                    // If sign in fails, display a message to the user.
+                    Log.w(TAG, "signInWithCredential: failure", task.exception)
+
+                    //Resetting the visibility
+                    resetVisibilityFB()
+
+                    Toast.makeText(
+                        this,
+                        getString(R.string.authentication_failed),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+    }
+
+    //Understanding what activity gonna start
+    private fun startRightActivity() {
+        FireAuth.getCurrentUser { type ->
+            // Check if the user is already logged in
+            when (type) {
+
+                0 -> {
+                    //If 0 is a trainer, calling the right method
+                    startHomeTrainer()
+                }
+
+                1 -> {
+                    //If 1 is an athlete, calling the right method
+                    startHomeAthlete()
+                }
+
+                -1 -> {
+                    //If -1 is not registered yet
+                    startUserChoice()
+                }
+            }
+        }
+    }
+
+    //Starting the trainer activity
+    private fun startHomeTrainer() {
+        val intent = Intent(this, ActivityHomeTrainer::class.java)
+        Toast.makeText(
+            this, getString(R.string.welcome_back_trainer_login),
+            Toast.LENGTH_SHORT
+        ).show()
+        startActivity(intent)
+        finish()
+    }
+
+    //Starting the athlete activity
+    private fun startHomeAthlete() {
+        val intent = Intent(this, ActivityHomeAthlete::class.java)
+        Toast.makeText(
+            this, getString(R.string.welcome_back_athlete_login),
+            Toast.LENGTH_SHORT
+        ).show()
+        startActivity(intent)
+        finish()
+    }
+
+    //Starting the choice activity
+    private fun startUserChoice() {
+        val intent = Intent(this, ActivityUserChoice::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun resetVisibilityFB() {
+        progressBarLogin.visibility = View.INVISIBLE
+        btnLoginFacebook.visibility = View.VISIBLE
+        imageViewBackgroundLogin.visibility = View.VISIBLE
+        layoutLoginEditTextEmail.visibility = View.VISIBLE
+        layoutLoginEditTextPassword.visibility = View.VISIBLE
+        loginBtn.visibility = View.VISIBLE
+        textViewCreateAccount.visibility = View.VISIBLE
+    }
+
+    //Result of login FB
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        // Pass the activity result back to the Facebook SDK
+        callbackManager.onActivityResult(requestCode, resultCode, data)
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    //On click for the login
+    fun onClickLogin(v: View) {
+
+        val email = emailFieldLogin.text.toString().trim()
+        val password = passwordFieldLogin.text.toString().trim()
+
+        //Setting the visibility for login
+        setVisibilityForLoginNoFB()
 
         //Call to the method in FireAuth to check if the user exist in the FireAuthentication
         FireAuth.login(email, password) { result, type ->
@@ -172,27 +216,48 @@ class ActivityLogin : AppCompatActivity() {
                 ).show()
 
                 //setting blank the field and restore visibility
-                progressBarLogin.visibility = View.INVISIBLE
-                btnLoginFacebook.visibility = View.VISIBLE
-                imageViewBackgroundLogin.visibility = View.VISIBLE
-                layoutLoginEditTextEmail.visibility = View.VISIBLE
-                layoutLoginEditTextPassword.visibility = View.VISIBLE
-                loginBtn.visibility = View.VISIBLE
-                textViewCreateAccount.visibility = View.VISIBLE
-
-                emailFieldLogin.setText("")
-                passwordFieldLogin.setText("")
-
-                layoutLoginEditTextEmail.error = getString(R.string.fields_not_correct)
-                layoutLoginEditTextEmail.errorIconDrawable = null
-                layoutLoginEditTextPassword.error = getString(R.string.fields_not_correct)
-                layoutLoginEditTextPassword.errorIconDrawable = null
+                resetVisibilityForLoginNoFB()
             }
         }
     }
 
+    //Visibility No FB
+    private fun setVisibilityForLoginNoFB() {
+        progressBarLogin.visibility = View.VISIBLE
+        btnLoginFacebook.visibility = View.INVISIBLE
+        imageViewBackgroundLogin.visibility = View.INVISIBLE
+        layoutLoginEditTextEmail.visibility = View.INVISIBLE
+        layoutLoginEditTextPassword.visibility = View.INVISIBLE
+        loginBtn.visibility = View.INVISIBLE
+        textViewCreateAccount.visibility = View.INVISIBLE
+
+        //Resetting the field
+        layoutLoginEditTextEmail.error = null
+        layoutLoginEditTextPassword.error = null
+    }
+
+    //Resetting the field and the visibility
+    private fun resetVisibilityForLoginNoFB() {
+        progressBarLogin.visibility = View.INVISIBLE
+        btnLoginFacebook.visibility = View.VISIBLE
+        imageViewBackgroundLogin.visibility = View.VISIBLE
+        layoutLoginEditTextEmail.visibility = View.VISIBLE
+        layoutLoginEditTextPassword.visibility = View.VISIBLE
+        loginBtn.visibility = View.VISIBLE
+        textViewCreateAccount.visibility = View.VISIBLE
+
+        emailFieldLogin.setText("")
+        passwordFieldLogin.setText("")
+
+        layoutLoginEditTextEmail.error = getString(R.string.fields_not_correct)
+        layoutLoginEditTextEmail.errorIconDrawable = null
+        layoutLoginEditTextPassword.error = getString(R.string.fields_not_correct)
+        layoutLoginEditTextPassword.errorIconDrawable = null
+    }
+
     //Starting the choice activity
     fun onClickRegistration(v: View) {
+        FireAuth.signOut()
         val intent = Intent(this, ActivityUserChoice::class.java)
         startActivity(intent)
     }

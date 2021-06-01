@@ -8,6 +8,7 @@
     android:background="@color/app_background"
     tools:context=".ui.activities.starter.ActivityLogin">
 
+    <!--PROGRESS BAR-->
     <ProgressBar
         android:id="@+id/progressBarLogin"
         style="?android:attr/progressBarStyle"
@@ -20,6 +21,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!--IMAGE VIEW BACKGROUND-->
     <ImageView
         android:id="@+id/imageViewBackgroundLogin"
         android:layout_width="wrap_content"
@@ -33,6 +35,7 @@
         app:srcCompat="@drawable/ic_background_login"
         tools:ignore="ContentDescription" />
 
+    <!--TEXT VIEW FOR THE TITLE-->
     <TextView
         android:id="@+id/titleAppLogin"
         android:layout_width="wrap_content"
@@ -49,6 +52,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
 
+    <!--EMAIL FIELD-->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layoutLoginEditTextEmail"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -70,6 +74,7 @@
         app:startIconDrawable="@drawable/ic_email"
         app:startIconTint="@color/white">
 
+        <!--EMAIL TEXT FIELD-->
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/emailFieldLogin"
             android:layout_width="match_parent"
@@ -78,6 +83,7 @@
             android:textColor="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!--PASSWORD FIELD-->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layoutLoginEditTextPassword"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -98,6 +104,7 @@
         app:startIconDrawable="@drawable/ic_lock"
         app:startIconTint="@color/white">
 
+        <!--PASSWORD TEXT FIELD-->
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/passwordFieldLogin"
             android:layout_width="match_parent"
@@ -106,6 +113,7 @@
             android:textColor="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!--LOGIN BUTTON NO FB-->
     <Button
         android:id="@+id/loginBtn"
         android:layout_width="110dp"
@@ -120,6 +128,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layoutLoginEditTextPassword" />
 
+    <!--LOGIN BUTTON FB-->
     <com.facebook.login.widget.LoginButton
         android:id="@+id/btnLoginFacebook"
         android:layout_width="wrap_content"
@@ -130,6 +139,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/loginBtn" />
 
+    <!--TEXT VIEW CREATE ACCOUNT-->
     <TextView
         android:id="@+id/textViewCreateAccount"
         android:layout_width="wrap_content"

@@ -27,12 +27,7 @@ class FragmentDataTrainer : Fragment(), DatePickerDialog.OnDateSetListener {
     private var month = 0
     private var year = 0
 
-    private fun getCurrentDataCalendar() {
-        val cal = Calendar.getInstance()
-        day = cal.get(Calendar.DAY_OF_MONTH)
-        month = cal.get(Calendar.MONTH)
-        year = cal.get(Calendar.YEAR)
-    }
+    private val currentUser = FireAuth.getCurrentUserAuth()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,15 +42,68 @@ class FragmentDataTrainer : Fragment(), DatePickerDialog.OnDateSetListener {
         return view
     }
 
+    private fun getCurrentDataCalendar() {
+        val cal = Calendar.getInstance()
+        day = cal.get(Calendar.DAY_OF_MONTH)
+        month = cal.get(Calendar.MONTH)
+        year = cal.get(Calendar.YEAR)
+    }
+
+    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        val date = "$year/$month/$dayOfMonth"
+        //Setting the date
+        dateSet(date, year)
+    }
+
+    private fun dateSet(date: String, year: Int) {
+        if (CheckRegistrationFieldUser.checkDateOfBirth(year.toString())) {
+            dateOfBirthTrainer.text = date
+            dateOfBirthTrainer.setTextColor(Color.WHITE)
+            Trainer.putDate(date)
+        } else {
+            Trainer.removeDate()
+            dateOfBirthTrainer.text = getString(R.string.error_invalid_date)
+            dateOfBirthTrainer.setTextColor(Color.RED)
+        }
+    }
+
     override fun onStart() {
         super.onStart()
 
-        val currentUser = FireAuth.getCurrentUserAuth()
         if (currentUser != null) {
             Log.d(
                 TAG,
-                "${currentUser.displayName} ------ ${currentUser.email} ------ ${currentUser.photoUrl}"
+                "${currentUser.displayName} ------ ${currentUser.email}"
             )
+
+            //Setting the field in case of FB registration
+            setFieldForFBUser()
+
+        } else {
+            //Insert the email in the hashMap of the trainer if valid
+            emailFieldTrainer.doOnTextChanged { text, _, _, _ ->
+                setEditTextEmail(text)
+            }
+
+            //Checking if the pass is valid
+            passwordFieldTrainer.doOnTextChanged { text, _, _, _ ->
+                setEditTextPass(text)
+            }
+
+            //Insert the name in the hashmap of the trainer if valid
+            nameFieldTrainer.doOnTextChanged { text, _, _, _ ->
+                setEditTextName(text)
+            }
+
+            //Insert the surname in the hashmap of trainer if valid
+            surnameFieldTrainer.doOnTextChanged { text, _, _, _ ->
+                setEditTextSurname(text)
+            }
+        }
+    }
+
+    private fun setFieldForFBUser() {
+        if (currentUser != null) {
             emailFieldTrainer.isEnabled = false
             currentUser.email?.let { Trainer.putEmail(it) }
             emailFieldTrainer.setText(currentUser.email)
@@ -77,77 +125,58 @@ class FragmentDataTrainer : Fragment(), DatePickerDialog.OnDateSetListener {
             layoutTrainerEditTextSurname.endIconMode = TextInputLayout.END_ICON_NONE
             surnameFieldTrainer.setText(displayName?.get(1))
             displayName?.get(1)?.let { Trainer.putSurname(it) }
-
-        } else {
-
-            //Insert the email in the hashMap of the trainer if valid
-            emailFieldTrainer.doOnTextChanged { text, _, _, _ ->
-                val txt = text.toString().trim()
-                if (CheckRegistrationFieldUser.checkEmail(txt)) {
-                    Trainer.putEmail(txt)
-                    layoutTrainerEditTextEmail.error = null
-                    layoutTrainerEditTextEmail.boxStrokeColor = Color.GREEN
-                } else {
-                    Trainer.removeEmail()
-                    layoutTrainerEditTextEmail.error = getString(R.string.invalid_email)
-                    layoutTrainerEditTextEmail.errorIconDrawable = null
-                }
-            }
-
-            //Checking if the pass is valid
-            passwordFieldTrainer.doOnTextChanged { text, _, _, _ ->
-                val txt = text.toString().trim()
-                if (CheckRegistrationFieldUser.checkPass(txt)) {
-                    Trainer.putPass(txt)
-                    layoutTrainerEditTextPassword.error = null
-                    layoutTrainerEditTextPassword.boxStrokeColor = Color.GREEN
-                } else {
-                    Trainer.removePass()
-                    layoutTrainerEditTextPassword.error = getString(R.string.invalid_password)
-                    layoutTrainerEditTextPassword.errorIconDrawable = null
-                }
-            }
-
-            //Insert the name in the hashmap of the trainer if valid
-            nameFieldTrainer.doOnTextChanged { text, _, _, _ ->
-                val txt = text.toString().trim()
-                if (CheckRegistrationFieldUser.checkName(txt)) {
-                    Trainer.putName(txt)
-                    layoutTrainerEditTextName.error = null
-                    layoutTrainerEditTextName.boxStrokeColor = Color.GREEN
-                } else {
-                    Trainer.removeName()
-                    layoutTrainerEditTextName.error = getString(R.string.invalid_name)
-                    layoutTrainerEditTextName.errorIconDrawable = null
-                }
-            }
-
-            //Insert the surname in the hashmap of trainer if valid
-            surnameFieldTrainer.doOnTextChanged { text, _, _, _ ->
-                val txt = text.toString().trim()
-                if (CheckRegistrationFieldUser.checkSurname(txt)) {
-                    Trainer.putSurname(txt)
-                    layoutTrainerEditTextSurname.boxStrokeColor = Color.GREEN
-                    layoutTrainerEditTextSurname.error = null
-                } else {
-                    Trainer.removeSurname()
-                    layoutTrainerEditTextSurname.error = getString(R.string.invalid_surname)
-                    layoutTrainerEditTextSurname.errorIconDrawable = null
-                }
-            }
         }
     }
 
-    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        val date = "$year/$month/$dayOfMonth"
-        if (CheckRegistrationFieldUser.checkDateOfBirth(year.toString())) {
-            dateOfBirthTrainer.text = date
-            dateOfBirthTrainer.setTextColor(Color.WHITE)
-            Trainer.putDate(date)
+    private fun setEditTextEmail(text: CharSequence?) {
+        val txt = text.toString().trim()
+        if (CheckRegistrationFieldUser.checkEmail(txt)) {
+            Trainer.putEmail(txt)
+            layoutTrainerEditTextEmail.error = null
+            layoutTrainerEditTextEmail.boxStrokeColor = Color.GREEN
         } else {
-            Trainer.removeDate()
-            dateOfBirthTrainer.text = getString(R.string.error_invalid_date)
-            dateOfBirthTrainer.setTextColor(Color.RED)
+            Trainer.removeEmail()
+            layoutTrainerEditTextEmail.error = getString(R.string.invalid_email)
+            layoutTrainerEditTextEmail.errorIconDrawable = null
+        }
+    }
+
+    private fun setEditTextPass(text: CharSequence?) {
+        val txt = text.toString().trim()
+        if (CheckRegistrationFieldUser.checkPass(txt)) {
+            Trainer.putPass(txt)
+            layoutTrainerEditTextPassword.error = null
+            layoutTrainerEditTextPassword.boxStrokeColor = Color.GREEN
+        } else {
+            Trainer.removePass()
+            layoutTrainerEditTextPassword.error = getString(R.string.invalid_password)
+            layoutTrainerEditTextPassword.errorIconDrawable = null
+        }
+    }
+
+    private fun setEditTextName(text: CharSequence?) {
+        val txt = text.toString().trim()
+        if (CheckRegistrationFieldUser.checkName(txt)) {
+            Trainer.putName(txt)
+            layoutTrainerEditTextName.error = null
+            layoutTrainerEditTextName.boxStrokeColor = Color.GREEN
+        } else {
+            Trainer.removeName()
+            layoutTrainerEditTextName.error = getString(R.string.invalid_name)
+            layoutTrainerEditTextName.errorIconDrawable = null
+        }
+    }
+
+    private fun setEditTextSurname(text: CharSequence?) {
+        val txt = text.toString().trim()
+        if (CheckRegistrationFieldUser.checkSurname(txt)) {
+            Trainer.putSurname(txt)
+            layoutTrainerEditTextSurname.boxStrokeColor = Color.GREEN
+            layoutTrainerEditTextSurname.error = null
+        } else {
+            Trainer.removeSurname()
+            layoutTrainerEditTextSurname.error = getString(R.string.invalid_surname)
+            layoutTrainerEditTextSurname.errorIconDrawable = null
         }
     }
 }

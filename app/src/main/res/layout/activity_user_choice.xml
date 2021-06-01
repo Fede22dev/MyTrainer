@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.registration.ActivityUserChoice">
 
+    <!--APP BAR LAYOUT-->
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/AppBarLayoutUserChoice"
         android:layout_width="match_parent"
@@ -15,6 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <!--TITLE OF THE APP-->
         <TextView
             android:id="@+id/titleAppUserChoice"
             android:layout_width="match_parent"
@@ -27,6 +29,7 @@
             android:textColor="@color/orange_title_app"
             android:textSize="45sp" />
 
+        <!--TAB BAR (WITH THE FRAGMENT NAME)-->
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabsBarUserChoice"
             android:layout_width="match_parent"
@@ -34,6 +37,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <!--VIEW PAGER-->
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPagerUserChoice"
         android:layout_width="match_parent"
@@ -43,6 +47,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AppBarLayoutUserChoice" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

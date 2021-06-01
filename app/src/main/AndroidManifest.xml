@@ -1,20 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="it.app.mytrainer">
 
+    <!--START USER PERMISSION-->
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <uses-feature android:name="android.hardware.camera" android:required="false"/>
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <!--END USER PERMISSION-->
 
+    <!--START DECLARATION OF APP-->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyTrainer">
+        android:theme="@style/Theme.MyTrainer"
+        tools:ignore="AllowBackup">
 
-        <!-- Start For facebook -->
+        <!--START MAIN AND LAUNCHER ACTIVITY-->
+        <activity
+            android:name=".ui.activities.starter.ActivityMain"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!--END MAIN AND LAUNCHER ACTIVITY-->
+
+        <!--START OF LOGIN ACTIVITY-->
+        <activity
+            android:name=".ui.activities.starter.ActivityLogin"
+            android:screenOrientation="portrait" />
+        <!--END OF LOGIN ACTIVITY -->
+
+        <!--START FOR FACEBOOK-->
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -36,40 +60,39 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <!-- End For facebook -->
+        <!--END FOR FACEBOOK-->
 
+        <!--START OF HOME ACTIVITY ATHLETE-->
         <activity
             android:name=".ui.activities.home.ActivityHomeAthlete"
             android:screenOrientation="portrait" />
+        <!--END OF HOME ACTIVITY ATHLETE-->
 
+        <!--START OF HOME ACTIVITY TRAINER-->
         <activity
             android:name=".ui.activities.home.ActivityHomeTrainer"
             android:screenOrientation="portrait" />
+        <!--END OF HOME ACTIVITY TRAINER-->
 
-        <activity
-            android:name=".ui.activities.registration.ActivityRegistrationTrainer"
-            android:screenOrientation="portrait" />
-
+        <!--START OF USER CHOICE ACTIVITY-->
         <activity
             android:name=".ui.activities.registration.ActivityUserChoice"
             android:screenOrientation="portrait" />
+        <!--END OF USER CHOICE ACTIVITY-->
 
+        <!--START OF REGISTRATION ACTIVITY TRAINER-->
+        <activity
+            android:name=".ui.activities.registration.ActivityRegistrationTrainer"
+            android:screenOrientation="portrait" />
+        <!--END OF REGISTRATION ACTIVITY TRAINER-->
+
+        <!--START OF REGISTRATION ACTIVITY ATHLETE-->
         <activity
             android:name=".ui.activities.registration.ActivityRegistrationAthlete"
             android:screenOrientation="portrait" />
+        <!--END OF REGISTRATION ACTIVITY ATHLETE-->
 
-        <activity
-            android:name=".ui.activities.starter.ActivityLogin"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name=".ui.activities.starter.ActivityMain"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
+    <!--END DECLARATION OF APP-->
 
 </manifest>

@@ -13,8 +13,7 @@ class FireAuth {
     companion object {
 
         private var auth: FirebaseAuth = Firebase.auth
-
-        private const val TAG = "FIREAUTH [DEBUG]"
+        private const val TAG = "FIREAUTH"
 
         fun getCurrentUser(callback: (Int) -> Unit) {
             val currentUser = auth.currentUser
@@ -38,23 +37,21 @@ class FireAuth {
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             // Sign in success
-                            val currentUserId = auth.currentUser?.uid
-                            Log.d(TAG, "signInWithEmail:success --- $currentUserId")
+                            val currentUserId = auth.currentUser?.uid!!
+                            Log.d(TAG, "signInWithEmail: success --- $currentUserId")
 
                             //Looking for user type
                             val fireStore = FireStore()
-                            if (currentUserId != null) {
-                                fireStore.findType(currentUserId) { type ->
-                                    if (type == -1) {
-                                        callback(false, type)
-                                    } else {
-                                        callback(true, type)
-                                    }
+                            fireStore.findType(currentUserId) { type ->
+                                if (type == -1) {
+                                    callback(false, type)
+                                } else {
+                                    callback(true, type)
                                 }
                             }
                         } else {
                             // If sign in fails
-                            Log.w(TAG, "signInWithEmail:failure", task.exception)
+                            Log.w(TAG, "signInWithEmail: failure", task.exception)
                             callback(false, -1)
                         }
                     }
@@ -72,11 +69,11 @@ class FireAuth {
                     if (task.isSuccessful) {
                         // Sign in success
                         val currentUserId = auth.currentUser?.uid.toString()
-                        Log.d(TAG, "createUserWithEmail:success --- $currentUserId")
+                        Log.d(TAG, "createUserWithEmail: success --- $currentUserId")
                         callback(true, currentUserId)
                     } else {
                         // If sign in fails
-                        Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                        Log.w(TAG, "createUserWithEmail: failure", task.exception)
                         callback(false, "")
                     }
                 }
@@ -87,7 +84,11 @@ class FireAuth {
         }
 
         fun deleteCurrentUser() {
-            auth.currentUser?.delete()
+            auth.currentUser!!.delete().addOnSuccessListener {
+                Log.d(TAG, "Delete account: success")
+            }.addOnFailureListener { e ->
+                Log.w(TAG, "Delete account: failure", e)
+            }
         }
 
         fun signOut() {

@@ -4,6 +4,7 @@ import android.util.Log
 
 class Athlete {
     companion object {
+
         private const val TAG = "HASH MAP ATHLETE"
         private var hashMapAthlete = HashMap<String, Any>()
         private val arrayKey =

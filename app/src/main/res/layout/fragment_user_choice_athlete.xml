@@ -9,7 +9,7 @@
     android:padding="15dp"
     tools:context=".ui.fragments.userChoice.FragmentUserChoiceAthlete">
 
-
+    <!--TEXT VIEW FOR THE INFO-->
     <TextView
         android:id="@+id/textViewChoiceAthlete"
         android:layout_width="wrap_content"
@@ -24,6 +24,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!--BUTTON TO START ATHLETE REGISTRATION-->
     <Button
         android:id="@+id/btnChoiceAthlete"
         android:layout_width="wrap_content"

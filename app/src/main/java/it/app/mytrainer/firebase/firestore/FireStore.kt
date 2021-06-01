@@ -7,7 +7,8 @@ import it.app.mytrainer.models.Athlete
 import it.app.mytrainer.models.Trainer
 
 class FireStore {
-    private val TAG = "FIRESTORE [DEBUG]"
+
+    private val TAG = "FIRESTORE"
     private val db = Firebase.firestore
     private val COLLECTIONATHLETE = "athletes"
     private val COLLECTIONTRAINER = "trainers"
@@ -70,31 +71,51 @@ class FireStore {
             }
     }
 
+    //FUN FOR THE PROFILE OF THE TRAINER
     fun getTrainer(currentUserId: String, callback: (Map<String, Any>?) -> Unit) {
         db.collection(COLLECTIONTRAINER).document(currentUserId).get()
             .addOnSuccessListener { document ->
-                Log.d(TAG, "DocumentSnapshot data: ${document.data}")
+                Log.d(TAG, "DocumentSnapshot trainer data: ${document.data}")
                 callback(document.data)
             }
             .addOnFailureListener { e ->
-                Log.d(TAG, "Get failed with ", e)
+                Log.d(TAG, "Get trainer failed with ", e)
             }
     }
 
     fun updateTrainer(currentUserId: String, gym: String, specialization: String) {
         db.collection(COLLECTIONTRAINER).document(currentUserId).update("Gym", gym)
-        db.collection(COLLECTIONTRAINER).document(currentUserId).update("Specialization", specialization)
+        db.collection(COLLECTIONTRAINER).document(currentUserId)
+            .update("Specialization", specialization)
     }
 
-    fun deleteTrainer(currentUserId: String){
+    //FUN FOR THE OPTION IN THE MENU
+    fun deleteTrainer(currentUserId: String) {
         db.collection(COLLECTIONTRAINER).document(currentUserId).delete()
     }
 
-    fun deleteAthlete(currentUserId: String) {
-        db.collection(COLLECTIONATHLETE).document(currentUserId).delete()
+    //FUN FOR THE PROFILE OF THE TRAINER
+    fun getAthlete(currentUserId: String, callback: (Map<String, Any>?) -> Unit) {
+        db.collection(COLLECTIONATHLETE).document(currentUserId).get()
+            .addOnSuccessListener { document ->
+                Log.d(TAG, "DocumentSnapshot athlete data: ${document.data}")
+                callback(document.data)
+            }
+            .addOnFailureListener { e ->
+                Log.d(TAG, "Get athlete failed with ", e)
+            }
     }
 
-    fun updateAthlete(currentUserId: String, height: String, weight: String, typeOfWo: String, goal: String, level: String, numOfWO: String, listCheckBox: ArrayList<String>) {
+    fun updateAthlete(
+        currentUserId: String,
+        height: String,
+        weight: String,
+        typeOfWo: String,
+        goal: String,
+        level: String,
+        numOfWO: String,
+        listCheckBox: ArrayList<String>
+    ) {
         db.collection(COLLECTIONATHLETE).document(currentUserId).update("Height", height)
         db.collection(COLLECTIONATHLETE).document(currentUserId).update("Weight", weight)
         db.collection(COLLECTIONATHLETE).document(currentUserId).update("TypeOfWO", typeOfWo)
@@ -104,15 +125,9 @@ class FireStore {
         db.collection(COLLECTIONATHLETE).document(currentUserId).update("Equipment", listCheckBox)
     }
 
-    fun getAthlete(currentUserId: String, callback: (Map<String, Any>?) -> Unit) {
-        db.collection(COLLECTIONATHLETE).document(currentUserId).get()
-            .addOnSuccessListener { document ->
-                Log.d(TAG, "DocumentSnapshot data: ${document.data}")
-                callback(document.data)
-            }
-            .addOnFailureListener { e ->
-                Log.d(TAG, "Get failed with ", e)
-            }
+    //FUN FOR THE OPTION IN THE MENU
+    fun deleteAthlete(currentUserId: String) {
+        db.collection(COLLECTIONATHLETE).document(currentUserId).delete()
     }
 
 }

@@ -56,47 +56,68 @@ class FragmentBodyInfoTypeWOGoalAthlete : Fragment() {
         super.onStart()
 
         heightFieldAthlete.doOnTextChanged { text, _, _, _ ->
-            if (text != null) {
-                if (text.isNotBlank()) {
-                    val txt = text.toString().trim()
-                    if (CheckRegistrationFieldAthlete.checkHeight(txt.toInt())) {
-                        Athlete.putHeight(txt)
-                        layoutAthleteEditTextHeight.error = null
-                        layoutAthleteEditTextHeight.boxStrokeColor = Color.GREEN
-                    } else {
-                        Athlete.removeHeight()
-                        layoutAthleteEditTextHeight.error = getString(R.string.invalid_height)
-                        layoutAthleteEditTextHeight.errorIconDrawable = null
-                    }
+            //Setting the edit text for height
+            setEditTextHeight(text)
+        }
+
+        weightFieldAthlete.doOnTextChanged { text, _, _, _ ->
+            //Setting the edit text for height
+            setEditTextWeight(text)
+        }
+
+        //Setting the dropdown menu of the type of workout
+        setDropDownMenuTypeOfWO()
+    }
+
+    private fun setEditTextHeight(text: CharSequence?) {
+        if (text != null) {
+            if (text.isNotBlank()) {
+                val txt = text.toString().trim()
+                if (CheckRegistrationFieldAthlete.checkHeight(txt.toInt())) {
+                    //Successful data 
+                    Athlete.putHeight(txt)
+                    layoutAthleteEditTextHeight.error = null
+                    layoutAthleteEditTextHeight.boxStrokeColor = Color.GREEN
                 } else {
+                    //Unsuccessful data 
                     Athlete.removeHeight()
                     layoutAthleteEditTextHeight.error = getString(R.string.invalid_height)
                     layoutAthleteEditTextHeight.errorIconDrawable = null
                 }
+            } else {
+                //Blank field
+                Athlete.removeHeight()
+                layoutAthleteEditTextHeight.error = getString(R.string.invalid_height)
+                layoutAthleteEditTextHeight.errorIconDrawable = null
             }
         }
+    }
 
-        weightFieldAthlete.doOnTextChanged { text, _, _, _ ->
-            if (text != null) {
-                if (text.isNotBlank()) {
-                    val txt = text.toString().trim()
-                    if (CheckRegistrationFieldAthlete.checkWeight(txt.toInt())) {
-                        Athlete.putWeight(txt)
-                        layoutAthleteEditTextWeight.error = null
-                        layoutAthleteEditTextWeight.boxStrokeColor = Color.GREEN
-                    } else {
-                        Athlete.removeWeight()
-                        layoutAthleteEditTextWeight.error = getString(R.string.invalid_weight)
-                        layoutAthleteEditTextWeight.errorIconDrawable = null
-                    }
+    private fun setEditTextWeight(text: CharSequence?) {
+        if (text != null) {
+            if (text.isNotBlank()) {
+                val txt = text.toString().trim()
+                if (CheckRegistrationFieldAthlete.checkWeight(txt.toInt())) {
+                    //Successful data
+                    Athlete.putWeight(txt)
+                    layoutAthleteEditTextWeight.error = null
+                    layoutAthleteEditTextWeight.boxStrokeColor = Color.GREEN
                 } else {
-                    Athlete.removeHeight()
+                    //Unsuccessful data
+                    Athlete.removeWeight()
                     layoutAthleteEditTextWeight.error = getString(R.string.invalid_weight)
                     layoutAthleteEditTextWeight.errorIconDrawable = null
                 }
+            } else {
+                //Blank field
+                Athlete.removeHeight()
+                layoutAthleteEditTextWeight.error = getString(R.string.invalid_weight)
+                layoutAthleteEditTextWeight.errorIconDrawable = null
             }
         }
+    }
 
+    private fun setDropDownMenuTypeOfWO() {
         val typeOfWO = arrayOf(
             getString(R.string.weight_workout_registration_athlete),
             getString(R.string.bodyweight_workout_registration_athlete)

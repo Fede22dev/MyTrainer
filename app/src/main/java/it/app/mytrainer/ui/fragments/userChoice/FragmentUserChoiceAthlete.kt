@@ -17,14 +17,18 @@ class FragmentUserChoiceAthlete : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        val view: View = inflater.inflate(R.layout.fragment_user_choice_athlete, container, false)
+        val view = inflater.inflate(R.layout.fragment_user_choice_athlete, container, false)
 
         view.btnChoiceAthlete.setOnClickListener {
-            val intent = Intent(context, ActivityRegistrationAthlete::class.java)
-            startActivity(intent)
-            activity?.finish()
+            startRegistrationAthlete()
         }
 
         return view
+    }
+
+    private fun startRegistrationAthlete() {
+        val intent = Intent(context, ActivityRegistrationAthlete::class.java)
+        startActivity(intent)
+        activity?.finish()
     }
 }

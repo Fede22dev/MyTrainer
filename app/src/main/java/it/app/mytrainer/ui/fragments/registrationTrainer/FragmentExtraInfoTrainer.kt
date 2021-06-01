@@ -19,7 +19,7 @@ class FragmentExtraInfoTrainer : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        val view: View = inflater.inflate(R.layout.fragment_extra_info_trainer, container, false)
+        val view = inflater.inflate(R.layout.fragment_extra_info_trainer, container, false)
 
         view.chip1SpecTrainer.setOnClickListener {
             Trainer.putSpec(view.chip1SpecTrainer.text.toString())
@@ -62,6 +62,10 @@ class FragmentExtraInfoTrainer : Fragment() {
 
     override fun onStart() {
         super.onStart()
+        setupGymField()
+    }
+
+    private fun setupGymField() {
         gymFieldTrainer.doOnTextChanged { text, _, _, _ ->
             if (text != null) {
                 if (text.isNotBlank()) {

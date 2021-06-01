@@ -2,11 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!--ITEM FOR MENU LOGOUT-->
     <item
         android:id="@+id/signOut"
         android:title="@string/sign_out"
         app:showAsAction="never" />
 
+    <!--ITEM FOR MENU DELETE ACCOUNT-->
     <item
         android:id="@+id/deleteAccount"
         android:title="@string/delete_account"
