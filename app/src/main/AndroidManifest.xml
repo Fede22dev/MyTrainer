@@ -2,16 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="it.app.mytrainer">
-
-    <!--START USER PERMISSION-->
+    <!-- START USER PERMISSION -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
-    <!--END USER PERMISSION-->
 
-    <!--START DECLARATION OF APP-->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,24 +18,25 @@
         android:theme="@style/Theme.MyTrainer"
         tools:ignore="AllowBackup">
 
-        <!--START MAIN AND LAUNCHER ACTIVITY-->
+        <!-- START MAIN AND LAUNCHER ACTIVITY -->
         <activity
             android:name=".ui.activities.starter.ActivityMain"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--END MAIN AND LAUNCHER ACTIVITY-->
+        <!-- END MAIN AND LAUNCHER ACTIVITY -->
 
-        <!--START OF LOGIN ACTIVITY-->
+        <!-- START OF LOGIN ACTIVITY -->
         <activity
             android:name=".ui.activities.starter.ActivityLogin"
             android:screenOrientation="portrait" />
-        <!--END OF LOGIN ACTIVITY -->
+        <!-- END OF LOGIN ACTIVITY -->
 
-        <!--START FOR FACEBOOK-->
+        <!-- START FOR FACEBOOK -->
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -47,7 +45,6 @@
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
-
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">
@@ -60,39 +57,42 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <!--END FOR FACEBOOK-->
+        <!-- END FOR FACEBOOK -->
 
-        <!--START OF HOME ACTIVITY ATHLETE-->
+        <!-- START OF HOME ACTIVITY ATHLETE -->
         <activity
             android:name=".ui.activities.home.ActivityHomeAthlete"
             android:screenOrientation="portrait" />
-        <!--END OF HOME ACTIVITY ATHLETE-->
+        <!-- START OF HOME SCHEDULE ATHLETE -->
+        <activity
+            android:name=".ui.activities.home.schedule.ActivityScheduleViewAthlete"
+            android:screenOrientation="portrait" />
+        <!-- END OF HOME SCHEDULE ATHLETE -->
+        <!-- END OF HOME ACTIVITY ATHLETE -->
 
-        <!--START OF HOME ACTIVITY TRAINER-->
+
+        <!-- START OF HOME ACTIVITY TRAINER -->
         <activity
             android:name=".ui.activities.home.ActivityHomeTrainer"
             android:screenOrientation="portrait" />
-        <!--END OF HOME ACTIVITY TRAINER-->
+        <!-- END OF HOME ACTIVITY TRAINER -->
 
-        <!--START OF USER CHOICE ACTIVITY-->
+        <!-- START OF USER CHOICE ACTIVITY -->
         <activity
             android:name=".ui.activities.registration.ActivityUserChoice"
             android:screenOrientation="portrait" />
-        <!--END OF USER CHOICE ACTIVITY-->
+        <!-- END OF USER CHOICE ACTIVITY -->
 
-        <!--START OF REGISTRATION ACTIVITY TRAINER-->
+        <!-- START OF REGISTRATION ACTIVITY TRAINER -->
         <activity
             android:name=".ui.activities.registration.ActivityRegistrationTrainer"
             android:screenOrientation="portrait" />
-        <!--END OF REGISTRATION ACTIVITY TRAINER-->
+        <!-- END OF REGISTRATION ACTIVITY TRAINER -->
 
-        <!--START OF REGISTRATION ACTIVITY ATHLETE-->
+        <!-- START OF REGISTRATION ACTIVITY ATHLETE -->
         <activity
             android:name=".ui.activities.registration.ActivityRegistrationAthlete"
             android:screenOrientation="portrait" />
-        <!--END OF REGISTRATION ACTIVITY ATHLETE-->
-
     </application>
-    <!--END DECLARATION OF APP-->
 
 </manifest>

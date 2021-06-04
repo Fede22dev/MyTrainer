@@ -140,6 +140,8 @@ class ActivityRegistrationAthlete : AppCompatActivity() {
             if (result) {
                 Athlete.removePass()
                 Athlete.printHashMap()
+                //Adding the obligatory fields
+                Athlete.addFields()
 
                 //Saving the data of user on firestore
                 val fireStore = FireStore()
@@ -176,6 +178,8 @@ class ActivityRegistrationAthlete : AppCompatActivity() {
     private fun successCreateAccountFB() {
         Athlete.removePass()
         Athlete.printHashMap()
+        //Adding the obligatory fields
+        Athlete.addFields()
 
         val fireStore = FireStore()
         if (currUser != null) {

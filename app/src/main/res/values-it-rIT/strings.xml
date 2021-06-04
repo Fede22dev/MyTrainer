@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="create_account">(Crea account)</string>
     <string name="insert_password">Inserisci password</string>
     <string name="insert_email">Inserisci email</string>
     <string name="login">Login</string>
@@ -94,4 +93,11 @@
     <string name="height_profile_athlete">Altezza:</string>
     <string name="weight_profile_athlete">Peso:</string>
     <string name="number_of_workout_profile_athlete">Numero di allenamenti:</string>
+    <string name="no_schedule_athlete">Non c\'e\' nessuna scheda per te al momento!</string>
+    <string name="try_to_refresh_schedule_athlete">Prova a ricaricare la pagina cliccando il bottone in basso!</string>
+    <string name="schedule_fetch_athlete">Goditi la tua scheda, atleta!</string>
+    <string name="series_schedule_athlete">Serie</string>
+    <string name="recovery_schedule_athlete">Recupero</string>
+    <string name="start_timer_schedule_athlete">AVVIA TIMER</string>
+    <string name="create_account_login">CREA ACCOUNT</string>
 </resources>

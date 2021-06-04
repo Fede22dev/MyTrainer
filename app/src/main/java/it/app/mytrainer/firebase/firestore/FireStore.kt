@@ -10,35 +10,10 @@ class FireStore {
 
     private val TAG = "FIRESTORE"
     private val db = Firebase.firestore
-    private val COLLECTIONATHLETE = "athletes"
-    private val COLLECTIONTRAINER = "trainers"
+    private val COLLECTIONATHLETE = "Athletes"
+    private val COLLECTIONTRAINER = "Trainers"
 
-    fun saveAthlete(documentId: String, callback: (Boolean) -> Unit) {
-        db.collection(COLLECTIONATHLETE).document(documentId)
-            .set(Athlete.getHashMap())
-            .addOnSuccessListener {
-                Log.d(TAG, "The storing of the document has done")
-                callback(true)
-            }
-            .addOnFailureListener { e ->
-                Log.d(TAG, "The storing of the document has failed", e)
-                callback(false)
-            }
-    }
-
-    fun saveTrainer(documentId: String, callback: (Boolean) -> Unit) {
-        db.collection(COLLECTIONTRAINER).document(documentId)
-            .set(Trainer.getHashMap())
-            .addOnSuccessListener {
-                Log.d(TAG, "The storing of the document has done")
-                callback(true)
-            }
-            .addOnFailureListener { e ->
-                Log.d(TAG, "The storing of the document has failed", e)
-                callback(false)
-            }
-    }
-
+    //UTILITIES
     fun findType(currentUserId: String, callback: (Int) -> Unit) {
         db.collection(COLLECTIONATHLETE).document(currentUserId).get()
             .addOnSuccessListener { documentAthlete ->
@@ -72,6 +47,19 @@ class FireStore {
     }
 
     //FUN FOR THE PROFILE OF THE TRAINER
+    fun saveTrainer(documentId: String, callback: (Boolean) -> Unit) {
+        db.collection(COLLECTIONTRAINER).document(documentId)
+            .set(Trainer.getHashMap())
+            .addOnSuccessListener {
+                Log.d(TAG, "The storing of the document has done")
+                callback(true)
+            }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "The storing of the document has failed", e)
+                callback(false)
+            }
+    }
+
     fun getTrainer(currentUserId: String, callback: (Map<String, Any>?) -> Unit) {
         db.collection(COLLECTIONTRAINER).document(currentUserId).get()
             .addOnSuccessListener { document ->
@@ -79,7 +67,7 @@ class FireStore {
                 callback(document.data)
             }
             .addOnFailureListener { e ->
-                Log.d(TAG, "Get trainer failed with ", e)
+                Log.w(TAG, "Get trainer failed with ", e)
             }
     }
 
@@ -89,12 +77,35 @@ class FireStore {
             .update("Specialization", specialization)
     }
 
-    //FUN FOR THE OPTION IN THE MENU
-    fun deleteTrainer(currentUserId: String) {
-        db.collection(COLLECTIONTRAINER).document(currentUserId).delete()
+    fun setSchedule(userId: String, schedule: HashMap<String, HashMap<String, ArrayList<Any>>>) {
+        db.collection(COLLECTIONATHLETE).document(userId).update("Schedule", schedule)
+
     }
 
-    //FUN FOR THE PROFILE OF THE TRAINER
+    //FUN FOR THE OPTION IN THE MENU
+    fun deleteTrainer(currentUserId: String) {
+        db.collection(COLLECTIONTRAINER).document(currentUserId).delete().addOnSuccessListener {
+            Log.d(TAG, "Trainer delete: success")
+        }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Trainer delete: fail", e)
+            }
+    }
+
+    //FUN FOR THE PROFILE OF THE ATHLETE
+    fun saveAthlete(documentId: String, callback: (Boolean) -> Unit) {
+        db.collection(COLLECTIONATHLETE).document(documentId)
+            .set(Athlete.getHashMap())
+            .addOnSuccessListener {
+                Log.d(TAG, "The storing of the document has done")
+                callback(true)
+            }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "The storing of the document has failed", e)
+                callback(false)
+            }
+    }
+
     fun getAthlete(currentUserId: String, callback: (Map<String, Any>?) -> Unit) {
         db.collection(COLLECTIONATHLETE).document(currentUserId).get()
             .addOnSuccessListener { document ->
@@ -102,7 +113,7 @@ class FireStore {
                 callback(document.data)
             }
             .addOnFailureListener { e ->
-                Log.d(TAG, "Get athlete failed with ", e)
+                Log.w(TAG, "Get athlete failed with ", e)
             }
     }
 
@@ -127,7 +138,13 @@ class FireStore {
 
     //FUN FOR THE OPTION IN THE MENU
     fun deleteAthlete(currentUserId: String) {
-        db.collection(COLLECTIONATHLETE).document(currentUserId).delete()
+        db.collection(COLLECTIONATHLETE).document(currentUserId).delete().addOnSuccessListener {
+            Log.d(TAG, "Athlete delete: success")
+        }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Athlete delete: fail", e)
+            }
     }
+
 
 }

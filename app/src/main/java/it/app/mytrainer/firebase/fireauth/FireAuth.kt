@@ -84,9 +84,9 @@ class FireAuth {
         }
 
         fun deleteCurrentUser() {
-            auth.currentUser!!.delete().addOnSuccessListener {
+            auth.currentUser?.delete()?.addOnSuccessListener {
                 Log.d(TAG, "Delete account: success")
-            }.addOnFailureListener { e ->
+            }?.addOnFailureListener { e ->
                 Log.w(TAG, "Delete account: failure", e)
             }
         }

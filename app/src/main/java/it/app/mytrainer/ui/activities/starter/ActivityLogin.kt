@@ -76,8 +76,8 @@ class ActivityLogin : AppCompatActivity() {
         imageViewBackgroundLogin.visibility = View.INVISIBLE
         layoutLoginEditTextEmail.visibility = View.INVISIBLE
         layoutLoginEditTextPassword.visibility = View.INVISIBLE
-        loginBtn.visibility = View.INVISIBLE
-        textViewCreateAccount.visibility = View.INVISIBLE
+        btnLogin.visibility = View.INVISIBLE
+        btnCreateAccount.visibility = View.INVISIBLE
     }
 
     //Access in the app with FBToken
@@ -171,8 +171,8 @@ class ActivityLogin : AppCompatActivity() {
         imageViewBackgroundLogin.visibility = View.VISIBLE
         layoutLoginEditTextEmail.visibility = View.VISIBLE
         layoutLoginEditTextPassword.visibility = View.VISIBLE
-        loginBtn.visibility = View.VISIBLE
-        textViewCreateAccount.visibility = View.VISIBLE
+        btnLogin.visibility = View.VISIBLE
+        btnCreateAccount.visibility = View.VISIBLE
     }
 
     //Result of login FB
@@ -228,8 +228,8 @@ class ActivityLogin : AppCompatActivity() {
         imageViewBackgroundLogin.visibility = View.INVISIBLE
         layoutLoginEditTextEmail.visibility = View.INVISIBLE
         layoutLoginEditTextPassword.visibility = View.INVISIBLE
-        loginBtn.visibility = View.INVISIBLE
-        textViewCreateAccount.visibility = View.INVISIBLE
+        btnLogin.visibility = View.INVISIBLE
+        btnCreateAccount.visibility = View.INVISIBLE
 
         //Resetting the field
         layoutLoginEditTextEmail.error = null
@@ -243,8 +243,8 @@ class ActivityLogin : AppCompatActivity() {
         imageViewBackgroundLogin.visibility = View.VISIBLE
         layoutLoginEditTextEmail.visibility = View.VISIBLE
         layoutLoginEditTextPassword.visibility = View.VISIBLE
-        loginBtn.visibility = View.VISIBLE
-        textViewCreateAccount.visibility = View.VISIBLE
+        btnLogin.visibility = View.VISIBLE
+        btnCreateAccount.visibility = View.VISIBLE
 
         emailFieldLogin.setText("")
         passwordFieldLogin.setText("")

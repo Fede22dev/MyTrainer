@@ -1,6 +1,7 @@
 package it.app.mytrainer.models
 
 import android.util.Log
+import it.app.mytrainer.firebase.fireauth.FireAuth
 
 class Athlete {
     companion object {
@@ -139,6 +140,12 @@ class Athlete {
                 }
             }
             return numFieldRequired == 12
+        }
+
+        fun addFields() {
+            hashMapAthlete["AthleteId"] = FireAuth.getCurrentUserAuth()!!.uid
+            hashMapAthlete["Schedule"] = ""
+            hashMapAthlete["TrainerId"] = ""
         }
     }
 }

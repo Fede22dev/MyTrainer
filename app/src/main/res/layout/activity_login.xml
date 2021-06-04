@@ -40,7 +40,7 @@
         android:id="@+id/titleAppLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="160dp"
+        android:layout_marginBottom="150dp"
         android:fontFamily="@font/audiowide"
         android:maxLines="1"
         android:text="@string/app_name"
@@ -91,13 +91,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="8dp"
         android:hint="@string/insert_password"
         android:textColorHint="@color/white"
         app:endIconMode="password_toggle"
         app:endIconTint="@color/white"
         app:errorEnabled="true"
-        app:layout_constraintBottom_toTopOf="@id/loginBtn"
+        app:layout_constraintBottom_toTopOf="@id/btnLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layoutLoginEditTextEmail"
@@ -113,45 +113,51 @@
             android:textColor="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!--LOGIN BUTTON NO FB-->
+    <!--LOGIN BUTTON-->
     <Button
-        android:id="@+id/loginBtn"
-        android:layout_width="110dp"
-        android:layout_height="50dp"
+        android:id="@+id/btnLogin"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/button_red"
+        android:maxLines="1"
         android:onClick="onClickLogin"
         android:text="@string/login"
+        android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@id/btnLoginFacebook"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layoutLoginEditTextPassword" />
 
-    <!--LOGIN BUTTON FB-->
+    <!--BUTTON CONTINUE WITH FB-->
     <com.facebook.login.widget.LoginButton
         android:id="@+id/btnLoginFacebook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toBottomOf="@id/textViewCreateAccount"
+        android:layout_marginBottom="32dp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/btnCreateAccount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loginBtn" />
+        app:layout_constraintTop_toBottomOf="@id/btnLogin" />
 
-    <!--TEXT VIEW CREATE ACCOUNT-->
-    <TextView
-        android:id="@+id/textViewCreateAccount"
+    <!--BUTTON CREATE ACCOUNT-->
+    <Button
+        android:id="@+id/btnCreateAccount"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:maxLines="1"
         android:onClick="onClickRegistration"
-        android:text="@string/create_account"
-        android:textColor="@color/blue_login"
-        android:textSize="20sp"
+        android:text="@string/create_account_login"
+        android:textColor="@color/green_float_button"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnLoginFacebook" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

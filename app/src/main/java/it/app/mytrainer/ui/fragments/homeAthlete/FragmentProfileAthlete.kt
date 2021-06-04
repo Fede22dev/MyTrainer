@@ -30,11 +30,10 @@ class FragmentProfileAthlete : Fragment() {
 
     private val REQUEST_IMAGE_CAPTURE = 1
     private val TAG = "FRAGMENT_HOME_PROFILE_ATHLETE"
-    private lateinit var mapAthlete: Map<String, Any>
     private lateinit var storage: StorageReference
     private val currentUserId = FireAuth.getCurrentUserAuth()?.uid!!
     private val fireStore = FireStore()
-    private var listForCheckBox = ArrayList<String>()
+    private var setForCheckBox = mutableSetOf<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -144,7 +143,6 @@ class FragmentProfileAthlete : Fragment() {
         currentUserId.let {
             fireStore.getAthlete(it) { athlete ->
                 if (athlete != null) {
-                    mapAthlete = athlete
                     nameFieldAthleteEditable.setText(athlete["Name"].toString())
                     surnameFieldAthleteEditable.setText(athlete["Surname"].toString())
                     textViewDateDataProfileAthlete.text = athlete["BirthDate"].toString()
@@ -165,42 +163,42 @@ class FragmentProfileAthlete : Fragment() {
 
                             "Dumbells", "Manubri" -> {
                                 checkbox1ProfileAthlete.isChecked = true
-                                listForCheckBox.add(getString(R.string.dumbbells_athlete))
+                                setForCheckBox.add(getString(R.string.dumbbells_athlete))
                             }
 
                             "Rope", "Corde" -> {
                                 checkbox2ProfileAthlete.isChecked = true
-                                listForCheckBox.add(getString(R.string.rope_athlete))
+                                setForCheckBox.add(getString(R.string.rope_athlete))
                             }
 
                             "Rack" -> {
                                 checkbox3ProfileAthlete.isChecked = true
-                                listForCheckBox.add(getString(R.string.rack_athlete))
+                                setForCheckBox.add(getString(R.string.rack_athlete))
                             }
 
                             "Benches", "Panca" -> {
                                 checkbox4ProfileAthlete.isChecked = true
-                                listForCheckBox.add(getString(R.string.benches_athlete))
+                                setForCheckBox.add(getString(R.string.benches_athlete))
                             }
 
                             "Pull-up bar" -> {
                                 checkbox5ProfileAthlete.isChecked = true
-                                listForCheckBox.add(getString(R.string.pull_up_bar_athlete))
+                                setForCheckBox.add(getString(R.string.pull_up_bar_athlete))
                             }
 
                             "Dip station" -> {
                                 checkbox6ProfileAthlete.isChecked = true
-                                listForCheckBox.add(getString(R.string.dip_station_athlete))
+                                setForCheckBox.add(getString(R.string.dip_station_athlete))
                             }
 
                             "Barbell and discs", "Bilanciere e dischi" -> {
                                 checkbox7ProfileAthlete.isChecked = true
-                                listForCheckBox.add(getString(R.string.barbell_and_discs_athlete))
+                                setForCheckBox.add(getString(R.string.barbell_and_discs_athlete))
                             }
 
                             "Gym membership", "Abbonamento palestra" -> {
                                 checkbox8ProfileAthlete.isChecked = true
-                                listForCheckBox.add(getString(R.string.gym_membership_athlete))
+                                setForCheckBox.add(getString(R.string.gym_membership_athlete))
                             }
                         }
                     }
@@ -325,9 +323,9 @@ class FragmentProfileAthlete : Fragment() {
     //FOR CHECK BOX
     private fun managerList(buttonView: CompoundButton, isChecked: Boolean) {
         if (isChecked) {
-            listForCheckBox.add(buttonView.text.toString())
+            setForCheckBox.add(buttonView.text.toString())
         } else {
-            listForCheckBox.remove(buttonView.text.toString())
+            setForCheckBox.remove(buttonView.text.toString())
         }
     }
 
@@ -374,7 +372,7 @@ class FragmentProfileAthlete : Fragment() {
         val newLevel = autoTextViewDropMenuLevelProfileAthlete.text.toString()
         val newNumOfWO = autoTextViewDropMenuNumOfWOProfileAthlete.text.toString()
 
-        if (listForCheckBox.size > 0 && CheckRegistrationFieldAthlete.checkHeight(newHeight.toInt()) && CheckRegistrationFieldAthlete.checkWeight(
+        if (setForCheckBox.size > 0 && CheckRegistrationFieldAthlete.checkHeight(newHeight.toInt()) && CheckRegistrationFieldAthlete.checkWeight(
                 newWeight.toInt()
             )
         ) {
@@ -387,7 +385,7 @@ class FragmentProfileAthlete : Fragment() {
                 newGoal,
                 newLevel,
                 newNumOfWO,
-                listForCheckBox
+                setForCheckBox.toList() as ArrayList<String>
             )
 
         } else {

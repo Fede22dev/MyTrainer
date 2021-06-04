@@ -27,7 +27,6 @@ class FragmentProfileTrainer : Fragment() {
 
     private val REQUEST_IMAGE_CAPTURE = 1
     private val TAG = "FRAGMENT_HOME_PROFILE_TRAINER"
-    private lateinit var mapTrainer: Map<String, Any>
     private lateinit var storage: StorageReference
     private val currentUserId = FireAuth.getCurrentUserAuth()?.uid!!
     private val fireStore = FireStore()
@@ -114,7 +113,6 @@ class FragmentProfileTrainer : Fragment() {
         currentUserId.let {
             fireStore.getTrainer(it) { trainer ->
                 if (trainer != null) {
-                    mapTrainer = trainer
                     nameFieldTrainerEditable.setText(trainer["Name"].toString())
                     surnameFieldTrainerEditable.setText(trainer["Surname"].toString())
                     textViewDateDataProfileTrainer.text = trainer["BirthDate"].toString()
