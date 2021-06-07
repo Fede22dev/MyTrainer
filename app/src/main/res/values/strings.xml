@@ -103,6 +103,15 @@
     <string name="schedule_fetch_athlete">Enjoy your schedule, athlete!</string>
     <string name="series_schedule_athlete">Series</string>
     <string name="recovery_schedule_athlete">Recovery</string>
-    <string name="start_timer_schedule_athlete">START\nTIMER</string>
+    <string name="start_timer_schedule_athlete">START TIMER</string>
     <string name="create_account_login">CREATE ACCOUNT</string>
+    <string name="delete_account_button">DELETE ACCOUNT</string>
+    <string name="reinsert_password_to_confirm_delete_of_account">Reinsert password to confirm delete of account</string>
+    <string name="athlete">Athlete</string>
+    <string name="trainer" translatable="false">Trainer</string>
+    <string name="view_schedule">Schedule</string>
+    <string name="no_schedule_available">THERE\'S NO SCHEDULE AVAILABLE FOR YOU, RETRY LATER!</string>
+    <string name="not_valid_password">NOT VALID PASSWORD</string>
+    <string name="exercise">Exercises</string>
+    <string name="finish">Finished</string>
 </resources>

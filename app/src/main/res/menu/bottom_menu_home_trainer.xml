@@ -4,7 +4,7 @@
     <!--ITEM FOR BOTTOM NAV HOME-->
     <item
         android:id="@+id/fragmentListClientTrainer"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_home_black"
         android:title="@string/home" />
 
     <!--ITEM FOR BOTTOM NAV PROFILE-->

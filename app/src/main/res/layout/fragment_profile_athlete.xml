@@ -5,7 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
     <!--CONSTRAINT-->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -573,7 +574,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:backgroundTint="@color/green_float_button"
+            android:backgroundTint="@color/green_button"
             android:clickable="true"
             android:focusable="true"
             android:src="@drawable/ic_editable_pencil"
@@ -587,7 +588,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:backgroundTint="@color/green_float_button"
+            android:backgroundTint="@color/green_button"
             android:clickable="true"
             android:focusable="true"
             android:src="@drawable/ic_save"

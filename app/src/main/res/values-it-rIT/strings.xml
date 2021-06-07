@@ -100,4 +100,12 @@
     <string name="recovery_schedule_athlete">Recupero</string>
     <string name="start_timer_schedule_athlete">AVVIA TIMER</string>
     <string name="create_account_login">CREA ACCOUNT</string>
+    <string name="delete_account_button">CANCELLA ACCOUNT</string>
+    <string name="reinsert_password_to_confirm_delete_of_account">Reinserisci la password per confermare l\'eliminazione dell\'account</string>
+    <string name="athlete">Atleta</string>
+    <string name="view_schedule">Scheda</string>
+    <string name="no_schedule_available">NON C\'E\' NESSUNA SCHEDA DISPONIBILE PER TE, RIPROVA DOPO!</string>
+    <string name="exercise">Esercizio</string>
+    <string name="not_valid_password">PASSWORD NON VALIDA</string>
+    <string name="finish">Finito</string>
 </resources>

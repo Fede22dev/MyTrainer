@@ -2,6 +2,7 @@ package it.app.mytrainer.firebase.fireauth
 
 import android.app.Activity
 import android.util.Log
+import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
@@ -15,10 +16,10 @@ class FireAuth {
         private var auth: FirebaseAuth = Firebase.auth
         private const val TAG = "FIREAUTH"
 
-        fun getCurrentUser(callback: (Int) -> Unit) {
+        fun getCurrentUserType(callback: (Int) -> Unit) {
             val currentUser = auth.currentUser
             if (currentUser != null) {
-                Log.d(TAG, "Going to find out the type of:  ${currentUser.uid}")
+                Log.d(TAG, "Going to find out the type of: ${currentUser.uid}")
                 val fireStore = FireStore()
                 fireStore.findType(currentUser.uid) { type ->
                     callback(type)
@@ -62,7 +63,7 @@ class FireAuth {
             email: String,
             password: String,
             activity: Activity,
-            callback: (Boolean, String) -> Unit
+            callback: (Boolean, String) -> Unit,
         ) {
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(activity) { task ->
@@ -93,6 +94,26 @@ class FireAuth {
 
         fun signOut() {
             auth.signOut()
+        }
+
+        fun userReauthenticate(password: String, callback: (Boolean) -> Unit) {
+            if (password != "") {
+                val user = auth.currentUser!!
+                val credential = EmailAuthProvider.getCredential(user.email!!, password)
+
+                user.reauthenticate(credential)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Log.d(TAG, "User re-authenticated: success")
+                            callback(true)
+                        } else {
+                            Log.w(TAG, "User re-authenticated: failure", task.exception)
+                            callback(false)
+                        }
+                    }
+            } else {
+                callback(false)
+            }
         }
     }
 }

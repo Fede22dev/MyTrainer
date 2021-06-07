@@ -18,6 +18,7 @@
         </value>
       </option>
       <option name="BLANK_LINES_AROUND_BLOCK_WHEN_BRANCHES" value="1" />
+      <option name="ALLOW_TRAILING_COMMA" value="true" />
       <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
     </JetCodeStyleSettings>
     <codeStyleSettings language="XML">

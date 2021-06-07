@@ -31,6 +31,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/button_red"
         android:text="@string/sign_in_trainer"
+        android:textColor="@color/white"
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

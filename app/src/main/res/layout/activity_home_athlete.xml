@@ -24,7 +24,7 @@
             android:layout_height="?attr/actionBarSize"
             android:backgroundTint="@color/orange_title_app"
             app:menu="@menu/option_menu_home"
-            app:title="Athlete" />
+            app:title="@string/athlete" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -39,7 +39,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appBarLayoutHomeAthlete"
-        app:navGraph="@navigation/nav_home_athlete" />
+        app:navGraph="@navigation/nav_home_athlete"
+        tools:ignore="FragmentTagUsage" />
 
     <!--BOTTOM NAV-->
     <com.google.android.material.bottomnavigation.BottomNavigationView

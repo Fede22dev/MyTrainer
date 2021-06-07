@@ -155,13 +155,19 @@ class ActivityRegistrationAthlete : AppCompatActivity() {
                             Toast.LENGTH_LONG
                         ).show()
                     }
+
+                    val intent = Intent(this, ActivityHomeAthlete::class.java)
+                    startActivity(intent)
+                    finish()
                 }
 
             } else {
                 errorCreateAccountNoFB()
+                val intent = Intent(this, ActivityLogin::class.java)
+                startActivity(intent)
+                finish()
             }
             //Calling the finish we go back on the login activity, with the created account
-            finish()
             Athlete.printHashMap()
         }
     }

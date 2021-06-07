@@ -5,9 +5,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
-    <!--COSTRAINT FOR THE WHOLE LAYOUT-->
+    <!--CONSTRAINT FOR THE WHOLE LAYOUT-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,6 +32,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.25"
             app:layout_constraintVertical_chainStyle="packed"
             app:startIconDrawable="@drawable/ic_email"
             app:startIconTint="@color/white">
@@ -134,6 +136,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
+            android:gravity="center"
             android:text="@string/first_select_date"
             android:textColor="@color/white"
             android:textSize="24sp"
@@ -149,6 +152,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/button_red"
             android:text="@string/select_date_of_birth"
+            android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

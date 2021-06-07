@@ -43,7 +43,6 @@ class ActivityHomeTrainer : AppCompatActivity() {
                 }
 
                 else -> false
-
             }
         }
     }
@@ -67,12 +66,26 @@ class ActivityHomeTrainer : AppCompatActivity() {
             //If accept button has pressed, the current id will be delete from auth, store and storage
             .setPositiveButton(getString(R.string.accept_button)) { _, _ ->
 
-                deleteAllDataOfAccount()
+                deleteDataAccount()
 
-                val intent = Intent(this, ActivityLogin::class.java)
-                startActivity(intent)
-                finish()
             }.show()
+    }
+
+    private fun deleteDataAccount() {
+        if (FireAuth.getCurrentUserAuth()!!
+                .getIdToken(false).result?.signInProvider!! == "password"
+        ) {
+            reauthenticationDelete()
+        } else {
+            deleteAllDataOfAccount()
+        }
+    }
+
+    private fun reauthenticationDelete() {
+        val intent = Intent(this, ActivityReauthDeleteAccount::class.java)
+        intent.putExtra("Type", "Trainer")
+        startActivity(intent)
+        finish()
     }
 
     private fun deleteAllDataOfAccount() {
@@ -80,9 +93,14 @@ class ActivityHomeTrainer : AppCompatActivity() {
         fireStore = FireStore()
 
         val currentUserId = FireAuth.getCurrentUserAuth()?.uid!!
-        FireAuth.deleteCurrentUser()
 
         fireStore.deleteTrainer(currentUserId)
         storage.child("Photos").child(currentUserId).delete()
+
+        FireAuth.deleteCurrentUser()
+
+        val intent = Intent(this, ActivityLogin::class.java)
+        startActivity(intent)
+        finish()
     }
 }

@@ -12,6 +12,6 @@
     <color name="button_red">#DD4D39</color>    <!--FOR BUTTON-->
     <color name="background_title_app_bar">#202225</color>  <!--FOR THE APP BAR -->
     <color name="blue_login">#1A73E8</color>    <!--FOR CREATE ACCOUNT LOGIN-->
-    <color name="green_float_button">#34E718</color>    <!--FOR FAB -->
+    <color name="green_button">#34E718</color>    <!--FOR FAB -->
     <color name="app_foreground">#202225</color>    <!--FOR FOREGROUND-->
 </resources>

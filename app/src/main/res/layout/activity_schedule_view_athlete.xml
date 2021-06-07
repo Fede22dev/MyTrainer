@@ -7,13 +7,52 @@
     android:background="@color/app_background"
     tools:context=".ui.activities.home.schedule.ActivityScheduleViewAthlete">
 
-    <androidx.viewpager2.widget.ViewPager2
+    <!--APP BAR LAYOUT-->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayoutViewScheduleAthlete"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!--APP BAR-->
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBarViewScheduleAthlete"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:backgroundTint="@color/orange_title_app"
+            app:menu="@menu/option_menu_view_schedule_athlete"
+            app:title="@string/view_schedule" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPagerScheduleAthlete"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintBottom_toTopOf="@id/wormDotsIndicatorScheduleAthlete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayoutViewScheduleAthlete" />
+
+    <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
+        android:id="@+id/wormDotsIndicatorScheduleAthlete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:dotsColor="@color/orange_title_app"
+        app:dotsCornerRadius="8dp"
+        app:dotsSize="18dp"
+        app:dotsSpacing="6dp"
+        app:dotsStrokeColor="@color/orange_title_app"
+        app:dotsStrokeWidth="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/viewPagerScheduleAthlete" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

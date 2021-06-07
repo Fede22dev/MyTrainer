@@ -48,8 +48,7 @@ class FireStore {
 
     //FUN FOR THE PROFILE OF THE TRAINER
     fun saveTrainer(documentId: String, callback: (Boolean) -> Unit) {
-        db.collection(COLLECTIONTRAINER).document(documentId)
-            .set(Trainer.getHashMap())
+        db.collection(COLLECTIONTRAINER).document(documentId).set(Trainer.getHashMap())
             .addOnSuccessListener {
                 Log.d(TAG, "The storing of the document has done")
                 callback(true)
@@ -77,7 +76,7 @@ class FireStore {
             .update("Specialization", specialization)
     }
 
-    fun setSchedule(userId: String, schedule: HashMap<String, HashMap<String, ArrayList<Any>>>) {
+    fun setSchedule(userId: String, schedule: HashMap<String, HashMap<String, ArrayList<String>>>) {
         db.collection(COLLECTIONATHLETE).document(userId).update("Schedule", schedule)
 
     }
@@ -94,14 +93,13 @@ class FireStore {
 
     //FUN FOR THE PROFILE OF THE ATHLETE
     fun saveAthlete(documentId: String, callback: (Boolean) -> Unit) {
-        db.collection(COLLECTIONATHLETE).document(documentId)
-            .set(Athlete.getHashMap())
+        db.collection(COLLECTIONATHLETE).document(documentId).set(Athlete.getHashMap())
             .addOnSuccessListener {
-                Log.d(TAG, "The storing of the document has done")
+                Log.d(TAG, "The storing of the document: success")
                 callback(true)
             }
             .addOnFailureListener { e ->
-                Log.w(TAG, "The storing of the document has failed", e)
+                Log.w(TAG, "The storing of the document: failed", e)
                 callback(false)
             }
     }
@@ -109,11 +107,11 @@ class FireStore {
     fun getAthlete(currentUserId: String, callback: (Map<String, Any>?) -> Unit) {
         db.collection(COLLECTIONATHLETE).document(currentUserId).get()
             .addOnSuccessListener { document ->
-                Log.d(TAG, "DocumentSnapshot athlete data: ${document.data}")
+                Log.d(TAG, "Get athlete: susses\nDocumentSnapshot athlete: ${document.data}")
                 callback(document.data)
             }
             .addOnFailureListener { e ->
-                Log.w(TAG, "Get athlete failed with ", e)
+                Log.w(TAG, "Get athlete: failed", e)
             }
     }
 
@@ -125,7 +123,7 @@ class FireStore {
         goal: String,
         level: String,
         numOfWO: String,
-        listCheckBox: ArrayList<String>
+        listCheckBox: ArrayList<String>,
     ) {
         db.collection(COLLECTIONATHLETE).document(currentUserId).update("Height", height)
         db.collection(COLLECTIONATHLETE).document(currentUserId).update("Weight", weight)
@@ -138,13 +136,12 @@ class FireStore {
 
     //FUN FOR THE OPTION IN THE MENU
     fun deleteAthlete(currentUserId: String) {
-        db.collection(COLLECTIONATHLETE).document(currentUserId).delete().addOnSuccessListener {
-            Log.d(TAG, "Athlete delete: success")
-        }
+        db.collection(COLLECTIONATHLETE).document(currentUserId).delete()
+            .addOnSuccessListener {
+                Log.d(TAG, "Athlete delete: success")
+            }
             .addOnFailureListener { e ->
                 Log.w(TAG, "Athlete delete: fail", e)
             }
     }
-
-
 }

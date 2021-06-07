@@ -37,12 +37,13 @@ class FragmentProfileAthlete : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        savedInstanceState: Bundle?,
+    ): View {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_profile_athlete, container, false)
 
         storage = Firebase.storage.reference
+
         //Loading the photo
         loadPhotoOnImageView()
 
@@ -55,10 +56,14 @@ class FragmentProfileAthlete : Fragment() {
     }
 
     private fun loadPhotoOnImageView() {
-        storage.child("Photos").child(currentUserId).downloadUrl.addOnSuccessListener { uri ->
-            Glide.with(this).load(uri).into(imageViewPersonalAthlete)
-            Log.d(TAG, "Found and downloaded the target picture for: $currentUserId")
-        }
+        storage.child("Photos").child(currentUserId).downloadUrl
+            .addOnSuccessListener { uri ->
+                Glide.with(this).load(uri).into(imageViewPersonalAthlete)
+                Log.d(TAG, "Found and downloaded the target picture for: $currentUserId")
+            }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Download picture: failed", e)
+            }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -69,7 +74,6 @@ class FragmentProfileAthlete : Fragment() {
             imageViewPersonalAthlete.setImageBitmap(imageBitmap)
 
             compressAndUploadPhoto(imageBitmap)
-
         }
     }
 
@@ -80,9 +84,13 @@ class FragmentProfileAthlete : Fragment() {
         imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, arrayByte)
         val imageByte = arrayByte.toByteArray()
 
-        savePathPhoto.putBytes(imageByte).addOnSuccessListener {
-            Log.d(TAG, "Picture uploaded successfully")
-        }
+        savePathPhoto.putBytes(imageByte)
+            .addOnSuccessListener {
+                Log.d(TAG, "Picture uploaded: success")
+            }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Upload picture: failed", e)
+            }
     }
 
     override fun onStart() {

@@ -8,6 +8,7 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
+    <!-- END USER PERMISSION -->
 
     <application
         android:allowBackup="true"
@@ -27,15 +28,11 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!-- END MAIN AND LAUNCHER ACTIVITY -->
-
+        </activity> <!-- END MAIN AND LAUNCHER ACTIVITY -->
         <!-- START OF LOGIN ACTIVITY -->
         <activity
             android:name=".ui.activities.starter.ActivityLogin"
-            android:screenOrientation="portrait" />
-        <!-- END OF LOGIN ACTIVITY -->
-
+            android:screenOrientation="portrait" /> <!-- END OF LOGIN ACTIVITY -->
         <!-- START FOR FACEBOOK -->
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -56,43 +53,37 @@
 
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
-        </activity>
-        <!-- END FOR FACEBOOK -->
-
+        </activity> <!-- END FOR FACEBOOK -->
         <!-- START OF HOME ACTIVITY ATHLETE -->
         <activity
             android:name=".ui.activities.home.ActivityHomeAthlete"
-            android:screenOrientation="portrait" />
-        <!-- START OF HOME SCHEDULE ATHLETE -->
+            android:screenOrientation="portrait" /> <!-- START OF HOME SCHEDULE ATHLETE -->
         <activity
             android:name=".ui.activities.home.schedule.ActivityScheduleViewAthlete"
-            android:screenOrientation="portrait" />
-        <!-- END OF HOME SCHEDULE ATHLETE -->
+            android:screenOrientation="portrait" /> <!-- END OF HOME SCHEDULE ATHLETE -->
         <!-- END OF HOME ACTIVITY ATHLETE -->
-
-
         <!-- START OF HOME ACTIVITY TRAINER -->
         <activity
             android:name=".ui.activities.home.ActivityHomeTrainer"
+            android:screenOrientation="portrait" /> <!-- END OF HOME ACTIVITY TRAINER -->
+        <!-- START OF REAUTH ACTIVITY -->
+        <activity
+            android:name=".ui.activities.home.ActivityReauthDeleteAccount"
             android:screenOrientation="portrait" />
-        <!-- END OF HOME ACTIVITY TRAINER -->
-
+        <!-- END OF REAUTH ACTIVITY -->
         <!-- START OF USER CHOICE ACTIVITY -->
         <activity
             android:name=".ui.activities.registration.ActivityUserChoice"
-            android:screenOrientation="portrait" />
-        <!-- END OF USER CHOICE ACTIVITY -->
-
+            android:screenOrientation="portrait" /> <!-- END OF USER CHOICE ACTIVITY -->
         <!-- START OF REGISTRATION ACTIVITY TRAINER -->
         <activity
             android:name=".ui.activities.registration.ActivityRegistrationTrainer"
-            android:screenOrientation="portrait" />
-        <!-- END OF REGISTRATION ACTIVITY TRAINER -->
-
+            android:screenOrientation="portrait" /> <!-- END OF REGISTRATION ACTIVITY TRAINER -->
         <!-- START OF REGISTRATION ACTIVITY ATHLETE -->
         <activity
             android:name=".ui.activities.registration.ActivityRegistrationAthlete"
             android:screenOrientation="portrait" />
+        <!-- END OF REGISTRATION ACTIVITY ATHLETE -->
     </application>
 
 </manifest>

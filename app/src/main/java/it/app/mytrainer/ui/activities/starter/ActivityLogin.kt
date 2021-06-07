@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 class ActivityLogin : AppCompatActivity() {
 
-    private val TAG = "LOGIN"
+    private val TAG = "ACTIVITY_LOGIN"
     private val auth = Firebase.auth
     private lateinit var callbackManager: CallbackManager
 
@@ -114,7 +114,7 @@ class ActivityLogin : AppCompatActivity() {
 
     //Understanding what activity gonna start
     private fun startRightActivity() {
-        FireAuth.getCurrentUser { type ->
+        FireAuth.getCurrentUserType { type ->
             // Check if the user is already logged in
             when (type) {
 
@@ -260,5 +260,6 @@ class ActivityLogin : AppCompatActivity() {
         FireAuth.signOut()
         val intent = Intent(this, ActivityUserChoice::class.java)
         startActivity(intent)
+        finish()
     }
 }

@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import it.app.mytrainer.R
@@ -28,10 +27,8 @@ class RecycleScheduleAdapter(private val context: Context?, private var data: Ar
 
         holder.card.setOnClickListener {
             val intent = Intent(context, ActivityScheduleViewAthlete::class.java)
-            intent.putExtra("Position", position)
+            intent.putExtra("TypeWO", data[position])
             context?.startActivity(intent)
-
-            Toast.makeText(context, "Cliccato: ${data[position]}", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -42,6 +39,6 @@ class RecycleScheduleAdapter(private val context: Context?, private var data: Ar
     inner class ViewHolder(
         itemView: View,
         val textViewTypeOfWO: TextView = itemView.textViewCardTypeOfWO,
-        val card: CardView = itemView.cardDaysOfSchedule
+        val card: CardView = itemView.cardDaysOfSchedule,
     ) : RecyclerView.ViewHolder(itemView)
 }

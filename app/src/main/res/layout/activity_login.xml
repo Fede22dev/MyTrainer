@@ -146,14 +146,14 @@
     <!--BUTTON CREATE ACCOUNT-->
     <Button
         android:id="@+id/btnCreateAccount"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxLines="1"
         android:onClick="onClickRegistration"
         android:text="@string/create_account_login"
-        android:textColor="@color/green_float_button"
-        android:textSize="12sp"
+        android:textColor="@color/green_button"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

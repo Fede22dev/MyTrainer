@@ -59,6 +59,9 @@ dependencies {
     //Facebook sdk
     implementation 'com.facebook.android:facebook-android-sdk:[8,9)'
 
+    //Dots indicator
+    implementation 'com.tbuonomo:dotsindicator:4.2'
+
     testImplementation 'junit:junit:4.13.2'
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

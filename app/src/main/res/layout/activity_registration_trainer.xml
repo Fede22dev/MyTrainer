@@ -30,7 +30,7 @@
         android:clickable="true"
         android:focusable="true"
         android:visibility="invisible"
-        app:backgroundTint="@color/green_float_button"
+        app:backgroundTint="@color/green_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_save"

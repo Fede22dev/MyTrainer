@@ -19,21 +19,32 @@ class FragmentScheduleAthlete : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_schedule_athlete, container, false)
-
-        return view
+        return inflater.inflate(R.layout.fragment_schedule_athlete, container, false)
     }
 
     override fun onStart() {
         super.onStart()
-        val hashMapSchedule = HashMap<String, HashMap<String, ArrayList<Any>>>()
+        val hashMapSchedule = HashMap<String, HashMap<String, ArrayList<String>>>()
 
-        /*DA SPOSTARE LATO TRAINER
-        hashMapSchedule["gambe"] = hashMapOf(Pair("ciao", arrayListOf("Quattro", "MInchia", 4)))
-        fireStore.setSchedule(currentUserId, hashMapSchedule)*/
+
+        /**DA SPOSTARE LATO TRAINER*/
+        hashMapSchedule["gambe"] = hashMapOf(Pair("1", arrayListOf("Squat", "4 X 18", "62")),
+            Pair("2", arrayListOf("Pressa", "3 X 10", "37")),
+            Pair("3", arrayListOf("Salto corda", "9 X 10", "93")))
+
+        hashMapSchedule["petto"] = hashMapOf(Pair("1", arrayListOf("panca", "4x12", "94")),
+            Pair("2", arrayListOf("croci", "3x76", "11")),
+            Pair("3", arrayListOf("spinte", "7x34", "75")))
+
+        hashMapSchedule["braccia"] = hashMapOf(Pair("1", arrayListOf("hammer", "4x10", "65")),
+            Pair("2", arrayListOf("curl", "4x8", "142")),
+            Pair("3", arrayListOf("cavi", "4x14", "45")))
+
+        fireStore.setSchedule(currentUserId, hashMapSchedule)
+
 
         fireStore.getAthlete(currentUserId) { map ->
             if (map!!["Schedule"] != "") {
@@ -54,7 +65,7 @@ class FragmentScheduleAthlete : Fragment() {
                 setVisibliityForNoSchedule()
                 Toast.makeText(
                     requireContext(),
-                    "THERE'S NO SCHEDULE AVAILABLE FOR YOU",
+                    getString(R.string.no_schedule_available),
                     Toast.LENGTH_LONG
                 ).show()
             }
@@ -64,7 +75,9 @@ class FragmentScheduleAthlete : Fragment() {
 
             fireStore.getAthlete(currentUserId) { map ->
                 if (map!!["Schedule"] != "") {
+
                     setVisibilityForSchedule()
+
                     //DA CARICARE SU RECYCLE
                     val schedule = map["Schedule"] as HashMap<*, *>
 
@@ -81,7 +94,7 @@ class FragmentScheduleAthlete : Fragment() {
                     setVisibliityForNoSchedule()
                     Toast.makeText(
                         requireContext(),
-                        "THERE'S NO SCHEDULE AVAILABLE FOR YOU",
+                        getString(R.string.no_schedule_available),
                         Toast.LENGTH_LONG
                     ).show()
                 }
