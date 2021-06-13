@@ -6,19 +6,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.StorageReference
-import com.google.firebase.storage.ktx.storage
 import it.app.mytrainer.R
 import it.app.mytrainer.firebase.fireauth.FireAuth
 import it.app.mytrainer.firebase.firestore.FireStore
+import it.app.mytrainer.firebase.storage.Storage
 import it.app.mytrainer.ui.activities.starter.ActivityLogin
 import kotlinx.android.synthetic.main.activity_home_athlete.*
 
 class ActivityHomeAthlete : AppCompatActivity() {
 
     private lateinit var fireStore: FireStore
-    private lateinit var storage: StorageReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,13 +86,12 @@ class ActivityHomeAthlete : AppCompatActivity() {
     }
 
     private fun deleteAllDataOfAccount() {
-        storage = Firebase.storage.reference
         fireStore = FireStore()
 
         val currentUserId = FireAuth.getCurrentUserAuth()?.uid!!
 
         fireStore.deleteAthlete(currentUserId)
-        storage.child("Photos").child(currentUserId).delete()
+        Storage.deletePhoto(currentUserId)
 
         FireAuth.deleteCurrentUser()
 

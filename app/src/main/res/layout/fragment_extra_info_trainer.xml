@@ -6,7 +6,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:fadeScrollbars="false"
+    android:fillViewport="true"
+    android:scrollbarSize="5dp"
+    android:scrollbarThumbVertical="@drawable/custom_thumb_scrollbar"
+    android:scrollbarTrackVertical="@drawable/custom_track_scrollbar">
 
     <!--COSTRAINT FOR THE WHOLE LAYOUT-->
     <androidx.constraintlayout.widget.ConstraintLayout

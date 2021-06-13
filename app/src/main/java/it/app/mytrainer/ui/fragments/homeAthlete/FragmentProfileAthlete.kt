@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,12 +14,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.google.android.material.textfield.TextInputLayout
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.StorageReference
-import com.google.firebase.storage.ktx.storage
 import it.app.mytrainer.R
 import it.app.mytrainer.firebase.fireauth.FireAuth
 import it.app.mytrainer.firebase.firestore.FireStore
+import it.app.mytrainer.firebase.storage.Storage
 import it.app.mytrainer.utils.CheckRegistrationFieldAthlete
 import kotlinx.android.synthetic.main.fragment_profile_athlete.*
 import kotlinx.android.synthetic.main.fragment_profile_athlete.view.*
@@ -29,8 +26,6 @@ import java.io.ByteArrayOutputStream
 class FragmentProfileAthlete : Fragment() {
 
     private val REQUEST_IMAGE_CAPTURE = 1
-    private val TAG = "FRAGMENT_HOME_PROFILE_ATHLETE"
-    private lateinit var storage: StorageReference
     private val currentUserId = FireAuth.getCurrentUserAuth()?.uid!!
     private val fireStore = FireStore()
     private var setForCheckBox = mutableSetOf<String>()
@@ -41,8 +36,6 @@ class FragmentProfileAthlete : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_profile_athlete, container, false)
-
-        storage = Firebase.storage.reference
 
         //Loading the photo
         loadPhotoOnImageView()
@@ -56,14 +49,9 @@ class FragmentProfileAthlete : Fragment() {
     }
 
     private fun loadPhotoOnImageView() {
-        storage.child("Photos").child(currentUserId).downloadUrl
-            .addOnSuccessListener { uri ->
-                Glide.with(this).load(uri).into(imageViewPersonalAthlete)
-                Log.d(TAG, "Found and downloaded the target picture for: $currentUserId")
-            }
-            .addOnFailureListener { e ->
-                Log.w(TAG, "Download picture: failed", e)
-            }
+        Storage.getPhotoUrl(currentUserId) { uri ->
+            Glide.with(this).load(uri).into(imageViewPersonalAthlete)
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -78,19 +66,11 @@ class FragmentProfileAthlete : Fragment() {
     }
 
     private fun compressAndUploadPhoto(imageBitmap: Bitmap) {
-        val savePathPhoto = currentUserId.let { storage.child("Photos").child(it) }
-
         val arrayByte = ByteArrayOutputStream()
         imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, arrayByte)
         val imageByte = arrayByte.toByteArray()
 
-        savePathPhoto.putBytes(imageByte)
-            .addOnSuccessListener {
-                Log.d(TAG, "Picture uploaded: success")
-            }
-            .addOnFailureListener { e ->
-                Log.w(TAG, "Upload picture: failed", e)
-            }
+        Storage.uploadPhoto(currentUserId, imageByte)
     }
 
     override fun onStart() {
@@ -385,6 +365,9 @@ class FragmentProfileAthlete : Fragment() {
             )
         ) {
 
+            // Cast to solve the problem of a single element when cast to array
+            val listCheckBox = ArrayList<String>(setForCheckBox)
+
             fireStore.updateAthlete(
                 currentUserId,
                 newHeight,
@@ -393,7 +376,7 @@ class FragmentProfileAthlete : Fragment() {
                 newGoal,
                 newLevel,
                 newNumOfWO,
-                setForCheckBox.toList() as ArrayList<String>
+                listCheckBox
             )
 
         } else {

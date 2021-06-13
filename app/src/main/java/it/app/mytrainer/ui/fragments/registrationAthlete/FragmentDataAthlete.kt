@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.textfield.TextInputLayout
 import it.app.mytrainer.R
 import it.app.mytrainer.firebase.fireauth.FireAuth
-import it.app.mytrainer.models.Athlete
+import it.app.mytrainer.models.MapAthlete
 import it.app.mytrainer.utils.CheckRegistrationFieldUser
 import kotlinx.android.synthetic.main.fragment_data_athlete.*
 import kotlinx.android.synthetic.main.fragment_data_athlete.view.*
@@ -59,9 +59,9 @@ class FragmentDataAthlete : Fragment(), DatePickerDialog.OnDateSetListener {
         if (CheckRegistrationFieldUser.checkDateOfBirth(year.toString())) {
             dateOfBirthAthlete.text = date
             dateOfBirthAthlete.setTextColor(Color.WHITE)
-            Athlete.putDate(date)
+            MapAthlete.putDate(date)
         } else {
-            Athlete.removeDate()
+            MapAthlete.removeDate()
             dateOfBirthAthlete.text = getString(R.string.error_invalid_date)
             dateOfBirthAthlete.setTextColor(Color.RED)
         }
@@ -110,7 +110,7 @@ class FragmentDataAthlete : Fragment(), DatePickerDialog.OnDateSetListener {
     private fun setFieldForFBUser() {
         if (currentUser != null) {
             emailFieldAthlete.isEnabled = false
-            currentUser.email?.let { Athlete.putEmail(it) }
+            currentUser.email?.let { MapAthlete.putEmail(it) }
             emailFieldAthlete.setText(currentUser.email)
             layoutAthleteEditTextEmail.endIconMode = TextInputLayout.END_ICON_NONE
 
@@ -118,29 +118,29 @@ class FragmentDataAthlete : Fragment(), DatePickerDialog.OnDateSetListener {
             passwordFieldAthlete.isEnabled = false
             layoutAthleteEditTextPassword.endIconMode = TextInputLayout.END_ICON_NONE
             passwordFieldAthlete.setText(passwordValid)
-            Athlete.putPass(passwordValid)
+            MapAthlete.putPass(passwordValid)
 
             val displayName = currentUser.displayName?.split(" ")
             nameFieldAthlete.isEnabled = false
             layoutAthleteEditTextName.endIconMode = TextInputLayout.END_ICON_NONE
             nameFieldAthlete.setText(displayName?.get(0))
-            displayName?.get(0)?.let { Athlete.putName(it) }
+            displayName?.get(0)?.let { MapAthlete.putName(it) }
 
             surnameFieldAthlete.isEnabled = false
             layoutAthleteEditTextSurname.endIconMode = TextInputLayout.END_ICON_NONE
             surnameFieldAthlete.setText(displayName?.get(1))
-            displayName?.get(1)?.let { Athlete.putSurname(it) }
+            displayName?.get(1)?.let { MapAthlete.putSurname(it) }
         }
     }
 
     private fun setEditTextEmail(text: CharSequence?) {
         val txt = text.toString().trim()
         if (CheckRegistrationFieldUser.checkEmail(txt)) {
-            Athlete.putEmail(txt)
+            MapAthlete.putEmail(txt)
             layoutAthleteEditTextEmail.error = null
             layoutAthleteEditTextEmail.boxStrokeColor = Color.GREEN
         } else {
-            Athlete.removeEmail()
+            MapAthlete.removeEmail()
             layoutAthleteEditTextEmail.error = getString(R.string.invalid_email)
             layoutAthleteEditTextEmail.errorIconDrawable = null
         }
@@ -149,11 +149,11 @@ class FragmentDataAthlete : Fragment(), DatePickerDialog.OnDateSetListener {
     private fun setEditTextPass(text: CharSequence?) {
         val txt = text.toString().trim()
         if (CheckRegistrationFieldUser.checkPass(txt)) {
-            Athlete.putPass(txt)
+            MapAthlete.putPass(txt)
             layoutAthleteEditTextPassword.error = null
             layoutAthleteEditTextPassword.boxStrokeColor = Color.GREEN
         } else {
-            Athlete.removePass()
+            MapAthlete.removePass()
             layoutAthleteEditTextPassword.error = getString(R.string.invalid_password)
             layoutAthleteEditTextPassword.errorIconDrawable = null
         }
@@ -162,11 +162,11 @@ class FragmentDataAthlete : Fragment(), DatePickerDialog.OnDateSetListener {
     private fun setEditTextName(text: CharSequence?) {
         val txt = text.toString().trim()
         if (CheckRegistrationFieldUser.checkName(txt)) {
-            Athlete.putName(txt)
+            MapAthlete.putName(txt)
             layoutAthleteEditTextName.error = null
             layoutAthleteEditTextName.boxStrokeColor = Color.GREEN
         } else {
-            Athlete.removeName()
+            MapAthlete.removeName()
             layoutAthleteEditTextName.error = getString(R.string.invalid_name)
             layoutAthleteEditTextName.errorIconDrawable = null
         }
@@ -175,11 +175,11 @@ class FragmentDataAthlete : Fragment(), DatePickerDialog.OnDateSetListener {
     private fun setEditTextSurname(text: CharSequence?) {
         val txt = text.toString().trim()
         if (CheckRegistrationFieldUser.checkSurname(txt)) {
-            Athlete.putSurname(txt)
+            MapAthlete.putSurname(txt)
             layoutAthleteEditTextSurname.boxStrokeColor = Color.GREEN
             layoutAthleteEditTextSurname.error = null
         } else {
-            Athlete.removeSurname()
+            MapAthlete.removeSurname()
             layoutAthleteEditTextSurname.error = getString(R.string.invalid_surname)
             layoutAthleteEditTextSurname.errorIconDrawable = null
         }

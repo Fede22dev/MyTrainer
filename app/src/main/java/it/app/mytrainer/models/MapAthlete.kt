@@ -3,10 +3,10 @@ package it.app.mytrainer.models
 import android.util.Log
 import it.app.mytrainer.firebase.fireauth.FireAuth
 
-class Athlete {
+class MapAthlete {
     companion object {
 
-        private const val TAG = "HASH MAP ATHLETE"
+        private const val TAG = "HASH_MAP_ATHLETE"
         private var hashMapAthlete = HashMap<String, Any>()
         private val arrayKey =
             arrayOf(

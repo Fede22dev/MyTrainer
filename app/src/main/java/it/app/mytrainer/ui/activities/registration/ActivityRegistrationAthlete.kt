@@ -10,7 +10,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import it.app.mytrainer.R
 import it.app.mytrainer.firebase.fireauth.FireAuth
 import it.app.mytrainer.firebase.firestore.FireStore
-import it.app.mytrainer.models.Athlete
+import it.app.mytrainer.models.MapAthlete
 import it.app.mytrainer.ui.activities.home.ActivityHomeAthlete
 import it.app.mytrainer.ui.activities.starter.ActivityLogin
 import it.app.mytrainer.ui.adapter.AthleteRegistrationPageAdapter
@@ -40,7 +40,7 @@ class ActivityRegistrationAthlete : AppCompatActivity() {
 
         //Setting the action of the saving on FS and turning visible the progress bar
         floatActionBtnSaveAthlete.setOnClickListener {
-            if (Athlete.hashMapReadyToSave()) {
+            if (MapAthlete.hashMapReadyToSave()) {
 
                 //Fun for set the visibility of multiple view
                 setVisibilityForSave()
@@ -64,7 +64,7 @@ class ActivityRegistrationAthlete : AppCompatActivity() {
     override fun onBackPressed() {
         if (viewPagerAthlete.currentItem == 0) {
             //Delete all trace and go to login
-            Athlete.clearHashMap()
+            MapAthlete.clearHashMap()
             FireAuth.deleteCurrentUser()
             FireAuth.signOut()
 
@@ -133,15 +133,15 @@ class ActivityRegistrationAthlete : AppCompatActivity() {
     private fun successCreationAccountNoFB() {
         //Creation of the auth account
         FireAuth.createAccount(
-            Athlete.getEmail(),
-            Athlete.getPass(),
+            MapAthlete.getEmail(),
+            MapAthlete.getPass(),
             this
         ) { result, currentUserId ->
             if (result) {
-                Athlete.removePass()
-                Athlete.printHashMap()
+                MapAthlete.removePass()
+                MapAthlete.printHashMap()
                 //Adding the obligatory fields
-                Athlete.addFields()
+                MapAthlete.addFields()
 
                 //Saving the data of user on firestore
                 val fireStore = FireStore()
@@ -155,21 +155,17 @@ class ActivityRegistrationAthlete : AppCompatActivity() {
                             Toast.LENGTH_LONG
                         ).show()
                     }
-
-                    val intent = Intent(this, ActivityHomeAthlete::class.java)
-                    startActivity(intent)
-                    finish()
                 }
 
             } else {
                 errorCreateAccountNoFB()
-                val intent = Intent(this, ActivityLogin::class.java)
-                startActivity(intent)
-                finish()
             }
-            //Calling the finish we go back on the login activity, with the created account
-            Athlete.printHashMap()
         }
+        //Calling the finish we go back on the login activity, with the created account
+        val intent = Intent(this, ActivityLogin::class.java)
+        startActivity(intent)
+        finish()
+        MapAthlete.printHashMap()
     }
 
     private fun errorCreateAccountNoFB() {
@@ -178,14 +174,14 @@ class ActivityRegistrationAthlete : AppCompatActivity() {
             getString(R.string.error_creation_user_auth),
             Toast.LENGTH_LONG
         ).show()
-        Athlete.clearHashMap()
+        MapAthlete.clearHashMap()
     }
 
     private fun successCreateAccountFB() {
-        Athlete.removePass()
-        Athlete.printHashMap()
+        MapAthlete.removePass()
+        MapAthlete.printHashMap()
         //Adding the obligatory fields
-        Athlete.addFields()
+        MapAthlete.addFields()
 
         val fireStore = FireStore()
         if (currUser != null) {
@@ -213,7 +209,7 @@ class ActivityRegistrationAthlete : AppCompatActivity() {
             getString(R.string.registration_error_toast),
             Toast.LENGTH_LONG
         ).show()
-        Athlete.printHashMap()
+        MapAthlete.printHashMap()
     }
 }
 

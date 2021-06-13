@@ -12,7 +12,7 @@ import it.app.mytrainer.R
 import it.app.mytrainer.ui.activities.home.schedule.ActivityScheduleViewAthlete
 import kotlinx.android.synthetic.main.card_recycle_view_schedule_athlete.view.*
 
-class RecycleScheduleAdapter(private val context: Context?, private var data: ArrayList<String>) :
+class RecycleScheduleAdapter(private val context: Context, private var data: ArrayList<String>) :
     RecyclerView.Adapter<RecycleScheduleAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -28,7 +28,7 @@ class RecycleScheduleAdapter(private val context: Context?, private var data: Ar
         holder.card.setOnClickListener {
             val intent = Intent(context, ActivityScheduleViewAthlete::class.java)
             intent.putExtra("TypeWO", data[position])
-            context?.startActivity(intent)
+            context.startActivity(intent)
         }
     }
 

@@ -13,8 +13,8 @@ class FireAuth {
 
     companion object {
 
-        private var auth: FirebaseAuth = Firebase.auth
-        private const val TAG = "FIREAUTH"
+        private val auth: FirebaseAuth = Firebase.auth
+        private val TAG = "FIREAUTH"
 
         fun getCurrentUserType(callback: (Int) -> Unit) {
             val currentUser = auth.currentUser
@@ -39,7 +39,7 @@ class FireAuth {
                         if (task.isSuccessful) {
                             // Sign in success
                             val currentUserId = auth.currentUser?.uid!!
-                            Log.d(TAG, "signInWithEmail: success --- $currentUserId")
+                            Log.d(TAG, "signInWithEmail: success")
 
                             //Looking for user type
                             val fireStore = FireStore()
@@ -70,7 +70,7 @@ class FireAuth {
                     if (task.isSuccessful) {
                         // Sign in success
                         val currentUserId = auth.currentUser?.uid.toString()
-                        Log.d(TAG, "createUserWithEmail: success --- $currentUserId")
+                        Log.d(TAG, "createUserWithEmail: success")
                         callback(true, currentUserId)
                     } else {
                         // If sign in fails

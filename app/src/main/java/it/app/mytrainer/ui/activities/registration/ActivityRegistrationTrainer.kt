@@ -10,7 +10,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import it.app.mytrainer.R
 import it.app.mytrainer.firebase.fireauth.FireAuth
 import it.app.mytrainer.firebase.firestore.FireStore
-import it.app.mytrainer.models.Trainer
+import it.app.mytrainer.models.MapTrainer
 import it.app.mytrainer.ui.activities.home.ActivityHomeTrainer
 import it.app.mytrainer.ui.activities.starter.ActivityLogin
 import it.app.mytrainer.ui.adapter.TrainerRegistrationPageAdapter
@@ -39,7 +39,7 @@ class ActivityRegistrationTrainer : AppCompatActivity() {
 
         //Setting the action of the saving on FS and turning visible the progress bar
         floatActionBtnSaveTrainer.setOnClickListener {
-            if (Trainer.hashMapReadyToSave()) {
+            if (MapTrainer.hashMapReadyToSave()) {
 
                 //Fun for set the visibility of multiple view
                 setVisibilityForSave()
@@ -63,7 +63,7 @@ class ActivityRegistrationTrainer : AppCompatActivity() {
     override fun onBackPressed() {
         if (viewPagerTrainer.currentItem == 0) {
             //Delete all trace and go to login
-            Trainer.clearHashMap()
+            MapTrainer.clearHashMap()
             FireAuth.deleteCurrentUser()
             FireAuth.signOut()
 
@@ -129,13 +129,13 @@ class ActivityRegistrationTrainer : AppCompatActivity() {
     private fun successCreationAccountNoFB() {
         //Creation of the auth account
         FireAuth.createAccount(
-            Trainer.getEmail(),
-            Trainer.getPass(),
+            MapTrainer.getEmail(),
+            MapTrainer.getPass(),
             this
         ) { result, currentUserId ->
             if (result) {
-                Trainer.removePass()
-                Trainer.printHashMap()
+                MapTrainer.removePass()
+                MapTrainer.printHashMap()
 
                 //Saving the data of user on firestore
                 val fireStore = FireStore()
@@ -156,8 +156,10 @@ class ActivityRegistrationTrainer : AppCompatActivity() {
             }
         }
         //Calling the finish we go back on the login activity, with the created account
+        val intent = Intent(this, ActivityLogin::class.java)
+        startActivity(intent)
         finish()
-        Trainer.printHashMap()
+        MapTrainer.printHashMap()
     }
 
     private fun errorCreateAccountNoFB() {
@@ -166,12 +168,12 @@ class ActivityRegistrationTrainer : AppCompatActivity() {
             getString(R.string.error_creation_user_auth),
             Toast.LENGTH_LONG
         ).show()
-        Trainer.clearHashMap()
+        MapTrainer.clearHashMap()
     }
 
     private fun successCreateAccountFB() {
-        Trainer.removePass()
-        Trainer.printHashMap()
+        MapTrainer.removePass()
+        MapTrainer.printHashMap()
 
         val fireStore = FireStore()
         if (currUser != null) {
@@ -199,6 +201,6 @@ class ActivityRegistrationTrainer : AppCompatActivity() {
             getString(R.string.registration_error_toast),
             Toast.LENGTH_LONG
         ).show()
-        Trainer.printHashMap()
+        MapTrainer.printHashMap()
     }
 }

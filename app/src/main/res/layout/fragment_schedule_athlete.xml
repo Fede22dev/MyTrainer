@@ -6,7 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/app_background"
-    android:fillViewport="true">
+    android:fadeScrollbars="false"
+    android:fillViewport="true"
+    android:scrollbarSize="5dp"
+    android:scrollbarThumbVertical="@drawable/custom_thumb_scrollbar"
+    android:scrollbarTrackVertical="@drawable/custom_track_scrollbar">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -92,8 +96,11 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleViewSchedule"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="262.5dp"
             android:layout_marginBottom="16dp"
+            android:scrollbarThumbVertical="@drawable/custom_thumb_scrollbar"
+            android:scrollbarTrackVertical="@drawable/custom_track_scrollbar"
+            android:scrollbars="vertical"
             android:visibility="invisible"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@id/fabRefreshScheduleAthlete"

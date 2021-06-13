@@ -3,8 +3,10 @@ package it.app.mytrainer.firebase.firestore
 import android.util.Log
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import it.app.mytrainer.models.Athlete
-import it.app.mytrainer.models.Trainer
+import it.app.mytrainer.firebase.storage.Storage
+import it.app.mytrainer.models.MapAthlete
+import it.app.mytrainer.models.MapTrainer
+import it.app.mytrainer.models.ObjAthlete
 
 class FireStore {
 
@@ -48,13 +50,13 @@ class FireStore {
 
     //FUN FOR THE PROFILE OF THE TRAINER
     fun saveTrainer(documentId: String, callback: (Boolean) -> Unit) {
-        db.collection(COLLECTIONTRAINER).document(documentId).set(Trainer.getHashMap())
+        db.collection(COLLECTIONTRAINER).document(documentId).set(MapTrainer.getHashMap())
             .addOnSuccessListener {
-                Log.d(TAG, "The storing of the document has done")
+                Log.d(TAG, "Storing document: success")
                 callback(true)
             }
             .addOnFailureListener { e ->
-                Log.w(TAG, "The storing of the document has failed", e)
+                Log.w(TAG, "Storing document: failed", e)
                 callback(false)
             }
     }
@@ -62,11 +64,11 @@ class FireStore {
     fun getTrainer(currentUserId: String, callback: (Map<String, Any>?) -> Unit) {
         db.collection(COLLECTIONTRAINER).document(currentUserId).get()
             .addOnSuccessListener { document ->
-                Log.d(TAG, "DocumentSnapshot trainer data: ${document.data}")
+                Log.d(TAG, "Get trainer: success -> data: ${document.data}")
                 callback(document.data)
             }
             .addOnFailureListener { e ->
-                Log.w(TAG, "Get trainer failed with ", e)
+                Log.w(TAG, "Get trainer: failed", e)
             }
     }
 
@@ -87,13 +89,13 @@ class FireStore {
             Log.d(TAG, "Trainer delete: success")
         }
             .addOnFailureListener { e ->
-                Log.w(TAG, "Trainer delete: fail", e)
+                Log.w(TAG, "Trainer delete: failed", e)
             }
     }
 
     //FUN FOR THE PROFILE OF THE ATHLETE
     fun saveAthlete(documentId: String, callback: (Boolean) -> Unit) {
-        db.collection(COLLECTIONATHLETE).document(documentId).set(Athlete.getHashMap())
+        db.collection(COLLECTIONATHLETE).document(documentId).set(MapAthlete.getHashMap())
             .addOnSuccessListener {
                 Log.d(TAG, "The storing of the document: success")
                 callback(true)
@@ -107,7 +109,7 @@ class FireStore {
     fun getAthlete(currentUserId: String, callback: (Map<String, Any>?) -> Unit) {
         db.collection(COLLECTIONATHLETE).document(currentUserId).get()
             .addOnSuccessListener { document ->
-                Log.d(TAG, "Get athlete: susses\nDocumentSnapshot athlete: ${document.data}")
+                Log.d(TAG, "Get athlete: success -> data: ${document.data}")
                 callback(document.data)
             }
             .addOnFailureListener { e ->
@@ -141,7 +143,45 @@ class FireStore {
                 Log.d(TAG, "Athlete delete: success")
             }
             .addOnFailureListener { e ->
-                Log.w(TAG, "Athlete delete: fail", e)
+                Log.w(TAG, "Athlete delete: failed", e)
+            }
+    }
+
+    // To fill the recycleView in the home of the trainer
+    fun getAllAthlete(callback: (ArrayList<ObjAthlete>, Boolean) -> Unit) {
+        val listAthlete = ArrayList<ObjAthlete>()
+        var athleteId: String
+
+        db.collection(COLLECTIONATHLETE)
+            .get()
+            .addOnSuccessListener { result ->
+                Log.d(TAG, "Getting documents: success")
+                for (document in result) {
+                    Log.d(TAG, "${document.id} => ${document.data}")
+                    val doc = document.data
+                    athleteId = doc["AthleteId"].toString()
+                    Storage.getPhotoUrl(athleteId) { uri ->
+                        listAthlete.add(ObjAthlete(
+                            doc["Name"].toString(),
+                            doc["Surname"].toString(),
+                            doc["BirthDate"].toString(),
+                            doc["Height"].toString(),
+                            doc["Weight"].toString(),
+                            doc["TypeOfWO"].toString(),
+                            doc["Goal"].toString(),
+                            doc["Level"].toString(),
+                            doc["DaysOfWO"].toString(),
+                            arrayListOf(doc["Equipment"].toString()),
+                            athleteId,
+                            uri))
+
+                        callback(listAthlete, true)
+                    }
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Getting documents: failed", e)
+                callback(listAthlete, false)
             }
     }
 }

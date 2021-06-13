@@ -9,7 +9,7 @@ import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import it.app.mytrainer.R
-import it.app.mytrainer.models.Athlete
+import it.app.mytrainer.models.MapAthlete
 import kotlinx.android.synthetic.main.fragment_extra_info_athlete.*
 import kotlinx.android.synthetic.main.fragment_extra_info_athlete.view.*
 
@@ -78,25 +78,25 @@ class FragmentExtraInfoAthlete : Fragment() {
             1f -> {
                 val textBeginner = getString(R.string.beginner_athlete)
                 textViewLevelAthlete.text = textBeginner
-                Athlete.putLevel(textBeginner)
+                MapAthlete.putLevel(textBeginner)
             }
 
             2f -> {
                 val textIntermediate = getString(R.string.intermediate_athlete)
                 textViewLevelAthlete.text = textIntermediate
-                Athlete.putLevel(textIntermediate)
+                MapAthlete.putLevel(textIntermediate)
             }
 
             3f -> {
                 val textAdvanced = getString(R.string.advanced_athlete)
                 textViewLevelAthlete.text = textAdvanced
-                Athlete.putLevel(textAdvanced)
+                MapAthlete.putLevel(textAdvanced)
             }
 
             4f -> {
                 val textVeteran = getString(R.string.veteran_athlete)
                 textViewLevelAthlete.text = textVeteran
-                Athlete.putLevel(textVeteran)
+                MapAthlete.putLevel(textVeteran)
             }
         }
     }
@@ -104,13 +104,13 @@ class FragmentExtraInfoAthlete : Fragment() {
     private fun managerList(buttonView: CompoundButton, isChecked: Boolean) {
         if (isChecked) {
             listToSave.add(buttonView.text.toString())
-            Athlete.putEquipment(listToSave)
+            MapAthlete.putEquipment(listToSave)
         } else {
             listToSave.remove(buttonView.text.toString())
             if (listToSave.size > 0) {
-                Athlete.putEquipment(listToSave)
+                MapAthlete.putEquipment(listToSave)
             } else {
-                Athlete.removeEquipment()
+                MapAthlete.removeEquipment()
                 Toast.makeText(
                     requireContext(),
                     getString(R.string.error_toast_equipment_athlete),
@@ -138,7 +138,7 @@ class FragmentExtraInfoAthlete : Fragment() {
 
         autoTextViewDropMenuDaysOfWorkOut.setAdapter(adapter)
         autoTextViewDropMenuDaysOfWorkOut.setOnItemClickListener { _, _, position, _ ->
-            Athlete.putNumberOfWOWeek(days[position])
+            MapAthlete.putNumberOfWOWeek(days[position])
         }
     }
 }

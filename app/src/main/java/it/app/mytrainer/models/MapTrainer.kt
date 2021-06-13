@@ -2,10 +2,10 @@ package it.app.mytrainer.models
 
 import android.util.Log
 
-class Trainer {
+class MapTrainer {
     companion object {
 
-        private const val TAG = "HASH MAP TRAINER"
+        private const val TAG = "HASH_MAP_TRAINER"
         private var hashMapTrainer = HashMap<String, Any>()
         private val arrayKey =
             arrayOf("Email", "Password", "Name", "Surname", "BirthDate", "Specialization")

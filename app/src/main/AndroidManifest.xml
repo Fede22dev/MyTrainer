@@ -8,7 +8,6 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
-    <!-- END USER PERMISSION -->
 
     <application
         android:allowBackup="true"
@@ -18,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyTrainer"
         tools:ignore="AllowBackup">
-
+        <activity android:name=".ui.activities.home.schedule.viewDataAthlete.ActivityViewDataAthlete"></activity>
         <!-- START MAIN AND LAUNCHER ACTIVITY -->
         <activity
             android:name=".ui.activities.starter.ActivityMain"
@@ -69,8 +68,7 @@
         <!-- START OF REAUTH ACTIVITY -->
         <activity
             android:name=".ui.activities.home.ActivityReauthDeleteAccount"
-            android:screenOrientation="portrait" />
-        <!-- END OF REAUTH ACTIVITY -->
+            android:screenOrientation="portrait" /> <!-- END OF REAUTH ACTIVITY -->
         <!-- START OF USER CHOICE ACTIVITY -->
         <activity
             android:name=".ui.activities.registration.ActivityUserChoice"
@@ -83,7 +81,6 @@
         <activity
             android:name=".ui.activities.registration.ActivityRegistrationAthlete"
             android:screenOrientation="portrait" />
-        <!-- END OF REGISTRATION ACTIVITY ATHLETE -->
     </application>
 
 </manifest>

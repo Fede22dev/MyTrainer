@@ -72,6 +72,7 @@ class ActivityLogin : AppCompatActivity() {
     //Visibility FB
     private fun setVisibilityForLoginFB() {
         progressBarLogin.visibility = View.VISIBLE
+        titleAppLogin.visibility = View.INVISIBLE
         btnLoginFacebook.visibility = View.INVISIBLE
         imageViewBackgroundLogin.visibility = View.INVISIBLE
         layoutLoginEditTextEmail.visibility = View.INVISIBLE
@@ -167,6 +168,7 @@ class ActivityLogin : AppCompatActivity() {
 
     private fun resetVisibilityFB() {
         progressBarLogin.visibility = View.INVISIBLE
+        titleAppLogin.visibility = View.VISIBLE
         btnLoginFacebook.visibility = View.VISIBLE
         imageViewBackgroundLogin.visibility = View.VISIBLE
         layoutLoginEditTextEmail.visibility = View.VISIBLE
@@ -224,6 +226,7 @@ class ActivityLogin : AppCompatActivity() {
     //Visibility No FB
     private fun setVisibilityForLoginNoFB() {
         progressBarLogin.visibility = View.VISIBLE
+        titleAppLogin.visibility = View.INVISIBLE
         btnLoginFacebook.visibility = View.INVISIBLE
         imageViewBackgroundLogin.visibility = View.INVISIBLE
         layoutLoginEditTextEmail.visibility = View.INVISIBLE
@@ -239,6 +242,7 @@ class ActivityLogin : AppCompatActivity() {
     //Resetting the field and the visibility
     private fun resetVisibilityForLoginNoFB() {
         progressBarLogin.visibility = View.INVISIBLE
+        titleAppLogin.visibility = View.VISIBLE
         btnLoginFacebook.visibility = View.VISIBLE
         imageViewBackgroundLogin.visibility = View.VISIBLE
         layoutLoginEditTextEmail.visibility = View.VISIBLE

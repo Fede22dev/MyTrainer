@@ -9,11 +9,10 @@ import android.widget.ArrayAdapter
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import it.app.mytrainer.R
-import it.app.mytrainer.models.Athlete
+import it.app.mytrainer.models.MapAthlete
 import it.app.mytrainer.utils.CheckRegistrationFieldAthlete
 import kotlinx.android.synthetic.main.fragment_bodyinfo_typewo_goal_athlete.*
 import kotlinx.android.synthetic.main.fragment_bodyinfo_typewo_goal_athlete.view.*
-
 
 class FragmentBodyInfoTypeWOGoalAthlete : Fragment() {
 
@@ -26,27 +25,27 @@ class FragmentBodyInfoTypeWOGoalAthlete : Fragment() {
             inflater.inflate(R.layout.fragment_bodyinfo_typewo_goal_athlete, container, false)
 
         view.chip1GoalAthlete.setOnClickListener {
-            Athlete.putGoal(view.chip1GoalAthlete.text.toString())
+            MapAthlete.putGoal(view.chip1GoalAthlete.text.toString())
         }
 
         view.chip2GoalAthlete.setOnClickListener {
-            Athlete.putGoal(view.chip2GoalAthlete.text.toString())
+            MapAthlete.putGoal(view.chip2GoalAthlete.text.toString())
         }
 
         view.chip3GoalAthlete.setOnClickListener {
-            Athlete.putGoal(view.chip3GoalAthlete.text.toString())
+            MapAthlete.putGoal(view.chip3GoalAthlete.text.toString())
         }
 
         view.chip4GoalAthlete.setOnClickListener {
-            Athlete.putGoal(view.chip4GoalAthlete.text.toString())
+            MapAthlete.putGoal(view.chip4GoalAthlete.text.toString())
         }
 
         view.chip5GoalAthlete.setOnClickListener {
-            Athlete.putGoal(view.chip5GoalAthlete.text.toString())
+            MapAthlete.putGoal(view.chip5GoalAthlete.text.toString())
         }
 
         view.chip6GoalAthlete.setOnClickListener {
-            Athlete.putGoal(view.chip6GoalAthlete.text.toString())
+            MapAthlete.putGoal(view.chip6GoalAthlete.text.toString())
         }
 
         return view
@@ -75,18 +74,18 @@ class FragmentBodyInfoTypeWOGoalAthlete : Fragment() {
                 val txt = text.toString().trim()
                 if (CheckRegistrationFieldAthlete.checkHeight(txt.toInt())) {
                     //Successful data 
-                    Athlete.putHeight(txt)
+                    MapAthlete.putHeight(txt)
                     layoutAthleteEditTextHeight.error = null
                     layoutAthleteEditTextHeight.boxStrokeColor = Color.GREEN
                 } else {
                     //Unsuccessful data 
-                    Athlete.removeHeight()
+                    MapAthlete.removeHeight()
                     layoutAthleteEditTextHeight.error = getString(R.string.invalid_height)
                     layoutAthleteEditTextHeight.errorIconDrawable = null
                 }
             } else {
                 //Blank field
-                Athlete.removeHeight()
+                MapAthlete.removeHeight()
                 layoutAthleteEditTextHeight.error = getString(R.string.invalid_height)
                 layoutAthleteEditTextHeight.errorIconDrawable = null
             }
@@ -99,18 +98,18 @@ class FragmentBodyInfoTypeWOGoalAthlete : Fragment() {
                 val txt = text.toString().trim()
                 if (CheckRegistrationFieldAthlete.checkWeight(txt.toInt())) {
                     //Successful data
-                    Athlete.putWeight(txt)
+                    MapAthlete.putWeight(txt)
                     layoutAthleteEditTextWeight.error = null
                     layoutAthleteEditTextWeight.boxStrokeColor = Color.GREEN
                 } else {
                     //Unsuccessful data
-                    Athlete.removeWeight()
+                    MapAthlete.removeWeight()
                     layoutAthleteEditTextWeight.error = getString(R.string.invalid_weight)
                     layoutAthleteEditTextWeight.errorIconDrawable = null
                 }
             } else {
                 //Blank field
-                Athlete.removeHeight()
+                MapAthlete.removeHeight()
                 layoutAthleteEditTextWeight.error = getString(R.string.invalid_weight)
                 layoutAthleteEditTextWeight.errorIconDrawable = null
             }
@@ -130,7 +129,7 @@ class FragmentBodyInfoTypeWOGoalAthlete : Fragment() {
             )
         autoTextViewDropMenuTypeOfWorkAthlete.setAdapter(adapter)
         autoTextViewDropMenuTypeOfWorkAthlete.setOnItemClickListener { _, _, position, _ ->
-            Athlete.putTypeOfWO(typeOfWO[position])
+            MapAthlete.putTypeOfWO(typeOfWO[position])
         }
     }
 }

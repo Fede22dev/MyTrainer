@@ -1,8 +1,109 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ui.fragments.homeTrainer.FragmentListClientTrainer">
+    android:background="@color/app_background"
+    android:fadeScrollbars="false"
+    android:fillViewport="true"
+    android:scrollbarSize="5dp"
+    android:scrollbarThumbVertical="@drawable/custom_thumb_scrollbar"
+    android:scrollbarTrackVertical="@drawable/custom_track_scrollbar">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp"
+        tools:context=".ui.fragments.homeAthlete.FragmentListClientTrainer">
+
+        <TextView
+            android:id="@+id/titleAppListClientTrainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/audiowide"
+            android:maxLines="1"
+            android:text="@string/app_name"
+            android:textColor="@color/orange_title_app"
+            android:textSize="55sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/textViewTrainerInfoBox1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/francois_one"
+            android:gravity="center"
+            android:text="@string/no_schedule_athlete"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@id/textViewTrainerInfoBox2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleAppListClientTrainer" />
+
+        <TextView
+            android:id="@+id/textViewTrainerInfoBox2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="256dp"
+            android:fontFamily="@font/francois_one"
+            android:gravity="center"
+            android:text="@string/try_to_refresh_schedule_athlete"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewTrainerInfoBox1" />
+
+        <TextView
+            android:id="@+id/textViewListClientReady"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/francois_one"
+            android:gravity="center"
+            android:text="@string/schedule_fetch_athlete"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@id/recycleViewListClient"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleAppListClientTrainer"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleViewListClient"
+            android:layout_width="match_parent"
+            android:layout_height="425dp"
+            android:layout_marginBottom="16dp"
+            android:scrollbarThumbVertical="@drawable/custom_thumb_scrollbar"
+            android:scrollbarTrackVertical="@drawable/custom_track_scrollbar"
+            android:scrollbars="vertical"
+            android:visibility="invisible"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/fabRefreshListClient"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewListClientReady" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabRefreshListClient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/green_button"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_refresh"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="ContentDescription" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

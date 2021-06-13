@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import it.app.mytrainer.R
-import it.app.mytrainer.models.Trainer
+import it.app.mytrainer.models.MapTrainer
 import kotlinx.android.synthetic.main.fragment_extra_info_trainer.*
 import kotlinx.android.synthetic.main.fragment_extra_info_trainer.view.*
 
@@ -22,39 +22,39 @@ class FragmentExtraInfoTrainer : Fragment() {
         val view = inflater.inflate(R.layout.fragment_extra_info_trainer, container, false)
 
         view.chip1SpecTrainer.setOnClickListener {
-            Trainer.putSpec(view.chip1SpecTrainer.text.toString())
+            MapTrainer.putSpec(view.chip1SpecTrainer.text.toString())
         }
 
         view.chip2SpecTrainer.setOnClickListener {
-            Trainer.putSpec(view.chip2SpecTrainer.text.toString())
+            MapTrainer.putSpec(view.chip2SpecTrainer.text.toString())
         }
 
         view.chip3SpecTrainer.setOnClickListener {
-            Trainer.putSpec(view.chip3SpecTrainer.text.toString())
+            MapTrainer.putSpec(view.chip3SpecTrainer.text.toString())
         }
 
         view.chip4SpecTrainer.setOnClickListener {
-            Trainer.putSpec(view.chip4SpecTrainer.text.toString())
+            MapTrainer.putSpec(view.chip4SpecTrainer.text.toString())
         }
 
         view.chip5SpecTrainer.setOnClickListener {
-            Trainer.putSpec(view.chip5SpecTrainer.text.toString())
+            MapTrainer.putSpec(view.chip5SpecTrainer.text.toString())
         }
 
         view.chip6SpecTrainer.setOnClickListener {
-            Trainer.putSpec(view.chip6SpecTrainer.text.toString())
+            MapTrainer.putSpec(view.chip6SpecTrainer.text.toString())
         }
 
         view.chip7SpecTrainer.setOnClickListener {
-            Trainer.putSpec(view.chip7SpecTrainer.text.toString())
+            MapTrainer.putSpec(view.chip7SpecTrainer.text.toString())
         }
 
         view.chip8SpecTrainer.setOnClickListener {
-            Trainer.putSpec(view.chip8SpecTrainer.text.toString())
+            MapTrainer.putSpec(view.chip8SpecTrainer.text.toString())
         }
 
         view.chip9SpecTrainer.setOnClickListener {
-            Trainer.putSpec(view.chip9SpecTrainer.text.toString())
+            MapTrainer.putSpec(view.chip9SpecTrainer.text.toString())
         }
 
         return view
@@ -69,9 +69,9 @@ class FragmentExtraInfoTrainer : Fragment() {
         gymFieldTrainer.doOnTextChanged { text, _, _, _ ->
             if (text != null) {
                 if (text.isNotBlank()) {
-                    Trainer.putGym(text.toString().trim())
+                    MapTrainer.putGym(text.toString().trim())
                 } else {
-                    Trainer.removeGym()
+                    MapTrainer.removeGym()
                 }
             }
         }

@@ -5,26 +5,22 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.StorageReference
-import com.google.firebase.storage.ktx.storage
 import it.app.mytrainer.R
 import it.app.mytrainer.firebase.fireauth.FireAuth
 import it.app.mytrainer.firebase.firestore.FireStore
+import it.app.mytrainer.firebase.storage.Storage
 import it.app.mytrainer.ui.activities.starter.ActivityLogin
 import kotlinx.android.synthetic.main.activity_reauth_delete_account.*
 
 class ActivityReauthDeleteAccount : AppCompatActivity() {
 
     private lateinit var fireStore: FireStore
-    private lateinit var storage: StorageReference
     private val currentUserId = FireAuth.getCurrentUserAuth()?.uid!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reauth_delete_account)
 
-        storage = Firebase.storage.reference
         fireStore = FireStore()
 
         reauthBtnConfirmation.setOnClickListener {
@@ -80,7 +76,7 @@ class ActivityReauthDeleteAccount : AppCompatActivity() {
 
     private fun deleteAllDataAccount() {
         fireStore.deleteAthlete(currentUserId)
-        storage.child("Photos").child(currentUserId).delete()
+        Storage.deletePhoto(currentUserId)
         FireAuth.deleteCurrentUser()
     }
 

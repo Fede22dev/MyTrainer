@@ -45,7 +45,6 @@ class FragmentScheduleAthlete : Fragment() {
 
         fireStore.setSchedule(currentUserId, hashMapSchedule)
 
-
         fireStore.getAthlete(currentUserId) { map ->
             if (map!!["Schedule"] != "") {
                 setVisibilityForSchedule()
@@ -59,7 +58,7 @@ class FragmentScheduleAthlete : Fragment() {
                 }
 
                 recycleViewSchedule.adapter =
-                    RecycleScheduleAdapter(context, arrayForRecycle)
+                    RecycleScheduleAdapter(requireContext(), arrayForRecycle)
 
             } else {
                 setVisibliityForNoSchedule()
@@ -88,7 +87,7 @@ class FragmentScheduleAthlete : Fragment() {
                     }
 
                     recycleViewSchedule.adapter =
-                        RecycleScheduleAdapter(context, arrayForRecycle)
+                        RecycleScheduleAdapter(requireContext(), arrayForRecycle)
 
                 } else {
                     setVisibliityForNoSchedule()
