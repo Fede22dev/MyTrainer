@@ -97,7 +97,9 @@ class ActivityRegistrationTrainer : AppCompatActivity() {
                 }
             }
 
+            //Method not necessary but mandatory override
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
+            //Method not necessary but mandatory override
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
     }
@@ -139,6 +141,7 @@ class ActivityRegistrationTrainer : AppCompatActivity() {
 
                 //Saving the data of user on firestore
                 val fireStore = FireStore()
+
                 fireStore.saveTrainer(currentUserId) { saveOk ->
                     //If is not ok, delete the previous current user on auth and go back in login
                     if (!saveOk) {
@@ -146,8 +149,14 @@ class ActivityRegistrationTrainer : AppCompatActivity() {
                         Toast.makeText(
                             this,
                             getString(R.string.error_creation_user_auth),
-                            Toast.LENGTH_LONG
+                            Toast.LENGTH_SHORT
                         ).show()
+                    } else {
+                        //Calling the finish we go back on the login activity, with the created account
+                        val intent = Intent(this, ActivityLogin::class.java)
+                        startActivity(intent)
+                        finish()
+                        MapTrainer.printHashMap()
                     }
                 }
 
@@ -155,18 +164,13 @@ class ActivityRegistrationTrainer : AppCompatActivity() {
                 errorCreateAccountNoFB()
             }
         }
-        //Calling the finish we go back on the login activity, with the created account
-        val intent = Intent(this, ActivityLogin::class.java)
-        startActivity(intent)
-        finish()
-        MapTrainer.printHashMap()
     }
 
     private fun errorCreateAccountNoFB() {
         Toast.makeText(
             this,
             getString(R.string.error_creation_user_auth),
-            Toast.LENGTH_LONG
+            Toast.LENGTH_SHORT
         ).show()
         MapTrainer.clearHashMap()
     }
@@ -186,20 +190,24 @@ class ActivityRegistrationTrainer : AppCompatActivity() {
                         getString(R.string.error_creation_user_auth),
                         Toast.LENGTH_LONG
                     ).show()
+                } else {
+                    val intent = Intent(this, ActivityHomeTrainer::class.java)
+                    startActivity(intent)
+                    finish()
                 }
             }
+        } else {
+            val intent = Intent(this, ActivityHomeTrainer::class.java)
+            startActivity(intent)
+            finish()
         }
-
-        val intent = Intent(this, ActivityHomeTrainer::class.java)
-        startActivity(intent)
-        finish()
     }
 
     private fun hashMapNotReadyToSave() {
         Toast.makeText(
             this,
             getString(R.string.registration_error_toast),
-            Toast.LENGTH_LONG
+            Toast.LENGTH_SHORT
         ).show()
         MapTrainer.printHashMap()
     }

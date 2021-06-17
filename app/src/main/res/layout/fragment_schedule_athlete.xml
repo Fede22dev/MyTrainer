@@ -96,8 +96,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleViewSchedule"
             android:layout_width="match_parent"
-            android:layout_height="262.5dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
+            android:maxHeight="262.5dp"
             android:scrollbarThumbVertical="@drawable/custom_thumb_scrollbar"
             android:scrollbarTrackVertical="@drawable/custom_track_scrollbar"
             android:scrollbars="vertical"

@@ -101,7 +101,9 @@ class ActivityRegistrationAthlete : AppCompatActivity() {
                 }
             }
 
+            //Method not necessary but mandatory override
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
+            //Method not necessary but mandatory override
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
     }

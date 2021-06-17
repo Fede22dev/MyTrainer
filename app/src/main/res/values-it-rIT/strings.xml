@@ -79,7 +79,7 @@
     <string name="birth_profile">Data di nascita:</string>
     <string name="gym_profile">Palestra:</string>
     <string name="specialization">Specializzazione:</string>
-    <string name="change_image">CAMBIA IMMAGINE</string>
+    <string name="change_image">FAI UNA FOTO</string>
     <string name="delete_account">Cancella account</string>
     <string name="delete_account_text">Sei sicuro di voler cancellare questo account? L\'operazione non è reversibile!</string>
     <string name="accept_button">ACCETTO</string>
@@ -108,4 +108,15 @@
     <string name="exercise">Esercizio</string>
     <string name="not_valid_password">PASSWORD NON VALIDA</string>
     <string name="finish">Finito</string>
+    <string name="active_schedule">Scheda attiva:</string>
+    <string name="exercise_name">Nome esercizio</string>
+    <string name="creation_schedule">Creazione scheda</string>
+    <string name="invalid_type_workout">Non è possibile creare una scheda senza specificare il tipo di allenamento!</string>
+    <string name="explain_insert_dialog_type_workout">Inserire il tipo di allenamento (gambe, petto, ecc..)</string>
+    <string name="type_workout">Tipo di allenamento</string>
+    <string name="no_athlete_list_client">NON C\'E\' ANCORA NESSUN ATLETA REGISTRATO</string>
+    <string name="take_photo_from_gallery">SCEGLI DALLA GALLERIA</string>
+    <string name="save_day">Salva giorno</string>
+    <string name="no_athlete_registered">Non ci sono atleti registati al momento</string>
+    <string name="registered_athlete">Atleti registrati</string>
 </resources>

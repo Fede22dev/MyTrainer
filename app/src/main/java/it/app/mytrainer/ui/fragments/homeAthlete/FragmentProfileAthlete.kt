@@ -1,8 +1,11 @@
 package it.app.mytrainer.ui.fragments.homeAthlete
 
-import android.app.Activity
+import android.Manifest
+import android.app.Activity.RESULT_OK
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
@@ -11,6 +14,8 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.CompoundButton
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.google.android.material.textfield.TextInputLayout
@@ -25,6 +30,7 @@ import java.io.ByteArrayOutputStream
 
 class FragmentProfileAthlete : Fragment() {
 
+    private val REQUEST_IMAGE_GALLERY = 0
     private val REQUEST_IMAGE_CAPTURE = 1
     private val currentUserId = FireAuth.getCurrentUserAuth()?.uid!!
     private val fireStore = FireStore()
@@ -40,9 +46,57 @@ class FragmentProfileAthlete : Fragment() {
         //Loading the photo
         loadPhotoOnImageView()
 
+        val requestPermissionCameraLauncher =
+            registerForActivityResult(ActivityResultContracts.RequestPermission()
+            ) { isGranted: Boolean ->
+                if (isGranted) {
+                    val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+                }
+            }
+
         view.buttonCameraAthlete.setOnClickListener {
-            val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+
+            if (ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.CAMERA
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
+
+                val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+
+            } else {
+                requestPermissionCameraLauncher.launch(
+                    Manifest.permission.CAMERA)
+            }
+        }
+
+        val requestPermissionStorageLauncher =
+            registerForActivityResult(ActivityResultContracts.RequestPermission()
+            ) { isGranted: Boolean ->
+                if (isGranted) {
+                    val intent = Intent(Intent.ACTION_PICK)
+                    intent.type = "image/*"
+                    startActivityForResult(intent, REQUEST_IMAGE_GALLERY)
+                }
+            }
+
+        view.buttonGalleryAthlete.setOnClickListener {
+            if (ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
+
+                val intent = Intent(Intent.ACTION_PICK)
+                intent.type = "image/*"
+                startActivityForResult(intent, REQUEST_IMAGE_GALLERY)
+
+            } else {
+                requestPermissionStorageLauncher.launch(
+                    Manifest.permission.READ_EXTERNAL_STORAGE)
+            }
         }
 
         return view
@@ -50,18 +104,31 @@ class FragmentProfileAthlete : Fragment() {
 
     private fun loadPhotoOnImageView() {
         Storage.getPhotoUrl(currentUserId) { uri ->
-            Glide.with(this).load(uri).into(imageViewPersonalAthlete)
+            if (uri != null) {
+                Glide.with(this).load(uri).into(imageViewPersonalAthlete)
+            }
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
 
-            val imageBitmap = data?.extras?.get("data") as Bitmap
-            imageViewPersonalAthlete.setImageBitmap(imageBitmap)
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
 
-            compressAndUploadPhoto(imageBitmap)
+            val imageBitmapCamera = data?.extras?.get("data") as Bitmap
+            imageViewPersonalAthlete.setImageBitmap(imageBitmapCamera)
+
+            compressAndUploadPhoto(imageBitmapCamera)
+        }
+
+        if (requestCode == REQUEST_IMAGE_GALLERY && resultCode == RESULT_OK) {
+            val selectedImageUri: Uri? = data?.data
+            imageViewPersonalAthlete.setImageURI(selectedImageUri)
+
+            val imageBitmapGallery =
+                MediaStore.Images.Media.getBitmap(requireActivity().contentResolver,
+                    selectedImageUri)
+
+            compressAndUploadPhoto(imageBitmapGallery)
         }
     }
 

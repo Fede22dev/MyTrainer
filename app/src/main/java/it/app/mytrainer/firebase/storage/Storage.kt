@@ -13,7 +13,7 @@ class Storage {
         private val TAG = "FIRESTORAGE"
         private val COLLECTIONPHOTOS = "Photos"
 
-        // Fun to download in the recycle listclient and the profile the photo of athlete
+        // Fun to download in the recycle list client and the profile the photo of athlete
         fun getPhotoUrl(userId: String, callback: (Uri?) -> Unit) {
             storage.child(COLLECTIONPHOTOS).child(userId).downloadUrl
                 .addOnSuccessListener { uri ->
@@ -26,11 +26,11 @@ class Storage {
                 }
         }
 
-        // upload the photo in the storage on firebase
+        // Upload the photo in the storage on firebase
         fun uploadPhoto(userId: String, photo: ByteArray) {
             storage.child(COLLECTIONPHOTOS).child(userId).putBytes(photo)
                 .addOnSuccessListener {
-                    Log.d(TAG, "Picture uploaded: success")
+                    Log.d(TAG, "Upload picture: success")
                 }
                 .addOnFailureListener { e ->
                     Log.w(TAG, "Upload picture: failed", e)
@@ -46,6 +46,5 @@ class Storage {
                     Log.w(TAG, "Picture delete: failed", e)
                 }
         }
-
     }
 }

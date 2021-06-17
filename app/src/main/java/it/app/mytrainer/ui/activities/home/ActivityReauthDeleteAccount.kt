@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.daimajia.androidanimations.library.Techniques
+import com.daimajia.androidanimations.library.YoYo
 import it.app.mytrainer.R
 import it.app.mytrainer.firebase.fireauth.FireAuth
 import it.app.mytrainer.firebase.firestore.FireStore
@@ -36,7 +38,12 @@ class ActivityReauthDeleteAccount : AppCompatActivity() {
                     finish()
                 } else {
                     resetVisibilityForDelete()
+
                     passwordFieldReauth.setText("")
+
+                    YoYo.with(Techniques.Shake)
+                        .playOn(layoutReauthEditTextPassword)
+
                     Toast.makeText(this, getString(R.string.not_valid_password), Toast.LENGTH_SHORT)
                         .show()
                 }

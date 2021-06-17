@@ -7,11 +7,12 @@ import it.app.mytrainer.firebase.storage.Storage
 import it.app.mytrainer.models.MapAthlete
 import it.app.mytrainer.models.MapTrainer
 import it.app.mytrainer.models.ObjAthlete
+import it.app.mytrainer.models.ObjSchedule
 
 class FireStore {
 
-    private val TAG = "FIRESTORE"
     private val db = Firebase.firestore
+    private val TAG = "FIRESTORE"
     private val COLLECTIONATHLETE = "Athletes"
     private val COLLECTIONTRAINER = "Trainers"
 
@@ -80,14 +81,18 @@ class FireStore {
 
     fun setSchedule(userId: String, schedule: HashMap<String, HashMap<String, ArrayList<String>>>) {
         db.collection(COLLECTIONATHLETE).document(userId).update("Schedule", schedule)
+    }
 
+    fun schedule(userId: String, schedule: ObjSchedule) {
+        db.collection(COLLECTIONATHLETE).document(userId).update("Schedule", schedule)
     }
 
     //FUN FOR THE OPTION IN THE MENU
     fun deleteTrainer(currentUserId: String) {
-        db.collection(COLLECTIONTRAINER).document(currentUserId).delete().addOnSuccessListener {
-            Log.d(TAG, "Trainer delete: success")
-        }
+        db.collection(COLLECTIONTRAINER).document(currentUserId).delete()
+            .addOnSuccessListener {
+                Log.d(TAG, "Trainer delete: success")
+            }
             .addOnFailureListener { e ->
                 Log.w(TAG, "Trainer delete: failed", e)
             }
@@ -148,12 +153,12 @@ class FireStore {
     }
 
     // To fill the recycleView in the home of the trainer
+    @Suppress("UNCHECKED_CAST")
     fun getAllAthlete(callback: (ArrayList<ObjAthlete>, Boolean) -> Unit) {
         val listAthlete = ArrayList<ObjAthlete>()
         var athleteId: String
 
-        db.collection(COLLECTIONATHLETE)
-            .get()
+        db.collection(COLLECTIONATHLETE).get()
             .addOnSuccessListener { result ->
                 Log.d(TAG, "Getting documents: success")
                 for (document in result) {
@@ -161,6 +166,12 @@ class FireStore {
                     val doc = document.data
                     athleteId = doc["AthleteId"].toString()
                     Storage.getPhotoUrl(athleteId) { uri ->
+
+                        var url = ""
+                        if (uri != null) {
+                            url = uri.toString()
+                        }
+
                         listAthlete.add(ObjAthlete(
                             doc["Name"].toString(),
                             doc["Surname"].toString(),
@@ -170,10 +181,10 @@ class FireStore {
                             doc["TypeOfWO"].toString(),
                             doc["Goal"].toString(),
                             doc["Level"].toString(),
-                            doc["DaysOfWO"].toString(),
-                            arrayListOf(doc["Equipment"].toString()),
+                            doc["DaysOfWorkout"].toString(),
+                            doc["Equipment"] as ArrayList<String>,
                             athleteId,
-                            uri))
+                            url))
 
                         callback(listAthlete, true)
                     }

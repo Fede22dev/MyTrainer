@@ -7,6 +7,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
+import com.daimajia.androidanimations.library.Techniques
+import com.daimajia.androidanimations.library.YoYo
 import com.facebook.*
 import com.facebook.login.LoginResult
 import com.google.firebase.auth.FacebookAuthProvider
@@ -257,6 +259,12 @@ class ActivityLogin : AppCompatActivity() {
         layoutLoginEditTextEmail.errorIconDrawable = null
         layoutLoginEditTextPassword.error = getString(R.string.fields_not_correct)
         layoutLoginEditTextPassword.errorIconDrawable = null
+
+        YoYo.with(Techniques.Shake)
+            .playOn(layoutLoginEditTextEmail)
+
+        YoYo.with(Techniques.Shake)
+            .playOn(layoutLoginEditTextPassword)
     }
 
     //Starting the choice activity

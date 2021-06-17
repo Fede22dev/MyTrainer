@@ -1,6 +1,5 @@
 package it.app.mytrainer.models
 
-import android.net.Uri
 import java.io.Serializable
 
 data class ObjAthlete(
@@ -15,5 +14,5 @@ data class ObjAthlete(
     val daysOfWO: String,
     val equipment: ArrayList<String>,
     val idAthlete: String,
-    val urlPhotoAthlete: Uri?,
-): Serializable
+    val urlPhotoAthlete: String,
+) : Serializable

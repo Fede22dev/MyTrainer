@@ -3,21 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:foreground="?android:selectableItemBackground">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardListClientTrainer"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="10dp"
-        app:cardBackgroundColor="#2E7D32"
-        app:cardCornerRadius="15dp"
+        app:cardBackgroundColor="@color/card_background"
+        app:cardCornerRadius="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/orange_title_app"
+        app:strokeWidth="2dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,9 +30,10 @@
 
             <ImageView
                 android:id="@+id/photoClient"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_gravity="center"
+                android:scaleType="centerCrop"
                 android:src="@drawable/person_placeholder"
                 tools:ignore="ContentDescription" />
 
@@ -37,34 +41,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginStart="12dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginBottom="4dp"
+                android:gravity="center"
                 android:orientation="vertical">
-
 
                 <TextView
                     android:id="@+id/textViewNameClientTrainer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:fontFamily="@font/francois_one"
                     android:gravity="center"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text="EXAMPLE"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     tools:ignore="HardcodedText" />
 
                 <TextView
                     android:id="@+id/textViewSurnameClientTrainer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:fontFamily="@font/francois_one"
                     android:gravity="center"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text="EXAMPLE"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     tools:ignore="HardcodedText" />
 
             </LinearLayout>

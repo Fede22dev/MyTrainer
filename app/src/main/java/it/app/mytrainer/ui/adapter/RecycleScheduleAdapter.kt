@@ -9,10 +9,10 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import it.app.mytrainer.R
-import it.app.mytrainer.ui.activities.home.schedule.ActivityScheduleViewAthlete
+import it.app.mytrainer.ui.activities.home.schedule.athlete.ActivityScheduleViewAthlete
 import kotlinx.android.synthetic.main.card_recycle_view_schedule_athlete.view.*
 
-class RecycleScheduleAdapter(private val context: Context, private var data: ArrayList<String>) :
+class RecycleScheduleAdapter(private val context: Context, private val data: ArrayList<String>) :
     RecyclerView.Adapter<RecycleScheduleAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

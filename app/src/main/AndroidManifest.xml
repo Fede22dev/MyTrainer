@@ -2,12 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="it.app.mytrainer">
+
     <!-- START USER PERMISSION -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature android:name="android.hardware.camera.flash" />
 
     <application
         android:allowBackup="true"
@@ -17,7 +22,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyTrainer"
         tools:ignore="AllowBackup">
-        <activity android:name=".ui.activities.home.schedule.viewDataAthlete.ActivityViewDataAthlete"></activity>
+
         <!-- START MAIN AND LAUNCHER ACTIVITY -->
         <activity
             android:name=".ui.activities.starter.ActivityMain"
@@ -58,13 +63,19 @@
             android:name=".ui.activities.home.ActivityHomeAthlete"
             android:screenOrientation="portrait" /> <!-- START OF HOME SCHEDULE ATHLETE -->
         <activity
-            android:name=".ui.activities.home.schedule.ActivityScheduleViewAthlete"
+            android:name=".ui.activities.home.schedule.athlete.ActivityScheduleViewAthlete"
             android:screenOrientation="portrait" /> <!-- END OF HOME SCHEDULE ATHLETE -->
         <!-- END OF HOME ACTIVITY ATHLETE -->
         <!-- START OF HOME ACTIVITY TRAINER -->
         <activity
             android:name=".ui.activities.home.ActivityHomeTrainer"
             android:screenOrientation="portrait" /> <!-- END OF HOME ACTIVITY TRAINER -->
+        <activity
+            android:name=".ui.activities.home.schedule.trainer.ActivityViewDataAthlete"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activities.home.schedule.trainer.ActivityCreationSchedule"
+            android:screenOrientation="portrait" />
         <!-- START OF REAUTH ACTIVITY -->
         <activity
             android:name=".ui.activities.home.ActivityReauthDeleteAccount"

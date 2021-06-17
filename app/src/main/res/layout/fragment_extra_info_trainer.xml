@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="48dp"
             android:hint="@string/insert_gym_trainer"
-            android:textColorHint="@color/white"
+            android:textColorHint="@color/hint"
             app:endIconMode="clear_text"
             app:endIconTint="@color/white"
             app:helperText="@string/optional_field"

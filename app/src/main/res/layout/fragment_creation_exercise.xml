@@ -14,11 +14,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/app_background"
-        android:padding="24dp"
-        tools:context=".ui.fragments.homeAthlete.schedule.FragmentScheduleViewAthlete">
+        android:paddingStart="24dp"
+        android:paddingTop="24dp"
+        android:paddingEnd="24dp"
+        tools:context=".ui.fragments.homeAthlete.schedule.FragmentCreationExercise">
 
         <TextView
-            android:id="@+id/textViewNumExercises"
+            android:id="@+id/textViewNumExercisesCreationExercise"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="48dp"
@@ -27,42 +29,53 @@
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="38sp"
-            app:layout_constraintBottom_toTopOf="@id/textViewNameExercise"
+            app:layout_constraintBottom_toTopOf="@id/linearLayoutNameExerciseCreationExercise"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed"
             tools:ignore="HardcodedText" />
 
-        <TextView
-            android:id="@+id/textViewNameExercise"
+        <LinearLayout
+            android:id="@+id/linearLayoutNameExerciseCreationExercise"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="64dp"
             android:background="@drawable/custom_stroke"
-            android:fontFamily="@font/francois_one"
             android:gravity="center"
-            android:text="Exercise name"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toTopOf="@id/linearLayoutReps"
+            app:layout_constraintBottom_toTopOf="@id/linearLayoutRepsCreationExercise"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewNumExercises"
-            tools:ignore="HardcodedText" />
+            app:layout_constraintTop_toBottomOf="@id/textViewNumExercisesCreationExercise">
+
+            <EditText
+                android:id="@+id/editTextNameExerciseCreationExercise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:fontFamily="@font/francois_one"
+                android:gravity="center"
+                android:hint="@string/exercise_name"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:maxLength="20"
+                android:textColor="@color/white"
+                android:textColorHint="#A6A6A6"
+                android:textSize="30sp" />
+
+        </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayoutReps"
+            android:id="@+id/linearLayoutRepsCreationExercise"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="48dp"
             android:baselineAligned="false"
             android:gravity="center"
-            app:layout_constraintBottom_toTopOf="@id/btnTimer"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewNameExercise">
+            app:layout_constraintTop_toBottomOf="@id/linearLayoutNameExerciseCreationExercise">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -84,17 +97,55 @@
                     android:textColor="@color/white"
                     android:textSize="28sp" />
 
-                <TextView
-                    android:id="@+id/textViewSeriesAthlete"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/francois_one"
-                    android:gravity="center"
-                    android:text="5 X 4"
-                    android:textColor="@color/white"
-                    android:textSize="25sp"
-                    tools:ignore="HardcodedText" />
+                    android:gravity="center">
 
+                    <EditText
+                        android:id="@+id/editTextSeriesCreationExercise"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/white"
+                        android:fontFamily="@font/francois_one"
+                        android:gravity="center"
+                        android:hint="4"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:maxLength="2"
+                        android:textColor="@color/white"
+                        android:textColorHint="#A6A6A6"
+                        android:textSize="25sp"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/francois_one"
+                        android:gravity="center"
+                        android:text="X"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/editTextRepsCreationExercise"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/white"
+                        android:fontFamily="@font/francois_one"
+                        android:gravity="center"
+                        android:hint="5"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:maxLength="2"
+                        android:textColor="@color/white"
+                        android:textColorHint="#A6A6A6"
+                        android:textSize="25sp"
+                        tools:ignore="HardcodedText" />
+
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -121,19 +172,23 @@
                     android:layout_height="wrap_content"
                     android:gravity="center">
 
-                    <TextView
-                        android:id="@+id/textViewRecoveryTimeMinutes"
+                    <EditText
+                        android:id="@+id/editTextRecoveryMinutCreationExercise"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:backgroundTint="@color/white"
                         android:fontFamily="@font/francois_one"
                         android:gravity="center"
-                        android:text="1"
+                        android:hint="1"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:maxLength="2"
                         android:textColor="@color/white"
+                        android:textColorHint="#A6A6A6"
                         android:textSize="25sp"
                         tools:ignore="HardcodedText" />
 
                     <TextView
-                        android:id="@+id/textViewMinSecSeparator"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/francois_one"
@@ -144,14 +199,19 @@
                         android:textSize="25sp"
                         tools:ignore="HardcodedText" />
 
-                    <TextView
-                        android:id="@+id/textViewRecoveryTimeSeconds"
+                    <EditText
+                        android:id="@+id/editTextRecoverySecondCreationExercise"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:backgroundTint="@color/white"
                         android:fontFamily="@font/francois_one"
                         android:gravity="center"
-                        android:text="30"
+                        android:hint="30"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:maxLength="2"
                         android:textColor="@color/white"
+                        android:textColorHint="@color/hint"
                         android:textSize="25sp"
                         tools:ignore="HardcodedText" />
 
@@ -159,20 +219,19 @@
             </LinearLayout>
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btnTimer"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabSearchExerciseCreationExercise"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/francois_one"
-            android:maxLines="1"
-            android:text="@string/start_timer_schedule_athlete"
-            android:textColor="@color/green_button"
-            android:textSize="18sp"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_search"
+            app:backgroundTint="@color/green_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linearLayoutReps" />
+            tools:ignore="ContentDescription" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

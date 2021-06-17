@@ -5,6 +5,6 @@
         android:endColor="@color/app_foreground"
         android:startColor="@color/app_foreground" />
 
-    <corners android:radius="8dp" />
+    <corners android:radius="10dp" />
 
 </shape>

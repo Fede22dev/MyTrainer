@@ -5,6 +5,6 @@
         android:endColor="@color/orange_title_app"
         android:startColor="@color/orange_title_app" />
 
-    <corners android:radius="8dp" />
+    <corners android:radius="10dp" />
 
 </shape>

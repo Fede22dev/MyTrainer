@@ -24,7 +24,7 @@ class ActivityMain : AppCompatActivity() {
 
     private fun startRightActivity() {
         thread {
-            Thread.sleep(600)
+            Thread.sleep(500)
 
             FireAuth.getCurrentUserType { type ->
                 // Check if the user is already logged in

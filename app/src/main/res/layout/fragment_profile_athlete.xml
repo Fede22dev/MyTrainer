@@ -25,9 +25,8 @@
             android:id="@+id/linerLayoutImageAndNameAndSurname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/buttonCameraAthlete"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@id/linearLayoutBtnTakePhotoAthlete"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -38,6 +37,7 @@
                 android:id="@+id/imageViewPersonalAthlete"
                 android:layout_width="125dp"
                 android:layout_height="125dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/person_placeholder"
                 app:layout_constraintEnd_toStartOf="@id/linerLayoutEditProfileAthlete"
                 app:layout_constraintStart_toStartOf="parent"
@@ -101,21 +101,45 @@
 
         </LinearLayout>
 
-        <!--BUTTON FOR THE IMAGE-->
-        <Button
-            android:id="@+id/buttonCameraAthlete"
-            style="@style/Widget.MaterialComponents.Button.Icon"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/linearLayoutBtnTakePhotoAthlete"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
-            android:backgroundTint="@color/button_red"
-            android:text="@string/change_image"
-            app:icon="@drawable/ic_photo_camera"
+            android:gravity="center"
             app:layout_constraintBottom_toTopOf="@id/linearLayoutDataProfileAthlete"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linerLayoutImageAndNameAndSurname" />
+            app:layout_constraintTop_toBottomOf="@id/linerLayoutImageAndNameAndSurname">
+
+            <!--BUTTON FOR THE IMAGE-->
+            <Button
+                android:id="@+id/buttonCameraAthlete"
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/button_red"
+                android:text="@string/change_image"
+                android:textColor="@color/white"
+                app:icon="@drawable/ic_photo_camera"
+                app:iconTint="@color/white" />
+
+            <!--BUTTON TO CHANGE IMAGE USER SELECT FROM GALLERY-->
+            <Button
+                android:id="@+id/buttonGalleryAthlete"
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="4dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/button_red"
+                android:text="@string/take_photo_from_gallery"
+                android:textColor="@color/white"
+                app:icon="@drawable/ic_photo"
+                app:iconTint="@color/white" />
+        </LinearLayout>
 
         <!--LINEAR LAYOUT FOR DATE OF BIRTH-->
         <LinearLayout
@@ -123,11 +147,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="@id/linearLayoutHeightProfileAthlete"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/buttonCameraAthlete">
+            app:layout_constraintTop_toBottomOf="@id/linearLayoutBtnTakePhotoAthlete">
 
             <!--TEXT VIEW DATE-->
             <TextView

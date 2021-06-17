@@ -1,4 +1,4 @@
-package it.app.mytrainer.ui.activities.home.schedule
+package it.app.mytrainer.ui.activities.home.schedule.athlete
 
 import android.os.Bundle
 import android.util.Log
@@ -19,6 +19,7 @@ class ActivityScheduleViewAthlete : AppCompatActivity() {
     private var listOfExercises = ArrayList<ArrayList<String>>()
     private var listOfExerciseInfo = ArrayList<String>()
 
+    @Suppress("UNCHECKED_CAST")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_schedule_view_athlete)
@@ -30,7 +31,7 @@ class ActivityScheduleViewAthlete : AppCompatActivity() {
             schedule = map?.get("Schedule") as HashMap<*, *>
 
             schedule.forEach { (typeWo, exercises) ->
-                //Bringing the right tyoe of wo
+                //Bringing the right type of wo
                 if (typeWo == choice) {
                     exercises as HashMap<String, ArrayList<String>>
 
@@ -64,6 +65,5 @@ class ActivityScheduleViewAthlete : AppCompatActivity() {
             finish()
             true
         }
-
     }
 }

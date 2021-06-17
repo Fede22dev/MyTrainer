@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/app_background"
-    tools:context=".ui.activities.home.schedule.athlete.ActivityScheduleViewAthlete">
+    tools:context=".ui.activities.home.schedule.trainer.ActivityCreationSchedule">
 
     <!--APP BAR LAYOUT-->
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayoutViewScheduleAthlete"
+        android:id="@+id/appBarLayoutCreationSchedule"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,29 +18,58 @@
 
         <!--APP BAR-->
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/topAppBarViewScheduleAthlete"
+            android:id="@+id/topAppBarCreationSchedule"
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:backgroundTint="@color/orange_title_app"
-            app:menu="@menu/option_menu_schedule"
-            app:title="@string/view_schedule" />
+            app:menu="@menu/option_menu_creation_schedule"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:navigationIconTint="@color/black"
+            app:title="@string/creation_schedule" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabDeleteExerciseCreationExercise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_delete"
+        android:visibility="invisible"
+        app:backgroundTint="@color/green_button"
+        app:layout_constraintBottom_toBottomOf="@id/viewPagerCreationSchedule"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddExerciseCreationExercise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_add"
+        app:backgroundTint="@color/green_button"
+        app:layout_constraintBottom_toBottomOf="@id/viewPagerCreationSchedule"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="ContentDescription" />
+
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPagerScheduleAthlete"
+        android:id="@+id/viewPagerCreationSchedule"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="16dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:layout_constraintBottom_toTopOf="@id/wormDotsIndicatorScheduleAthlete"
+        app:layout_constraintBottom_toTopOf="@id/wormDotsIndicatorCreationSchedule"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appBarLayoutViewScheduleAthlete" />
+        app:layout_constraintTop_toBottomOf="@id/appBarLayoutCreationSchedule" />
 
     <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
-        android:id="@+id/wormDotsIndicatorScheduleAthlete"
+        android:id="@+id/wormDotsIndicatorCreationSchedule"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -53,6 +82,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/viewPagerScheduleAthlete" />
+        app:layout_constraintTop_toBottomOf="@id/viewPagerCreationSchedule" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

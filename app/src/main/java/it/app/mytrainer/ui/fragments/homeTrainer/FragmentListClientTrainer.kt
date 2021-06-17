@@ -1,7 +1,6 @@
 package it.app.mytrainer.ui.fragments.homeTrainer
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +19,9 @@ class FragmentListClientTrainer : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
+
+        fireStore = FireStore()
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_list_client_trainer, container, false)
     }
@@ -27,15 +29,13 @@ class FragmentListClientTrainer : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        fireStore = FireStore()
-
         fireStore.getAllAthlete { listAthlete, result ->
             if (result) {
                 textViewTrainerInfoBox1.visibility = View.INVISIBLE
                 textViewTrainerInfoBox2.visibility = View.INVISIBLE
                 textViewListClientReady.visibility = View.VISIBLE
                 recycleViewListClient.visibility = View.VISIBLE
-                Log.d("---------------", listAthlete.toString())
+
                 recycleViewListClient.adapter =
                     RecycleListClientTrainerAdapter(requireContext(), listAthlete)
             } else {
@@ -46,7 +46,6 @@ class FragmentListClientTrainer : Fragment() {
         }
 
         fabRefreshListClient.setOnClickListener {
-            setVisibilityForRefresh()
             fireStore.getAllAthlete { listAthlete, result ->
                 if (result) {
                     recycleViewListClient.adapter =
@@ -58,12 +57,5 @@ class FragmentListClientTrainer : Fragment() {
                 }
             }
         }
-
     }
-
-    private fun setVisibilityForRefresh() {
-
-    }
-
-
 }
