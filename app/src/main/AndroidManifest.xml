@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="it.app.mytrainer">
-
     <!-- START USER PERMISSION -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -22,7 +21,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyTrainer"
         tools:ignore="AllowBackup">
-
+        <activity android:name=".ui.activities.home.schedule.trainer.ActivitySearchExercise"></activity>
         <!-- START MAIN AND LAUNCHER ACTIVITY -->
         <activity
             android:name=".ui.activities.starter.ActivityMain"
@@ -75,8 +74,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activities.home.schedule.trainer.ActivityCreationSchedule"
-            android:screenOrientation="portrait" />
-        <!-- START OF REAUTH ACTIVITY -->
+            android:screenOrientation="portrait" /> <!-- START OF REAUTH ACTIVITY -->
         <activity
             android:name=".ui.activities.home.ActivityReauthDeleteAccount"
             android:screenOrientation="portrait" /> <!-- END OF REAUTH ACTIVITY -->

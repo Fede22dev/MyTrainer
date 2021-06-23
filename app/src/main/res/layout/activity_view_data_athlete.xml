@@ -98,6 +98,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:enabled="false"
+                            android:focusable="false"
                             android:inputType="textPersonName"
                             android:textColor="@color/white" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -119,6 +120,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:enabled="false"
+                            android:focusable="false"
                             android:inputType="textPersonName"
                             android:textColor="@color/white" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -144,6 +146,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
+                    android:focusable="false"
                     android:text="@string/birth_profile"
                     android:textColor="@color/white"
                     android:textSize="17sp" />
@@ -154,6 +157,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:focusable="false"
                     android:gravity="center"
                     android:textColor="@color/white"
                     android:textSize="25sp" />
@@ -196,6 +200,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:enabled="false"
+                        android:focusable="false"
                         android:textColor="@color/white" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -237,6 +242,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:enabled="false"
+                        android:focusable="false"
                         android:textColor="@color/white" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -280,6 +286,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:enabled="false"
+                        android:focusable="false"
                         android:textColor="@color/white" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -324,6 +331,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:enabled="false"
+                        android:focusable="false"
                         android:textColor="@color/white" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -368,6 +376,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:enabled="false"
+                        android:focusable="false"
                         android:textColor="@color/white" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -412,6 +421,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:enabled="false"
+                        android:focusable="false"
                         android:textColor="@color/white" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -458,6 +468,7 @@
                         android:layout_weight="1"
                         android:buttonTint="@color/white"
                         android:enabled="false"
+                        android:focusable="false"
                         android:text="@string/dumbbells_athlete"
                         android:textColor="@color/white"
                         android:textSize="17sp" />
@@ -470,6 +481,7 @@
                         android:layout_weight="1"
                         android:buttonTint="@color/white"
                         android:enabled="false"
+                        android:focusable="false"
                         android:text="@string/rope_athlete"
                         android:textColor="@color/white"
                         android:textSize="17sp" />
@@ -482,6 +494,7 @@
                         android:layout_weight="1"
                         android:buttonTint="@color/white"
                         android:enabled="false"
+                        android:focusable="false"
                         android:text="@string/rack_athlete"
                         android:textColor="@color/white"
                         android:textSize="17sp" />
@@ -501,6 +514,7 @@
                         android:layout_weight="1"
                         android:buttonTint="@color/white"
                         android:enabled="false"
+                        android:focusable="false"
                         android:text="@string/benches_athlete"
                         android:textColor="@color/white"
                         android:textSize="17sp" />
@@ -513,6 +527,7 @@
                         android:layout_weight="1"
                         android:buttonTint="@color/white"
                         android:enabled="false"
+                        android:focusable="false"
                         android:text="@string/pull_up_bar_athlete"
                         android:textColor="@color/white"
                         android:textSize="17sp" />
@@ -525,6 +540,7 @@
                         android:layout_weight="1"
                         android:buttonTint="@color/white"
                         android:enabled="false"
+                        android:focusable="false"
                         android:text="@string/dip_station_athlete"
                         android:textColor="@color/white"
                         android:textSize="17sp" />
@@ -545,6 +561,7 @@
                         android:layout_weight="1"
                         android:buttonTint="@color/white"
                         android:enabled="false"
+                        android:focusable="false"
                         android:text="@string/barbell_and_discs_athlete"
                         android:textColor="@color/white"
                         android:textSize="17sp" />
@@ -557,6 +574,7 @@
                         android:layout_weight="1"
                         android:buttonTint="@color/white"
                         android:enabled="false"
+                        android:focusable="false"
                         android:text="@string/gym_membership_athlete"
                         android:textColor="@color/white"
                         android:textSize="17sp" />

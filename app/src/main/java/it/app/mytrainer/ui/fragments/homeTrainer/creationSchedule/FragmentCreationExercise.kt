@@ -1,15 +1,19 @@
 package it.app.mytrainer.ui.fragments.homeTrainer.creationSchedule
 
 import android.annotation.SuppressLint
+import android.app.Activity.RESULT_OK
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import it.app.mytrainer.R
 import it.app.mytrainer.models.ObjExercise
 import it.app.mytrainer.ui.activities.home.schedule.trainer.ActivityCreationSchedule
+import it.app.mytrainer.ui.activities.home.schedule.trainer.ActivitySearchExercise
 import kotlinx.android.synthetic.main.fragment_creation_exercise.*
 
 class FragmentCreationExercise(private val position: Int, private val firstRun: Boolean) :
@@ -20,7 +24,6 @@ class FragmentCreationExercise(private val position: Int, private val firstRun: 
     private var recovery = 0
     private var editMin = 0
     private var editSec = 0
-    private var firstInsert = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,6 +53,11 @@ class FragmentCreationExercise(private val position: Int, private val firstRun: 
             } else {
                 editTextRecoverySecondCreationExercise.setText(sec.toString())
             }
+
+            exercise.nameExercise = restoreExercise.nameExercise
+            exercise.numSeries = restoreExercise.numSeries
+            exercise.numReps = restoreExercise.numReps
+            exercise.recovery = restoreExercise.recovery
         }
 
         textViewNumExercisesCreationExercise.text =
@@ -86,21 +94,30 @@ class FragmentCreationExercise(private val position: Int, private val firstRun: 
             exerciseManager()
         }
 
-        fabSearchExerciseCreationExercise.setOnClickListener {
 
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val resultLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == RESULT_OK) {
+                    // There are no request codes
+                    editTextNameExerciseCreationExercise.setText(result.data?.getStringExtra("NameExercise"))
+                }
+            }
+
+        fabSearchExerciseCreationExercise.setOnClickListener {
+            val intent = Intent(requireContext(), ActivitySearchExercise::class.java)
+            resultLauncher.launch(intent)
         }
     }
 
     //Checking if all the fields are null or not
     private fun exerciseManager() {
         if (exercise.nameExercise != null && exercise.numSeries != null && exercise.numReps != null && exercise.recovery != null) {
-            if (firstInsert) {
-                firstInsert = false
-                ActivityCreationSchedule.addExercise(exercise)
-            } else {
-                ActivityCreationSchedule.removeExercise(exercise)
-                ActivityCreationSchedule.addExercise(exercise)
-            }
+            ActivityCreationSchedule.removeExercise(position)
+            ActivityCreationSchedule.addExercise(position, exercise)
         }
     }
 
@@ -144,5 +161,4 @@ class FragmentCreationExercise(private val position: Int, private val firstRun: 
             editTextRecoverySecondCreationExercise.error = ""
         }
     }
-
 }

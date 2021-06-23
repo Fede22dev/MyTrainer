@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group
+        android:checkableBehavior="single"
+        android:visible="true">
+
+        <item
+            android:id="@+id/radioSearchNoFilter"
+            android:checked="true"
+            android:title="@string/no_filter"
+            app:showAsAction="ifRoom" />
+
+        <item
+            android:id="@+id/radioSearchChest"
+            android:checked="false"
+            android:title="@string/search_chest"
+            app:showAsAction="ifRoom" />
+
+        <item
+            android:id="@+id/radioSearchLegs"
+            android:checked="false"
+            android:title="@string/search_legs"
+            app:showAsAction="ifRoom" />
+
+        <item
+            android:id="@+id/radioSearchBiceps"
+            android:checked="false"
+            android:title="@string/search_biceps"
+            app:showAsAction="ifRoom" />
+
+        <item
+            android:id="@+id/radioSearchTriceps"
+            android:checked="false"
+            android:title="@string/search_triceps"
+            app:showAsAction="ifRoom" />
+
+        <item
+            android:id="@+id/radioSearchCalves"
+            android:checked="false"
+            android:title="@string/search_calves"
+            app:showAsAction="ifRoom" />
+
+        <item
+            android:id="@+id/radioSearchBack"
+            android:checked="false"
+            android:title="@string/search_back"
+            app:showAsAction="ifRoom" />
+
+        <item
+            android:id="@+id/radioSearchShoulders"
+            android:checked="false"
+            android:title="@string/search_shoulders"
+            app:showAsAction="ifRoom" />
+
+        <item
+            android:id="@+id/radioSearchAbdominals"
+            android:checked="false"
+            android:title="@string/search_abdominals"
+            app:showAsAction="ifRoom" />
+
+        <item
+            android:id="@+id/radioSearchCardio"
+            android:checked="false"
+            android:title="@string/search_cardio"
+            app:showAsAction="ifRoom" />
+
+    </group>
+</menu>

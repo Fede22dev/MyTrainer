@@ -24,16 +24,15 @@ class ActivityCreationSchedule : AppCompatActivity() {
 
     companion object {
 
-        private var currentPage = 0
         private lateinit var dayOfWo: ObjDayOfWo
 
-        fun addExercise(exercise: ObjExercise) {
-            dayOfWo.listOfExercise.add(currentPage, exercise)
+        fun addExercise(position: Int, exercise: ObjExercise) {
+            dayOfWo.listOfExercise.add(position, exercise)
             Log.d("ACTIVITY_CREATION_SCHEDULE", "ADD: $dayOfWo")
         }
 
-        fun removeExercise(exercise: ObjExercise) {
-            dayOfWo.listOfExercise.add(currentPage, exercise)
+        fun removeExercise(position: Int) {
+            dayOfWo.listOfExercise.removeAt(position)
             Log.d("ACTIVITY_CREATION_SCHEDULE", "REMOVE: $dayOfWo")
         }
 
@@ -74,8 +73,6 @@ class ActivityCreationSchedule : AppCompatActivity() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
 
-                currentPage = position
-
                 if (exerciseCount >= MAXPAGE) {
                     fabAddExerciseCreationExercise.visibility = View.INVISIBLE
                 } else {
@@ -110,6 +107,7 @@ class ActivityCreationSchedule : AppCompatActivity() {
             viewPagerCreationSchedule.offscreenPageLimit = exerciseCount
 
             wormDotsIndicatorCreationSchedule.setViewPager2(viewPagerCreationSchedule)
+
         }
 
         topAppBarCreationSchedule.setOnMenuItemClickListener {
