@@ -126,7 +126,7 @@
     <string name="no_athlete_registered">There\'s no athlete registered at the moment</string>
     <string name="registered_athlete">Registered athlete</string>
     <string name="search_exercise_title">Search the exercise!</string>
-    <string name="search_exercise">Insert the exercise to fetch</string>
+    <string name="search_exercise">Insert the exercise to search</string>
     <string name="search_calves">Calves</string>
     <string name="search_shoulders">Shoulders</string>
     <string name="search_abdominals">Abdominals</string>
@@ -136,6 +136,9 @@
     <string name="search_chest">Chest</string>
     <string name="info_checkbox_filter_muscle">Filter in base of the needed muscle group!</string>
     <string name="search_back">Back</string>
-    <string name="search_cardio">Cardio</string>
+    <string name="search_cardio" translatable="false">Cardio</string>
     <string name="no_filter">No filter</string>
+    <string name="search_exercises_bar">Search exercises</string>
+    <string name="no_connection">NO INTERNET CONNECTION, RETRY LATER</string>
+    <string name="id_trainer_mismatch">The operation are not enabled, another trainer is following this athlete!</string>
 </resources>

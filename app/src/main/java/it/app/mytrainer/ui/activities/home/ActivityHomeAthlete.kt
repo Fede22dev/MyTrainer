@@ -39,7 +39,7 @@ class ActivityHomeAthlete : AppCompatActivity() {
                     true
                 }
 
-                else -> false
+                else               -> false
             }
         }
     }

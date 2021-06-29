@@ -27,11 +27,9 @@ class FragmentScheduleAthlete : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        val hashMapSchedule = HashMap<String, HashMap<String, ArrayList<String>>>()
+        //val hashMapSchedule = HashMap<String, HashMap<String, ArrayList<String>>>()
 
-
-        /**DA SPOSTARE LATO TRAINER*/
-        hashMapSchedule["gambe"] = hashMapOf(Pair("1", arrayListOf("Squat", "4 X 18", "62")),
+        /*hashMapSchedule["gambe"] = hashMapOf(Pair("1", arrayListOf("Squat", "4 X 18", "62")),
             Pair("2", arrayListOf("Pressa", "3 X 10", "37")),
             Pair("3", arrayListOf("Salto corda", "9 X 10", "93")))
 
@@ -43,7 +41,7 @@ class FragmentScheduleAthlete : Fragment() {
             Pair("2", arrayListOf("curl", "4x8", "142")),
             Pair("3", arrayListOf("cavi", "4x14", "45")))
 
-        fireStore.setSchedule(currentUserId, hashMapSchedule)
+        fireStore.setSchedule(currentUserId, hashMapSchedule)*/
 
         fireStore.getAthlete(currentUserId) { map ->
             if (map!!["Schedule"] != "") {
@@ -61,7 +59,7 @@ class FragmentScheduleAthlete : Fragment() {
                     RecycleScheduleAdapter(requireContext(), arrayForRecycle)
 
             } else {
-                setVisibliityForNoSchedule()
+                setVisibilityForNoSchedule()
                 Toast.makeText(
                     requireContext(),
                     getString(R.string.no_schedule_available),
@@ -90,7 +88,7 @@ class FragmentScheduleAthlete : Fragment() {
                         RecycleScheduleAdapter(requireContext(), arrayForRecycle)
 
                 } else {
-                    setVisibliityForNoSchedule()
+                    setVisibilityForNoSchedule()
                     Toast.makeText(
                         requireContext(),
                         getString(R.string.no_schedule_available),
@@ -109,7 +107,7 @@ class FragmentScheduleAthlete : Fragment() {
         recycleViewSchedule.visibility = View.VISIBLE
     }
 
-    private fun setVisibliityForNoSchedule() {
+    private fun setVisibilityForNoSchedule() {
         textViewInfoBox1.visibility = View.VISIBLE
         textViewInfoBox2.visibility = View.VISIBLE
         textViewInfoBox3.visibility = View.VISIBLE

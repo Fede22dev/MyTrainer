@@ -56,10 +56,6 @@ class MapTrainer {
             hashMapTrainer.remove("Surname")
         }
 
-        fun removeDate() {
-            hashMapTrainer.remove("BirthDate")
-        }
-
         fun removeGym() {
             hashMapTrainer.remove("Gym")
         }

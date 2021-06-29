@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fadeScrollbars="false"
     android:fillViewport="true"
-    android:scrollbarSize="5dp"
+    android:scrollbarSize="4dp"
     android:scrollbarThumbVertical="@drawable/custom_thumb_scrollbar"
     android:scrollbarTrackVertical="@drawable/custom_track_scrollbar">
 
@@ -38,9 +38,9 @@
 
         <LinearLayout
             android:id="@+id/linearLayoutNameExerciseCreationExercise"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="64dp"
+            android:layout_marginBottom="48dp"
             android:background="@drawable/custom_stroke"
             android:gravity="center"
             app:layout_constraintBottom_toTopOf="@id/linearLayoutRepsCreationExercise"
@@ -50,7 +50,7 @@
 
             <EditText
                 android:id="@+id/editTextNameExerciseCreationExercise"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
                 android:fontFamily="@font/francois_one"
@@ -58,9 +58,9 @@
                 android:hint="@string/exercise_name"
                 android:importantForAutofill="no"
                 android:inputType="text"
-                android:maxLength="20"
+                android:maxLength="35"
                 android:textColor="@color/white"
-                android:textColorHint="#A6A6A6"
+                android:textColorHint="@color/hint"
                 android:textSize="30sp" />
 
         </LinearLayout>
@@ -114,7 +114,7 @@
                         android:inputType="number"
                         android:maxLength="2"
                         android:textColor="@color/white"
-                        android:textColorHint="#A6A6A6"
+                        android:textColorHint="@color/hint"
                         android:textSize="25sp"
                         tools:ignore="HardcodedText" />
 
@@ -141,7 +141,7 @@
                         android:inputType="number"
                         android:maxLength="2"
                         android:textColor="@color/white"
-                        android:textColorHint="#A6A6A6"
+                        android:textColorHint="@color/hint"
                         android:textSize="25sp"
                         tools:ignore="HardcodedText" />
 
@@ -184,7 +184,7 @@
                         android:inputType="number"
                         android:maxLength="2"
                         android:textColor="@color/white"
-                        android:textColorHint="#A6A6A6"
+                        android:textColorHint="@color/hint"
                         android:textSize="25sp"
                         tools:ignore="HardcodedText" />
 
@@ -218,7 +218,6 @@
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabSearchExerciseCreationExercise"

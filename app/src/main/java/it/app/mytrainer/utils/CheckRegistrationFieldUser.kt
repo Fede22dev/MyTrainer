@@ -29,10 +29,5 @@ class CheckRegistrationFieldUser {
                 )
             )
         }
-
-        //Check for the Date of birth field
-        fun checkDateOfBirth(birthYear: String): Boolean {
-            return birthYear <= "2010" && birthYear >= "1920"
-        }
     }
 }

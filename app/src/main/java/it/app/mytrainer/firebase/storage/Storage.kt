@@ -10,8 +10,8 @@ class Storage {
     companion object {
 
         private val storage = Firebase.storage.reference
-        private val TAG = "FIRESTORAGE"
-        private val COLLECTIONPHOTOS = "Photos"
+        private const val TAG = "FIRESTORAGE"
+        private const val COLLECTIONPHOTOS = "Photos"
 
         // Fun to download in the recycle list client and the profile the photo of athlete
         fun getPhotoUrl(userId: String, callback: (Uri?) -> Unit) {

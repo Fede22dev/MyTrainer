@@ -119,4 +119,19 @@
     <string name="save_day">Salva giorno</string>
     <string name="no_athlete_registered">Non ci sono atleti registati al momento</string>
     <string name="registered_athlete">Atleti registrati</string>
+    <string name="search_chest">Petto</string>
+    <string name="no_filter">Nessun filtro</string>
+    <string name="search_exercises_bar">Cerca esercizio</string>
+    <string name="search_back">Dorso</string>
+    <string name="info_checkbox_filter_muscle">Filtra in base al muscolo!</string>
+    <string name="search_legs">Gambe</string>
+    <string name="search_biceps">Bicipiti</string>
+    <string name="search_triceps">Tricipiti</string>
+    <string name="search_abdominals">Addominali</string>
+    <string name="search_shoulders">Spalle</string>
+    <string name="search_calves">Polpacci</string>
+    <string name="search_exercise_title">Cerca l\'esercizio!</string>
+    <string name="search_exercise">Inserisci l\'esercizio da cercare</string>
+    <string name="no_connection">NESSUNA CONNESSIONE AD INTERNET, RIPROVA DOPO</string>
+    <string name="id_trainer_mismatch">Le operazioni non sono abilitate, questo atleta è seguito da un altro trainer!</string>
 </resources>

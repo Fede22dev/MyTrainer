@@ -13,7 +13,7 @@ class FireAuth {
     companion object {
 
         private val auth = Firebase.auth
-        private val TAG = "FIREAUTH"
+        private const val TAG = "FIREAUTH"
 
         fun getCurrentUserType(callback: (Int) -> Unit) {
             val currentUser = auth.currentUser

@@ -2,26 +2,37 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="it.app.mytrainer">
+
     <!-- START USER PERMISSION -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
 
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
-    <uses-feature android:name="android.hardware.camera.flash" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyTrainer"
         tools:ignore="AllowBackup">
-        <activity android:name=".ui.activities.home.schedule.trainer.ActivitySearchExercise"></activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="it.app.mytrainer"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
         <!-- START MAIN AND LAUNCHER ACTIVITY -->
         <activity
             android:name=".ui.activities.starter.ActivityMain"
@@ -69,6 +80,9 @@
         <activity
             android:name=".ui.activities.home.ActivityHomeTrainer"
             android:screenOrientation="portrait" /> <!-- END OF HOME ACTIVITY TRAINER -->
+        <activity
+            android:name=".ui.activities.home.schedule.trainer.ActivitySearchExercise"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activities.home.schedule.trainer.ActivityViewDataAthlete"
             android:screenOrientation="portrait" />

@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:fadeScrollbars="false"
     android:fillViewport="true"
-    android:scrollbarSize="5dp"
+    android:scrollbarSize="4dp"
     android:scrollbarThumbVertical="@drawable/custom_thumb_scrollbar"
     android:scrollbarTrackVertical="@drawable/custom_track_scrollbar">
 
@@ -32,11 +32,11 @@
             app:endIconMode="clear_text"
             app:endIconTint="@color/white"
             app:errorEnabled="true"
-            app:layout_constraintBottom_toTopOf="@+id/layoutTrainerEditTextPassword"
+            app:layout_constraintBottom_toTopOf="@id/layoutTrainerEditTextPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.25"
+            app:layout_constraintVertical_bias="0.30"
             app:layout_constraintVertical_chainStyle="packed"
             app:startIconDrawable="@drawable/ic_email"
             app:startIconTint="@color/white">
@@ -62,10 +62,10 @@
             app:endIconMode="password_toggle"
             app:endIconTint="@color/white"
             app:errorEnabled="true"
-            app:layout_constraintBottom_toTopOf="@+id/layoutTrainerEditTextName"
+            app:layout_constraintBottom_toTopOf="@id/layoutTrainerEditTextName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutTrainerEditTextEmail"
+            app:layout_constraintTop_toBottomOf="@id/layoutTrainerEditTextEmail"
             app:startIconDrawable="@drawable/ic_lock"
             app:startIconTint="@color/white">
 
@@ -90,10 +90,10 @@
             app:endIconMode="clear_text"
             app:endIconTint="@color/white"
             app:errorEnabled="true"
-            app:layout_constraintBottom_toTopOf="@+id/layoutTrainerEditTextSurname"
+            app:layout_constraintBottom_toTopOf="@id/layoutTrainerEditTextSurname"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutTrainerEditTextPassword"
+            app:layout_constraintTop_toBottomOf="@id/layoutTrainerEditTextPassword"
             app:startIconDrawable="@drawable/ic_person"
             app:startIconTint="@color/white">
 
@@ -112,16 +112,16 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="8dp"
             android:hint="@string/insert_surname"
             android:textColorHint="@color/hint"
             app:endIconMode="clear_text"
             app:endIconTint="@color/white"
             app:errorEnabled="true"
-            app:layout_constraintBottom_toTopOf="@+id/dateOfBirthTrainer"
+            app:layout_constraintBottom_toTopOf="@id/layoutTrainerTextViewDate"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutTrainerEditTextName"
+            app:layout_constraintTop_toBottomOf="@id/layoutTrainerEditTextName"
             app:startIconDrawable="@drawable/ic_person"
             app:startIconTint="@color/white">
 
@@ -134,35 +134,31 @@
                 android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!--TEXT VIEW DATE OF BIRTH-->
-        <TextView
-            android:id="@+id/dateOfBirthTrainer"
-            android:layout_width="wrap_content"
+        <!--LAYOUT FOR THE DATE-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutTrainerTextViewDate"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:gravity="center"
-            android:text="@string/first_select_date"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@id/btnSelectDateTrainer"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutTrainerEditTextSurname" />
-
-        <!--BUTTON FOR THE SELECT THE DATE-->
-        <Button
-            android:id="@+id/btnSelectDateTrainer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/button_red"
-            android:text="@string/select_date_of_birth"
-            android:textColor="@color/white"
-            android:textSize="16sp"
+            android:hint="@string/select_date_of_birth"
+            android:textColorHint="@color/hint"
+            app:errorEnabled="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dateOfBirthTrainer" />
+            app:layout_constraintTop_toBottomOf="@id/layoutTrainerEditTextSurname"
+            app:startIconDrawable="@drawable/ic_edit_calendar"
+            app:startIconTint="@color/white">
 
+            <!--TEXT FIELD FOR DATE-->
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/dateFieldTrainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:inputType="date"
+                android:textColor="@color/white" />
+        </com.google.android.material.textfield.TextInputLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

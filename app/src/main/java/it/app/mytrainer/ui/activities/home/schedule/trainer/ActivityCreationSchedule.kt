@@ -7,6 +7,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import it.app.mytrainer.R
+import it.app.mytrainer.firebase.fireauth.FireAuth
 import it.app.mytrainer.firebase.firestore.FireStore
 import it.app.mytrainer.models.ObjDayOfWo
 import it.app.mytrainer.models.ObjExercise
@@ -19,7 +20,7 @@ class ActivityCreationSchedule : AppCompatActivity() {
     private val MAXPAGE = 13
     private var exerciseCount = 1
     private var prefs: SharedPreferences? = null
-    private var schedule = ObjSchedule(ArrayList())
+    private val currentUserId = FireAuth.getCurrentUserAuth()?.uid!!
     private lateinit var fireStore: FireStore
 
     companion object {
@@ -123,9 +124,6 @@ class ActivityCreationSchedule : AppCompatActivity() {
 
     private fun saveSchedule() {
         dayOfWo.listOfExercise.removeIf { obj -> obj == null }
-        schedule.listOfDays.add(dayOfWo)
-
-        fireStore.schedule(intent.getStringExtra("UserId")!!, schedule)
+        fireStore.updateSchedule(intent.getStringExtra("UserId")!!, currentUserId ,dayOfWo)
     }
-
 }

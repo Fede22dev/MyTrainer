@@ -39,7 +39,7 @@ class ActivityHomeTrainer : AppCompatActivity() {
                     true
                 }
 
-                else -> false
+                else               -> false
             }
         }
     }

@@ -1,32 +1,27 @@
 package it.app.mytrainer.ui.fragments.registrationAthlete
 
-import android.app.DatePickerDialog
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.DatePicker
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.TextInputLayout
 import it.app.mytrainer.R
 import it.app.mytrainer.firebase.fireauth.FireAuth
 import it.app.mytrainer.models.MapAthlete
 import it.app.mytrainer.utils.CheckRegistrationFieldUser
 import kotlinx.android.synthetic.main.fragment_data_athlete.*
-import kotlinx.android.synthetic.main.fragment_data_athlete.view.*
+import java.text.SimpleDateFormat
 import java.util.*
 
-class FragmentDataAthlete : Fragment(), DatePickerDialog.OnDateSetListener {
+class FragmentDataAthlete : Fragment() {
 
     private val TAG = "FRAGMENT_ATHLETE_DATA"
-
-    private var day = 0
-    private var month = 0
-    private var year = 0
-
     private val currentUser = FireAuth.getCurrentUserAuth()
 
     override fun onCreateView(
@@ -35,36 +30,8 @@ class FragmentDataAthlete : Fragment(), DatePickerDialog.OnDateSetListener {
         savedInstanceState: Bundle?,
     ): View {
         val view = inflater.inflate(R.layout.fragment_data_athlete, container, false)
-        getCurrentDataCalendar()
-        view.btnSelectDateAthlete.setOnClickListener {
-            DatePickerDialog(requireContext(), this, year, month, day).show()
-        }
+
         return view
-    }
-
-    private fun getCurrentDataCalendar() {
-        val cal = Calendar.getInstance()
-        day = cal.get(Calendar.DAY_OF_MONTH)
-        month = cal.get(Calendar.MONTH)
-        year = cal.get(Calendar.YEAR)
-    }
-
-    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        val date = "$year/$month/$dayOfMonth"
-        //Setting the date
-        dateSet(date, year)
-    }
-
-    private fun dateSet(date: String, year: Int) {
-        if (CheckRegistrationFieldUser.checkDateOfBirth(year.toString())) {
-            dateOfBirthAthlete.text = date
-            dateOfBirthAthlete.setTextColor(Color.WHITE)
-            MapAthlete.putDate(date)
-        } else {
-            MapAthlete.removeDate()
-            dateOfBirthAthlete.text = getString(R.string.error_invalid_date)
-            dateOfBirthAthlete.setTextColor(Color.RED)
-        }
     }
 
     override fun onStart() {
@@ -103,6 +70,34 @@ class FragmentDataAthlete : Fragment(), DatePickerDialog.OnDateSetListener {
             surnameFieldAthlete.doOnTextChanged { text, _, _, _ ->
                 //Setting the edit text for surname
                 setEditTextSurname(text)
+            }
+        }
+
+        val outputDateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).apply {
+            timeZone = TimeZone.getTimeZone("UTC")
+        }
+
+        val startDate = outputDateFormat.parse("01/01/1920")!!.time
+        val endDate = outputDateFormat.parse("31/12/2010")!!.time
+
+        dateFieldAthlete.setOnClickListener {
+            val datePicker = MaterialDatePicker.Builder.datePicker()
+                .setTitleText("Select date")
+                .setSelection(endDate)
+                .setCalendarConstraints(
+                    CalendarConstraints.Builder()
+                        .setStart(startDate)
+                        .setEnd(endDate)
+                        .setOpenAt(endDate)
+                        .build()
+                )
+                .build()
+
+            datePicker.show(requireActivity().supportFragmentManager, TAG)
+
+            datePicker.addOnPositiveButtonClickListener { selection ->
+                dateFieldAthlete.setText(outputDateFormat.format(selection))
+                MapAthlete.putDate(outputDateFormat.format(selection))
             }
         }
     }

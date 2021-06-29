@@ -8,7 +8,7 @@
     android:background="@color/app_background"
     android:fadeScrollbars="false"
     android:fillViewport="true"
-    android:scrollbarSize="5dp"
+    android:scrollbarSize="4dp"
     android:scrollbarThumbVertical="@drawable/custom_thumb_scrollbar"
     android:scrollbarTrackVertical="@drawable/custom_track_scrollbar">
 
@@ -36,8 +36,6 @@
             android:id="@+id/textViewInfoBox1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="8dp"
             android:fontFamily="@font/francois_one"
             android:gravity="center"
             android:text="@string/no_schedule_athlete"
@@ -52,7 +50,6 @@
             android:id="@+id/textViewInfoBox2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
             android:fontFamily="@font/francois_one"
             android:gravity="center"
             android:text="@string/try_to_refresh_schedule_athlete"
@@ -81,7 +78,6 @@
             android:id="@+id/textViewScheduleReady"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:fontFamily="@font/francois_one"
             android:gravity="center"
             android:text="@string/schedule_fetch_athlete"
@@ -97,8 +93,7 @@
             android:id="@+id/recycleViewSchedule"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:maxHeight="262.5dp"
+            android:layout_marginBottom="56dp"
             android:scrollbarThumbVertical="@drawable/custom_thumb_scrollbar"
             android:scrollbarTrackVertical="@drawable/custom_track_scrollbar"
             android:scrollbars="vertical"
@@ -106,6 +101,7 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@id/fabRefreshScheduleAthlete"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_max="262.5dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewScheduleReady" />
 

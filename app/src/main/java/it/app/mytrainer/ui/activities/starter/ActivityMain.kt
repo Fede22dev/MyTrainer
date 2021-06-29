@@ -1,13 +1,19 @@
 package it.app.mytrainer.ui.activities.starter
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import com.google.android.material.snackbar.Snackbar
 import it.app.mytrainer.R
 import it.app.mytrainer.firebase.fireauth.FireAuth
 import it.app.mytrainer.ui.activities.home.ActivityHomeAthlete
 import it.app.mytrainer.ui.activities.home.ActivityHomeTrainer
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.concurrent.thread
 
 class ActivityMain : AppCompatActivity() {
@@ -19,7 +25,40 @@ class ActivityMain : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        startRightActivity()
+
+        if (checkNetworkStatus()) {
+            startRightActivity()
+        } else {
+            thread {
+                Thread.sleep(1000)
+                Snackbar.make(constraintActivityMain,
+                    getString(R.string.no_connection),
+                    Snackbar.LENGTH_LONG)
+                    .setBackgroundTint(ContextCompat.getColor(this, R.color.app_foreground))
+                    .setTextColor(ContextCompat.getColor(this, R.color.white))
+                    .show()
+
+                Thread.sleep(3250)
+                finishAndRemoveTask()
+            }
+        }
+    }
+
+    private fun checkNetworkStatus(): Boolean {
+        val connectivityManager =
+            this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+        val networkCapabilities = connectivityManager.activeNetwork ?: return false
+
+        val activeNetwork =
+            connectivityManager.getNetworkCapabilities(networkCapabilities) ?: return false
+
+        return when {
+            activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)     -> true
+            activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+            activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+            else                                                               -> false
+        }
     }
 
     private fun startRightActivity() {

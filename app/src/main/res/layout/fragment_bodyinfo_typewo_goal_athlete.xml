@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:fadeScrollbars="false"
     android:fillViewport="true"
-    android:scrollbarSize="5dp"
+    android:scrollbarSize="4dp"
     android:scrollbarThumbVertical="@drawable/custom_thumb_scrollbar"
     android:scrollbarTrackVertical="@drawable/custom_track_scrollbar">
 
@@ -34,7 +34,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.25"
+            app:layout_constraintVertical_bias="0.30"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <!--LINEAR LAYOUT CONTAINING HEIGHT AND WEIGHT-->

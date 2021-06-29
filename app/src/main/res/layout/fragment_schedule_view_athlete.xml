@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fadeScrollbars="false"
     android:fillViewport="true"
-    android:scrollbarSize="5dp"
+    android:scrollbarSize="4dp"
     android:scrollbarThumbVertical="@drawable/custom_thumb_scrollbar"
     android:scrollbarTrackVertical="@drawable/custom_track_scrollbar">
 
@@ -36,7 +36,7 @@
 
         <TextView
             android:id="@+id/textViewNameExercise"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="64dp"
             android:background="@drawable/custom_stroke"

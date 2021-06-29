@@ -33,7 +33,7 @@
         android:layout_height="match_parent"
         android:fadeScrollbars="false"
         android:fillViewport="true"
-        android:scrollbarSize="5dp"
+        android:scrollbarSize="4dp"
         android:scrollbarThumbVertical="@drawable/custom_thumb_scrollbar"
         android:scrollbarTrackVertical="@drawable/custom_track_scrollbar">
 
@@ -61,20 +61,21 @@
                 <!--IMAGE VIEW FOR USER PHOTO-->
                 <ImageView
                     android:id="@+id/imageViewViewDataAthlete"
-                    android:layout_width="125dp"
-                    android:layout_height="125dp"
+                    android:layout_width="135dp"
+                    android:layout_height="135dp"
                     android:scaleType="centerCrop"
+                    android:adjustViewBounds="true"
                     android:src="@drawable/person_placeholder"
                     app:layout_constraintEnd_toStartOf="@id/linerLayoutViewDataAthlete"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="ContentDescription" />
 
-                <!--LINEAR LAYOUT FOR NAME AND SURNAME-->
+                <!--LINEAR LAYOUT FOR THE NAME AND SURNAME-->
                 <LinearLayout
                     android:id="@+id/linerLayoutViewDataAthlete"
                     android:layout_width="match_parent"
-                    android:layout_height="125dp"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="16dp"
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -86,8 +87,8 @@
                         android:id="@+id/layoutViewDataAthleteTextName"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
                         android:textColorHint="@color/white"
                         app:startIconDrawable="@drawable/ic_person"
                         app:startIconTint="@color/white">
@@ -108,8 +109,8 @@
                         android:id="@+id/layoutViewDataAthleteTextSurname"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
                         android:textColorHint="@color/white"
                         app:startIconDrawable="@drawable/ic_person"
                         app:startIconTint="@color/white">
@@ -152,15 +153,26 @@
                     android:textSize="17sp" />
 
                 <!--DATE-->
-                <TextView
-                    android:id="@+id/textViewDateViewDatathlete"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutAthleteTextViewDateViewData"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:focusable="false"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:textSize="25sp" />
+                    android:textColorHint="@color/white"
+                    app:startIconDrawable="@drawable/ic_edit_calendar"
+                    app:startIconTint="@color/white">
+
+                    <!--EDIT TEXT FOR HEIGHT-->
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textViewDateViewDataAthlete"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:focusable="false"
+                        android:inputType="date"
+                        android:textColor="@color/white" />
+                </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
 
@@ -602,12 +614,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:maxHeight="262.5dp"
+                android:fadeScrollbars="false"
                 android:scrollbarThumbVertical="@drawable/custom_thumb_scrollbar"
                 android:scrollbarTrackVertical="@drawable/custom_track_scrollbar"
+                android:scrollbars="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toTopOf="@id/fabAddScheduleViewDataAthlete"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_max="262.5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textViewInfoScheduleViewDataAthlete" />
 

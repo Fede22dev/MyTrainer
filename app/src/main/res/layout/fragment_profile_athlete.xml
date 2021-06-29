@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:fadeScrollbars="false"
     android:fillViewport="true"
-    android:scrollbarSize="5dp"
+    android:scrollbarSize="4dp"
     android:scrollbarThumbVertical="@drawable/custom_thumb_scrollbar"
     android:scrollbarTrackVertical="@drawable/custom_track_scrollbar">
 
@@ -35,8 +35,9 @@
             <!--IMAGE VIEW FOR USER PHOTO-->
             <ImageView
                 android:id="@+id/imageViewPersonalAthlete"
-                android:layout_width="125dp"
-                android:layout_height="125dp"
+                android:layout_width="135dp"
+                android:layout_height="135dp"
+                android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
                 android:src="@drawable/person_placeholder"
                 app:layout_constraintEnd_toStartOf="@id/linerLayoutEditProfileAthlete"
@@ -48,7 +49,7 @@
             <LinearLayout
                 android:id="@+id/linerLayoutEditProfileAthlete"
                 android:layout_width="match_parent"
-                android:layout_height="125dp"
+                android:layout_height="match_parent"
                 android:layout_marginStart="16dp"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -60,8 +61,8 @@
                     android:id="@+id/layoutAthleteEditTextNameEditable"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
                     android:textColorHint="@color/white"
                     app:startIconDrawable="@drawable/ic_person"
                     app:startIconTint="@color/white">
@@ -72,6 +73,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:enabled="false"
+                        android:focusable="false"
                         android:inputType="textPersonName"
                         android:textColor="@color/white" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -81,8 +83,8 @@
                     android:id="@+id/layoutAthleteEditTextSurnameEditable"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
                     android:textColorHint="@color/white"
                     app:startIconDrawable="@drawable/ic_person"
                     app:startIconTint="@color/white">
@@ -93,6 +95,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:enabled="false"
+                        android:focusable="false"
                         android:inputType="textPersonName"
                         android:textColor="@color/white" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -105,7 +108,7 @@
             android:id="@+id/linearLayoutBtnTakePhotoAthlete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="24dp"
             android:gravity="center"
             app:layout_constraintBottom_toTopOf="@id/linearLayoutDataProfileAthlete"
             app:layout_constraintEnd_toEndOf="parent"
@@ -162,14 +165,26 @@
                 android:textSize="17sp" />
 
             <!--DATE-->
-            <TextView
-                android:id="@+id/textViewDateDataProfileAthlete"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutAthleteTextViewDateProfile"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:textSize="25sp" />
+                android:textColorHint="@color/white"
+                app:startIconDrawable="@drawable/ic_edit_calendar"
+                app:startIconTint="@color/white">
+
+                <!--EDIT TEXT FOR HEIGHT-->
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textViewDateDataProfileAthlete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:focusable="false"
+                    android:inputType="date"
+                    android:textColor="@color/white" />
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 

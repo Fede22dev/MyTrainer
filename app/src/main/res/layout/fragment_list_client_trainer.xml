@@ -6,7 +6,7 @@
     android:background="@color/app_background"
     android:fadeScrollbars="false"
     android:fillViewport="true"
-    android:scrollbarSize="5dp"
+    android:scrollbarSize="4dp"
     android:scrollbarThumbVertical="@drawable/custom_thumb_scrollbar"
     android:scrollbarTrackVertical="@drawable/custom_track_scrollbar">
 
@@ -34,7 +34,6 @@
             android:id="@+id/textViewTrainerInfoBox1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:fontFamily="@font/francois_one"
             android:gravity="center"
             android:text="@string/no_athlete_registered"
@@ -64,7 +63,6 @@
             android:id="@+id/textViewListClientReady"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/francois_one"
             android:gravity="center"
@@ -82,8 +80,7 @@
             android:id="@+id/recycleViewListClient"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:maxHeight="300dp"
+            android:layout_marginBottom="48dp"
             android:scrollbarThumbVertical="@drawable/custom_thumb_scrollbar"
             android:scrollbarTrackVertical="@drawable/custom_track_scrollbar"
             android:scrollbars="vertical"
@@ -91,6 +88,7 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@id/fabRefreshListClient"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_max="300dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewListClientReady" />
 

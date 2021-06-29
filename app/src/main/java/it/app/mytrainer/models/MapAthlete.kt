@@ -92,10 +92,6 @@ class MapAthlete {
             hashMapAthlete.remove("Surname")
         }
 
-        fun removeDate() {
-            hashMapAthlete.remove("BirthDate")
-        }
-
         //Creation the method to remove the element from the hashmap (Second Fragment)
         fun removeHeight() {
             hashMapAthlete.remove("Height")
