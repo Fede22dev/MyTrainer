@@ -16,6 +16,10 @@ import it.app.mytrainer.ui.activities.starter.ActivityLogin
 import it.app.mytrainer.ui.adapter.TrainerRegistrationPageAdapter
 import kotlinx.android.synthetic.main.activity_registration_trainer.*
 
+/**
+ * Class to manage the registration of trainers
+ */
+
 class ActivityRegistrationTrainer : AppCompatActivity() {
 
     private lateinit var tabsName: Array<String>
@@ -25,7 +29,7 @@ class ActivityRegistrationTrainer : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration_trainer)
 
-        //Setting the name
+        //Setting the name of tabs
         tabsName = arrayOf(
             getString(R.string.frag_1_registration_trainer_name),
             getString(R.string.frag_2_registration_trainer_name)
@@ -59,7 +63,7 @@ class ActivityRegistrationTrainer : AppCompatActivity() {
         }
     }
 
-    //Adjust the back press button
+    //Adjust the back press button, to avoid an eventual crash
     override fun onBackPressed() {
         if (viewPagerTrainer.currentItem == 0) {
             //Delete all trace and go to login

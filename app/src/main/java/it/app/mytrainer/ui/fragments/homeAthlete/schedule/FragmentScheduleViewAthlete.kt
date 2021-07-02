@@ -9,11 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import it.app.mytrainer.R
+import it.app.mytrainer.models.ObjExercise
 import kotlinx.android.synthetic.main.fragment_schedule_view_athlete.*
-import java.util.*
 
 class FragmentScheduleViewAthlete(
-    private val exercise: ArrayList<String>,
+    private val exercise: ObjExercise,
     private val position: Int,
 ) : Fragment() {
 
@@ -33,13 +33,13 @@ class FragmentScheduleViewAthlete(
         super.onViewCreated(view, savedInstanceState)
 
         textViewNumExercises.text = "${getString(R.string.exercise)} ${position + 1}"
-        textViewNameExercise.text = exercise[0]
-        textViewSeriesAthlete.text = exercise[1]
+        textViewNameExercise.text = exercise.nameExercise
+        textViewSeriesAthlete.text = "${exercise.numSeries} X ${exercise.numReps}"
 
-        val recoveryTimeMin = exercise[2].toInt() / 60 % 60
+        val recoveryTimeMin = exercise.recovery!! / 60 % 60
         textViewRecoveryTimeMinutes.text = recoveryTimeMin.toString()
 
-        val recoveryTimeSec = exercise[2].toInt() % 60
+        val recoveryTimeSec = exercise.recovery!! % 60
         if (recoveryTimeSec < 10) {
             textViewRecoveryTimeSeconds.text = "0$recoveryTimeSec"
         } else {
@@ -51,7 +51,7 @@ class FragmentScheduleViewAthlete(
 
             var turn = 0
 
-            timerCountDown = object : CountDownTimer(exercise[2].toLong() * 1000, 1000) {
+            timerCountDown = object : CountDownTimer(exercise.recovery!!.toLong() * 1000, 1000) {
                 override fun onTick(millisUntilFinished: Long) {
                     textViewMinSecSeparator.text = ":"
                     textViewRecoveryTimeSeconds.visibility = View.VISIBLE

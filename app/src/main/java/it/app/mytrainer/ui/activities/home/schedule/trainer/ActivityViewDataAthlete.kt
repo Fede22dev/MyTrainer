@@ -1,10 +1,13 @@
 package it.app.mytrainer.ui.activities.home.schedule.trainer
 
 import android.content.Intent
+import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -24,10 +27,13 @@ class ActivityViewDataAthlete : AppCompatActivity() {
     private val currentUserId = FireAuth.getCurrentUserAuth()?.uid!!
     private val listVisualDay = ArrayList<String>()
     private lateinit var adapter: RecycleViewScheduleAthlete
+    private var prefs: SharedPreferences? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_data_athlete)
+
+        prefs = getSharedPreferences("it.app.mytrainer", MODE_PRIVATE)
 
         athlete = intent.getSerializableExtra("Athlete") as ObjAthlete
 
@@ -48,11 +54,11 @@ class ActivityViewDataAthlete : AppCompatActivity() {
         athlete.equipment.forEach { equip ->
             when (equip) {
 
-                "Dumbells", "Manubri" -> {
+                "Dumbbells", "Manubri" -> {
                     checkbox1ViewDataAthlete.isChecked = true
                 }
 
-                "Rope", "Corde" -> {
+                "Ropes", "Corde" -> {
                     checkbox2ViewDataAthlete.isChecked = true
                 }
 
@@ -60,7 +66,7 @@ class ActivityViewDataAthlete : AppCompatActivity() {
                     checkbox3ViewDataAthlete.isChecked = true
                 }
 
-                "Benches", "Panca" -> {
+                "Bench", "Panca" -> {
                     checkbox4ViewDataAthlete.isChecked = true
                 }
 
@@ -88,7 +94,8 @@ class ActivityViewDataAthlete : AppCompatActivity() {
             listOfDays.forEach { day ->
                 listVisualDay.add(day)
             }
-            adapter = RecycleViewScheduleAthlete(this, listVisualDay)
+            adapter =
+                RecycleViewScheduleAthlete(this, listVisualDay, currentUserId, athlete.idAthlete)
             recyclerViewScheduleViewDataAthlete.adapter = adapter
         }
     }
@@ -135,6 +142,7 @@ class ActivityViewDataAthlete : AppCompatActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     override fun onResume() {
         super.onResume()
         thread {
@@ -146,6 +154,34 @@ class ActivityViewDataAthlete : AppCompatActivity() {
                 }
                 adapter.notifyDataSetChanged()
             }
+        }
+
+        if (prefs!!.getBoolean("FirstRunViewDataAthlete", true)
+        ) {
+            scrollViewViewDataAthlete.fullScroll(View.FOCUS_DOWN)
+            /*GuideView.Builder(this)
+                .setTitle(getString(R.string.viewcase_title_search_exercise_filter))
+                .setContentText(getString(R.string.viewcase_text_search_exercise_filter))
+                .setTargetView(recyclerViewScheduleViewDataAthlete)
+                .setDismissType(DismissType.outside)
+                .setGuideListener {
+
+                    GuideView.Builder(this)
+                        .setTitle(getString(R.string.viewcase_titlekeyboard_search_exercise_filter))
+                        .setContentText(getString(R.string.viewcase_textkeyboard_search_exercise_filter))
+                        .setTitleTextSize(16)
+                        .setContentTextSize(14)
+                        .setTargetView(fabAddScheduleViewDataAthlete)
+                        .setDismissType(DismissType.outside)
+                        .setGuideListener {
+                           // prefs!!.edit().putBoolean("FirstRunViewDataAthlete", false).apply()
+                        }
+                        .build()
+                        .show()
+
+                }
+                .build()
+                .show()*/
         }
     }
 

@@ -140,5 +140,36 @@
     <string name="no_filter">No filter</string>
     <string name="search_exercises_bar">Search exercises</string>
     <string name="no_connection">NO INTERNET CONNECTION, RETRY LATER</string>
-    <string name="id_trainer_mismatch">The operation are not enabled, another trainer is following this athlete!</string>
+    <string name="id_trainer_mismatch">The operations are not enabled, another trainer is following this athlete!</string>
+    <string name="dialog_cancel_day_schedule">Are you sure to delete this day? This operation is not reversible!</string>
+    <string name="title_cancel_day_schedule">Delete schedule day</string>
+    <string name="succesfully_day_remove">has been removed!</string>
+    <string name="viewcase_title_search_exercise_filter">Filter</string>
+    <string name="viewcase_text_search_exercise_filter">Type here to use filter.\\nEnjoy!</string>
+    <string name="viewcase_titlekeyboard_search_exercise_filter">Keyboard filter</string>
+    <string name="viewcase_textkeyboard_search_exercise_filter">Type here to filter in base of exercise name!</string>
+    <string name="viewcase_title_fab_fragment_list_client">Refresh button</string>
+    <string name="viewcase_text_fab_fragment_list_client">Press here to refresh the list!</string>
+    <string name="viewcase_title_recycle_fragment_list_client">List submitted client</string>
+    <string name="viewcase_text_recycle_fragment_list_client">Click on the athlete to see all his info!</string>
+    <string name="viewcase_title_fab_fragment_creation_exercises">Search button</string>
+    <string name="viewcase_text_fab_fragment_creation_exercise">Use this button to search between over 100 exercise!</string>
+    <string name="viewcase_text_save_activity_creation_schedule">Use that button to save this day and add it to the schedule!</string>
+    <string name="viewcase_title_save_activity_creation_schedule">Save button</string>
+    <string name="viewcase_title_fab_delete_activity_creation_schedule">Delete button</string>
+    <string name="viewcase_title_fab_add_activity_creation_schedule">Add button</string>
+    <string name="viewcase_text_fab_add_activity_creation_schedule">Use this button to add another exercise to this day!</string>
+    <string name="viewcase_title_menu_activity_home_trainer" translatable="false">Menu</string>
+    <string name="viewcase_text_menu_activity_home_trainer">Press on this menu to manage the log-out and the delete of the account</string>
+    <string name="viewcase_title_recycle_fragment_schedule_athlete">Schedule</string>
+    <string name="viewcase_text_recycle_fragment_schedule_athlete">When a trainer create a schedule for you it will appear here!\nClick on the day to see it!</string>
+    <string name="viewcase_title_fab_refresh_fragment_schedule_athlete">Refresh button</string>
+    <string name="viewcase_text_fab_refresh_fragment_schedule_athlete">Press to refresh the list of days or to see if there available schedule!</string>
+    <string name="view_case_title_button_camera">Camera button</string>
+    <string name="view_case_text_button_camera">Click here to take a picture of yourself!</string>
+    <string name="view_case_title_button_gallery">Gallery button</string>
+    <string name="view_case_text_button_gallery">Click here to bring a picture of yourself from the gallery!</string>
+    <string name="view_case_title_fab_edit">Edit button</string>
+    <string name="view_case_text_fab_edit">Use this button to edit the editable fields!</string>
+    <string name="viewcase_text_fab_delete_activity_creation_schedule">Here will appear a delete button from the second exercise\nuse it to delete the exercise!</string>
 </resources>

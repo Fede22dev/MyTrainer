@@ -3,7 +3,9 @@ package it.app.mytrainer.ui.fragments.homeAthlete
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -32,6 +34,8 @@ import it.app.mytrainer.firebase.storage.Storage
 import it.app.mytrainer.utils.CheckRegistrationFieldAthlete
 import kotlinx.android.synthetic.main.fragment_profile_athlete.*
 import kotlinx.android.synthetic.main.fragment_profile_athlete.view.*
+import smartdevelop.ir.eram.showcaseviewlib.GuideView
+import smartdevelop.ir.eram.showcaseviewlib.config.DismissType
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.text.SimpleDateFormat
@@ -48,12 +52,15 @@ class FragmentProfileAthlete : Fragment() {
     private val fireStore = FireStore()
     private var setForCheckBox = mutableSetOf<String>()
     private lateinit var currentPhotoPath: String
+    private var prefs: SharedPreferences? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
         // Inflate the layout for this fragment
+        prefs = requireContext().getSharedPreferences("it.app.mytrainer", MODE_PRIVATE)
+
         val view = inflater.inflate(R.layout.fragment_profile_athlete, container, false)
 
         //Loading the photo
@@ -561,4 +568,42 @@ class FragmentProfileAthlete : Fragment() {
             insertField()
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        if (prefs!!.getBoolean("FirstRunFragmentProfileAthlete", true)
+        ) {
+            GuideView.Builder(requireContext())
+                .setTitle(getString(R.string.view_case_title_button_camera))
+                .setContentText(getString(R.string.view_case_text_button_camera))
+                .setTargetView(buttonCameraAthlete)
+                .setDismissType(DismissType.outside)
+                .setGuideListener {
+
+                    GuideView.Builder(requireContext())
+                        .setTitle(getString(R.string.view_case_title_button_gallery))
+                        .setContentText(getString(R.string.view_case_text_button_gallery))
+                        .setTargetView(buttonGalleryAthlete)
+                        .setDismissType(DismissType.outside)
+                        .setGuideListener {
+
+                            GuideView.Builder(requireContext())
+                                .setTitle(getString(R.string.view_case_title_fab_edit))
+                                .setContentText(getString(R.string.view_case_text_fab_edit))
+                                .setTargetView(floatingActionButtonEditProfileAthlete)
+                                .setDismissType(DismissType.outside)
+                                .setGuideListener {
+                                    // prefs!!.edit().putBoolean("FirstRunFragmentProfileAthlete", false).apply()
+                                }
+                                .build()
+                                .show()
+                        }
+                        .build()
+                        .show()
+                }
+                .build()
+                .show()
+        }
+    }
+
 }

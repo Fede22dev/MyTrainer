@@ -3,7 +3,12 @@ package it.app.mytrainer.models
 import android.util.Log
 import it.app.mytrainer.firebase.fireauth.FireAuth
 
+/**
+ * Class used to manipulate the map for athletes
+ */
+
 class MapAthlete {
+
     companion object {
 
         private const val TAG = "HASH_MAP_ATHLETE"
@@ -127,7 +132,7 @@ class MapAthlete {
             hashMapAthlete.clear()
         }
 
-        //Check if all the required field is fill
+        //Check if all the required field has been filled
         fun hashMapReadyToSave(): Boolean {
             var numFieldRequired = 0
             arrayKey.forEach { str ->
@@ -138,6 +143,7 @@ class MapAthlete {
             return numFieldRequired == 12
         }
 
+        //Utilities for the creation of the schedule
         fun addFields() {
             hashMapAthlete["AthleteId"] = FireAuth.getCurrentUserAuth()!!.uid
             hashMapAthlete["Schedule"] = ""

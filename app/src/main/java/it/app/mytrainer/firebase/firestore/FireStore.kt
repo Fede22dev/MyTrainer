@@ -6,6 +6,11 @@ import com.google.firebase.ktx.Firebase
 import it.app.mytrainer.firebase.storage.Storage
 import it.app.mytrainer.models.*
 
+/**
+ * In this class we implement all the method that we
+ * use to interface us on fireStore
+ */
+
 class FireStore {
 
     private val db = Firebase.firestore
@@ -14,40 +19,45 @@ class FireStore {
     private val COLLECTIONTRAINER = "Trainers"
     private val COLLECTIONEXERCISES = "Exercises"
 
-    //UTILITIES
+    //Fun to find the type of user. if is an athlete we send back "1"
+    //if is a trainer "0"
     fun findType(currentUserId: String, callback: (Int) -> Unit) {
         db.collection(COLLECTIONATHLETE).document(currentUserId).get()
             .addOnSuccessListener { documentAthlete ->
+                //First we bring athlete document and we check here
                 if (documentAthlete.data != null) {
-                    //Find the user athlete
+                    //Find the user, athlete
                     Log.d(TAG, "Find the user, it's an athlete: ${documentAthlete.data}")
                     callback(1)
                 } else {
+                    //If there's no match with athlete doc, we check in trainer doc
                     db.collection(COLLECTIONTRAINER).document(currentUserId).get()
                         .addOnSuccessListener { documentTrainer ->
                             if (documentTrainer.data != null) {
-                                //Find the user athlete
+                                //Find the user, trainer
                                 Log.d(TAG, "Find the user, it's a trainer: ${documentTrainer.data}")
                                 callback(0)
                             } else {
-                                //User not found, doesn't match to auth
+                                //User not found, it means that the user is not registered yet
                                 Log.d(TAG, "User not found")
                                 callback(-1)
                             }
-                        }
+                        }//In case of failed connection
                         .addOnFailureListener { e ->
                             Log.w(TAG, "Failed connection", e)
                             callback(-1)
                         }
                 }
-            }
+            }//In case of failed connection
             .addOnFailureListener { e ->
                 Log.w(TAG, "Failed connection", e)
                 callback(-1)
             }
     }
 
-    //FUN FOR THE PROFILE OF THE TRAINER
+    //FUN USED FOR USER TRAINER
+
+    //Fun used to save the trainer on firestore
     fun saveTrainer(documentId: String, callback: (Boolean) -> Unit) {
         db.collection(COLLECTIONTRAINER).document(documentId).set(MapTrainer.getHashMap())
             .addOnSuccessListener {
@@ -60,6 +70,7 @@ class FireStore {
             }
     }
 
+    //Getting the document of the searched trainer
     fun getTrainer(currentUserId: String, callback: (Map<String, Any>?) -> Unit) {
         db.collection(COLLECTIONTRAINER).document(currentUserId).get()
             .addOnSuccessListener { document ->
@@ -71,25 +82,29 @@ class FireStore {
             }
     }
 
+    //Fun used in profile trainer, for the eventual changes.
     fun updateTrainer(currentUserId: String, gym: String, specialization: String) {
         db.collection(COLLECTIONTRAINER).document(currentUserId).update("Gym", gym)
         db.collection(COLLECTIONTRAINER).document(currentUserId)
             .update("Specialization", specialization)
     }
 
+    //Adding a day on the schedule
     @Suppress("UNCHECKED_CAST")
     fun updateSchedule(athleteId: String, trainerId: String, dayOfWo: ObjDayOfWo) {
         getAthlete(athleteId) { athlete ->
             val schedule = athlete?.get("Schedule")
 
             if (schedule != "") {
+                //If is not the first day insert, we just concatenate the new
+                //day to the old one
                 schedule as HashMap<String, ArrayList<Any>>
                 schedule["listOfDays"]?.add(dayOfWo)
 
                 db.collection(COLLECTIONATHLETE).document(athleteId).update("Schedule", schedule)
 
             } else {
-
+                //If is the first time we add the day and insert the id trainer in athlete document
                 val firstWrite = ObjSchedule(ArrayList())
                 firstWrite.listOfDays.add(dayOfWo)
 
@@ -99,6 +114,7 @@ class FireStore {
         }
     }
 
+    //Fun to avoid that one trainer will override/delete schedule not created  by him
     fun checkIdTrainer(athleteId: String, trainerId: String, callback: (Boolean) -> Unit) {
         getAthlete(athleteId) { athlete ->
             val schedule = athlete?.get("Schedule")
@@ -117,7 +133,7 @@ class FireStore {
         }
     }
 
-    //FUN FOR THE OPTION IN THE MENU
+    //Fun in the option menu, for the delete on fireStore
     fun deleteTrainer(currentUserId: String) {
         db.collection(COLLECTIONTRAINER).document(currentUserId).delete()
             .addOnSuccessListener {
@@ -128,7 +144,9 @@ class FireStore {
             }
     }
 
-    //FUN FOR THE PROFILE OF THE ATHLETE
+    //FUN USED FOR USER ATHLETE
+
+    ////Fun used to save the trainer on firestore
     fun saveAthlete(documentId: String, callback: (Boolean) -> Unit) {
         db.collection(COLLECTIONATHLETE).document(documentId).set(MapAthlete.getHashMap())
             .addOnSuccessListener {
@@ -141,6 +159,7 @@ class FireStore {
             }
     }
 
+    //Getting the document of the searched trainer
     fun getAthlete(currentUserId: String, callback: (Map<String, Any>?) -> Unit) {
         db.collection(COLLECTIONATHLETE).document(currentUserId).get()
             .addOnSuccessListener { document ->
@@ -152,6 +171,7 @@ class FireStore {
             }
     }
 
+    //Fun used in profile trainer, for the eventual changes.
     fun updateAthlete(
         currentUserId: String,
         height: String,
@@ -171,7 +191,7 @@ class FireStore {
         db.collection(COLLECTIONATHLETE).document(currentUserId).update("Equipment", listCheckBox)
     }
 
-    //FUN FOR THE OPTION IN THE MENU
+    //Fun in the option menu, for the delete on fireStore
     fun deleteAthlete(currentUserId: String) {
         db.collection(COLLECTIONATHLETE).document(currentUserId).delete()
             .addOnSuccessListener {
@@ -195,7 +215,10 @@ class FireStore {
                     Log.d(TAG, "${document.id} => ${document.data}")
                     val doc = document.data
                     athleteId = doc["AthleteId"].toString()
+
                     Storage.getPhotoUrl(athleteId) { uri ->
+
+                        athleteId = doc["AthleteId"].toString()
 
                         var url = ""
                         if (uri != null) {
@@ -226,11 +249,51 @@ class FireStore {
             }
     }
 
+    //Fun for the delete of the day in the scheduleViewAthlete
+    @Suppress("UNCHECKED_CAST")
+    fun deleteDaySchedule(
+        trainerId: String,
+        athleteId: String,
+        nameOfDay: String,
+        callback: (Boolean) -> Unit,
+    ) {
+        checkIdTrainer(athleteId, trainerId) { result ->
+            var posToRemove = -1
+            if (result) {
+                getAthlete(athleteId) { mapAthlete ->
+                    val schedule = mapAthlete?.get("Schedule")
+                    //If is not the first day insert, we just concatenate the new
+                    //day to the old one
+                    schedule as HashMap<String, ArrayList<HashMap<String, Any>>>
+                    schedule["listOfDays"]!!.forEach { hashMapDay ->
+                        if (hashMapDay["nameOfDay"] == nameOfDay) {
+                            posToRemove = schedule["listOfDays"]!!.indexOf(hashMapDay)
+                        }
+                    }
+
+                    if (posToRemove != -1) {
+                        schedule["listOfDays"]!!.removeAt(posToRemove)
+
+                        db.collection(COLLECTIONATHLETE).document(athleteId)
+                            .update("Schedule", schedule)
+
+                        callback(true)
+                    } else {
+                        callback(false)
+                    }
+                }
+            } else {
+                callback(false)
+            }
+        }
+    }
+
+    //Getting the name of the day to fill the recycle in athlete side
     @Suppress("UNCHECKED_CAST")
     fun getNameDayScheduleAthlete(athleteId: String, callback: (ArrayList<String>) -> Unit) {
         getAthlete(athleteId) { athlete ->
             val schedule = athlete?.get("Schedule")
-
+            //Declaring the list that is gonna be fill with the days
             val listOfDays = ArrayList<String>()
 
             if (schedule != "") {
@@ -240,12 +303,55 @@ class FireStore {
                     callback(listOfDays)
                 }
             } else {
-                listOfDays.add("")
                 callback(listOfDays)
             }
         }
     }
 
+    //Getting the exercise from fireStore, to fill the field of
+    //the single exercise
+    @Suppress("UNCHECKED_CAST")
+    fun getScheduleExercise(
+        athleteId: String,
+        typeOfWo: String,
+        callback: (ArrayList<ObjExercise>) -> Unit,
+    ) {
+        getAthlete(athleteId) { athlete ->
+            val schedule = athlete?.get("Schedule")
+
+            val listOfExercises = ArrayList<ObjExercise>()
+
+            //This is the external map
+            schedule as HashMap<String, ArrayList<HashMap<String, Any>>>
+
+            //Getting the array called "listOfDays" on firestore
+            schedule["listOfDays"]?.forEach { mapDay ->
+
+                //Looking for the right day, on the map inside listOfDays
+                if (mapDay["nameOfDay"]?.equals(typeOfWo) == true) {
+
+                    //Getting the array containing all the map with the exercise
+                    val dayMap = mapDay["listOfExercise"]
+                    dayMap as ArrayList<HashMap<String, Any>>
+                    dayMap.forEach { arrayExercise ->
+                        //Adding map by map
+                        listOfExercises.add(
+                            ObjExercise(
+                                arrayExercise["nameExercise"].toString(),
+                                arrayExercise["numSeries"].toString(),
+                                arrayExercise["numReps"].toString(),
+                                arrayExercise["recovery"].toString().toInt()
+                            )
+                        )
+                        callback(listOfExercises)
+                    }
+                }
+            }
+        }
+    }
+
+    //Fun used to fill the list of the available exercise. It could be modified.
+    //to activate this method you have to remove comments in ActivitySearchExercise, line 40
     fun createListExerciseIta() {
         val listExercises = arrayListOf(
             ObjSearchExercise("Petto", "cavi alti"),
@@ -261,15 +367,15 @@ class FireStore {
             ObjSearchExercise("Petto", "panca inclinata"),
             ObjSearchExercise("Petto", "pectoral machine"),
             ObjSearchExercise("Petto", "croci TRX"),
-            ObjSearchExercise("Petto", "flessioni"),
+            ObjSearchExercise("Petto", "piegamenti"),
             ObjSearchExercise("Petto", "dips (Petto)"),
             ObjSearchExercise("Petto", "pullover"),
             ObjSearchExercise("Petto", "dips anelli (Petto)"),
-            ObjSearchExercise("Petto", "flessioni diamond (Petto)"),
+            ObjSearchExercise("Petto", "piegamenti diamond (Petto)"),
             ObjSearchExercise("Petto", "panca declinata manubri"),
             ObjSearchExercise("Petto", "panca declinata bilanciere"),
-            ObjSearchExercise("Petto", ""),
-            ObjSearchExercise("Petto", ""),
+            ObjSearchExercise("Petto", "piegamenti TRX"),
+            ObjSearchExercise("Petto", "panca piana isometrica"),
 
             ObjSearchExercise("Gambe", "squat"),
             ObjSearchExercise("Gambe", "leg extensions"),
@@ -294,9 +400,9 @@ class FireStore {
             ObjSearchExercise("Gambe", "adduttori elastico"),
             ObjSearchExercise("Gambe", "squat frontale"),
             ObjSearchExercise("Gambe", "jump squat (Gambe)"),
-            ObjSearchExercise("Gambe", ""),
-            ObjSearchExercise("Gambe", ""),
-            ObjSearchExercise("Gambe", ""),
+            ObjSearchExercise("Gambe", "squat isometrico"),
+            ObjSearchExercise("Gambe", "farmer walk"),
+            ObjSearchExercise("Gambe", "squat statico"),
 
             ObjSearchExercise("Bicipiti", "curl manubri"),
             ObjSearchExercise("Bicipiti", "curl bilanciere"),
@@ -312,9 +418,9 @@ class FireStore {
             ObjSearchExercise("Bicipiti", "zottman Curl"),
             ObjSearchExercise("Bicipiti", "curl bilanciere ez"),
             ObjSearchExercise("Bicipiti", "curl TRX"),
-            ObjSearchExercise("Bicipiti", ""),
-            ObjSearchExercise("Bicipiti", ""),
-            ObjSearchExercise("Bicipiti", ""),
+            ObjSearchExercise("Bicipiti", "curl alternato"),
+            ObjSearchExercise("Bicipiti", "chin-up"),
+            ObjSearchExercise("Bicipiti", "chin-up isometrico"),
 
             ObjSearchExercise("Dorso", "stacchi regular"),
             ObjSearchExercise("Dorso", "stacchi sumo"),
@@ -345,13 +451,12 @@ class FireStore {
             ObjSearchExercise("Tricipiti", "tricipiti cavi con corda"),
             ObjSearchExercise("Tricipiti", "tricipiti TRX"),
             ObjSearchExercise("Tricipiti", "dips (Tricipiti)"),
-            ObjSearchExercise("Tricipiti", "flessioni diamonds"),
+            ObjSearchExercise("Tricipiti", "piegamenti diamonds"),
             ObjSearchExercise("Tricipiti", "tricipiti alla panca"),
             ObjSearchExercise("Tricipiti", "press manubri"),
-            ObjSearchExercise("Tricipiti", "flessioni tiger (Tricipiti)"),
+            ObjSearchExercise("Tricipiti", "piegamenti tiger (Tricipiti)"),
             ObjSearchExercise("Tricipiti", "french press manubri"),
-            ObjSearchExercise("Tricipiti", "flessioni diamond rialzo (Tricipiti)"),
-            ObjSearchExercise("Tricipiti", ""),
+            ObjSearchExercise("Tricipiti", "piegamenti diamond rialzo (Tricipiti)"),
 
             ObjSearchExercise("Spalle", "alzate laterali"),
             ObjSearchExercise("Spalle", "alzate frontali"),
@@ -367,8 +472,8 @@ class FireStore {
             ObjSearchExercise("Spalle", "alzate frontali elastici"),
             ObjSearchExercise("Spalle", "alzate laterali elastici"),
             ObjSearchExercise("Spalle", "pressa spalle macchinario"),
-            ObjSearchExercise("Spalle", ""),
-            ObjSearchExercise("Spalle", ""),
+            ObjSearchExercise("Spalle", "military press manubri"),
+            ObjSearchExercise("Spalle", "military press isometrico"),
 
             ObjSearchExercise("Polpacci", "polpacci su disco"),
             ObjSearchExercise("Polpacci", "calf machine"),
@@ -376,8 +481,7 @@ class FireStore {
             ObjSearchExercise("Polpacci", "jump squat (Polpacci)"),
             ObjSearchExercise("Polpacci", "alzate in punta di piedi bilanciere"),
             ObjSearchExercise("Polpacci", "alzate in punta di piedi manubri"),
-            ObjSearchExercise("Polpacci", ""),
-            ObjSearchExercise("Polpacci", ""),
+
 
             ObjSearchExercise("Addominali", "crunch"),
             ObjSearchExercise("Addominali", "bicicletta (Addominali)"),
@@ -402,10 +506,13 @@ class FireStore {
             ObjSearchExercise("Cardio", "marcia"),
             ObjSearchExercise("Cardio", "skip"),
             ObjSearchExercise("Cardio", "corsa calciata"),
-            ObjSearchExercise("Cardio", ""),
-            ObjSearchExercise("Cardio", ""),
-            ObjSearchExercise("Cardio", ""),
-            ObjSearchExercise("Cardio", "")
+            ObjSearchExercise("Cardio", "suicidio"),
+            ObjSearchExercise("Cardio", "burpees"),
+            ObjSearchExercise("Cardio", "shadow boxe"),
+            ObjSearchExercise("Cardio", "jumping jacks"),
+            ObjSearchExercise("Cardio", "jab-diretto"),
+            ObjSearchExercise("Cardio", "gancio-montante"),
+            ObjSearchExercise("Cardio", "tiro al sacco")
         )
 
         db.collection(COLLECTIONEXERCISES).document("ITA")
@@ -419,6 +526,8 @@ class FireStore {
 
     }
 
+    //Fun used to fill the list of the available exercise. It could be modified.
+    //to activate this method you have to remove comments in ActivitySearchExercise, line 40
     fun createListExerciseEng() {
         val listExercises = arrayListOf(
             ObjSearchExercise("Chest", "high cables"),
@@ -441,8 +550,8 @@ class FireStore {
             ObjSearchExercise("Chest", "diamonds push-ups (Chest)"),
             ObjSearchExercise("Chest", "barbell decline bench"),
             ObjSearchExercise("Chest", "dumbbells decline bench"),
-            ObjSearchExercise("Chest", ""),
-            ObjSearchExercise("Chest", ""),
+            ObjSearchExercise("Chest", "push-up TRX"),
+            ObjSearchExercise("Chest", "isometric bench press barbell"),
 
             ObjSearchExercise("Legs", "squat"),
             ObjSearchExercise("Legs", "leg extensions"),
@@ -467,9 +576,9 @@ class FireStore {
             ObjSearchExercise("Legs", "abductors elastic"),
             ObjSearchExercise("Legs", "frontal squat"),
             ObjSearchExercise("Legs", "jump squat (Legs)"),
-            ObjSearchExercise("Legs", ""),
-            ObjSearchExercise("Legs", ""),
-            ObjSearchExercise("Legs", ""),
+            ObjSearchExercise("Legs", "isometric squat"),
+            ObjSearchExercise("Legs", "farmer walk"),
+            ObjSearchExercise("Legs", "static squat"),
 
             ObjSearchExercise("Biceps", "curl barbell"),
             ObjSearchExercise("Biceps", "curl dumbbells"),
@@ -484,10 +593,10 @@ class FireStore {
             ObjSearchExercise("Biceps", "curl bench 45"),
             ObjSearchExercise("Biceps", "zottman curl"),
             ObjSearchExercise("Biceps", "curl ez barbell"),
-            ObjSearchExercise("Biceps", "curl trx"),
-            ObjSearchExercise("Biceps", ""),
-            ObjSearchExercise("Biceps", ""),
-            ObjSearchExercise("Biceps", ""),
+            ObjSearchExercise("Biceps", "curl TRX"),
+            ObjSearchExercise("Biceps", "alternate curl"),
+            ObjSearchExercise("Biceps", "chin-up"),
+            ObjSearchExercise("Biceps", "isometric chin-up"),
 
             ObjSearchExercise("Back", "regular dead-lift"),
             ObjSearchExercise("Back", "sumo dead-lift"),
@@ -524,7 +633,6 @@ class FireStore {
             ObjSearchExercise("Triceps", "tiger push-ups (Triceps)"),
             ObjSearchExercise("Triceps", "french press dumbbells"),
             ObjSearchExercise("Triceps", "diamond raise push-ups (Triceps)"),
-            ObjSearchExercise("Triceps", ""),
 
             ObjSearchExercise("Shoulders", "lateral raises"),
             ObjSearchExercise("Shoulders", "front raises"),
@@ -540,8 +648,8 @@ class FireStore {
             ObjSearchExercise("Shoulders", "elastic front lifts"),
             ObjSearchExercise("Shoulders", "elastic side raises"),
             ObjSearchExercise("Shoulders", "machine shoulders press"),
-            ObjSearchExercise("Shoulders", ""),
-            ObjSearchExercise("Shoulders", ""),
+            ObjSearchExercise("Shoulders", "military press dumbbell"),
+            ObjSearchExercise("Shoulders", "isometric military press"),
 
             ObjSearchExercise("Calves", "calves on disc"),
             ObjSearchExercise("Calves", "calf machine"),
@@ -549,8 +657,6 @@ class FireStore {
             ObjSearchExercise("Calves", "jump squat (Calves)"),
             ObjSearchExercise("Calves", "tiptoe up the barbell"),
             ObjSearchExercise("Calves", "raise toe of dumbbells"),
-            ObjSearchExercise("Calves", ""),
-            ObjSearchExercise("Calves", ""),
 
             ObjSearchExercise("Abdominals", "crunch"),
             ObjSearchExercise("Abdominals", "bicycle (Abs)"),
@@ -575,10 +681,13 @@ class FireStore {
             ObjSearchExercise("Cardio", "march"),
             ObjSearchExercise("Cardio", "skip"),
             ObjSearchExercise("Cardio", "run kicked"),
-            ObjSearchExercise("Cardio", ""),
-            ObjSearchExercise("Cardio", ""),
-            ObjSearchExercise("Cardio", ""),
-            ObjSearchExercise("Cardio", "")
+            ObjSearchExercise("Cardio", "suicide"),
+            ObjSearchExercise("Cardio", "burpees"),
+            ObjSearchExercise("Cardio", "shadow boxe"),
+            ObjSearchExercise("Cardio", "jumping jacks"),
+            ObjSearchExercise("Cardio", "jab-direct"),
+            ObjSearchExercise("Cardio", "hook-upper"),
+            ObjSearchExercise("Cardio", "bag shooting")
         )
 
         db.collection(COLLECTIONEXERCISES).document("ENG")
@@ -591,12 +700,14 @@ class FireStore {
             }
     }
 
+    //Downloading the exercise from firestore
     @Suppress("UNCHECKED_CAST")
     fun downloadAvailableExerciseEng(callback: (ArrayList<ObjSearchExercise>) -> Unit) {
         db.collection(COLLECTIONEXERCISES).document("ENG").get()
             .addOnSuccessListener { document ->
                 Log.d(TAG, "Downloading document exercises: success")
-                val doc = document.data?.get("ListExercises") as ArrayList<HashMap<String, String>>
+                val doc =
+                    document.data?.get("ListExercises") as ArrayList<HashMap<String, String>>
                 val listExercise = ArrayList<ObjSearchExercise>()
 
                 doc.forEach { exercise ->
@@ -616,23 +727,22 @@ class FireStore {
             }
     }
 
+    //Downloading the exercise from firestore
     @Suppress("UNCHECKED_CAST")
     fun downloadAvailableExerciseIta(callback: (ArrayList<ObjSearchExercise>) -> Unit) {
         db.collection(COLLECTIONEXERCISES).document("ITA").get()
             .addOnSuccessListener { document ->
                 Log.d(TAG, "Downloading document exercises: success")
-                val doc = document.data?.get("ListaEsercizi") as ArrayList<HashMap<String, String>>
+
+                val doc =
+                    document.data?.get("ListaEsercizi") as ArrayList<HashMap<String, String>>
+
                 val listExercise = ArrayList<ObjSearchExercise>()
 
                 doc.forEach { exercise ->
-                    exercise.forEach { (key, value /*value -> muscle,name*/) ->
-                        if (key == "muscle") {
-                            listExercise.add(ObjSearchExercise(value, null))
-                        } else {
-                            listExercise[listExercise.size - 1].nameExercise = value
-                        }
-                        callback(listExercise)
-                    }
+                    listExercise.add(ObjSearchExercise(exercise["muscle"],
+                        exercise["nameExercise"]))
+                    callback(listExercise)
                 }
             }
             .addOnFailureListener { e ->

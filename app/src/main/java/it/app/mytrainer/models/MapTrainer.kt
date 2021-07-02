@@ -2,7 +2,12 @@ package it.app.mytrainer.models
 
 import android.util.Log
 
+/**
+ * Class used to manipulate the map for trainers
+ */
+
 class MapTrainer {
+
     companion object {
 
         private const val TAG = "HASH_MAP_TRAINER"
@@ -82,7 +87,7 @@ class MapTrainer {
             hashMapTrainer.clear()
         }
 
-        //Check if all the required field is fill
+        //Check if all the required field has been filled
         fun hashMapReadyToSave(): Boolean {
             var numFieldRequired = 0
             arrayKey.forEach { str ->

@@ -1,5 +1,6 @@
 package it.app.mytrainer.ui.activities.home.schedule.trainer
 
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,8 @@ import it.app.mytrainer.models.ObjSearchExercise
 import it.app.mytrainer.ui.adapter.RecycleListExerciseAdapter
 import kotlinx.android.synthetic.main.activity_search_exercise.*
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
+import smartdevelop.ir.eram.showcaseviewlib.GuideView
+import smartdevelop.ir.eram.showcaseviewlib.config.DismissType
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -20,11 +23,14 @@ class ActivitySearchExercise : AppCompatActivity() {
     private lateinit var listExerciseFiltered: ArrayList<ObjSearchExercise>
     private var currentItemMenuSelectedId: Int? = null
     private lateinit var fireStore: FireStore
-
+    private var prefs: SharedPreferences? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_exercise)
+
+        //Checking if is the first time that this activity has been opened
+        prefs = getSharedPreferences("it.app.mytrainer", MODE_PRIVATE)
 
         fireStore = FireStore()
         listExercise = ArrayList()
@@ -160,5 +166,35 @@ class ActivitySearchExercise : AppCompatActivity() {
                 .margin(0, 30)
                 .size(2)
                 .build())
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (prefs!!.getBoolean("FirstRunSearchExercise", true)
+        ) {
+            GuideView.Builder(this)
+                .setTitle(getString(R.string.viewcase_title_search_exercise_filter))
+                .setContentText(getString(R.string.viewcase_text_search_exercise_filter))
+                .setTargetView(topAppBarSearchExerciseBar)
+                .setDismissType(DismissType.outside)
+                .setGuideListener {
+
+                    GuideView.Builder(this)
+                        .setTitle(getString(R.string.viewcase_titlekeyboard_search_exercise_filter))
+                        .setContentText(getString(R.string.viewcase_textkeyboard_search_exercise_filter))
+                        .setTitleTextSize(16)
+                        .setContentTextSize(14)
+                        .setTargetView(searchField)
+                        .setDismissType(DismissType.outside)
+                        .setGuideListener {
+                            prefs!!.edit().putBoolean("FirstRunSearchExercise", false).apply()
+                        }
+                        .build()
+                        .show()
+
+                }
+                .build()
+                .show()
+        }
     }
 }

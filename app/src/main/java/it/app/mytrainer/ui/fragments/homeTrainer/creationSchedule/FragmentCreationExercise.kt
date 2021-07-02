@@ -3,11 +3,13 @@ package it.app.mytrainer.ui.fragments.homeTrainer.creationSchedule
 import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import it.app.mytrainer.R
@@ -15,8 +17,10 @@ import it.app.mytrainer.models.ObjExercise
 import it.app.mytrainer.ui.activities.home.schedule.trainer.ActivityCreationSchedule
 import it.app.mytrainer.ui.activities.home.schedule.trainer.ActivitySearchExercise
 import kotlinx.android.synthetic.main.fragment_creation_exercise.*
+import smartdevelop.ir.eram.showcaseviewlib.GuideView
+import smartdevelop.ir.eram.showcaseviewlib.config.DismissType
 
-class FragmentCreationExercise(private val position: Int, private val firstRun: Boolean) :
+class FragmentCreationExercise(private val position: Int) :
     Fragment() {
 
     private val TAG = "FRAGMENT_CREATION_EXERCISE"
@@ -24,11 +28,15 @@ class FragmentCreationExercise(private val position: Int, private val firstRun: 
     private var recovery = 0
     private var editMin = 0
     private var editSec = 0
+    private var prefs: SharedPreferences? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
+
+        prefs = requireActivity().getSharedPreferences("it.app.mytrainer",
+            AppCompatActivity.MODE_PRIVATE)
 
         exercise = ObjExercise(null, null, null, null)
 
@@ -93,8 +101,23 @@ class FragmentCreationExercise(private val position: Int, private val firstRun: 
             }
             exerciseManager()
         }
+    }
 
-
+    override fun onResume() {
+        super.onResume()
+        if (prefs!!.getBoolean("FirstRunFragmentCreationExercise", true)
+        ) {
+            GuideView.Builder(requireContext())
+                .setTitle(getString(R.string.viewcase_title_fab_fragment_creation_exercises))
+                .setContentText(getString(R.string.viewcase_text_fab_fragment_creation_exercise))
+                .setTargetView(fabSearchExerciseCreationExercise)
+                .setDismissType(DismissType.outside)
+                .setGuideListener {
+                    // prefs!!.edit().putBoolean("FirstRunFragmentCreationExercise", false).apply()
+                }
+                .build()
+                .show()
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

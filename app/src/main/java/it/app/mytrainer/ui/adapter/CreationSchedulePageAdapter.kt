@@ -7,12 +7,11 @@ import it.app.mytrainer.ui.fragments.homeTrainer.creationSchedule.FragmentCreati
 
 class CreationSchedulePageAdapter(
     fa: FragmentActivity,
-    private val firstRun: Boolean?,
     private val exerciseCount: Int,
 ) : FragmentStateAdapter(fa) {
 
     override fun createFragment(position: Int): Fragment {
-        return FragmentCreationExercise(position, firstRun!!)
+        return FragmentCreationExercise(position)
     }
 
     override fun getItemCount(): Int {

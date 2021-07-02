@@ -8,6 +8,13 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import it.app.mytrainer.firebase.firestore.FireStore
 
+/**
+ * In this class we're gonna implements
+ * all the method that we are to interface us
+ * on fireAuth and to redirect users in the right
+ * side of the app (athlete/trainer)
+ */
+
 class FireAuth {
 
     companion object {
@@ -15,6 +22,7 @@ class FireAuth {
         private val auth = Firebase.auth
         private const val TAG = "FIREAUTH"
 
+        //Getting the type, for the redirecting athlete/trainer already logged
         fun getCurrentUserType(callback: (Int) -> Unit) {
             val currentUser = auth.currentUser
             if (currentUser != null) {
@@ -36,7 +44,7 @@ class FireAuth {
                 auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            // Sign in success
+                            // Sign-in success
                             val currentUserId = auth.currentUser?.uid!!
                             Log.d(TAG, "SignInWithEmail: success")
 
@@ -58,6 +66,7 @@ class FireAuth {
             }
         }
 
+        //Creating the account on fireAuth
         fun createAccount(
             email: String,
             password: String,
@@ -67,22 +76,24 @@ class FireAuth {
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(activity) { task ->
                     if (task.isSuccessful) {
-                        // Sign in success
+                        // Creation on fireAuth success
                         val currentUserId = auth.currentUser?.uid.toString()
                         Log.d(TAG, "CreateUserWithEmail: success")
                         callback(true, currentUserId)
                     } else {
-                        // If sign in fails
+                        // If Creation on fireAuth fails
                         Log.w(TAG, "CreateUserWithEmail: failure", task.exception)
                         callback(false, "")
                     }
                 }
         }
 
+        //Used to enter in the app if user is already logged-in
         fun getCurrentUserAuth(): FirebaseUser? {
             return auth.currentUser
         }
 
+        //Deleting user from fireAuth
         fun deleteCurrentUser() {
             auth.currentUser?.delete()?.addOnSuccessListener {
                 Log.d(TAG, "Delete account: success")
@@ -95,6 +106,8 @@ class FireAuth {
             auth.signOut()
         }
 
+        //Used for reauth of user, before deleting of the account
+        //We used that to avoid the eventual fail delete from fireAuth
         fun userReauthenticate(password: String, callback: (Boolean) -> Unit) {
             if (password != "") {
                 val user = auth.currentUser!!

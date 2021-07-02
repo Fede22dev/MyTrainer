@@ -11,6 +11,11 @@ import it.app.mytrainer.ui.activities.starter.ActivityLogin
 import it.app.mytrainer.ui.adapter.UserChoiceRegistrationPageAdapter
 import kotlinx.android.synthetic.main.activity_user_choice.*
 
+/**
+ * Class to manage the choice above trainer/athlete
+ */
+
+
 class ActivityUserChoice : AppCompatActivity() {
 
     private lateinit var tabsName: Array<String>
@@ -19,7 +24,7 @@ class ActivityUserChoice : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_choice)
 
-        //Setting the name
+        //Setting the name of tabs
         tabsName = arrayOf(
             getString(R.string.tab_user_choice_athlete),
             getString(R.string.tab_user_choice_trainer)
@@ -32,7 +37,7 @@ class ActivityUserChoice : AppCompatActivity() {
         setViewPager()
     }
 
-    //Adjust the back press button
+    //Adjust the back press button, to avoid eventual crash
     override fun onBackPressed() {
         if (viewPagerUserChoice.currentItem == 0) {
             FireAuth.deleteCurrentUser()

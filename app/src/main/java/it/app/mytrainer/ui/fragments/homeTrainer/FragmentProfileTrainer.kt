@@ -3,7 +3,9 @@ package it.app.mytrainer.ui.fragments.homeTrainer
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -29,6 +31,8 @@ import it.app.mytrainer.firebase.firestore.FireStore
 import it.app.mytrainer.firebase.storage.Storage
 import kotlinx.android.synthetic.main.fragment_profile_trainer.*
 import kotlinx.android.synthetic.main.fragment_profile_trainer.view.*
+import smartdevelop.ir.eram.showcaseviewlib.GuideView
+import smartdevelop.ir.eram.showcaseviewlib.config.DismissType
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.text.SimpleDateFormat
@@ -43,11 +47,15 @@ class FragmentProfileTrainer : Fragment() {
     private val currentUserId = FireAuth.getCurrentUserAuth()?.uid!!
     private val fireStore = FireStore()
     private lateinit var currentPhotoPath: String
+    private var prefs: SharedPreferences? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
+
+        prefs = requireContext().getSharedPreferences("it.app.mytrainer", MODE_PRIVATE)
+
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_profile_trainer, container, false)
 
@@ -343,5 +351,42 @@ class FragmentProfileTrainer : Fragment() {
         val newSpec = autoTextViewDropMenuSpecializationProfileTrainer.text.toString()
 
         fireStore.updateTrainer(currentUserId, newGym, newSpec)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (prefs!!.getBoolean("FirstRunFragmentProfileTrainer", true)
+        ) {
+            GuideView.Builder(requireContext())
+                .setTitle(getString(R.string.view_case_title_button_camera))
+                .setContentText(getString(R.string.view_case_text_button_camera))
+                .setTargetView(buttonCameraTrainer)
+                .setDismissType(DismissType.outside)
+                .setGuideListener {
+
+                    GuideView.Builder(requireContext())
+                        .setTitle(getString(R.string.view_case_title_button_gallery))
+                        .setContentText(getString(R.string.view_case_text_button_gallery))
+                        .setTargetView(buttonGalleryTrainer)
+                        .setDismissType(DismissType.outside)
+                        .setGuideListener {
+
+                            GuideView.Builder(requireContext())
+                                .setTitle(getString(R.string.view_case_title_fab_edit))
+                                .setContentText(getString(R.string.view_case_text_fab_edit))
+                                .setTargetView(floatingActionButtonEditProfileTrainer)
+                                .setDismissType(DismissType.outside)
+                                .setGuideListener {
+                                    // prefs!!.edit().putBoolean("FirstRunFragmentProfileTrainer", false).apply()
+                                }
+                                .build()
+                                .show()
+                        }
+                        .build()
+                        .show()
+                }
+                .build()
+                .show()
+        }
     }
 }

@@ -3,11 +3,12 @@ package it.app.mytrainer.ui.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import it.app.mytrainer.models.ObjExercise
 import it.app.mytrainer.ui.fragments.homeAthlete.schedule.FragmentScheduleViewAthlete
 
 class ViewScheduleAthleteAdapter(
     fa: FragmentActivity,
-    private val listExercises: ArrayList<ArrayList<String>>,
+    private val listExercises: ArrayList<ObjExercise>,
 ) :
     FragmentStateAdapter(fa) {
 

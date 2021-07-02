@@ -5,6 +5,11 @@ import android.util.Log
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 
+/**
+ * In this class we implement all the method that we
+ * use to interface us on Storage
+ */
+
 class Storage {
 
     companion object {
@@ -37,6 +42,7 @@ class Storage {
                 }
         }
 
+        // Deleting the photo in the storage on firebase
         fun deletePhoto(userId: String) {
             storage.child(COLLECTIONPHOTOS).child(userId).delete()
                 .addOnSuccessListener {

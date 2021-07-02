@@ -14,10 +14,7 @@ class ActivityScheduleViewAthlete : AppCompatActivity() {
     private val TAG = "ACTIVITY_SCHEDULE_VIEW_ATHLETE"
     private lateinit var fireStore: FireStore
     private val currentUserId = FireAuth.getCurrentUserAuth()!!.uid
-    private lateinit var schedule: HashMap<*, *>
     private lateinit var choice: String
-    private var listOfExercises = ArrayList<ArrayList<String>>()
-    private var listOfExerciseInfo = ArrayList<String>()
 
     @Suppress("UNCHECKED_CAST")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,35 +24,14 @@ class ActivityScheduleViewAthlete : AppCompatActivity() {
         fireStore = FireStore()
         choice = intent.getStringExtra("TypeWO").toString()
 
-        fireStore.getAthlete(currentUserId) { map ->
-            schedule = map?.get("Schedule") as HashMap<*, *>
+        fireStore.getScheduleExercise(currentUserId, choice) { arrayExercise ->
 
-            schedule.forEach { (typeWo, exercises) ->
-                //Bringing the right type of wo
-                if (typeWo == choice) {
-                    exercises as HashMap<String, ArrayList<String>>
-
-                    //Starting to scroll the nested map (External level)
-                    exercises.forEach { (_, infoExercise) ->
-
-                        //Scrolling the nested array list with the info of whole ex
-                        infoExercise.forEach { info ->
-                            listOfExerciseInfo.add(info)
-                        }
-
-                        //Adding to the list which is going on the fragment the name and the info
-                        listOfExercises.add(listOfExerciseInfo.clone() as ArrayList<String>)
-                        listOfExerciseInfo.clear()
-                    }
-                }
-            }
-
-            Log.d(TAG, "$listOfExercises")
+            Log.d(TAG, "$arrayExercise")
 
             //Passing the list with all the info
             viewPagerScheduleAthlete.adapter =
-                ViewScheduleAthleteAdapter(this, listOfExercises)
-            viewPagerScheduleAthlete.offscreenPageLimit = listOfExercises.size
+                ViewScheduleAthleteAdapter(this, arrayExercise)
+            viewPagerScheduleAthlete.offscreenPageLimit = arrayExercise.size
 
             //Implementing the dot, scrolling over the fragment
             wormDotsIndicatorScheduleAthlete.setViewPager2(viewPagerScheduleAthlete)

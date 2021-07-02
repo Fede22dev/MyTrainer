@@ -2,6 +2,11 @@ package it.app.mytrainer.models
 
 import java.io.Serializable
 
+/**
+ * Class used to create the obj athlete, used
+ * to add athlete to fireStore
+ */
+
 data class ObjAthlete(
     val nameAthlete: String,
     val surnameAthlete: String,

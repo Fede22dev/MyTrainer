@@ -16,6 +16,10 @@ import it.app.mytrainer.ui.activities.starter.ActivityLogin
 import it.app.mytrainer.ui.adapter.AthleteRegistrationPageAdapter
 import kotlinx.android.synthetic.main.activity_registration_athlete.*
 
+/**
+ * Class to manage the registration of athletes
+ */
+
 class ActivityRegistrationAthlete : AppCompatActivity() {
 
     private lateinit var tabsName: Array<String>
@@ -25,7 +29,7 @@ class ActivityRegistrationAthlete : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration_athlete)
 
-        //Setting the name
+        //Setting the name of tabs
         tabsName = arrayOf(
             getString(R.string.frag_1_registration_athlete_name),
             getString(R.string.frag_2_registration_athlete_name),
@@ -60,7 +64,7 @@ class ActivityRegistrationAthlete : AppCompatActivity() {
         }
     }
 
-    //Adjust the back press button
+    //Adjust the back press button, to avoid an eventual crash
     override fun onBackPressed() {
         if (viewPagerAthlete.currentItem == 0) {
             //Delete all trace and go to login
@@ -156,6 +160,12 @@ class ActivityRegistrationAthlete : AppCompatActivity() {
                             getString(R.string.error_creation_user_auth),
                             Toast.LENGTH_LONG
                         ).show()
+                    } else {
+                        //Calling the finish we go back on the login activity, with the created account
+                        val intent = Intent(this, ActivityLogin::class.java)
+                        startActivity(intent)
+                        finish()
+                        MapAthlete.printHashMap()
                     }
                 }
 
@@ -163,11 +173,6 @@ class ActivityRegistrationAthlete : AppCompatActivity() {
                 errorCreateAccountNoFB()
             }
         }
-        //Calling the finish we go back on the login activity, with the created account
-        val intent = Intent(this, ActivityLogin::class.java)
-        startActivity(intent)
-        finish()
-        MapAthlete.printHashMap()
     }
 
     private fun errorCreateAccountNoFB() {
@@ -196,14 +201,19 @@ class ActivityRegistrationAthlete : AppCompatActivity() {
                         getString(R.string.error_creation_user_auth),
                         Toast.LENGTH_LONG
                     ).show()
+                } else {
+                    val intent = Intent(this, ActivityHomeAthlete::class.java)
+                    startActivity(intent)
+                    finish()
                 }
             }
+        } else {
+            val intent = Intent(this, ActivityHomeAthlete::class.java)
+            startActivity(intent)
+            finish()
         }
-
-        val intent = Intent(this, ActivityHomeAthlete::class.java)
-        startActivity(intent)
-        finish()
     }
+
 
     private fun hashMapNotReadyToSave() {
         Toast.makeText(

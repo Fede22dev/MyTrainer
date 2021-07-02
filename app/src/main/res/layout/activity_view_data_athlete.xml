@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayoutViewDataAthlete"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -29,6 +30,7 @@
 
     <!--DECLARATION OF THE SCROLL VIEW-->
     <ScrollView
+        android:id="@+id/scrollViewViewDataAthlete"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fadeScrollbars="false"
@@ -63,8 +65,8 @@
                     android:id="@+id/imageViewViewDataAthlete"
                     android:layout_width="135dp"
                     android:layout_height="135dp"
-                    android:scaleType="centerCrop"
                     android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/person_placeholder"
                     app:layout_constraintEnd_toStartOf="@id/linerLayoutViewDataAthlete"
                     app:layout_constraintStart_toStartOf="parent"

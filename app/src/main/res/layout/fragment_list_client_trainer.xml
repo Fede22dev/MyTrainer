@@ -80,15 +80,12 @@
             android:id="@+id/recycleViewListClient"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="48dp"
-            android:scrollbarThumbVertical="@drawable/custom_thumb_scrollbar"
-            android:scrollbarTrackVertical="@drawable/custom_track_scrollbar"
-            android:scrollbars="vertical"
+            android:layout_marginBottom="32dp"
             android:visibility="invisible"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@id/fabRefreshListClient"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_max="300dp"
+            app:layout_constraintHeight_max="262.5dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewListClientReady" />
 
