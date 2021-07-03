@@ -10,6 +10,7 @@ import it.app.mytrainer.R
 import it.app.mytrainer.models.MapTrainer
 import kotlinx.android.synthetic.main.fragment_extra_info_trainer.*
 import kotlinx.android.synthetic.main.fragment_extra_info_trainer.view.*
+import java.util.*
 
 class FragmentExtraInfoTrainer : Fragment() {
 
@@ -69,7 +70,7 @@ class FragmentExtraInfoTrainer : Fragment() {
         gymFieldTrainer.doOnTextChanged { text, _, _, _ ->
             if (text != null) {
                 if (text.isNotBlank()) {
-                    MapTrainer.putGym(text.toString().trim())
+                    MapTrainer.putGym(text.toString().trim().capitalize(Locale.ROOT))
                 } else {
                     MapTrainer.removeGym()
                 }

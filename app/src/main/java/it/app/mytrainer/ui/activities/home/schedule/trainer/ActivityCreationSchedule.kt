@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.snackbar.Snackbar
 import it.app.mytrainer.R
 import it.app.mytrainer.firebase.fireauth.FireAuth
 import it.app.mytrainer.firebase.firestore.FireStore
@@ -24,9 +26,11 @@ class ActivityCreationSchedule : AppCompatActivity() {
     private val currentUserId = FireAuth.getCurrentUserAuth()?.uid!!
     private lateinit var fireStore: FireStore
 
+
     companion object {
 
         private lateinit var dayOfWo: ObjDayOfWo
+        private var fieldOk = true
 
         fun addExercise(position: Int, exercise: ObjExercise) {
             dayOfWo.listOfExercise.add(position, exercise)
@@ -40,6 +44,10 @@ class ActivityCreationSchedule : AppCompatActivity() {
 
         fun getExercise(position: Int): ObjExercise? {
             return dayOfWo.listOfExercise[position]
+        }
+
+        fun setFieldOk(ok: Boolean) {
+            fieldOk = ok
         }
     }
 
@@ -114,12 +122,32 @@ class ActivityCreationSchedule : AppCompatActivity() {
 
         topAppBarCreationSchedule.setOnMenuItemClickListener {
             saveSchedule()
-            finish()
             true
         }
 
         topAppBarCreationSchedule.setNavigationOnClickListener {
             finish()
+        }
+    }
+
+    private fun saveSchedule() {
+        dayOfWo.listOfExercise.removeIf { obj -> obj == null }
+        if (dayOfWo.listOfExercise.isNotEmpty() && fieldOk) {
+            fireStore.updateSchedule(intent.getStringExtra("UserId")!!, currentUserId, dayOfWo)
+            finish()
+        } else {
+
+            for (i in dayOfWo.listOfExercise.size..12) {
+                dayOfWo.listOfExercise.add(null)
+            }
+
+            Snackbar.make(constraintActivityCreationSchedule,
+                getString(R.string.error_empty_schedule),
+                Snackbar.LENGTH_LONG)
+                .setBackgroundTint(ContextCompat.getColor(this,
+                    R.color.app_foreground))
+                .setTextColor(ContextCompat.getColor(this, R.color.white))
+                .show()
         }
     }
 
@@ -153,7 +181,9 @@ class ActivityCreationSchedule : AppCompatActivity() {
                                 .setTargetView(fabAddExerciseCreationExercise)
                                 .setDismissType(DismissType.outside)
                                 .setGuideListener {
-                                    // prefs!!.edit().putBoolean("FirstRunActivityCreationSchedule", false).apply()
+                                    prefs!!.edit()
+                                        .putBoolean("FirstRunActivityCreationSchedule", false)
+                                        .apply()
                                 }
                                 .build()
                                 .show()
@@ -165,10 +195,5 @@ class ActivityCreationSchedule : AppCompatActivity() {
                 .build()
                 .show()
         }
-    }
-
-    private fun saveSchedule() {
-        dayOfWo.listOfExercise.removeIf { obj -> obj == null }
-        fireStore.updateSchedule(intent.getStringExtra("UserId")!!, currentUserId, dayOfWo)
     }
 }

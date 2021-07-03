@@ -148,7 +148,7 @@ class FragmentDataTrainer : Fragment() {
     }
 
     private fun setEditTextName(text: CharSequence?) {
-        val txt = text.toString().trim()
+        val txt = text.toString().trim().capitalize(Locale.ROOT)
         if (CheckRegistrationFieldUser.checkName(txt)) {
             MapTrainer.putName(txt)
             layoutTrainerEditTextName.error = null
@@ -161,7 +161,7 @@ class FragmentDataTrainer : Fragment() {
     }
 
     private fun setEditTextSurname(text: CharSequence?) {
-        val txt = text.toString().trim()
+        val txt = text.toString().trim().capitalize(Locale.ROOT)
         if (CheckRegistrationFieldUser.checkSurname(txt)) {
             MapTrainer.putSurname(txt)
             layoutTrainerEditTextSurname.boxStrokeColor = Color.GREEN

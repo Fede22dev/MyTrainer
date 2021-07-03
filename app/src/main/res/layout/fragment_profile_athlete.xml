@@ -14,6 +14,7 @@
 
     <!--CONSTRAINT-->
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintFragmentProfileAthlete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/app_background"
@@ -63,7 +64,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:textColorHint="@color/white"
                     app:startIconDrawable="@drawable/ic_person"
                     app:startIconTint="@color/white">
 
@@ -85,7 +85,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:textColorHint="@color/white"
                     app:startIconDrawable="@drawable/ic_person"
                     app:startIconTint="@color/white">
 
@@ -171,7 +170,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColorHint="@color/white"
                 app:startIconDrawable="@drawable/ic_edit_calendar"
                 app:startIconTint="@color/white">
 
@@ -215,7 +213,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColorHint="@color/white"
                 app:endIconMode="clear_text"
                 app:endIconTint="@color/white"
                 app:startIconDrawable="@drawable/ic_height"
@@ -261,7 +258,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColorHint="@color/white"
                 app:endIconMode="clear_text"
                 app:endIconTint="@color/white"
                 app:startIconDrawable="@drawable/ic_weight"
@@ -422,7 +418,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            app:layout_constraintBottom_toTopOf="@id/textViewEquipmentProfileAthlete"
+            app:layout_constraintBottom_toTopOf="@id/linearLayoutFollowedTrainerProfileAthlete"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linearLayoutLevelProfileAthlete">
@@ -462,6 +458,48 @@
 
         </LinearLayout>
 
+        <!--LAYOUT FOR FOLLOWED TRAINER-->
+        <LinearLayout
+            android:id="@+id/linearLayoutFollowedTrainerProfileAthlete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@id/textViewEquipmentProfileAthlete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayoutNumOfWOProfileAthlete">
+
+            <!--TEXT VIEW FOLLOWED TRAINER-->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:text="@string/trainer_followed"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+            <!--LAYOUT FOR FOLLOWED TRAINER-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutAthleteTextFollowedTrainerProfileAthlete"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:startIconDrawable="@drawable/ic_person"
+                app:startIconTint="@color/white">
+
+                <!--EDIT TEXT FOR FOLLOWED TRAINER-->
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/followedTrainerFieldProfileAthlete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:inputType="none"
+                    android:textColor="@color/white" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
         <!--TEXT VIEW FOR EQUIPMENT-->
         <TextView
             android:id="@+id/textViewEquipmentProfileAthlete"
@@ -475,7 +513,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linearLayoutNumOfWOProfileAthlete" />
+            app:layout_constraintTop_toBottomOf="@id/linearLayoutFollowedTrainerProfileAthlete" />
 
         <!--LAYOUT FOR CHECKBOX EQUIPMENT FOR ROW-->
         <LinearLayout

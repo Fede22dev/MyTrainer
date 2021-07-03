@@ -2,12 +2,14 @@ package it.app.mytrainer.ui.fragments.homeAthlete
 
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration
 import it.app.mytrainer.R
 import it.app.mytrainer.firebase.fireauth.FireAuth
 import it.app.mytrainer.firebase.firestore.FireStore
@@ -40,7 +42,7 @@ class FragmentScheduleAthlete : Fragment() {
         fireStore.getNameDayScheduleAthlete(currentUserId) { listOfDays ->
             if (listOfDays.isNotEmpty()) {
                 setVisibilityForSchedule()
-                //DA CARICARE SU RECYCLE
+
                 recycleViewSchedule.adapter =
                     RecycleScheduleAdapter(requireContext(), listOfDays)
 
@@ -59,7 +61,7 @@ class FragmentScheduleAthlete : Fragment() {
             fireStore.getNameDayScheduleAthlete(currentUserId) { listOfDays ->
                 if (listOfDays.isNotEmpty()) {
                     setVisibilityForSchedule()
-                    //DA CARICARE SU RECYCLE
+
                     recycleViewSchedule.adapter =
                         RecycleScheduleAdapter(requireContext(), listOfDays)
 
@@ -73,6 +75,8 @@ class FragmentScheduleAthlete : Fragment() {
                 }
             }
         }
+
+        addDividerRecycler()
     }
 
     override fun onResume() {
@@ -92,7 +96,8 @@ class FragmentScheduleAthlete : Fragment() {
                         .setTargetView(fabRefreshScheduleAthlete)
                         .setDismissType(DismissType.outside)
                         .setGuideListener {
-                            // prefs!!.edit().putBoolean("FirstRunFragmentScheduleAthlete", false).apply()
+                            prefs!!.edit().putBoolean("FirstRunFragmentScheduleAthlete", false)
+                                .apply()
                         }
                         .build()
                         .show()
@@ -116,5 +121,14 @@ class FragmentScheduleAthlete : Fragment() {
         textViewInfoBox3.visibility = View.VISIBLE
         textViewScheduleReady.visibility = View.INVISIBLE
         recycleViewSchedule.visibility = View.INVISIBLE
+    }
+
+    private fun addDividerRecycler() {
+        recycleViewSchedule.addItemDecoration(
+            HorizontalDividerItemDecoration.Builder(requireContext())
+                .color(Color.WHITE)
+                .margin(25, 30)
+                .size(2)
+                .build())
     }
 }

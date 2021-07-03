@@ -1,16 +1,18 @@
 package it.app.mytrainer.ui.activities.home.schedule.trainer
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.SharedPreferences
-import android.os.Build
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
+import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration
 import it.app.mytrainer.R
 import it.app.mytrainer.firebase.fireauth.FireAuth
 import it.app.mytrainer.firebase.firestore.FireStore
@@ -29,6 +31,7 @@ class ActivityViewDataAthlete : AppCompatActivity() {
     private lateinit var adapter: RecycleViewScheduleAthlete
     private var prefs: SharedPreferences? = null
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_data_athlete)
@@ -50,6 +53,18 @@ class ActivityViewDataAthlete : AppCompatActivity() {
         autoTextViewDropMenuGoalViewDataAthlete.setText(athlete.goal)
         autoTextViewDropMenuLevelViewDataAthlete.setText(athlete.level)
         autoTextViewDropMenuNumOfWOViewDataAthlete.setText(athlete.daysOfWO)
+
+        val trainerId = athlete.idTrainer
+        fireStore = FireStore()
+        if (trainerId != "") {
+            fireStore.getTrainer(trainerId) { trainer ->
+                if (trainer != null) {
+                    followedTrainerFieldViewDataAthlete.setText(trainer["Name"].toString() + " " + trainer["Surname"].toString())
+                }
+            }
+        } else {
+            followedTrainerFieldViewDataAthlete.setText("")
+        }
 
         athlete.equipment.forEach { equip ->
             when (equip) {
@@ -88,8 +103,6 @@ class ActivityViewDataAthlete : AppCompatActivity() {
             }
         }
 
-        fireStore = FireStore()
-
         fireStore.getNameDayScheduleAthlete(athlete.idAthlete) { listOfDays ->
             listOfDays.forEach { day ->
                 listVisualDay.add(day)
@@ -98,6 +111,8 @@ class ActivityViewDataAthlete : AppCompatActivity() {
                 RecycleViewScheduleAthlete(this, listVisualDay, currentUserId, athlete.idAthlete)
             recyclerViewScheduleViewDataAthlete.adapter = adapter
         }
+
+        addDividerRecycler()
     }
 
     override fun onStart() {
@@ -119,9 +134,13 @@ class ActivityViewDataAthlete : AppCompatActivity() {
                             if (typeOfWO.isNotBlank()) {
                                 startCreationSchedule(typeOfWO)
                             } else {
-                                Toast.makeText(this,
+                                Snackbar.make(linearLayoutViewDataAthlete,
                                     getString(R.string.invalid_type_workout),
-                                    Toast.LENGTH_SHORT).show()
+                                    Snackbar.LENGTH_LONG)
+                                    .setBackgroundTint(ContextCompat.getColor(this,
+                                        R.color.app_foreground))
+                                    .setTextColor(ContextCompat.getColor(this, R.color.white))
+                                    .show()
                             }
                         }
                         .setNegativeButton(getString(R.string.cancel_button)) { _, _ ->
@@ -129,9 +148,12 @@ class ActivityViewDataAthlete : AppCompatActivity() {
                         .create()
                         .show()
                 } else {
-                    Toast.makeText(this,
+                    Snackbar.make(linearLayoutViewDataAthlete,
                         getString(R.string.id_trainer_mismatch),
-                        Toast.LENGTH_SHORT).show()
+                        Snackbar.LENGTH_LONG)
+                        .setBackgroundTint(ContextCompat.getColor(this, R.color.app_foreground))
+                        .setTextColor(ContextCompat.getColor(this, R.color.white))
+                        .show()
                 }
             }
         }
@@ -142,7 +164,6 @@ class ActivityViewDataAthlete : AppCompatActivity() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.Q)
     override fun onResume() {
         super.onResume()
         thread {
@@ -190,5 +211,14 @@ class ActivityViewDataAthlete : AppCompatActivity() {
         intent.putExtra("TypeWO", typeOfWo)
         intent.putExtra("UserId", athlete.idAthlete)
         startActivity(intent)
+    }
+
+    private fun addDividerRecycler() {
+        recyclerViewScheduleViewDataAthlete.addItemDecoration(
+            HorizontalDividerItemDecoration.Builder(this)
+                .color(Color.WHITE)
+                .margin(25, 30)
+                .size(2)
+                .build())
     }
 }

@@ -12,6 +12,7 @@
     android:scrollbarTrackVertical="@drawable/custom_track_scrollbar">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintFragmentExtraInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/app_background"

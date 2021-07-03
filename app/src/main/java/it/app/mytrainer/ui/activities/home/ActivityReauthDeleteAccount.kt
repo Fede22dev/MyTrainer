@@ -3,10 +3,11 @@ package it.app.mytrainer.ui.activities.home
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
+import com.google.android.material.snackbar.Snackbar
 import it.app.mytrainer.R
 import it.app.mytrainer.firebase.fireauth.FireAuth
 import it.app.mytrainer.firebase.firestore.FireStore
@@ -49,7 +50,11 @@ class ActivityReauthDeleteAccount : AppCompatActivity() {
                     YoYo.with(Techniques.Shake)
                         .playOn(layoutReauthEditTextPassword)
 
-                    Toast.makeText(this, getString(R.string.not_valid_password), Toast.LENGTH_SHORT)
+                    Snackbar.make(constraintActivityReauth,
+                        getString(R.string.not_valid_password),
+                        Snackbar.LENGTH_LONG)
+                        .setBackgroundTint(ContextCompat.getColor(this, R.color.app_foreground))
+                        .setTextColor(ContextCompat.getColor(this, R.color.white))
                         .show()
                 }
             }
@@ -89,9 +94,19 @@ class ActivityReauthDeleteAccount : AppCompatActivity() {
 
     //Deleting everything from fireAuth, fireStore and storage
     private fun deleteAllDataAccount() {
-        fireStore.deleteAthlete(currentUserId)
-        Storage.deletePhoto(currentUserId)
-        FireAuth.deleteCurrentUser()
+        if (intent.getStringExtra("Type") == "Athlete") {
+            fireStore.deleteAthlete(currentUserId)
+            Storage.deletePhoto(currentUserId)
+            FireAuth.deleteCurrentUser()
+        } else {
+            fireStore.deleteReferencesTrainer(currentUserId) { result ->
+                if (result) {
+                    fireStore.deleteTrainer(currentUserId)
+                    Storage.deletePhoto(currentUserId)
+                    FireAuth.deleteCurrentUser()
+                }
+            }
+        }
     }
 
     //Managing the back pressed, to avoid the crash

@@ -347,7 +347,7 @@ class FragmentProfileTrainer : Fragment() {
 
     //Saving new stats
     private fun saveNewStats() {
-        val newGym = gymFieldTrainerEditable.text.toString()
+        val newGym = gymFieldTrainerEditable.text.toString().capitalize(Locale.ROOT)
         val newSpec = autoTextViewDropMenuSpecializationProfileTrainer.text.toString()
 
         fireStore.updateTrainer(currentUserId, newGym, newSpec)
@@ -377,7 +377,8 @@ class FragmentProfileTrainer : Fragment() {
                                 .setTargetView(floatingActionButtonEditProfileTrainer)
                                 .setDismissType(DismissType.outside)
                                 .setGuideListener {
-                                    // prefs!!.edit().putBoolean("FirstRunFragmentProfileTrainer", false).apply()
+                                    prefs!!.edit()
+                                        .putBoolean("FirstRunFragmentProfileTrainer", false).apply()
                                 }
                                 .build()
                                 .show()

@@ -128,7 +128,7 @@ class ActivityHomeAthlete : AppCompatActivity() {
                 .setTargetView(topAppBarHomeAthlete)
                 .setDismissType(DismissType.outside)
                 .setGuideListener {
-                    // prefs!!.edit().putBoolean("FirstRunActivityHomeAthlete", false).apply()
+                    prefs!!.edit().putBoolean("FirstRunActivityHomeAthlete", false).apply()
                 }
                 .build()
                 .show()

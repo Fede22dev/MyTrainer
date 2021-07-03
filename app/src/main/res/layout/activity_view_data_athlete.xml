@@ -402,7 +402,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                app:layout_constraintBottom_toTopOf="@id/textViewEquipmentViewDataAthlete"
+                app:layout_constraintBottom_toTopOf="@id/linearLayoutFollowedTrainerViewDataAthlete"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/linearLayoutLevelViewDataAthlete">
@@ -441,6 +441,48 @@
 
             </LinearLayout>
 
+            <!--LAYOUT FOR FOLLOWED TRAINER-->
+            <LinearLayout
+                android:id="@+id/linearLayoutFollowedTrainerViewDataAthlete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toTopOf="@id/textViewEquipmentViewDataAthlete"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linearLayoutNumOfWOViewDataAthlete">
+
+                <!--TEXT VIEW FOLLOWED TRAINER-->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:text="@string/trainer_followed"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+
+                <!--LAYOUT FOR FOLLOWED TRAINER-->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutViewDataAthleteTextFollowedTrainer"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:startIconDrawable="@drawable/ic_person"
+                    app:startIconTint="@color/white">
+
+                    <!--EDIT TEXT FOR FOLLOWED TRAINER-->
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/followedTrainerFieldViewDataAthlete"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:inputType="none"
+                        android:textColor="@color/white" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
             <!--TEXT VIEW FOR EQUIPMENT-->
             <TextView
                 android:id="@+id/textViewEquipmentViewDataAthlete"
@@ -454,7 +496,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/linearLayoutNumOfWOViewDataAthlete" />
+                app:layout_constraintTop_toBottomOf="@id/linearLayoutFollowedTrainerViewDataAthlete" />
 
             <!--LAYOUT FOR CHECKBOX EQUIPMENT FOR ROW-->
             <LinearLayout

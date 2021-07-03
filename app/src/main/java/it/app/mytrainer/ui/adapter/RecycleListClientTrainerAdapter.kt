@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -37,6 +38,9 @@ class RecycleListClientTrainerAdapter(
 
         if (athlete.urlPhotoAthlete.isNotBlank()) {
             Glide.with(context).load(athlete.urlPhotoAthlete.toUri()).into(holder.photoClient)
+        } else {
+            holder.photoClient.setImageDrawable(ContextCompat.getDrawable(context,
+                R.drawable.person_placeholder))
         }
 
         holder.card.setOnClickListener {

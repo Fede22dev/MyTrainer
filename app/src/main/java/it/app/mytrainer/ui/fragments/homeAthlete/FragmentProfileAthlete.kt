@@ -19,13 +19,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.CompoundButton
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.TransformationUtils
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import it.app.mytrainer.R
 import it.app.mytrainer.firebase.fireauth.FireAuth
@@ -304,6 +304,7 @@ class FragmentProfileAthlete : Fragment() {
     }
 
     //Filling the field with the data on firestore
+    @SuppressLint("SetTextI18n")
     private fun insertField() {
         currentUserId.let {
             fireStore.getAthlete(it) { athlete ->
@@ -321,6 +322,17 @@ class FragmentProfileAthlete : Fragment() {
                     autoTextViewDropMenuGoalProfileAthlete.setText(athlete["Goal"].toString())
                     autoTextViewDropMenuLevelProfileAthlete.setText(athlete["Level"].toString())
                     autoTextViewDropMenuNumOfWOProfileAthlete.setText(athlete["DaysOfWorkout"].toString())
+
+                    val trainerId = athlete["TrainerId"].toString()
+                    if (trainerId != "") {
+                        fireStore.getTrainer(trainerId) { trainer ->
+                            if (trainer != null) {
+                                followedTrainerFieldProfileAthlete.setText(trainer["Name"].toString() + " " + trainer["Surname"].toString())
+                            }
+                        }
+                    } else {
+                        followedTrainerFieldProfileAthlete.setText("")
+                    }
 
                     val checkBox = athlete["Equipment"] as ArrayList<*>
                     checkBox.forEach { equip ->
@@ -557,12 +569,12 @@ class FragmentProfileAthlete : Fragment() {
             )
 
         } else {
-
-            Toast.makeText(
-                requireContext(),
+            Snackbar.make(constraintFragmentProfileAthlete,
                 getString(R.string.error_edit_profile_athlete),
-                Toast.LENGTH_LONG
-            ).show()
+                Snackbar.LENGTH_LONG)
+                .setBackgroundTint(ContextCompat.getColor(requireContext(), R.color.app_foreground))
+                .setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+                .show()
 
             //Refresh fragment with before data
             insertField()
@@ -593,7 +605,8 @@ class FragmentProfileAthlete : Fragment() {
                                 .setTargetView(floatingActionButtonEditProfileAthlete)
                                 .setDismissType(DismissType.outside)
                                 .setGuideListener {
-                                    // prefs!!.edit().putBoolean("FirstRunFragmentProfileAthlete", false).apply()
+                                    prefs!!.edit()
+                                        .putBoolean("FirstRunFragmentProfileAthlete", false).apply()
                                 }
                                 .build()
                                 .show()

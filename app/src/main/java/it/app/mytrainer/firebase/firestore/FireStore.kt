@@ -102,6 +102,7 @@ class FireStore {
                 schedule["listOfDays"]?.add(dayOfWo)
 
                 db.collection(COLLECTIONATHLETE).document(athleteId).update("Schedule", schedule)
+                db.collection(COLLECTIONATHLETE).document(athleteId).update("TrainerId", trainerId)
 
             } else {
                 //If is the first time we add the day and insert the id trainer in athlete document
@@ -118,9 +119,9 @@ class FireStore {
     fun checkIdTrainer(athleteId: String, trainerId: String, callback: (Boolean) -> Unit) {
         getAthlete(athleteId) { athlete ->
             val schedule = athlete?.get("Schedule")
+            val trainerIdFireStore = athlete?.get("TrainerId").toString()
 
-            if (schedule != "") {
-                val trainerIdFireStore = athlete?.get("TrainerId").toString()
+            if (schedule != "" && trainerIdFireStore != "") {
 
                 if (trainerIdFireStore == trainerId) {
                     callback(true)
@@ -134,8 +135,10 @@ class FireStore {
     }
 
     //Fun in the option menu, for the delete on fireStore
-    fun deleteTrainer(currentUserId: String) {
-        db.collection(COLLECTIONTRAINER).document(currentUserId).delete()
+    //We also delete all the reference of trainer in the field "trainerId"
+    //of athlete
+    fun deleteTrainer(trainerId: String) {
+        db.collection(COLLECTIONTRAINER).document(trainerId).delete()
             .addOnSuccessListener {
                 Log.d(TAG, "Trainer delete: success")
             }
@@ -144,9 +147,31 @@ class FireStore {
             }
     }
 
+    fun deleteReferencesTrainer(trainerId: String, callback: (Boolean) -> Unit) {
+        db.collection(COLLECTIONATHLETE).whereEqualTo("TrainerId", trainerId).get()
+            .addOnSuccessListener { documents ->
+                for ((pos, document) in documents.withIndex()) {
+                    db.collection(COLLECTIONATHLETE).document(document.data["AthleteId"].toString())
+                        .update("TrainerId", "").addOnSuccessListener {
+                            if (pos + 1 == documents.size()) {
+                                callback(true)
+                            }
+                        }
+                        .addOnFailureListener { e ->
+                            Log.w(TAG, "Error deleteReferencesTrainer update document: ", e)
+                            callback(false)
+                        }
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.w(TAG, "Error deleteReferencesTrainer getting documents: ", exception)
+                callback(false)
+            }
+    }
+
     //FUN USED FOR USER ATHLETE
 
-    ////Fun used to save the trainer on firestore
+    //Fun used to save the trainer on firestore
     fun saveAthlete(documentId: String, callback: (Boolean) -> Unit) {
         db.collection(COLLECTIONATHLETE).document(documentId).set(MapAthlete.getHashMap())
             .addOnSuccessListener {
@@ -237,6 +262,7 @@ class FireStore {
                             doc["DaysOfWorkout"].toString(),
                             doc["Equipment"] as ArrayList<String>,
                             athleteId,
+                            doc["TrainerId"].toString(),
                             url))
 
                         callback(listAthlete, true)
@@ -255,6 +281,7 @@ class FireStore {
         trainerId: String,
         athleteId: String,
         nameOfDay: String,
+        dayRemained: Int,
         callback: (Boolean) -> Unit,
     ) {
         checkIdTrainer(athleteId, trainerId) { result ->
@@ -262,8 +289,7 @@ class FireStore {
             if (result) {
                 getAthlete(athleteId) { mapAthlete ->
                     val schedule = mapAthlete?.get("Schedule")
-                    //If is not the first day insert, we just concatenate the new
-                    //day to the old one
+                    //We remove the day that match with the pressed one
                     schedule as HashMap<String, ArrayList<HashMap<String, Any>>>
                     schedule["listOfDays"]!!.forEach { hashMapDay ->
                         if (hashMapDay["nameOfDay"] == nameOfDay) {
@@ -272,12 +298,22 @@ class FireStore {
                     }
 
                     if (posToRemove != -1) {
-                        schedule["listOfDays"]!!.removeAt(posToRemove)
+                        if (dayRemained > 1) {
+                            schedule["listOfDays"]!!.removeAt(posToRemove)
 
-                        db.collection(COLLECTIONATHLETE).document(athleteId)
-                            .update("Schedule", schedule)
+                            db.collection(COLLECTIONATHLETE).document(athleteId)
+                                .update("Schedule", schedule)
 
-                        callback(true)
+                            callback(true)
+                        } else {
+                            db.collection(COLLECTIONATHLETE).document(athleteId)
+                                .update("Schedule", "")
+
+                            db.collection(COLLECTIONATHLETE).document(athleteId)
+                                .update("TrainerId", "")
+
+                            callback(true)
+                        }
                     } else {
                         callback(false)
                     }
@@ -380,7 +416,7 @@ class FireStore {
             ObjSearchExercise("Gambe", "squat"),
             ObjSearchExercise("Gambe", "leg extensions"),
             ObjSearchExercise("Gambe", "affondi corpo libero"),
-            ObjSearchExercise("Gambe", "affondi maubri"),
+            ObjSearchExercise("Gambe", "affondi manubri"),
             ObjSearchExercise("Gambe", "affondi bilanciere"),
             ObjSearchExercise("Gambe", "pistol squat"),
             ObjSearchExercise("Gambe", "step up libero (Gambe)"),
@@ -400,7 +436,7 @@ class FireStore {
             ObjSearchExercise("Gambe", "adduttori elastico"),
             ObjSearchExercise("Gambe", "squat frontale"),
             ObjSearchExercise("Gambe", "jump squat (Gambe)"),
-            ObjSearchExercise("Gambe", "squat isometrico"),
+            ObjSearchExercise("Gambe", "ponte glutei"),
             ObjSearchExercise("Gambe", "farmer walk"),
             ObjSearchExercise("Gambe", "squat statico"),
 
@@ -576,7 +612,7 @@ class FireStore {
             ObjSearchExercise("Legs", "abductors elastic"),
             ObjSearchExercise("Legs", "frontal squat"),
             ObjSearchExercise("Legs", "jump squat (Legs)"),
-            ObjSearchExercise("Legs", "isometric squat"),
+            ObjSearchExercise("Legs", "glute bridge"),
             ObjSearchExercise("Legs", "farmer walk"),
             ObjSearchExercise("Legs", "static squat"),
 

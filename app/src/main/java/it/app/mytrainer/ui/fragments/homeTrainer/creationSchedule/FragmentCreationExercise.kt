@@ -19,6 +19,7 @@ import it.app.mytrainer.ui.activities.home.schedule.trainer.ActivitySearchExerci
 import kotlinx.android.synthetic.main.fragment_creation_exercise.*
 import smartdevelop.ir.eram.showcaseviewlib.GuideView
 import smartdevelop.ir.eram.showcaseviewlib.config.DismissType
+import java.util.*
 
 class FragmentCreationExercise(private val position: Int) :
     Fragment() {
@@ -72,18 +73,32 @@ class FragmentCreationExercise(private val position: Int) :
             "${getString(R.string.exercise)} ${position + 1}"
 
         editTextNameExerciseCreationExercise.doAfterTextChanged { text ->
-            exercise.nameExercise = text.toString().trim()
+            exercise.nameExercise = text.toString().trim().capitalize(Locale.ROOT)
             exerciseManager()
         }
 
         editTextSeriesCreationExercise.doAfterTextChanged { text ->
-            exercise.numSeries = text.toString().trim()
-            exerciseManager()
+            val txt = text.toString().trim()
+            if (txt != "0") {
+                editTextSeriesCreationExercise.error = null
+                exercise.numSeries = txt
+                exerciseManager()
+            } else {
+                editTextSeriesCreationExercise.error = "!!"
+                ActivityCreationSchedule.setFieldOk(false)
+            }
         }
 
         editTextRepsCreationExercise.doAfterTextChanged { text ->
-            exercise.numReps = text.toString().trim()
-            exerciseManager()
+            val txt = text.toString().trim()
+            if (txt != "0") {
+                editTextRepsCreationExercise.error = null
+                exercise.numReps = txt
+                exerciseManager()
+            } else {
+                editTextRepsCreationExercise.error = "!!"
+                ActivityCreationSchedule.setFieldOk(false)
+            }
         }
 
         editTextRecoveryMinutCreationExercise.doAfterTextChanged { text ->
@@ -113,7 +128,7 @@ class FragmentCreationExercise(private val position: Int) :
                 .setTargetView(fabSearchExerciseCreationExercise)
                 .setDismissType(DismissType.outside)
                 .setGuideListener {
-                    // prefs!!.edit().putBoolean("FirstRunFragmentCreationExercise", false).apply()
+                    prefs!!.edit().putBoolean("FirstRunFragmentCreationExercise", false).apply()
                 }
                 .build()
                 .show()
@@ -139,8 +154,11 @@ class FragmentCreationExercise(private val position: Int) :
     //Checking if all the fields are null or not
     private fun exerciseManager() {
         if (exercise.nameExercise != null && exercise.numSeries != null && exercise.numReps != null && exercise.recovery != null) {
+            ActivityCreationSchedule.setFieldOk(true)
             ActivityCreationSchedule.removeExercise(position)
             ActivityCreationSchedule.addExercise(position, exercise)
+        } else {
+            ActivityCreationSchedule.setFieldOk(false)
         }
     }
 
@@ -180,8 +198,8 @@ class FragmentCreationExercise(private val position: Int) :
 
         } else {
             exercise.recovery = null
-            editTextRecoveryMinutCreationExercise.error = ""
-            editTextRecoverySecondCreationExercise.error = ""
+            editTextRecoveryMinutCreationExercise.error = "!!"
+            editTextRecoverySecondCreationExercise.error = "!!"
         }
     }
 }

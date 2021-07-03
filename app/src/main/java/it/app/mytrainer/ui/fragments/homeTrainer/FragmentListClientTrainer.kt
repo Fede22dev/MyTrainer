@@ -1,6 +1,7 @@
 package it.app.mytrainer.ui.fragments.homeTrainer
 
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration
 import it.app.mytrainer.R
 import it.app.mytrainer.firebase.firestore.FireStore
 import it.app.mytrainer.ui.adapter.RecycleListClientTrainerAdapter
@@ -78,6 +80,8 @@ class FragmentListClientTrainer : Fragment() {
                 }
             }
         }
+
+        addDividerRecycler()
     }
 
     override fun onResume() {
@@ -101,7 +105,8 @@ class FragmentListClientTrainer : Fragment() {
                         .setTargetView(recycleViewListClient)
                         .setDismissType(DismissType.outside)
                         .setGuideListener {
-                            // prefs!!.edit().putBoolean("FirstRunFragmentClientTrainer", false).apply()
+                            prefs!!.edit().putBoolean("FirstRunFragmentClientTrainer", false)
+                                .apply()
                         }
                         .build()
                         .show()
@@ -117,5 +122,14 @@ class FragmentListClientTrainer : Fragment() {
         val fastSc = FastScrollerBuilder(recycleViewListClient).useMd2Style()
         fastSc.disableScrollbarAutoHide()
         fastSc.build()
+    }
+
+    private fun addDividerRecycler() {
+        recycleViewListClient.addItemDecoration(
+            HorizontalDividerItemDecoration.Builder(requireContext())
+                .color(Color.WHITE)
+                .margin(25, 30)
+                .size(2)
+                .build())
     }
 }

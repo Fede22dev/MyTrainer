@@ -19,5 +19,6 @@ data class ObjAthlete(
     val daysOfWO: String,
     val equipment: ArrayList<String>,
     val idAthlete: String,
+    val idTrainer: String,
     val urlPhotoAthlete: String,
 ) : Serializable

@@ -14,6 +14,7 @@ import it.app.mytrainer.R
 import it.app.mytrainer.firebase.firestore.FireStore
 import kotlinx.android.synthetic.main.activity_view_data_athlete.*
 import kotlinx.android.synthetic.main.card_recycle_view_schedule_athlete.view.*
+import java.util.*
 
 class RecycleViewScheduleAthlete(
     private val activity: Activity,
@@ -43,10 +44,13 @@ class RecycleViewScheduleAthlete(
                 //If accept button has pressed, the current id will be delete from auth, store and storage
                 .setPositiveButton(activity.getString(R.string.accept_button)) { _, _ ->
                     val fireStore = FireStore()
-                    fireStore.deleteDaySchedule(trainerId, athleteId, data[position]) { result ->
+                    fireStore.deleteDaySchedule(trainerId,
+                        athleteId,
+                        data[position],
+                        data.size) { result ->
                         if (result) {
                             Snackbar.make(activity.linearLayoutViewDataAthlete,
-                                activity.getString(R.string.succesfully_day_remove),
+                                data[position].capitalize(Locale.ROOT) + " " + activity.getString(R.string.succesfully_day_remove),
                                 Snackbar.LENGTH_LONG)
                                 .setBackgroundTint(ContextCompat.getColor(activity,
                                     R.color.app_foreground))

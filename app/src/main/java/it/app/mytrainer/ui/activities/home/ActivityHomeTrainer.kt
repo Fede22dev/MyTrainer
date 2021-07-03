@@ -100,20 +100,25 @@ class ActivityHomeTrainer : AppCompatActivity() {
         finish()
     }
 
-    //Deleting from firestore and storage
+    //Deleting from firestore and storage and auth
     private fun deleteAllDataOfAccount() {
         fireStore = FireStore()
 
         val currentUserId = FireAuth.getCurrentUserAuth()?.uid!!
 
-        fireStore.deleteTrainer(currentUserId)
-        Storage.deletePhoto(currentUserId)
+        fireStore.deleteReferencesTrainer(currentUserId) { result ->
+            if (result) {
+                fireStore.deleteTrainer(currentUserId)
 
-        FireAuth.deleteCurrentUser()
+                Storage.deletePhoto(currentUserId)
 
-        val intent = Intent(this, ActivityLogin::class.java)
-        startActivity(intent)
-        finish()
+                FireAuth.deleteCurrentUser()
+
+                val intent = Intent(this, ActivityLogin::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
     }
 
     override fun onResume() {
@@ -128,7 +133,7 @@ class ActivityHomeTrainer : AppCompatActivity() {
                 .setTargetView(topAppBarHomeTrainer)
                 .setDismissType(DismissType.outside)
                 .setGuideListener {
-                    // prefs!!.edit().putBoolean("FirstRunActivityHomeTrainer", false).apply()
+                    prefs!!.edit().putBoolean("FirstRunActivityHomeTrainer", false).apply()
                 }
                 .build()
                 .show()

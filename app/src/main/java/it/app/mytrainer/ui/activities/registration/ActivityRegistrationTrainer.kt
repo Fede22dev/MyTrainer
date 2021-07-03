@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import it.app.mytrainer.R
@@ -124,12 +126,14 @@ class ActivityRegistrationTrainer : AppCompatActivity() {
         viewPagerTrainer.visibility = View.INVISIBLE
         tabsBarTrainer.visibility = View.INVISIBLE
         progressBarRegistrationTrainer.visibility = View.VISIBLE
+    }
 
-        Toast.makeText(
-            this,
-            getString(R.string.registration_success_toast),
-            Toast.LENGTH_SHORT
-        ).show()
+    //Fun used for eventual failed for an already existing email
+    private fun resetVisibilityFailedSave() {
+        progressBarRegistrationTrainer.visibility = View.INVISIBLE
+        floatActionBtnSaveTrainer.visibility = View.VISIBLE
+        viewPagerTrainer.visibility = View.VISIBLE
+        tabsBarTrainer.visibility = View.VISIBLE
     }
 
     private fun successCreationAccountNoFB() {
@@ -150,13 +154,24 @@ class ActivityRegistrationTrainer : AppCompatActivity() {
                     //If is not ok, delete the previous current user on auth and go back in login
                     if (!saveOk) {
                         FireAuth.deleteCurrentUser()
-                        Toast.makeText(
-                            this,
+
+                        Snackbar.make(constraintActivityRegistrationTrainer,
                             getString(R.string.error_creation_user_auth),
-                            Toast.LENGTH_SHORT
-                        ).show()
+                            Snackbar.LENGTH_LONG)
+                            .setBackgroundTint(ContextCompat.getColor(this,
+                                R.color.app_foreground))
+                            .setTextColor(ContextCompat.getColor(this, R.color.white))
+                            .show()
+
+                        resetVisibilityFailedSave()
                     } else {
                         //Calling the finish we go back on the login activity, with the created account
+                        Toast.makeText(
+                            this,
+                            getString(R.string.registration_success_toast),
+                            Toast.LENGTH_SHORT
+                        ).show()
+
                         val intent = Intent(this, ActivityLogin::class.java)
                         startActivity(intent)
                         finish()
@@ -171,12 +186,16 @@ class ActivityRegistrationTrainer : AppCompatActivity() {
     }
 
     private fun errorCreateAccountNoFB() {
-        Toast.makeText(
-            this,
-            getString(R.string.error_creation_user_auth),
-            Toast.LENGTH_SHORT
-        ).show()
-        MapTrainer.clearHashMap()
+
+        Snackbar.make(constraintActivityRegistrationTrainer,
+            getString(R.string.error_used_email),
+            Snackbar.LENGTH_LONG)
+            .setBackgroundTint(ContextCompat.getColor(this,
+                R.color.app_foreground))
+            .setTextColor(ContextCompat.getColor(this, R.color.white))
+            .show()
+
+        resetVisibilityFailedSave()
     }
 
     private fun successCreateAccountFB() {
@@ -208,11 +227,15 @@ class ActivityRegistrationTrainer : AppCompatActivity() {
     }
 
     private fun hashMapNotReadyToSave() {
-        Toast.makeText(
-            this,
+
+        Snackbar.make(constraintActivityRegistrationTrainer,
             getString(R.string.registration_error_toast),
-            Toast.LENGTH_SHORT
-        ).show()
+            Snackbar.LENGTH_LONG)
+            .setBackgroundTint(ContextCompat.getColor(this,
+                R.color.app_foreground))
+            .setTextColor(ContextCompat.getColor(this, R.color.white))
+            .show()
+
         MapTrainer.printHashMap()
     }
 }
