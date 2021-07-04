@@ -6,13 +6,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration
 import it.app.mytrainer.R
 import it.app.mytrainer.firebase.firestore.FireStore
-import it.app.mytrainer.ui.adapter.RecycleListClientTrainerAdapter
+import it.app.mytrainer.ui.adapter.RecyclerListClientTrainerAdapter
 import kotlinx.android.synthetic.main.fragment_list_client_trainer.*
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 import smartdevelop.ir.eram.showcaseviewlib.GuideView
@@ -46,19 +47,23 @@ class FragmentListClientTrainer : Fragment() {
                 textViewTrainerInfoBox1.visibility = View.INVISIBLE
                 textViewTrainerInfoBox2.visibility = View.INVISIBLE
                 textViewListClientReady.visibility = View.VISIBLE
-                recycleViewListClient.visibility = View.VISIBLE
+                recycleViewListClientFollowed.visibility = View.VISIBLE
 
                 listAthlete.sortBy { it.surnameAthlete.toLowerCase(Locale.ROOT) }
 
-                recycleViewListClient.adapter =
-                    RecycleListClientTrainerAdapter(requireContext(), listAthlete)
+                recycleViewListClientFollowed.adapter =
+                    RecyclerListClientTrainerAdapter(requireContext(), listAthlete)
 
                 setFastScrollerRecycler()
 
             } else {
-                Toast.makeText(requireContext(),
+
+                Snackbar.make(constraintFragmentListClient,
                     getString(R.string.no_athlete_list_client),
-                    Toast.LENGTH_SHORT).show()
+                    Snackbar.LENGTH_LONG)
+                    .setBackgroundTint(ContextCompat.getColor(requireContext(), R.color.app_foreground))
+                    .setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+                    .show()
             }
         }
 
@@ -68,15 +73,18 @@ class FragmentListClientTrainer : Fragment() {
 
                     listAthlete.sortBy { it.surnameAthlete.toLowerCase(Locale.ROOT) }
 
-                    recycleViewListClient.adapter =
-                        RecycleListClientTrainerAdapter(requireContext(), listAthlete)
+                    recycleViewListClientFollowed.adapter =
+                        RecyclerListClientTrainerAdapter(requireContext(), listAthlete)
 
                     setFastScrollerRecycler()
 
                 } else {
-                    Toast.makeText(requireContext(),
+                    Snackbar.make(constraintFragmentListClient,
                         getString(R.string.no_athlete_list_client),
-                        Toast.LENGTH_SHORT).show()
+                        Snackbar.LENGTH_LONG)
+                        .setBackgroundTint(ContextCompat.getColor(requireContext(), R.color.app_foreground))
+                        .setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+                        .show()
                 }
             }
         }
@@ -102,7 +110,7 @@ class FragmentListClientTrainer : Fragment() {
                         .setContentText(getString(R.string.viewcase_text_recycle_fragment_list_client))
                         .setTitleTextSize(16)
                         .setContentTextSize(14)
-                        .setTargetView(recycleViewListClient)
+                        .setTargetView(recycleViewListClientFollowed)
                         .setDismissType(DismissType.outside)
                         .setGuideListener {
                             prefs!!.edit().putBoolean("FirstRunFragmentClientTrainer", false)
@@ -115,17 +123,16 @@ class FragmentListClientTrainer : Fragment() {
                 .build()
                 .show()
         }
-
     }
 
     private fun setFastScrollerRecycler() {
-        val fastSc = FastScrollerBuilder(recycleViewListClient).useMd2Style()
+        val fastSc = FastScrollerBuilder(recycleViewListClientFollowed).useMd2Style()
         fastSc.disableScrollbarAutoHide()
         fastSc.build()
     }
 
     private fun addDividerRecycler() {
-        recycleViewListClient.addItemDecoration(
+        recycleViewListClientFollowed.addItemDecoration(
             HorizontalDividerItemDecoration.Builder(requireContext())
                 .color(Color.WHITE)
                 .margin(25, 30)

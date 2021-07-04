@@ -16,6 +16,7 @@ import it.app.mytrainer.models.MapTrainer
 import it.app.mytrainer.ui.activities.home.ActivityHomeTrainer
 import it.app.mytrainer.ui.activities.starter.ActivityLogin
 import it.app.mytrainer.ui.adapter.TrainerRegistrationPageAdapter
+import kotlinx.android.synthetic.main.activity_reauth_delete_account.*
 import kotlinx.android.synthetic.main.activity_registration_trainer.*
 
 /**
@@ -208,11 +209,15 @@ class ActivityRegistrationTrainer : AppCompatActivity() {
                 //If is not ok, delete the previous current user on auth and go back in login
                 if (!saveOk) {
                     FireAuth.deleteCurrentUser()
-                    Toast.makeText(
-                        this,
+
+                    Snackbar.make(constraintActivityRegistrationTrainer,
                         getString(R.string.error_creation_user_auth),
-                        Toast.LENGTH_LONG
-                    ).show()
+                        Snackbar.LENGTH_LONG)
+                        .setBackgroundTint(ContextCompat.getColor(this, R.color.app_foreground))
+                        .setTextColor(ContextCompat.getColor(this, R.color.white))
+                        .show()
+
+                    resetVisibilityFailedSave()
                 } else {
                     val intent = Intent(this, ActivityHomeTrainer::class.java)
                     startActivity(intent)

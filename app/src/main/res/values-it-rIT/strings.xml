@@ -87,7 +87,7 @@
     <string name="goal_profile_athlete">Obbiettivo:</string>
     <string name="level_profile_athlete">Livello:</string>
     <string name="equipment_profile_athlete">Attrezzatura disponibile:</string>
-    <string name="error_edit_profile_athlete">ERRORE: L\'ALTEZZA, IL PESO O L\'ATTREZZURA NON VALIDI. AGGIORNAMENTO FALLITO.</string>
+    <string name="error_edit_profile_athlete">ERRORE: UNO O PIU\' CAMPI NON CORRETTI. AGGIORNAMENTO FALLITO!</string>
     <string name="scroll_the_slider_registration_athlete">Scorri lo slider! ;]</string>
     <string name="cancel_button">ANNULLA</string>
     <string name="height_profile_athlete">Altezza:</string>
@@ -164,4 +164,11 @@
     <string name="view_case_text_button_gallery">Clicca qui per\nprendere una tua\nfoto dalla galleria!</string>
     <string name="view_case_title_fab_edit">Modifica</string>
     <string name="view_case_text_fab_edit">Usa questo bottone\nper modificare\ni campi!</string>
+    <string name="error_empty_schedule">Tutti i campi dei singoli esercizi devono essere riempiti!</string>
+    <string name="error_used_email">Questa e-mail e\' gia\' in uso! Per favore, prova con un\'altra.</string>
+    <string name="error_blank_field_fragment_profile_athlete">ERRORE: TUTTI I CAMPI DEVONO ESSERE COMPILATI! UPDATE FAILED!</string>
+    <string name="viewcase_title_recycle_view_data_athlete">Scheda</string>
+    <string name="viewcase_text_recycle_view_data_athlete">Qui potrai trovare\nla scheda attiva\nper questo atleta.\nPremi per eliminare\nun giorno!</string>
+    <string name="viewcase_title_fab_view_data_athlete">Aggiungi</string>
+    <string name="viewcase_text_fab_view_data_athlete">Premi questo bottone\nper aggiungere un\ngiorno alla scheda\ndell\'atleta!</string>
 </resources>

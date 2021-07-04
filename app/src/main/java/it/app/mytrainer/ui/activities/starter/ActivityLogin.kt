@@ -6,11 +6,13 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
 import com.facebook.*
 import com.facebook.login.LoginResult
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -106,11 +108,12 @@ class ActivityLogin : AppCompatActivity() {
                     //Resetting the visibility
                     resetVisibilityFB()
 
-                    Toast.makeText(
-                        this,
+                    Snackbar.make(constraintActivityLogin,
                         getString(R.string.authentication_failed),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                        Snackbar.LENGTH_LONG)
+                        .setBackgroundTint(ContextCompat.getColor(this, R.color.app_foreground))
+                        .setTextColor(ContextCompat.getColor(this, R.color.white))
+                        .show()
                 }
             }
     }
@@ -213,11 +216,13 @@ class ActivityLogin : AppCompatActivity() {
                 finish()
 
             } else {
-                //Toast in case of failed auth
-                Toast.makeText(
-                    this, getString(R.string.authentication_failed),
-                    Toast.LENGTH_SHORT
-                ).show()
+                //Snackbar in case of failed auth
+                Snackbar.make(constraintActivityLogin,
+                    getString(R.string.authentication_failed),
+                    Snackbar.LENGTH_LONG)
+                    .setBackgroundTint(ContextCompat.getColor(this, R.color.app_foreground))
+                    .setTextColor(ContextCompat.getColor(this, R.color.white))
+                    .show()
 
                 //setting blank the field and restore visibility
                 resetVisibilityForLoginNoFB()

@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.CompoundButton
-import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
 import it.app.mytrainer.R
 import it.app.mytrainer.models.MapAthlete
 import kotlinx.android.synthetic.main.fragment_extra_info_athlete.*
@@ -111,11 +112,14 @@ class FragmentExtraInfoAthlete : Fragment() {
                 MapAthlete.putEquipment(listToSave)
             } else {
                 MapAthlete.removeEquipment()
-                Toast.makeText(
-                    requireContext(),
+
+                Snackbar.make(constraintFragmentExtraInfo,
                     getString(R.string.error_toast_equipment_athlete),
-                    Toast.LENGTH_LONG
-                ).show()
+                    Snackbar.LENGTH_LONG)
+                    .setBackgroundTint(ContextCompat.getColor(requireContext(),
+                        R.color.app_foreground))
+                    .setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+                    .show()
             }
         }
     }

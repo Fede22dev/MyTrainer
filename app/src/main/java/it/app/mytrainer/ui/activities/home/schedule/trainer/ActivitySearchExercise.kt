@@ -9,7 +9,7 @@ import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration
 import it.app.mytrainer.R
 import it.app.mytrainer.firebase.firestore.FireStore
 import it.app.mytrainer.models.ObjSearchExercise
-import it.app.mytrainer.ui.adapter.RecycleListExerciseAdapter
+import it.app.mytrainer.ui.adapter.RecyclerListExerciseAdapter
 import kotlinx.android.synthetic.main.activity_search_exercise.*
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 import smartdevelop.ir.eram.showcaseviewlib.GuideView
@@ -42,13 +42,13 @@ class ActivitySearchExercise : AppCompatActivity() {
         if (Locale.getDefault().displayLanguage.equals("English")) {
             fireStore.downloadAvailableExerciseEng { listEng ->
                 recycleViewAvailableExercise.adapter =
-                    RecycleListExerciseAdapter(this, listEng)
+                    RecyclerListExerciseAdapter(this, listEng)
                 listExercise = listEng
             }
         } else {
             fireStore.downloadAvailableExerciseIta { listIta ->
                 recycleViewAvailableExercise.adapter =
-                    RecycleListExerciseAdapter(this, listIta)
+                    RecyclerListExerciseAdapter(this, listIta)
                 listExercise = listIta
             }
         }
@@ -117,12 +117,12 @@ class ActivitySearchExercise : AppCompatActivity() {
                 listExercise.filter { exercises -> exercises.muscle == muscleFilter } as ArrayList<ObjSearchExercise>
 
             recycleViewAvailableExercise.adapter =
-                RecycleListExerciseAdapter(this, listExerciseFiltered)
+                RecyclerListExerciseAdapter(this, listExerciseFiltered)
 
         } else {
 
             recycleViewAvailableExercise.adapter =
-                RecycleListExerciseAdapter(this, listExercise)
+                RecyclerListExerciseAdapter(this, listExercise)
         }
     }
 
@@ -144,12 +144,12 @@ class ActivitySearchExercise : AppCompatActivity() {
                 } as ArrayList<ObjSearchExercise>
 
             recycleViewAvailableExercise.adapter =
-                RecycleListExerciseAdapter(this, listExerciseFiltered)
+                RecyclerListExerciseAdapter(this, listExerciseFiltered)
 
         } else {
 
             recycleViewAvailableExercise.adapter =
-                RecycleListExerciseAdapter(this, listExercise)
+                RecyclerListExerciseAdapter(this, listExercise)
         }
     }
 

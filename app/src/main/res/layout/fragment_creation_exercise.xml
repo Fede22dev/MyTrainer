@@ -61,7 +61,7 @@
                 android:maxLength="35"
                 android:textColor="@color/white"
                 android:textColorHint="@color/hint"
-                android:textSize="30sp" />
+                android:textSize="26sp" />
 
         </LinearLayout>
 
@@ -95,7 +95,7 @@
                     android:text="@string/series_schedule_athlete"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
-                    android:textSize="28sp" />
+                    android:textSize="26sp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -115,7 +115,7 @@
                         android:maxLength="2"
                         android:textColor="@color/white"
                         android:textColorHint="@color/hint"
-                        android:textSize="25sp"
+                        android:textSize="24sp"
                         tools:ignore="HardcodedText" />
 
                     <TextView
@@ -126,7 +126,7 @@
                         android:text="X"
                         android:textAllCaps="true"
                         android:textColor="@color/white"
-                        android:textSize="25sp"
+                        android:textSize="24sp"
                         tools:ignore="HardcodedText" />
 
                     <EditText
@@ -142,7 +142,7 @@
                         android:maxLength="2"
                         android:textColor="@color/white"
                         android:textColorHint="@color/hint"
-                        android:textSize="25sp"
+                        android:textSize="24sp"
                         tools:ignore="HardcodedText" />
 
                 </LinearLayout>
@@ -165,7 +165,7 @@
                     android:text="@string/recovery_schedule_athlete"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
-                    android:textSize="28sp" />
+                    android:textSize="26sp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -185,7 +185,7 @@
                         android:maxLength="2"
                         android:textColor="@color/white"
                         android:textColorHint="@color/hint"
-                        android:textSize="25sp"
+                        android:textSize="24sp"
                         tools:ignore="HardcodedText" />
 
                     <TextView
@@ -196,7 +196,7 @@
                         android:text=":"
                         android:textAllCaps="true"
                         android:textColor="@color/white"
-                        android:textSize="25sp"
+                        android:textSize="24sp"
                         tools:ignore="HardcodedText" />
 
                     <EditText
@@ -212,7 +212,7 @@
                         android:maxLength="2"
                         android:textColor="@color/white"
                         android:textColorHint="@color/hint"
-                        android:textSize="25sp"
+                        android:textSize="24sp"
                         tools:ignore="HardcodedText" />
 
                 </LinearLayout>

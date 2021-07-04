@@ -172,7 +172,12 @@
     <string name="view_case_title_fab_edit">Edit button</string>
     <string name="view_case_text_fab_edit">Use this button\nto edit the\neditable fields!</string>
     <string name="viewcase_text_fab_delete_activity_creation_schedule">Here will appear a\ndelete button from\nthe second exercise\nuse it to delete\nthe exercise!</string>
-    <string name="error_empty_schedule">All to field of the single exercise has to be filled</string>
-    <string name="error_used_email">This e-mail is already used! Please use another one.</string>
-    <string name="trainer_followed">Trainer:</string>
+    <string name="error_used_email">This e-mail is already used! Please, use another one.</string>
+    <string name="trainer_followed" translatable="false">Trainer:</string>
+    <string name="error_blank_field_fragment_profile_athlete">ERROR: ALL FIELDS MUST BE FILLED! UPDATE FAILED!</string>
+    <string name="error_empty_schedule">All the fields of single exercises has to be filled!</string>
+    <string name="viewcase_title_recycle_view_data_athlete">Schedule</string>
+    <string name="viewcase_text_recycle_view_data_athlete">Here you will\nfind the active schedule\nfor this athlete.\nMake a long press\nto cancel a day!</string>
+    <string name="viewcase_title_fab_view_data_athlete">Add button</string>
+    <string name="viewcase_text_fab_view_data_athlete">Press this button\nto add a day to\nthe athlete\'s schedule!</string>
 </resources>

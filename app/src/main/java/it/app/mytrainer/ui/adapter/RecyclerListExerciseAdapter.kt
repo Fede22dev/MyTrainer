@@ -15,10 +15,10 @@ import kotlinx.android.synthetic.main.card_recycle_view_search_exercise.view.*
 import me.zhanghai.android.fastscroll.PopupTextProvider
 import java.util.*
 
-class RecycleListExerciseAdapter(
+class RecyclerListExerciseAdapter(
     private val activity: Activity,
     private val data: ArrayList<ObjSearchExercise>,
-) : RecyclerView.Adapter<RecycleListExerciseAdapter.ViewHolder>(), PopupTextProvider {
+) : RecyclerView.Adapter<RecyclerListExerciseAdapter.ViewHolder>(), PopupTextProvider {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(

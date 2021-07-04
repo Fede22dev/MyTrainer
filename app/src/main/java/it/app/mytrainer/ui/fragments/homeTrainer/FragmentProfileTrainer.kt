@@ -13,6 +13,8 @@ import android.media.ExifInterface
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.os.Handler
+import android.os.Looper
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
@@ -355,11 +357,14 @@ class FragmentProfileTrainer : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        if (prefs!!.getBoolean("FirstRunFragmentProfileTrainer", true)
+        if (prefs!!.getBoolean("FirstRunProfileTrainer", true)
         ) {
+
             GuideView.Builder(requireContext())
                 .setTitle(getString(R.string.view_case_title_button_camera))
                 .setContentText(getString(R.string.view_case_text_button_camera))
+                .setTitleTextSize(16)
+                .setContentTextSize(14)
                 .setTargetView(buttonCameraTrainer)
                 .setDismissType(DismissType.outside)
                 .setGuideListener {
@@ -367,21 +372,37 @@ class FragmentProfileTrainer : Fragment() {
                     GuideView.Builder(requireContext())
                         .setTitle(getString(R.string.view_case_title_button_gallery))
                         .setContentText(getString(R.string.view_case_text_button_gallery))
+                        .setTitleTextSize(16)
+                        .setContentTextSize(14)
                         .setTargetView(buttonGalleryTrainer)
                         .setDismissType(DismissType.outside)
                         .setGuideListener {
 
-                            GuideView.Builder(requireContext())
-                                .setTitle(getString(R.string.view_case_title_fab_edit))
-                                .setContentText(getString(R.string.view_case_text_fab_edit))
-                                .setTargetView(floatingActionButtonEditProfileTrainer)
-                                .setDismissType(DismissType.outside)
-                                .setGuideListener {
-                                    prefs!!.edit()
-                                        .putBoolean("FirstRunFragmentProfileTrainer", false).apply()
-                                }
-                                .build()
-                                .show()
+                            scrollViewProfileTrainer.post {
+                                scrollViewProfileTrainer.smoothScrollTo(0,
+                                    floatingActionButtonEditProfileTrainer.bottom)
+                            }
+
+                            Handler(Looper.getMainLooper()).postDelayed(
+                                {
+                                    GuideView.Builder(requireContext())
+                                        .setTitle(getString(R.string.view_case_title_fab_edit))
+                                        .setContentText(getString(R.string.view_case_text_fab_edit))
+                                        .setTitleTextSize(16)
+                                        .setContentTextSize(14)
+                                        .setTargetView(floatingActionButtonEditProfileTrainer)
+                                        .setDismissType(DismissType.outside)
+                                        .setGuideListener {
+
+                                            scrollViewProfileTrainer.post {
+                                                scrollViewProfileTrainer.smoothScrollTo(0, 0)
+                                            }
+
+                                            prefs!!.edit().putBoolean("FirstRunProfileTrainer", false).apply()
+                                        }
+                                        .build()
+                                        .show()
+                                }, 500)
                         }
                         .build()
                         .show()

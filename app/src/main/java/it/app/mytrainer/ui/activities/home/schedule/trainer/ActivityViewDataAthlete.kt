@@ -5,8 +5,9 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
@@ -20,6 +21,8 @@ import it.app.mytrainer.models.ObjAthlete
 import it.app.mytrainer.ui.adapter.RecycleViewScheduleAthlete
 import kotlinx.android.synthetic.main.activity_view_data_athlete.*
 import kotlinx.android.synthetic.main.dialog_choice_type_of_wo.view.*
+import smartdevelop.ir.eram.showcaseviewlib.GuideView
+import smartdevelop.ir.eram.showcaseviewlib.config.DismissType
 import kotlin.concurrent.thread
 
 class ActivityViewDataAthlete : AppCompatActivity() {
@@ -179,30 +182,45 @@ class ActivityViewDataAthlete : AppCompatActivity() {
 
         if (prefs!!.getBoolean("FirstRunViewDataAthlete", true)
         ) {
-            scrollViewViewDataAthlete.fullScroll(View.FOCUS_DOWN)
-            /*GuideView.Builder(this)
-                .setTitle(getString(R.string.viewcase_title_search_exercise_filter))
-                .setContentText(getString(R.string.viewcase_text_search_exercise_filter))
-                .setTargetView(recyclerViewScheduleViewDataAthlete)
-                .setDismissType(DismissType.outside)
-                .setGuideListener {
 
+            //Opening the activity from the bottom the first time, to
+            //consent to see all the view case
+            scrollViewViewDataAthlete.post {
+                scrollViewViewDataAthlete.smoothScrollTo(0, fabAddScheduleViewDataAthlete.bottom)
+            }
+
+            Handler(Looper.getMainLooper()).postDelayed(
+                {
                     GuideView.Builder(this)
-                        .setTitle(getString(R.string.viewcase_titlekeyboard_search_exercise_filter))
-                        .setContentText(getString(R.string.viewcase_textkeyboard_search_exercise_filter))
+                        .setTitle(getString(R.string.viewcase_title_recycle_view_data_athlete))
+                        .setContentText(getString(R.string.viewcase_text_recycle_view_data_athlete))
                         .setTitleTextSize(16)
                         .setContentTextSize(14)
-                        .setTargetView(fabAddScheduleViewDataAthlete)
+                        .setTargetView(textViewInfoScheduleViewDataAthlete)
                         .setDismissType(DismissType.outside)
                         .setGuideListener {
-                           // prefs!!.edit().putBoolean("FirstRunViewDataAthlete", false).apply()
+
+                            GuideView.Builder(this)
+                                .setTitle(getString(R.string.viewcase_title_fab_view_data_athlete))
+                                .setContentText(getString(R.string.viewcase_text_fab_view_data_athlete))
+                                .setTitleTextSize(16)
+                                .setContentTextSize(14)
+                                .setTargetView(fabAddScheduleViewDataAthlete)
+                                .setDismissType(DismissType.outside)
+                                .setGuideListener {
+
+                                    scrollViewViewDataAthlete.post {
+                                        scrollViewViewDataAthlete.smoothScrollTo(0, 0)
+                                    }
+
+                                    prefs!!.edit().putBoolean("FirstRunViewDataAthlete", false).apply()
+                                }
+                                .build()
+                                .show()
                         }
                         .build()
                         .show()
-
-                }
-                .build()
-                .show()*/
+                }, 500)
         }
     }
 

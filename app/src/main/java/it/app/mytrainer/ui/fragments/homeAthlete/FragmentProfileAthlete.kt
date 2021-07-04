@@ -13,6 +13,8 @@ import android.media.ExifInterface
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.os.Handler
+import android.os.Looper
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
@@ -549,28 +551,41 @@ class FragmentProfileAthlete : Fragment() {
         val newLevel = autoTextViewDropMenuLevelProfileAthlete.text.toString()
         val newNumOfWO = autoTextViewDropMenuNumOfWOProfileAthlete.text.toString()
 
-        if (setForCheckBox.size > 0 && CheckRegistrationFieldAthlete.checkHeight(newHeight.toInt()) && CheckRegistrationFieldAthlete.checkWeight(
-                newWeight.toInt()
-            )
-        ) {
+        if (newHeight != "" && newWeight != "") {
+            if (setForCheckBox.size > 0 && CheckRegistrationFieldAthlete.checkHeight(newHeight.toInt()) && CheckRegistrationFieldAthlete.checkWeight(
+                    newWeight.toInt()
+                )
+            ) {
+                // Cast to solve the problem of a single element when cast to array
+                val listCheckBox = ArrayList<String>(setForCheckBox)
 
-            // Cast to solve the problem of a single element when cast to array
-            val listCheckBox = ArrayList<String>(setForCheckBox)
+                fireStore.updateAthlete(
+                    currentUserId,
+                    newHeight,
+                    newWeight,
+                    newTypeOfWO,
+                    newGoal,
+                    newLevel,
+                    newNumOfWO,
+                    listCheckBox
+                )
 
-            fireStore.updateAthlete(
-                currentUserId,
-                newHeight,
-                newWeight,
-                newTypeOfWO,
-                newGoal,
-                newLevel,
-                newNumOfWO,
-                listCheckBox
-            )
+            } else {
+                Snackbar.make(constraintFragmentProfileAthlete,
+                    getString(R.string.error_edit_profile_athlete),
+                    Snackbar.LENGTH_LONG)
+                    .setBackgroundTint(ContextCompat.getColor(requireContext(),
+                        R.color.app_foreground))
+                    .setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+                    .show()
+
+                //Refresh fragment with before data
+                insertField()
+            }
 
         } else {
             Snackbar.make(constraintFragmentProfileAthlete,
-                getString(R.string.error_edit_profile_athlete),
+                getString(R.string.error_blank_field_fragment_profile_athlete),
                 Snackbar.LENGTH_LONG)
                 .setBackgroundTint(ContextCompat.getColor(requireContext(), R.color.app_foreground))
                 .setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
@@ -579,15 +594,20 @@ class FragmentProfileAthlete : Fragment() {
             //Refresh fragment with before data
             insertField()
         }
+
     }
+
 
     override fun onResume() {
         super.onResume()
-        if (prefs!!.getBoolean("FirstRunFragmentProfileAthlete", true)
+        if (prefs!!.getBoolean("FirstRunProfileAthlete", true)
         ) {
+
             GuideView.Builder(requireContext())
                 .setTitle(getString(R.string.view_case_title_button_camera))
                 .setContentText(getString(R.string.view_case_text_button_camera))
+                .setTitleTextSize(16)
+                .setContentTextSize(14)
                 .setTargetView(buttonCameraAthlete)
                 .setDismissType(DismissType.outside)
                 .setGuideListener {
@@ -595,28 +615,44 @@ class FragmentProfileAthlete : Fragment() {
                     GuideView.Builder(requireContext())
                         .setTitle(getString(R.string.view_case_title_button_gallery))
                         .setContentText(getString(R.string.view_case_text_button_gallery))
+                        .setTitleTextSize(16)
+                        .setContentTextSize(14)
                         .setTargetView(buttonGalleryAthlete)
                         .setDismissType(DismissType.outside)
                         .setGuideListener {
 
-                            GuideView.Builder(requireContext())
-                                .setTitle(getString(R.string.view_case_title_fab_edit))
-                                .setContentText(getString(R.string.view_case_text_fab_edit))
-                                .setTargetView(floatingActionButtonEditProfileAthlete)
-                                .setDismissType(DismissType.outside)
-                                .setGuideListener {
-                                    prefs!!.edit()
-                                        .putBoolean("FirstRunFragmentProfileAthlete", false).apply()
-                                }
-                                .build()
-                                .show()
+                            scrollViewProfileAthlete.post {
+                                scrollViewProfileAthlete.smoothScrollTo(0,
+                                    floatingActionButtonEditProfileAthlete.bottom)
+                            }
+
+                            Handler(Looper.getMainLooper()).postDelayed(
+                                {
+                                    GuideView.Builder(requireContext())
+                                        .setTitle(getString(R.string.view_case_title_fab_edit))
+                                        .setContentText(getString(R.string.view_case_text_fab_edit))
+                                        .setTitleTextSize(16)
+                                        .setContentTextSize(14)
+                                        .setTargetView(floatingActionButtonEditProfileAthlete)
+                                        .setDismissType(DismissType.outside)
+                                        .setGuideListener {
+
+                                            scrollViewProfileAthlete.post {
+                                                scrollViewProfileAthlete.smoothScrollTo(0, 0)
+                                            }
+
+                                            prefs!!.edit().putBoolean("FirstRunProfileAthlete", false).apply()
+                                        }
+                                        .build()
+                                        .show()
+                                }, 500)
                         }
                         .build()
                         .show()
                 }
                 .build()
                 .show()
+
         }
     }
-
 }

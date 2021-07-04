@@ -7,13 +7,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration
 import it.app.mytrainer.R
 import it.app.mytrainer.firebase.fireauth.FireAuth
 import it.app.mytrainer.firebase.firestore.FireStore
-import it.app.mytrainer.ui.adapter.RecycleScheduleAdapter
+import it.app.mytrainer.ui.adapter.RecyclerScheduleAdapter
 import kotlinx.android.synthetic.main.fragment_schedule_athlete.*
 import smartdevelop.ir.eram.showcaseviewlib.GuideView
 import smartdevelop.ir.eram.showcaseviewlib.config.DismissType
@@ -44,15 +45,17 @@ class FragmentScheduleAthlete : Fragment() {
                 setVisibilityForSchedule()
 
                 recycleViewSchedule.adapter =
-                    RecycleScheduleAdapter(requireContext(), listOfDays)
+                    RecyclerScheduleAdapter(requireContext(), listOfDays)
 
             } else {
                 setVisibilityForNoSchedule()
-                Toast.makeText(
-                    requireContext(),
+
+                Snackbar.make(constraintFragmentScheduleAthlete,
                     getString(R.string.no_schedule_available),
-                    Toast.LENGTH_LONG
-                ).show()
+                    Snackbar.LENGTH_LONG)
+                    .setBackgroundTint(ContextCompat.getColor(requireContext(), R.color.app_foreground))
+                    .setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+                    .show()
             }
         }
 
@@ -63,15 +66,17 @@ class FragmentScheduleAthlete : Fragment() {
                     setVisibilityForSchedule()
 
                     recycleViewSchedule.adapter =
-                        RecycleScheduleAdapter(requireContext(), listOfDays)
+                        RecyclerScheduleAdapter(requireContext(), listOfDays)
 
                 } else {
                     setVisibilityForNoSchedule()
-                    Toast.makeText(
-                        requireContext(),
+
+                    Snackbar.make(constraintFragmentScheduleAthlete,
                         getString(R.string.no_schedule_available),
-                        Toast.LENGTH_LONG
-                    ).show()
+                        Snackbar.LENGTH_LONG)
+                        .setBackgroundTint(ContextCompat.getColor(requireContext(), R.color.app_foreground))
+                        .setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+                        .show()
                 }
             }
         }

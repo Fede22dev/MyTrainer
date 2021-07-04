@@ -71,14 +71,14 @@
             android:textColor="@color/white"
             android:textSize="24sp"
             android:visibility="invisible"
-            app:layout_constraintBottom_toTopOf="@id/recycleViewListClient"
+            app:layout_constraintBottom_toTopOf="@id/recycleViewListClientFollowed"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/titleAppListClientTrainer"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycleViewListClient"
+            android:id="@+id/recycleViewListClientFollowed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
@@ -101,6 +101,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="ContentDescription" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
