@@ -17,7 +17,6 @@ import it.app.mytrainer.ui.activities.home.ActivityHomeAthlete
 import it.app.mytrainer.ui.activities.starter.ActivityLogin
 import it.app.mytrainer.ui.adapter.AthleteRegistrationPageAdapter
 import kotlinx.android.synthetic.main.activity_registration_athlete.*
-import kotlinx.android.synthetic.main.activity_registration_trainer.*
 
 /**
  * Class to manage the registration of athletes
@@ -218,7 +217,7 @@ class ActivityRegistrationAthlete : AppCompatActivity() {
                 //If is not ok, delete the previous current user on auth and go back in login
                 if (!saveOk) {
                     FireAuth.deleteCurrentUser()
-                    
+
                     Snackbar.make(constraintActivityRegistrationAthlete,
                         getString(R.string.error_creation_user_auth),
                         Snackbar.LENGTH_LONG)

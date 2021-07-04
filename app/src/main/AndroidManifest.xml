@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="it.app.mytrainer">
-
     <!-- START USER PERMISSION -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -31,9 +30,7 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
-        </provider>
-
-        <!-- START MAIN AND LAUNCHER ACTIVITY -->
+        </provider> <!-- START MAIN AND LAUNCHER ACTIVITY -->
         <activity
             android:name=".ui.activities.starter.ActivityMain"
             android:screenOrientation="portrait">
@@ -78,7 +75,7 @@
         <!-- END OF HOME ACTIVITY ATHLETE -->
         <!-- START OF HOME ACTIVITY TRAINER -->
         <activity
-            android:name=".ui.activities.home.ActivityHomeTrainer"
+            android:name=".ui.activities.home.trainer.ActivityHomeTrainer"
             android:screenOrientation="portrait" /> <!-- END OF HOME ACTIVITY TRAINER -->
         <activity
             android:name=".ui.activities.home.schedule.trainer.ActivitySearchExercise"
@@ -86,6 +83,10 @@
         <activity
             android:name=".ui.activities.home.schedule.trainer.ActivityViewDataAthlete"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activities.home.trainer.ActivityViewAllAthleteRegistered"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".ui.activities.home.schedule.trainer.ActivityCreationSchedule"
             android:screenOrientation="portrait" /> <!-- START OF REAUTH ACTIVITY -->

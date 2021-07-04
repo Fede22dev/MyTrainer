@@ -24,7 +24,8 @@
             android:layout_height="?attr/actionBarSize"
             android:backgroundTint="@color/orange_title_app"
             app:menu="@menu/option_menu_schedule"
-            app:title="@string/view_schedule" />
+            app:title="@string/view_schedule"
+            app:titleTextColor="@color/black" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

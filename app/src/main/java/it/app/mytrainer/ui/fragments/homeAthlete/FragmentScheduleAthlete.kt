@@ -53,7 +53,8 @@ class FragmentScheduleAthlete : Fragment() {
                 Snackbar.make(constraintFragmentScheduleAthlete,
                     getString(R.string.no_schedule_available),
                     Snackbar.LENGTH_LONG)
-                    .setBackgroundTint(ContextCompat.getColor(requireContext(), R.color.app_foreground))
+                    .setBackgroundTint(ContextCompat.getColor(requireContext(),
+                        R.color.app_foreground))
                     .setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
                     .show()
             }
@@ -74,7 +75,8 @@ class FragmentScheduleAthlete : Fragment() {
                     Snackbar.make(constraintFragmentScheduleAthlete,
                         getString(R.string.no_schedule_available),
                         Snackbar.LENGTH_LONG)
-                        .setBackgroundTint(ContextCompat.getColor(requireContext(), R.color.app_foreground))
+                        .setBackgroundTint(ContextCompat.getColor(requireContext(),
+                            R.color.app_foreground))
                         .setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
                         .show()
                 }

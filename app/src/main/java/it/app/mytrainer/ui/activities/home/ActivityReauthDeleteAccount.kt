@@ -12,6 +12,7 @@ import it.app.mytrainer.R
 import it.app.mytrainer.firebase.fireauth.FireAuth
 import it.app.mytrainer.firebase.firestore.FireStore
 import it.app.mytrainer.firebase.storage.Storage
+import it.app.mytrainer.ui.activities.home.trainer.ActivityHomeTrainer
 import it.app.mytrainer.ui.activities.starter.ActivityLogin
 import kotlinx.android.synthetic.main.activity_reauth_delete_account.*
 

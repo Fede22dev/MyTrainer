@@ -1,4 +1,4 @@
-package it.app.mytrainer.ui.activities.home
+package it.app.mytrainer.ui.activities.home.trainer
 
 import android.content.Intent
 import android.content.SharedPreferences
@@ -11,6 +11,7 @@ import it.app.mytrainer.R
 import it.app.mytrainer.firebase.fireauth.FireAuth
 import it.app.mytrainer.firebase.firestore.FireStore
 import it.app.mytrainer.firebase.storage.Storage
+import it.app.mytrainer.ui.activities.home.ActivityReauthDeleteAccount
 import it.app.mytrainer.ui.activities.starter.ActivityLogin
 import kotlinx.android.synthetic.main.activity_home_trainer.*
 import smartdevelop.ir.eram.showcaseviewlib.GuideView

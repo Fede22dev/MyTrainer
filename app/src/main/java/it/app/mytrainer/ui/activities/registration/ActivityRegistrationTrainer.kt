@@ -13,10 +13,9 @@ import it.app.mytrainer.R
 import it.app.mytrainer.firebase.fireauth.FireAuth
 import it.app.mytrainer.firebase.firestore.FireStore
 import it.app.mytrainer.models.MapTrainer
-import it.app.mytrainer.ui.activities.home.ActivityHomeTrainer
+import it.app.mytrainer.ui.activities.home.trainer.ActivityHomeTrainer
 import it.app.mytrainer.ui.activities.starter.ActivityLogin
 import it.app.mytrainer.ui.adapter.TrainerRegistrationPageAdapter
-import kotlinx.android.synthetic.main.activity_reauth_delete_account.*
 import kotlinx.android.synthetic.main.activity_registration_trainer.*
 
 /**

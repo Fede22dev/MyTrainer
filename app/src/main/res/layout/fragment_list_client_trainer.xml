@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/francois_one"
             android:gravity="center"
-            android:text="@string/no_athlete_registered"
+            android:text="@string/no_athlete_followed"
             android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@id/textViewTrainerInfoBox2"
@@ -52,7 +52,7 @@
             android:layout_marginBottom="256dp"
             android:fontFamily="@font/francois_one"
             android:gravity="center"
-            android:text="@string/try_to_refresh_schedule_athlete"
+            android:text="@string/try_to_search_some_athletes_clicking_the_button_below"
             android:textColor="@color/white"
             android:textSize="22sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -67,7 +67,7 @@
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/francois_one"
             android:gravity="center"
-            android:text="@string/registered_athlete"
+            android:text="@string/followed_athletes"
             android:textColor="@color/white"
             android:textSize="24sp"
             android:visibility="invisible"
@@ -82,26 +82,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
+            android:scrollbarThumbVertical="@drawable/custom_thumb_scrollbar"
+            android:scrollbarTrackVertical="@drawable/custom_track_scrollbar"
+            android:scrollbars="vertical"
             android:visibility="invisible"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toTopOf="@id/fabRefreshListClient"
+            app:layout_constraintBottom_toTopOf="@id/fabSearchAllClient"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_max="300dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewListClientReady" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabRefreshListClient"
+            android:id="@+id/fabSearchAllClient"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/green_button"
             android:clickable="true"
             android:focusable="true"
-            android:src="@drawable/ic_refresh"
+            android:src="@drawable/ic_search"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="ContentDescription" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

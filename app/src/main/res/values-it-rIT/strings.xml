@@ -73,7 +73,7 @@
     <string name="error_creation_user_auth">CREAZIONE DELL\'UTENTE FALLITA, RIPROVA!</string>
     <string name="welcome_back_trainer_login">BENTORNATO TRAINER!</string>
     <string name="welcome_back_athlete_login">BENTORNATO ATLETA!</string>
-    <string name="error_login_user_not_found">ERRORE: UTENTE NON TROVATO O NON REGISTRATO.</string>
+    <string name="error_login_user_not_found">ERRORE: UTENTE NON TROVATO/REGISTRATO.</string>
     <string name="profile">Profilo</string>
     <string name="sign_out">Esci</string>
     <string name="birth_profile">Data di nascita:</string>
@@ -95,7 +95,7 @@
     <string name="number_of_workout_profile_athlete">Numero di allenamenti:</string>
     <string name="no_schedule_athlete">Non c\'e\' nessuna scheda per te al momento!</string>
     <string name="try_to_refresh_schedule_athlete">Prova a ricaricare la pagina cliccando il bottone in basso!</string>
-    <string name="schedule_fetch_athlete">Goditi la tua scheda, atleta!</string>
+    <string name="schedule_fetch_athlete">Scheda attiva:</string>
     <string name="series_schedule_athlete">Serie</string>
     <string name="recovery_schedule_athlete">Recupero</string>
     <string name="start_timer_schedule_athlete">AVVIA TIMER</string>
@@ -132,7 +132,7 @@
     <string name="search_calves">Polpacci</string>
     <string name="search_exercise_title">Cerca l\'esercizio!</string>
     <string name="search_exercise">Inserisci l\'esercizio da cercare</string>
-    <string name="no_connection">NESSUNA CONNESSIONE AD INTERNET, RIPROVA DOPO</string>
+    <string name="no_connection">NESSUNA CONNESSIONE INTERNET, RIPROVA DOPO!</string>
     <string name="id_trainer_mismatch">Le operazioni non sono abilitate, questo atleta è seguito da un altro trainer!</string>
     <string name="dialog_cancel_day_schedule">Sei sicuro di eliminare questo giorno? Questa operazione è irreversibile!</string>
     <string name="title_cancel_day_schedule">Elimina giorno</string>
@@ -144,13 +144,13 @@
     <string name="viewcase_title_fab_fragment_list_client">Refresh</string>
     <string name="viewcase_text_fab_fragment_list_client">Clicca qui\nper aggiornare la lista!</string>
     <string name="viewcase_title_recycle_fragment_list_client">LIsta clienti iscritti</string>
-    <string name="viewcase_text_recycle_fragment_list_client">Clicca su un atleta\nper vedere tutte\nle sue info!</string>
+    <string name="viewcase_text_recycle_fragment_list_client">Clicca qui per\ncercare fra tutti\ngli atleti\nregistrati!</string>
     <string name="viewcase_title_fab_fragment_creation_exercises">Bottone per\nla ricerca</string>
     <string name="viewcase_text_fab_fragment_creation_exercise">Usa questo bottone\nper cercare tra\noltre 100 esercizi!</string>
-    <string name="viewcase_text_save_activity_creation_schedule">Usa questo bottone\nper salvare questo\ngiorno ed aggiungerlo\nalla scheda!</string>
+    <string name="viewcase_text_save_activity_creation_schedule">Usa questo bottone\nper salvare questo\ngiorno e aggiungerlo\nalla scheda!</string>
     <string name="viewcase_title_save_activity_creation_schedule">Salva</string>
     <string name="viewcase_title_fab_delete_activity_creation_schedule">Cancella</string>
-    <string name="viewcase_text_fab_delete_activity_creation_schedule">Qui comparirà un bottone\ndal secondo esercizio in poi\nusalo per cancellare\ngli esercizi!</string>
+    <string name="viewcase_text_fab_delete_activity_creation_schedule">Qui comparirà un bottone\ndal secondo esercizio in poi,\nusalo per cancellare\ngli esercizi!</string>
     <string name="viewcase_title_fab_add_activity_creation_schedule">Aggiungi</string>
     <string name="viewcase_text_fab_add_activity_creation_schedule">Usa questo bottone\nper aggiungere un\naltro esercizio a\nquesto giorno!</string>
     <string name="viewcase_text_menu_activity_home_trainer">Clicca su questo\nmenu per gestire il\nlog-out e l\'eliminazione\ndell\'account</string>
@@ -171,4 +171,14 @@
     <string name="viewcase_text_recycle_view_data_athlete">Qui potrai trovare\nla scheda attiva\nper questo atleta.\nPremi per eliminare\nun giorno!</string>
     <string name="viewcase_title_fab_view_data_athlete">Aggiungi</string>
     <string name="viewcase_text_fab_view_data_athlete">Premi questo bottone\nper aggiungere un\ngiorno alla scheda\ndell\'atleta!</string>
+    <string name="top_app_bar_view_all_athlete_registered">Atleti registrati</string>
+    <string name="insert_the_athlete_to_search">Inserisci l\'atleta da cercare!</string>
+    <string name="no_athlete_followed">Non stai seguendo nessun atleta per il momento.</string>
+    <string name="followed_athletes">Atleti seguiti:</string>
+    <string name="no_athlete_followed_yet">Non stai seguendo nessun atleta. Prova a cercare qualche atleta da seguire!</string>
+    <string name="viewcase_title_recycle_followed_athlete">Atleti seguiti</string>
+    <string name="viewcase_text_recycle_followed_athlete">Qui potrai trovare\ngli atleti che segui!</string>
+    <string name="viewcase_title_fab_followed_athlete">Cerca</string>
+    <string name="viewcase_text_fab_followed_athlete">Cliccando qui potrai\ncercare tra tutti gli\natleti iscritti,\ntrovando nuovi clienti!</string>
+    <string name="try_to_search_some_athletes_clicking_the_button_below">Prova a cerca atleti cliccando il bottone in basso!</string>
 </resources>

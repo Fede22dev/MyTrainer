@@ -1,5 +1,6 @@
 package it.app.mytrainer.ui.fragments.homeTrainer
 
+import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
@@ -12,18 +13,25 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration
 import it.app.mytrainer.R
+import it.app.mytrainer.firebase.fireauth.FireAuth
 import it.app.mytrainer.firebase.firestore.FireStore
+import it.app.mytrainer.models.ObjAthlete
+import it.app.mytrainer.ui.activities.home.trainer.ActivityViewAllAthleteRegistered
 import it.app.mytrainer.ui.adapter.RecyclerListClientTrainerAdapter
+import kotlinx.android.synthetic.main.activity_view_all_athlete_registered.*
 import kotlinx.android.synthetic.main.fragment_list_client_trainer.*
-import me.zhanghai.android.fastscroll.FastScrollerBuilder
 import smartdevelop.ir.eram.showcaseviewlib.GuideView
 import smartdevelop.ir.eram.showcaseviewlib.config.DismissType
 import java.util.*
+import kotlin.concurrent.thread
 
 class FragmentListClientTrainer : Fragment() {
 
     private lateinit var fireStore: FireStore
     private var prefs: SharedPreferences? = null
+    private val currentUserId = FireAuth.getCurrentUserAuth()?.uid!!
+    private lateinit var adapter: RecyclerListClientTrainerAdapter
+    private val listVisualAthleteFollowed = ArrayList<ObjAthlete>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,75 +50,80 @@ class FragmentListClientTrainer : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        fireStore.getAllAthlete { listAthlete, result ->
+        fireStore.getAllAthleteFollowedByTrainer(currentUserId) { listAthlete, result ->
             if (result) {
-                textViewTrainerInfoBox1.visibility = View.INVISIBLE
-                textViewTrainerInfoBox2.visibility = View.INVISIBLE
-                textViewListClientReady.visibility = View.VISIBLE
-                recycleViewListClientFollowed.visibility = View.VISIBLE
-
-                listAthlete.sortBy { it.surnameAthlete.toLowerCase(Locale.ROOT) }
-
-                recycleViewListClientFollowed.adapter =
-                    RecyclerListClientTrainerAdapter(requireContext(), listAthlete)
-
-                setFastScrollerRecycler()
-
-            } else {
-
-                Snackbar.make(constraintFragmentListClient,
-                    getString(R.string.no_athlete_list_client),
-                    Snackbar.LENGTH_LONG)
-                    .setBackgroundTint(ContextCompat.getColor(requireContext(), R.color.app_foreground))
-                    .setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-                    .show()
-            }
-        }
-
-        fabRefreshListClient.setOnClickListener {
-            fireStore.getAllAthlete { listAthlete, result ->
-                if (result) {
+                if (listAthlete.size > 0) {
+                    textViewTrainerInfoBox1.visibility = View.INVISIBLE
+                    textViewTrainerInfoBox2.visibility = View.INVISIBLE
+                    textViewListClientReady.visibility = View.VISIBLE
+                    recycleViewListClientFollowed.visibility = View.VISIBLE
 
                     listAthlete.sortBy { it.surnameAthlete.toLowerCase(Locale.ROOT) }
 
-                    recycleViewListClientFollowed.adapter =
-                        RecyclerListClientTrainerAdapter(requireContext(), listAthlete)
+                    listAthlete.forEach { athlete ->
+                        listVisualAthleteFollowed.add(athlete)
+                    }
 
-                    setFastScrollerRecycler()
+                    adapter = RecyclerListClientTrainerAdapter(requireContext(),
+                        listVisualAthleteFollowed)
+                    recycleViewListClientFollowed.adapter = adapter
 
                 } else {
-                    Snackbar.make(constraintFragmentListClient,
-                        getString(R.string.no_athlete_list_client),
+                    textViewListClientReady.visibility = View.INVISIBLE
+                    recycleViewListClientFollowed.visibility = View.INVISIBLE
+                    textViewTrainerInfoBox1.visibility = View.VISIBLE
+                    textViewTrainerInfoBox2.visibility = View.VISIBLE
+
+                    Snackbar.make(constraintActivityViewAllAthlete,
+                        getString(R.string.no_athlete_followed_yet),
                         Snackbar.LENGTH_LONG)
-                        .setBackgroundTint(ContextCompat.getColor(requireContext(), R.color.app_foreground))
+                        .setBackgroundTint(ContextCompat.getColor(requireContext(),
+                            R.color.app_foreground))
                         .setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
                         .show()
                 }
             }
+
+            addDividerRecycler()
         }
 
-        addDividerRecycler()
+        fabSearchAllClient.setOnClickListener {
+            val intent = Intent(requireContext(), ActivityViewAllAthleteRegistered::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onResume() {
         super.onResume()
+
+        thread {
+            Thread.sleep(1000)
+            fireStore.getAllAthleteFollowedByTrainer(currentUserId) { listAthlete, _ ->
+                listVisualAthleteFollowed.clear()
+                listAthlete.forEach { athlete ->
+                    listVisualAthleteFollowed.add(athlete)
+                }
+                adapter.notifyDataSetChanged()
+            }
+        }
+
         if (prefs!!.getBoolean("FirstRunFragmentClientTrainer", true)
         ) {
             GuideView.Builder(requireContext())
-                .setTitle(getString(R.string.viewcase_title_fab_fragment_list_client))
-                .setContentText(getString(R.string.viewcase_text_fab_fragment_list_client))
+                .setTitle(getString(R.string.viewcase_title_recycle_followed_athlete))
+                .setContentText(getString(R.string.viewcase_text_recycle_followed_athlete))
                 .setTitleTextSize(16)
                 .setContentTextSize(14)
-                .setTargetView(fabRefreshListClient)
+                .setTargetView(recycleViewListClientFollowed)
                 .setDismissType(DismissType.outside)
                 .setGuideListener {
 
                     GuideView.Builder(requireContext())
-                        .setTitle(getString(R.string.viewcase_title_recycle_fragment_list_client))
-                        .setContentText(getString(R.string.viewcase_text_recycle_fragment_list_client))
+                        .setTitle(getString(R.string.viewcase_title_fab_followed_athlete))
+                        .setContentText(getString(R.string.viewcase_text_fab_followed_athlete))
                         .setTitleTextSize(16)
                         .setContentTextSize(14)
-                        .setTargetView(recycleViewListClientFollowed)
+                        .setTargetView(fabSearchAllClient)
                         .setDismissType(DismissType.outside)
                         .setGuideListener {
                             prefs!!.edit().putBoolean("FirstRunFragmentClientTrainer", false)
@@ -118,17 +131,10 @@ class FragmentListClientTrainer : Fragment() {
                         }
                         .build()
                         .show()
-
                 }
                 .build()
                 .show()
         }
-    }
-
-    private fun setFastScrollerRecycler() {
-        val fastSc = FastScrollerBuilder(recycleViewListClientFollowed).useMd2Style()
-        fastSc.disableScrollbarAutoHide()
-        fastSc.build()
     }
 
     private fun addDividerRecycler() {

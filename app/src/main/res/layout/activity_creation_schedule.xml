@@ -27,7 +27,8 @@
             app:menu="@menu/option_menu_creation_schedule"
             app:navigationIcon="@drawable/ic_arrow_back"
             app:navigationIconTint="@color/black"
-            app:title="@string/creation_schedule" />
+            app:title="@string/creation_schedule"
+            app:titleTextColor="@color/black" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

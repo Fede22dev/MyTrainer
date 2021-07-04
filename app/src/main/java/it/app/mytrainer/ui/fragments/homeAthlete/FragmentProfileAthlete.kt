@@ -641,7 +641,8 @@ class FragmentProfileAthlete : Fragment() {
                                                 scrollViewProfileAthlete.smoothScrollTo(0, 0)
                                             }
 
-                                            prefs!!.edit().putBoolean("FirstRunProfileAthlete", false).apply()
+                                            prefs!!.edit()
+                                                .putBoolean("FirstRunProfileAthlete", false).apply()
                                         }
                                         .build()
                                         .show()

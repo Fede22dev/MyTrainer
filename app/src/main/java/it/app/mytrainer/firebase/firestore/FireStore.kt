@@ -227,7 +227,57 @@ class FireStore {
             }
     }
 
-    // To fill the recycleView in the home of the trainer
+    //Used to fill the recycle for athlete who is followed
+    //by the registered trainer
+    @Suppress("UNCHECKED_CAST")
+    fun getAllAthleteFollowedByTrainer(
+        trainerId: String,
+        callback: (ArrayList<ObjAthlete>, Boolean) -> Unit,
+    ) {
+        val listAthleteFollowed = ArrayList<ObjAthlete>()
+        var athleteId: String
+
+        db.collection(COLLECTIONATHLETE).whereEqualTo("TrainerId", trainerId).get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    val doc = document.data
+                    athleteId = doc["AthleteId"].toString()
+
+                    Storage.getPhotoUrl(athleteId) { uri ->
+
+                        athleteId = doc["AthleteId"].toString()
+
+                        var url = ""
+                        if (uri != null) {
+                            url = uri.toString()
+                        }
+
+                        listAthleteFollowed.add(ObjAthlete(
+                            doc["Name"].toString(),
+                            doc["Surname"].toString(),
+                            doc["BirthDate"].toString(),
+                            doc["Height"].toString(),
+                            doc["Weight"].toString(),
+                            doc["TypeOfWO"].toString(),
+                            doc["Goal"].toString(),
+                            doc["Level"].toString(),
+                            doc["DaysOfWorkout"].toString(),
+                            doc["Equipment"] as ArrayList<String>,
+                            athleteId,
+                            doc["TrainerId"].toString(),
+                            url))
+
+                        callback(listAthleteFollowed, true)
+                    }
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Getting documents: failed", e)
+                callback(listAthleteFollowed, false)
+            }
+    }
+
+    // To fill the recycleView in the search all athlete trainer side
     @Suppress("UNCHECKED_CAST")
     fun getAllAthlete(callback: (ArrayList<ObjAthlete>, Boolean) -> Unit) {
         val listAthlete = ArrayList<ObjAthlete>()

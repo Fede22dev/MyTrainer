@@ -100,13 +100,13 @@
     <string name="no_schedule_athlete">There\'s no schedule for you at the moment!</string>
     <string name="try_to_refresh_schedule_athlete">Try to refresh the page clicking the button down below!</string>
     <string name="keep_pushing_schedule_athlete" translatable="false">Keep pushing!</string>
-    <string name="schedule_fetch_athlete">Enjoy your schedule, athlete!</string>
+    <string name="schedule_fetch_athlete">Active schedule:</string>
     <string name="series_schedule_athlete">Series</string>
     <string name="recovery_schedule_athlete">Recovery</string>
     <string name="start_timer_schedule_athlete">START TIMER</string>
     <string name="create_account_login">CREATE ACCOUNT</string>
     <string name="delete_account_button">DELETE ACCOUNT</string>
-    <string name="reinsert_password_to_confirm_delete_of_account">Reinsert password to confirm delete of account</string>
+    <string name="reinsert_password_to_confirm_delete_of_account">Reinsert the password to confirm delete of account</string>
     <string name="athlete">Athlete</string>
     <string name="trainer" translatable="false">Trainer</string>
     <string name="view_schedule">Schedule</string>
@@ -151,7 +151,7 @@
     <string name="viewcase_title_fab_fragment_list_client">Refresh button</string>
     <string name="viewcase_text_fab_fragment_list_client">Press here to\nrefresh the list!</string>
     <string name="viewcase_title_recycle_fragment_list_client">List\nsubmitted client</string>
-    <string name="viewcase_text_recycle_fragment_list_client">Click on the\nathlete to see\nall his info!</string>
+    <string name="viewcase_text_recycle_fragment_list_client">Click here to\nsearch above all\nregistered athletes!</string>
     <string name="viewcase_title_fab_fragment_creation_exercises">Search button</string>
     <string name="viewcase_text_fab_fragment_creation_exercise">Use this button\nto search between\nover 100 exercise!</string>
     <string name="viewcase_text_save_activity_creation_schedule">Use that button\nto save this day and\nadd it to the schedule!</string>
@@ -180,4 +180,14 @@
     <string name="viewcase_text_recycle_view_data_athlete">Here you will\nfind the active schedule\nfor this athlete.\nMake a long press\nto cancel a day!</string>
     <string name="viewcase_title_fab_view_data_athlete">Add button</string>
     <string name="viewcase_text_fab_view_data_athlete">Press this button\nto add a day to\nthe athlete\'s schedule!</string>
+    <string name="top_app_bar_view_all_athlete_registered">Athlete Registered</string>
+    <string name="insert_the_athlete_to_search">Insert the athlete to search!</string>
+    <string name="no_athlete_followed">You are not following any athlete for the moment.</string>
+    <string name="followed_athletes">Followed athletes:</string>
+    <string name="no_athlete_followed_yet">You are not following any athlete. Try to search some athlete to follow!</string>
+    <string name="viewcase_title_recycle_followed_athlete">Followed athlete</string>
+    <string name="viewcase_text_recycle_followed_athlete">Here you will\nfind all the athlete\nfollowed by you!</string>
+    <string name="viewcase_title_fab_followed_athlete">Search button</string>
+    <string name="viewcase_text_fab_followed_athlete">Clicking here you\nwill search above all\nthe athlete and find\nsome new client!</string>
+    <string name="try_to_search_some_athletes_clicking_the_button_below">Try to search some athletes clicking the button below!</string>
 </resources>

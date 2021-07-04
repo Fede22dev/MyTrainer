@@ -398,7 +398,8 @@ class FragmentProfileTrainer : Fragment() {
                                                 scrollViewProfileTrainer.smoothScrollTo(0, 0)
                                             }
 
-                                            prefs!!.edit().putBoolean("FirstRunProfileTrainer", false).apply()
+                                            prefs!!.edit()
+                                                .putBoolean("FirstRunProfileTrainer", false).apply()
                                         }
                                         .build()
                                         .show()

@@ -19,7 +19,7 @@ import com.google.firebase.ktx.Firebase
 import it.app.mytrainer.R
 import it.app.mytrainer.firebase.fireauth.FireAuth
 import it.app.mytrainer.ui.activities.home.ActivityHomeAthlete
-import it.app.mytrainer.ui.activities.home.ActivityHomeTrainer
+import it.app.mytrainer.ui.activities.home.trainer.ActivityHomeTrainer
 import it.app.mytrainer.ui.activities.registration.ActivityUserChoice
 import kotlinx.android.synthetic.main.activity_login.*
 

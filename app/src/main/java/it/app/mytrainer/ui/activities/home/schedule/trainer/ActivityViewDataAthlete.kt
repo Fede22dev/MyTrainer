@@ -161,9 +161,8 @@ class ActivityViewDataAthlete : AppCompatActivity() {
             }
         }
 
-        topAppBarViewDataAthlete.setOnMenuItemClickListener {
+        topAppBarViewDataAthlete.setNavigationOnClickListener {
             finish()
-            true
         }
     }
 
@@ -186,7 +185,7 @@ class ActivityViewDataAthlete : AppCompatActivity() {
             //Opening the activity from the bottom the first time, to
             //consent to see all the view case
             scrollViewViewDataAthlete.post {
-                scrollViewViewDataAthlete.smoothScrollTo(0, fabAddScheduleViewDataAthlete.bottom)
+                scrollViewViewDataAthlete.smoothScrollTo(0, Int.MAX_VALUE)
             }
 
             Handler(Looper.getMainLooper()).postDelayed(
@@ -200,23 +199,14 @@ class ActivityViewDataAthlete : AppCompatActivity() {
                         .setDismissType(DismissType.outside)
                         .setGuideListener {
 
-                            GuideView.Builder(this)
-                                .setTitle(getString(R.string.viewcase_title_fab_view_data_athlete))
-                                .setContentText(getString(R.string.viewcase_text_fab_view_data_athlete))
-                                .setTitleTextSize(16)
-                                .setContentTextSize(14)
-                                .setTargetView(fabAddScheduleViewDataAthlete)
-                                .setDismissType(DismissType.outside)
-                                .setGuideListener {
 
-                                    scrollViewViewDataAthlete.post {
-                                        scrollViewViewDataAthlete.smoothScrollTo(0, 0)
-                                    }
+                            scrollViewViewDataAthlete.post {
+                                scrollViewViewDataAthlete.smoothScrollTo(0, 0)
+                            }
 
-                                    prefs!!.edit().putBoolean("FirstRunViewDataAthlete", false).apply()
-                                }
-                                .build()
-                                .show()
+                            prefs!!.edit().putBoolean("FirstRunViewDataAthlete", false)
+                                .apply()
+
                         }
                         .build()
                         .show()

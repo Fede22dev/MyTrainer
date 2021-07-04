@@ -23,8 +23,10 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:backgroundTint="@color/orange_title_app"
-            app:menu="@menu/option_menu_schedule"
-            app:title="View profile athlete" />
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:navigationIconTint="@color/black"
+            app:title="View profile athlete"
+            app:titleTextColor="@color/black" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

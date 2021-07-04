@@ -71,6 +71,7 @@ dependencies {
 
     //Fast scroller recyclerview
     implementation 'me.zhanghai.android.fastscroll:library:1.1.7'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     testImplementation 'junit:junit:4.13.2'
 

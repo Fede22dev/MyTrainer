@@ -12,7 +12,7 @@ import com.google.android.material.snackbar.Snackbar
 import it.app.mytrainer.R
 import it.app.mytrainer.firebase.fireauth.FireAuth
 import it.app.mytrainer.ui.activities.home.ActivityHomeAthlete
-import it.app.mytrainer.ui.activities.home.ActivityHomeTrainer
+import it.app.mytrainer.ui.activities.home.trainer.ActivityHomeTrainer
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.concurrent.thread
 
