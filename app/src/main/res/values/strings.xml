@@ -103,7 +103,7 @@
     <string name="schedule_fetch_athlete">Active schedule:</string>
     <string name="series_schedule_athlete">Series</string>
     <string name="recovery_schedule_athlete">Recovery</string>
-    <string name="start_timer_schedule_athlete">START TIMER</string>
+    <string name="start_timer_schedule_athlete">START\nTIMER</string>
     <string name="create_account_login">CREATE ACCOUNT</string>
     <string name="delete_account_button">DELETE ACCOUNT</string>
     <string name="reinsert_password_to_confirm_delete_of_account">Reinsert the password to confirm delete of account</string>
@@ -165,13 +165,13 @@
     <string name="viewcase_text_recycle_fragment_schedule_athlete">When a trainer create\na schedule for you\nit will appear here!\nClick on the day to\nsee it!</string>
     <string name="viewcase_title_fab_refresh_fragment_schedule_athlete">Refresh button</string>
     <string name="viewcase_text_fab_refresh_fragment_schedule_athlete">Press to refresh\nthe list of days\nor to see if their\navailable schedule!</string>
-    <string name="view_case_title_button_camera">Camera button</string>
-    <string name="view_case_text_button_camera">Click here to\ntake a picture\nof yourself!</string>
-    <string name="view_case_title_button_gallery">Gallery button</string>
-    <string name="view_case_text_button_gallery">Click here to\nbring a picture\nof yourself from\nthe gallery!</string>
-    <string name="view_case_title_fab_edit">Edit button</string>
-    <string name="view_case_text_fab_edit">Use this button\nto edit the\neditable fields!</string>
-    <string name="viewcase_text_fab_delete_activity_creation_schedule">Here will appear a\ndelete button from\nthe second exercise\nuse it to delete\nthe exercise!</string>
+    <string name="viewcase_title_button_camera">Camera button</string>
+    <string name="viewcase_text_button_camera">Click here to\ntake a picture\nof yourself!</string>
+    <string name="viewcase_title_button_gallery">Gallery button</string>
+    <string name="viewcase_text_button_gallery">Click here to\nbring a picture\nof yourself from\nthe gallery!</string>
+    <string name="viewcase_title_fab_edit">Edit button</string>
+    <string name="viewcase_text_fab_edit">Use this button\nto edit the\neditable fields!</string>
+    <string name="viewcase_text_fab_delete_activity_creation_schedule">Here will appear a\ndelete button from\nin the last exercise,\nuse it to delete that!</string>
     <string name="error_used_email">This e-mail is already used! Please, use another one.</string>
     <string name="trainer_followed" translatable="false">Trainer:</string>
     <string name="error_blank_field_fragment_profile_athlete">ERROR: ALL FIELDS MUST BE FILLED! UPDATE FAILED!</string>
@@ -190,4 +190,12 @@
     <string name="viewcase_title_fab_followed_athlete">Search button</string>
     <string name="viewcase_text_fab_followed_athlete">Clicking here you\nwill search above all\nthe athlete and find\nsome new client!</string>
     <string name="try_to_search_some_athletes_clicking_the_button_below">Try to search some athletes clicking the button below!</string>
+    <string name="series_done">DONE</string>
+    <string name="popup_text_go_back_home_view_schedule">Have you finished the workout? In other case we suggest you to not go back, or you will lose the changes.</string>
+    <string name="popup_title_go_back_home_view_schedule">Go back home</string>
+    <string name="popup_text_back_info_creation_schedule">Attention! If you don\'t press the save button, you\'re gonna lose all the change!</string>
+    <string name="popup_title_back_info_creation_schedule">Back to info</string>
+    <string name="popup_title_save_creation_schedule">Save</string>
+    <string name="popup_text_save_creation_schedule">Make a look before save. If you\'re sure, save this day!</string>
+    <string name="stop_timer" translatable="false">STOP\nTIMER</string>
 </resources>

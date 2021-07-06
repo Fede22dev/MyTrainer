@@ -1,40 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_background"
-    android:padding="15dp"
-    tools:context=".ui.fragments.userChoice.FragmentUserChoiceTrainer">
+    android:fadeScrollbars="false"
+    android:fillViewport="true"
+    android:scrollbarSize="4dp"
+    android:scrollbarThumbVertical="@drawable/custom_thumb_scrollbar"
+    android:scrollbarTrackVertical="@drawable/custom_track_scrollbar">
 
-    <!--TEXT VIEW FOR INFO-->
-    <TextView
-        android:id="@+id/textViewChoiceTrainer"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/francois_one"
-        android:gravity="center"
-        android:text="@string/text_choice_trainer"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnChoiceTrainer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:background="@color/app_background"
+        android:padding="15dp"
+        tools:context=".ui.fragments.userChoice.FragmentUserChoiceTrainer">
 
-    <!--BUTTON TO START TRAINER REGISTRATION-->
-    <Button
-        android:id="@+id/btnChoiceTrainer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/button_red"
-        android:text="@string/sign_in_trainer"
-        android:textColor="@color/white"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewChoiceTrainer" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!--TEXT VIEW FOR INFO-->
+        <TextView
+            android:id="@+id/textViewChoiceTrainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/francois_one"
+            android:gravity="center"
+            android:text="@string/text_choice_trainer"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/btnChoiceTrainer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--BUTTON TO START TRAINER REGISTRATION-->
+        <Button
+            android:id="@+id/btnChoiceTrainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/red_button"
+            android:text="@string/sign_in_trainer"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewChoiceTrainer" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

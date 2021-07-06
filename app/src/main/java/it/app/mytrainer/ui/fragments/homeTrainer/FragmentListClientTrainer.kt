@@ -8,9 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.google.android.material.snackbar.Snackbar
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration
 import it.app.mytrainer.R
 import it.app.mytrainer.firebase.fireauth.FireAuth
@@ -18,7 +16,6 @@ import it.app.mytrainer.firebase.firestore.FireStore
 import it.app.mytrainer.models.ObjAthlete
 import it.app.mytrainer.ui.activities.home.trainer.ActivityViewAllAthleteRegistered
 import it.app.mytrainer.ui.adapter.RecyclerListClientTrainerAdapter
-import kotlinx.android.synthetic.main.activity_view_all_athlete_registered.*
 import kotlinx.android.synthetic.main.fragment_list_client_trainer.*
 import smartdevelop.ir.eram.showcaseviewlib.GuideView
 import smartdevelop.ir.eram.showcaseviewlib.config.DismissType
@@ -60,6 +57,8 @@ class FragmentListClientTrainer : Fragment() {
 
                     listAthlete.sortBy { it.surnameAthlete.toLowerCase(Locale.ROOT) }
 
+                    listVisualAthleteFollowed.clear()
+
                     listAthlete.forEach { athlete ->
                         listVisualAthleteFollowed.add(athlete)
                     }
@@ -73,14 +72,6 @@ class FragmentListClientTrainer : Fragment() {
                     recycleViewListClientFollowed.visibility = View.INVISIBLE
                     textViewTrainerInfoBox1.visibility = View.VISIBLE
                     textViewTrainerInfoBox2.visibility = View.VISIBLE
-
-                    Snackbar.make(constraintActivityViewAllAthlete,
-                        getString(R.string.no_athlete_followed_yet),
-                        Snackbar.LENGTH_LONG)
-                        .setBackgroundTint(ContextCompat.getColor(requireContext(),
-                            R.color.app_foreground))
-                        .setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-                        .show()
                 }
             }
 
@@ -96,14 +87,17 @@ class FragmentListClientTrainer : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        thread {
-            Thread.sleep(1000)
-            fireStore.getAllAthleteFollowedByTrainer(currentUserId) { listAthlete, _ ->
-                listVisualAthleteFollowed.clear()
-                listAthlete.forEach { athlete ->
-                    listVisualAthleteFollowed.add(athlete)
+        if (recycleViewListClientFollowed.visibility != View.INVISIBLE) {
+            thread {
+                Thread.sleep(1000)
+                fireStore.getAllAthleteFollowedByTrainer(currentUserId) { listAthlete, _ ->
+                    listVisualAthleteFollowed.clear()
+                    listAthlete.forEach { athlete ->
+                        listVisualAthleteFollowed.add(athlete)
+                    }
+
+                    adapter.notifyDataSetChanged()
                 }
-                adapter.notifyDataSetChanged()
             }
         }
 

@@ -7,6 +7,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import it.app.mytrainer.R
 import it.app.mytrainer.firebase.fireauth.FireAuth
@@ -89,7 +90,7 @@ class ActivityCreationSchedule : AppCompatActivity() {
                     fabAddExerciseCreationExercise.visibility = View.VISIBLE
                 }
 
-                if (position > 0) {
+                if (position == exerciseCount - 1 && position != 0) {
                     fabDeleteExerciseCreationExercise.visibility = View.VISIBLE
                 } else {
                     fabDeleteExerciseCreationExercise.visibility = View.INVISIBLE
@@ -121,12 +122,32 @@ class ActivityCreationSchedule : AppCompatActivity() {
         }
 
         topAppBarCreationSchedule.setOnMenuItemClickListener {
-            saveSchedule()
+            MaterialAlertDialogBuilder(this)
+                .setTitle(getString(R.string.popup_title_save_creation_schedule))
+                .setMessage(getString(R.string.popup_text_save_creation_schedule))
+
+                //If cancel has pressed anything happens
+                .setNegativeButton(getString(R.string.cancel_button)) { _, _ ->
+                }
+                //If accept button has pressed,the user go back to the home
+                .setPositiveButton(getString(R.string.accept_button)) { _, _ ->
+                    saveSchedule()
+                }.show()
             true
         }
 
         topAppBarCreationSchedule.setNavigationOnClickListener {
-            finish()
+            MaterialAlertDialogBuilder(this)
+                .setTitle(getString(R.string.popup_title_back_info_creation_schedule))
+                .setMessage(getString(R.string.popup_text_back_info_creation_schedule))
+
+                //If cancel has pressed anything happens
+                .setNegativeButton(getString(R.string.cancel_button)) { _, _ ->
+                }
+                //If accept button has pressed,the user go back to the home
+                .setPositiveButton(getString(R.string.accept_button)) { _, _ ->
+                    finish()
+                }.show()
         }
     }
 
@@ -195,5 +216,19 @@ class ActivityCreationSchedule : AppCompatActivity() {
                 .build()
                 .show()
         }
+    }
+
+    override fun onBackPressed() {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(getString(R.string.popup_title_back_info_creation_schedule))
+            .setMessage(getString(R.string.popup_text_back_info_creation_schedule))
+
+            //If cancel has pressed anything happens
+            .setNegativeButton(getString(R.string.cancel_button)) { _, _ ->
+            }
+            //If accept button has pressed,the user go back to the home
+            .setPositiveButton(getString(R.string.accept_button)) { _, _ ->
+                finish()
+            }.show()
     }
 }

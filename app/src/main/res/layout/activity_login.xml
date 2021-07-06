@@ -1,166 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintActivityLogin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_background"
-    tools:context=".ui.activities.starter.ActivityLogin">
+    android:fadeScrollbars="false"
+    android:fillViewport="true"
+    android:scrollbarSize="4dp"
+    android:scrollbarThumbVertical="@drawable/custom_thumb_scrollbar"
+    android:scrollbarTrackVertical="@drawable/custom_track_scrollbar">
 
-    <!--PROGRESS BAR-->
-    <ProgressBar
-        android:id="@+id/progressBarLogin"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:indeterminate="true"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <!--IMAGE VIEW BACKGROUND-->
-    <ImageView
-        android:id="@+id/imageViewBackgroundLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:alpha="0.95"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_background_login"
-        tools:ignore="ContentDescription" />
-
-    <!--TEXT VIEW FOR THE TITLE-->
-    <TextView
-        android:id="@+id/titleAppLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="150dp"
-        android:fontFamily="@font/audiowide"
-        android:maxLines="1"
-        android:text="@string/app_name"
-        android:textColor="@color/orange_title_app"
-        android:textSize="60sp"
-        app:layout_constraintBottom_toTopOf="@id/layoutLoginEditTextEmail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
-
-    <!--EMAIL FIELD-->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layoutLoginEditTextEmail"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintActivityLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="4dp"
-        android:backgroundTint="@color/app_background"
-        android:hint="@string/insert_email"
-        android:textColorHint="@color/hint"
-        app:boxBackgroundColor="@color/app_foreground"
-        app:endIconMode="clear_text"
-        app:endIconTint="@color/white"
-        app:errorEnabled="true"
-        app:layout_constraintBottom_toTopOf="@id/layoutLoginEditTextPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleAppLogin"
-        app:startIconDrawable="@drawable/ic_email"
-        app:startIconTint="@color/white">
+        android:background="@color/app_background"
+        tools:context=".ui.activities.starter.ActivityLogin">
 
-        <!--EMAIL TEXT FIELD-->
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/emailFieldLogin"
+        <!--PROGRESS BAR-->
+        <ProgressBar
+            android:id="@+id/progressBarLogin"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--IMAGE VIEW BACKGROUND-->
+        <ImageView
+            android:id="@+id/imageViewBackgroundLogin"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:alpha="0.95"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_background_login"
+            tools:ignore="ContentDescription" />
+
+        <!--TEXT VIEW FOR THE TITLE-->
+        <TextView
+            android:id="@+id/titleAppLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="150dp"
+            android:fontFamily="@font/audiowide"
+            android:maxLines="1"
+            android:text="@string/app_name"
+            android:textColor="@color/orange_title_app"
+            android:textSize="55sp"
+            app:layout_constraintBottom_toTopOf="@id/layoutLoginEditTextEmail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <!--EMAIL FIELD-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutLoginEditTextEmail"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:textColor="@color/white" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="4dp"
+            android:backgroundTint="@color/app_background"
+            android:hint="@string/insert_email"
+            android:textColorHint="@color/hint"
+            app:boxBackgroundColor="@color/app_foreground"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/white"
+            app:errorEnabled="true"
+            app:layout_constraintBottom_toTopOf="@id/layoutLoginEditTextPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleAppLogin"
+            app:startIconDrawable="@drawable/ic_email"
+            app:startIconTint="@color/white">
 
-    <!--PASSWORD FIELD-->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layoutLoginEditTextPassword"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="8dp"
-        android:hint="@string/insert_password"
-        android:textColorHint="@color/hint"
-        app:boxBackgroundColor="@color/app_foreground"
-        app:endIconMode="password_toggle"
-        app:endIconTint="@color/white"
-        app:errorEnabled="true"
-        app:layout_constraintBottom_toTopOf="@id/btnLogin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layoutLoginEditTextEmail"
-        app:startIconDrawable="@drawable/ic_lock"
-        app:startIconTint="@color/white">
+            <!--EMAIL TEXT FIELD-->
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailFieldLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/white" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <!--PASSWORD TEXT FIELD-->
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/passwordFieldLogin"
+        <!--PASSWORD FIELD-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutLoginEditTextPassword"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:textColor="@color/white" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/insert_password"
+            android:textColorHint="@color/hint"
+            app:boxBackgroundColor="@color/app_foreground"
+            app:endIconMode="password_toggle"
+            app:endIconTint="@color/white"
+            app:errorEnabled="true"
+            app:layout_constraintBottom_toTopOf="@id/btnLogin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutLoginEditTextEmail"
+            app:startIconDrawable="@drawable/ic_lock"
+            app:startIconTint="@color/white">
 
-    <!--LOGIN BUTTON-->
-    <Button
-        android:id="@+id/btnLogin"
-        style="@style/Widget.MaterialComponents.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/button_red"
-        android:maxLines="1"
-        android:onClick="onClickLogin"
-        android:text="@string/login"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@id/btnLoginFacebook"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layoutLoginEditTextPassword" />
+            <!--PASSWORD TEXT FIELD-->
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordFieldLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textColor="@color/white" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <!--BUTTON CONTINUE WITH FB-->
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/btnLoginFacebook"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@id/btnCreateAccount"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnLogin" />
+        <!--LOGIN BUTTON-->
+        <Button
+            android:id="@+id/btnLogin"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/red_button"
+            android:maxLines="1"
+            android:onClick="onClickLogin"
+            android:text="@string/login"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@id/btnLoginFacebook"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutLoginEditTextPassword" />
 
-    <!--BUTTON CREATE ACCOUNT-->
-    <Button
-        android:id="@+id/btnCreateAccount"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:onClick="onClickRegistration"
-        android:text="@string/create_account_login"
-        android:textColor="@color/green_button"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnLoginFacebook" />
+        <!--BUTTON CONTINUE WITH FB-->
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/btnLoginFacebook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/btnCreateAccount"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnLogin" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!--BUTTON CREATE ACCOUNT-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCreateAccount"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:onClick="onClickRegistration"
+            android:text="@string/create_account_login"
+            android:textColor="@color/green_button"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnLoginFacebook"
+            app:strokeColor="@color/green_button" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

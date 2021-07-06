@@ -78,7 +78,7 @@ class FragmentBodyInfoTypeWOGoalAthlete : Fragment() {
                     layoutAthleteEditTextHeight.error = null
                     layoutAthleteEditTextHeight.boxStrokeColor = Color.GREEN
                 } else {
-                    //Unsuccessful data 
+                    //Unsuccessful data
                     MapAthlete.removeHeight()
                     layoutAthleteEditTextHeight.error = getString(R.string.invalid_height)
                     layoutAthleteEditTextHeight.errorIconDrawable = null
@@ -109,7 +109,7 @@ class FragmentBodyInfoTypeWOGoalAthlete : Fragment() {
                 }
             } else {
                 //Blank field
-                MapAthlete.removeHeight()
+                MapAthlete.removeWeight()
                 layoutAthleteEditTextWeight.error = getString(R.string.invalid_weight)
                 layoutAthleteEditTextWeight.errorIconDrawable = null
             }
@@ -121,12 +121,14 @@ class FragmentBodyInfoTypeWOGoalAthlete : Fragment() {
             getString(R.string.weight_workout_registration_athlete),
             getString(R.string.bodyweight_workout_registration_athlete)
         )
+
         val adapter =
             ArrayAdapter(
                 requireContext(),
                 R.layout.drop_menu_item_list,
                 typeOfWO
             )
+
         autoTextViewDropMenuTypeOfWorkAthlete.setAdapter(adapter)
         autoTextViewDropMenuTypeOfWorkAthlete.setOnItemClickListener { _, _, position, _ ->
             MapAthlete.putTypeOfWO(typeOfWO[position])

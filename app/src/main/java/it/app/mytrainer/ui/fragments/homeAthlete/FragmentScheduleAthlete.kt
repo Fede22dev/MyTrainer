@@ -36,7 +36,6 @@ class FragmentScheduleAthlete : Fragment() {
         return inflater.inflate(R.layout.fragment_schedule_athlete, container, false)
     }
 
-    @Suppress("UNCHECKED_CAST")
     override fun onStart() {
         super.onStart()
 
@@ -52,7 +51,7 @@ class FragmentScheduleAthlete : Fragment() {
 
                 Snackbar.make(constraintFragmentScheduleAthlete,
                     getString(R.string.no_schedule_available),
-                    Snackbar.LENGTH_LONG)
+                    Snackbar.LENGTH_SHORT)
                     .setBackgroundTint(ContextCompat.getColor(requireContext(),
                         R.color.app_foreground))
                     .setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
@@ -74,7 +73,7 @@ class FragmentScheduleAthlete : Fragment() {
 
                     Snackbar.make(constraintFragmentScheduleAthlete,
                         getString(R.string.no_schedule_available),
-                        Snackbar.LENGTH_LONG)
+                        Snackbar.LENGTH_SHORT)
                         .setBackgroundTint(ContextCompat.getColor(requireContext(),
                             R.color.app_foreground))
                         .setTextColor(ContextCompat.getColor(requireContext(), R.color.white))

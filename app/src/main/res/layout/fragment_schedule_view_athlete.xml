@@ -60,7 +60,7 @@
             android:layout_marginBottom="32dp"
             android:baselineAligned="false"
             android:gravity="center"
-            app:layout_constraintBottom_toTopOf="@id/btnTimer"
+            app:layout_constraintBottom_toTopOf="@id/linearLayoutTimerSeriesDone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewNameExercise">
@@ -80,6 +80,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/francois_one"
                     android:gravity="center"
+                    android:maxLines="1"
                     android:text="@string/series_schedule_athlete"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
@@ -91,6 +92,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/francois_one"
                     android:gravity="center"
+                    android:maxLines="1"
                     android:text="5 X 4"
                     android:textColor="@color/white"
                     android:textSize="24sp"
@@ -112,6 +114,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/francois_one"
                     android:gravity="center"
+                    android:maxLines="1"
                     android:text="@string/recovery_schedule_athlete"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
@@ -160,20 +163,93 @@
             </LinearLayout>
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btnTimer"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="wrap_content"
+        <!--LINEAR LAYOUT FOR SERIES DONE AND TIMER-->
+        <LinearLayout
+            android:id="@+id/linearLayoutTimerSeriesDone"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/francois_one"
-            android:maxLines="1"
-            android:text="@string/start_timer_schedule_athlete"
-            android:textColor="@color/green_button"
-            android:textSize="18sp"
+            android:baselineAligned="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linearLayoutReps" />
+            app:layout_constraintTop_toBottomOf="@id/linearLayoutReps">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/custom_stroke"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/francois_one"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/series_done"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="26sp" />
+
+                <TextView
+                    android:id="@+id/textViewSeriesDone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/francois_one"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginStart="4dp"
+                android:layout_weight="1">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnStartTimer"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/francois_one"
+                    android:maxLines="2"
+                    android:text="@string/start_timer_schedule_athlete"
+                    android:textColor="@color/green_button"
+                    android:textSize="20sp"
+                    app:cornerRadius="18dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnStopTimer"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/francois_one"
+                    android:maxLines="2"
+                    android:text="@string/stop_timer"
+                    android:textColor="@color/red_button"
+                    android:textSize="20sp"
+                    android:visibility="invisible"
+                    app:cornerRadius="18dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

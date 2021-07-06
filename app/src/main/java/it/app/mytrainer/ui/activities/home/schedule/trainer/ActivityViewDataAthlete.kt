@@ -107,9 +107,12 @@ class ActivityViewDataAthlete : AppCompatActivity() {
         }
 
         fireStore.getNameDayScheduleAthlete(athlete.idAthlete) { listOfDays ->
+            listVisualDay.clear()
+
             listOfDays.forEach { day ->
                 listVisualDay.add(day)
             }
+
             adapter =
                 RecycleViewScheduleAthlete(this, listVisualDay, currentUserId, athlete.idAthlete)
             recyclerViewScheduleViewDataAthlete.adapter = adapter

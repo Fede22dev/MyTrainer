@@ -117,32 +117,36 @@
             app:layout_constraintTop_toBottomOf="@id/linerLayoutImageAndNameAndSurname">
 
             <!--BUTTON TO CHANGE IMAGE USER-->
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonCameraTrainer"
                 style="@style/Widget.MaterialComponents.Button.Icon"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="4dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/button_red"
                 android:text="@string/change_image"
                 android:textColor="@color/white"
+                app:backgroundTint="@color/background_exercise"
                 app:icon="@drawable/ic_photo_camera"
-                app:iconTint="@color/white" />
+                app:iconTint="@color/white"
+                app:strokeColor="@color/orange_title_app"
+                app:strokeWidth="1dp" />
 
             <!--BUTTON TO CHANGE IMAGE USER SELECT FROM GALLERY-->
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonGalleryTrainer"
                 style="@style/Widget.MaterialComponents.Button.Icon"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="4dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/button_red"
                 android:text="@string/take_photo_from_gallery"
                 android:textColor="@color/white"
+                app:backgroundTint="@color/background_exercise"
                 app:icon="@drawable/ic_photo"
-                app:iconTint="@color/white" />
+                app:iconTint="@color/white"
+                app:strokeColor="@color/orange_title_app"
+                app:strokeWidth="1dp" />
         </LinearLayout>
 
         <!--LAYOUT FOR DATE-->

@@ -239,36 +239,40 @@ class FireStore {
 
         db.collection(COLLECTIONATHLETE).whereEqualTo("TrainerId", trainerId).get()
             .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    val doc = document.data
-                    athleteId = doc["AthleteId"].toString()
-
-                    Storage.getPhotoUrl(athleteId) { uri ->
-
+                if (documents.size() > 0) {
+                    for (document in documents) {
+                        val doc = document.data
                         athleteId = doc["AthleteId"].toString()
 
-                        var url = ""
-                        if (uri != null) {
-                            url = uri.toString()
+                        Storage.getPhotoUrl(athleteId) { uri ->
+
+                            athleteId = doc["AthleteId"].toString()
+
+                            var url = ""
+                            if (uri != null) {
+                                url = uri.toString()
+                            }
+
+                            listAthleteFollowed.add(ObjAthlete(
+                                doc["Name"].toString(),
+                                doc["Surname"].toString(),
+                                doc["BirthDate"].toString(),
+                                doc["Height"].toString(),
+                                doc["Weight"].toString(),
+                                doc["TypeOfWO"].toString(),
+                                doc["Goal"].toString(),
+                                doc["Level"].toString(),
+                                doc["DaysOfWorkout"].toString(),
+                                doc["Equipment"] as ArrayList<String>,
+                                athleteId,
+                                doc["TrainerId"].toString(),
+                                url))
+
+                            callback(listAthleteFollowed, true)
                         }
-
-                        listAthleteFollowed.add(ObjAthlete(
-                            doc["Name"].toString(),
-                            doc["Surname"].toString(),
-                            doc["BirthDate"].toString(),
-                            doc["Height"].toString(),
-                            doc["Weight"].toString(),
-                            doc["TypeOfWO"].toString(),
-                            doc["Goal"].toString(),
-                            doc["Level"].toString(),
-                            doc["DaysOfWorkout"].toString(),
-                            doc["Equipment"] as ArrayList<String>,
-                            athleteId,
-                            doc["TrainerId"].toString(),
-                            url))
-
-                        callback(listAthleteFollowed, true)
                     }
+                } else {
+                    callback(listAthleteFollowed, true)
                 }
             }
             .addOnFailureListener { e ->

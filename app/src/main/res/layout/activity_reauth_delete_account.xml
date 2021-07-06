@@ -85,7 +85,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/button_red"
+        android:backgroundTint="@color/red_button"
         android:text="@string/delete_account_button"
         android:textColor="@color/white"
         android:textSize="18sp"

@@ -361,8 +361,8 @@ class FragmentProfileTrainer : Fragment() {
         ) {
 
             GuideView.Builder(requireContext())
-                .setTitle(getString(R.string.view_case_title_button_camera))
-                .setContentText(getString(R.string.view_case_text_button_camera))
+                .setTitle(getString(R.string.viewcase_title_button_camera))
+                .setContentText(getString(R.string.viewcase_text_button_camera))
                 .setTitleTextSize(16)
                 .setContentTextSize(14)
                 .setTargetView(buttonCameraTrainer)
@@ -370,8 +370,8 @@ class FragmentProfileTrainer : Fragment() {
                 .setGuideListener {
 
                     GuideView.Builder(requireContext())
-                        .setTitle(getString(R.string.view_case_title_button_gallery))
-                        .setContentText(getString(R.string.view_case_text_button_gallery))
+                        .setTitle(getString(R.string.viewcase_title_button_gallery))
+                        .setContentText(getString(R.string.viewcase_text_button_gallery))
                         .setTitleTextSize(16)
                         .setContentTextSize(14)
                         .setTargetView(buttonGalleryTrainer)
@@ -386,8 +386,8 @@ class FragmentProfileTrainer : Fragment() {
                             Handler(Looper.getMainLooper()).postDelayed(
                                 {
                                     GuideView.Builder(requireContext())
-                                        .setTitle(getString(R.string.view_case_title_fab_edit))
-                                        .setContentText(getString(R.string.view_case_text_fab_edit))
+                                        .setTitle(getString(R.string.viewcase_title_fab_edit))
+                                        .setContentText(getString(R.string.viewcase_text_fab_edit))
                                         .setTitleTextSize(16)
                                         .setContentTextSize(14)
                                         .setTargetView(floatingActionButtonEditProfileTrainer)
