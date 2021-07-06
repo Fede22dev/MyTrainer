@@ -2,14 +2,15 @@
 
 >L'App per il tuo allenamento quotidiano
 
-#Indice
+# Indice
 
 - [Atleta](#atleta)
 - [Trainer](#trainer)
 - [Autori](#autori)
 
-#Atleta
-###Funzionalità
+# Atleta
+
+### Funzionalità
 
 Iscrivendoti come atleta potrai effettuare le seguenti operazioni:
 
@@ -20,8 +21,9 @@ Iscrivendoti come atleta potrai effettuare le seguenti operazioni:
  * Modificare a tuo piacimento le informazioni inserite in fase di registrazione.
  * Inserire una foto per farti identificare meglio dal tuo trainer.
  
-#Trainer
-###Funzionalità
+# Trainer
+
+### Funzionalità
 
 Iscrivendoti come trainer potrai effettuare le seguenti operazioni:
 
@@ -34,7 +36,7 @@ Iscrivendoti come trainer potrai effettuare le seguenti operazioni:
  * Modificare a tuo piacimento le informazioni inserite in fase di registrazione.
  * Inserire una foto.
  
-#Autori
+# Autori
  
  * [Fede22](https://github.com/Fede22dev)
  * [Lampe96](https://github.com/Lampe96)
