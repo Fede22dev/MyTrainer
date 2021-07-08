@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-
+    <!--DECLARING CARD-->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardDaysOfSchedule"
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="@color/orange_title_app"
         app:strokeWidth="0.7dp">
-
+        <!--TEXT VIEW FOR NAME DAY-->
         <TextView
             android:id="@+id/textViewCardTypeOfWO"
             android:layout_width="wrap_content"

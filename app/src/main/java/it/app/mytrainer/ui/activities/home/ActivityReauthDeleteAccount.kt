@@ -35,7 +35,7 @@ class ActivityReauthDeleteAccount : AppCompatActivity() {
             setVisibilityForDelete()
 
             FireAuth.userReauthenticate(passwordFieldReauth.text.toString()) { result ->
-                //If the pass is ok all the data from fireAth are gonna be cancelled
+                //If the pass is ok all the data from fireAuth are gonna be cancelled
                 if (result) {
                     deleteAllDataAccount()
 

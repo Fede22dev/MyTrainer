@@ -1,21 +1,24 @@
 package it.app.mytrainer.utils
 
-//Class for the common field
+/**
+ * Check for registration (Athlete and trainer)
+ */
+
 class CheckRegistrationFieldUser {
 
     companion object {
 
-        //Check for the eventual empty or number in name field
+        //Check for eventual empty or number in name field
         fun checkName(name: String): Boolean {
             return name.isNotBlank() && !name.contains(Regex("[0-9!-/:-@{-}_]+"))
         }
 
-        //Check for the eventual empty or number in surname field
+        //Check for eventual empty or number in surname field
         fun checkSurname(surname: String): Boolean {
             return surname.isNotBlank() && !surname.contains(Regex("[0-9!-/:-@{-}_]+"))
         }
 
-        //Check for the field
+        //Check for email field
         fun checkEmail(email: String): Boolean {
             return email.isNotBlank() && email.matches(android.util.Patterns.EMAIL_ADDRESS.toRegex())  //Standard regex for the email
         }

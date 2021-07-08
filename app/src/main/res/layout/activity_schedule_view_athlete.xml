@@ -29,6 +29,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <!--VIEW PAGER FILLED BY FRAGMENT-->
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPagerScheduleAthlete"
         android:layout_width="match_parent"

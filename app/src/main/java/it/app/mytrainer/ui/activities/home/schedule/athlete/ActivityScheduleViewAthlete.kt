@@ -7,7 +7,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import it.app.mytrainer.R
 import it.app.mytrainer.firebase.fireauth.FireAuth
 import it.app.mytrainer.firebase.firestore.FireStore
-import it.app.mytrainer.ui.adapter.ViewScheduleAthleteAdapter
+import it.app.mytrainer.ui.adapter.ViewScheduleAthletePageAdapter
 import kotlinx.android.synthetic.main.activity_schedule_view_athlete.*
 
 class ActivityScheduleViewAthlete : AppCompatActivity() {
@@ -30,7 +30,7 @@ class ActivityScheduleViewAthlete : AppCompatActivity() {
 
             //Passing the list with all the info
             viewPagerScheduleAthlete.adapter =
-                ViewScheduleAthleteAdapter(this, arrayExercise)
+                ViewScheduleAthletePageAdapter(this, arrayExercise)
             viewPagerScheduleAthlete.offscreenPageLimit = arrayExercise.size
 
             //Implementing the dot, scrolling over the fragment

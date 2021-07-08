@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/app_background"
     tools:context=".ui.activities.home.trainer.ActivityViewAllAthleteRegistered">
-
+    <!--APP BAR FOR ARROW BACK-->
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayoutViewAllAthleteRegistered"
         style="@style/Widget.MaterialComponents.AppBarLayout.PrimarySurface"
@@ -34,6 +34,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <!--TEXT FIELD FOR RESEARCH-->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layoutSearchAthleteRegistered"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -63,6 +64,7 @@
             android:textColor="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!--RECYCLER FOR ALL ATHLETE-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleViewViewAllAthleteRegistered"
         android:layout_width="match_parent"
@@ -75,7 +77,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layoutSearchAthleteRegistered" />
-
+    <!--FAB FOR RELOAD-->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabRefreshListClientViewAllAthleteRegistered"
         android:layout_width="wrap_content"

@@ -27,10 +27,11 @@ class ActivityCreationSchedule : AppCompatActivity() {
     private val currentUserId = FireAuth.getCurrentUserAuth()?.uid!!
     private lateinit var fireStore: FireStore
 
-
+    // We declare this method static cause they are unique for all the fragment
     companion object {
 
         private lateinit var dayOfWo: ObjDayOfWo
+        // To make sure that all the field created for each exercise are ok
         private var fieldOk = true
 
         fun addExercise(position: Int, exercise: ObjExercise) {
@@ -64,7 +65,6 @@ class ActivityCreationSchedule : AppCompatActivity() {
         }
 
         prefs = getSharedPreferences("it.app.mytrainer", MODE_PRIVATE)
-        prefs!!.edit().putBoolean("FirstRun", true).apply()
 
         viewPagerCreationSchedule.adapter = CreationSchedulePageAdapter(this,
             exerciseCount)
@@ -157,7 +157,7 @@ class ActivityCreationSchedule : AppCompatActivity() {
             fireStore.updateSchedule(intent.getStringExtra("UserId")!!, currentUserId, dayOfWo)
             finish()
         } else {
-
+            //If there's a problem we reset the previous element to null again
             for (i in dayOfWo.listOfExercise.size..12) {
                 dayOfWo.listOfExercise.add(null)
             }

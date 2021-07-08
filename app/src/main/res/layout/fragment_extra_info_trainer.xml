@@ -53,7 +53,7 @@
                 android:textSize="20sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!--TEXT VIEW FOR SPEC-->
+        <!--TEXT VIEW FOR LABEL SPEC-->
         <TextView
             android:id="@+id/textViewInfoSpecializationTrainer"
             android:layout_width="wrap_content"

@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -69,16 +70,30 @@ class ActivityRegistrationAthlete : AppCompatActivity() {
     //Adjust the back press button, to avoid an eventual crash
     override fun onBackPressed() {
         if (viewPagerAthlete.currentItem == 0) {
-            //Delete all trace and go to login
-            MapAthlete.clearHashMap()
-            FireAuth.deleteCurrentUser()
-            FireAuth.signOut()
 
-            val intent = Intent(this, ActivityLogin::class.java)
-            startActivity(intent)
+            MaterialAlertDialogBuilder(this)
+                .setTitle(getString(R.string.popup_title_back_login))
+                .setMessage(getString(R.string.popup_text_back_login))
 
-            super.onBackPressed()
-            finish()
+                //If cancel has pressed anything happens
+                .setNegativeButton(getString(R.string.cancel_button)) { _, _ ->
+                }
+                //If accept button has pressed, the user will be send back to login and all
+                //the data will be cancel from the hashmap
+                .setPositiveButton(getString(R.string.accept_button)) { _, _ ->
+                    MapAthlete.clearHashMap()
+                    FireAuth.deleteCurrentUser()
+                    FireAuth.signOut()
+
+                    val intent = Intent(this, ActivityLogin::class.java)
+                    startActivity(intent)
+
+                    super.onBackPressed()
+                    finish()
+
+
+                }.show()
+
         } else {
             viewPagerAthlete.currentItem = viewPagerAthlete.currentItem - 1
         }
@@ -152,8 +167,14 @@ class ActivityRegistrationAthlete : AppCompatActivity() {
             if (result) {
                 MapAthlete.removePass()
                 MapAthlete.printHashMap()
-                //Adding the obligatory fields
+                //Adding the obligatory fields, to manage the schedule
                 MapAthlete.addFields()
+
+                //If the slider was never touched, the beginner
+                //level will be defaulted inserted
+                if (!MapAthlete.mapContainsLevel()) {
+                    MapAthlete.putLevel(getString(R.string.beginner_athlete))
+                }
 
                 //Saving the data of user on firestore
                 val fireStore = FireStore()

@@ -17,6 +17,7 @@
         android:padding="24dp"
         tools:context=".ui.fragments.homeAthlete.FragmentListClientTrainer">
 
+        <!--TEXT VIEW TITLE-->
         <TextView
             android:id="@+id/titleAppListClientTrainer"
             android:layout_width="wrap_content"
@@ -31,6 +32,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed" />
 
+        <!--1 TEXT VIEW INFO NO FOLLOWED ATHLETE-->
         <TextView
             android:id="@+id/textViewTrainerInfoBox1"
             android:layout_width="wrap_content"
@@ -45,6 +47,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/titleAppListClientTrainer" />
 
+        <!--2 TEXT VIEW NO FOLLOWED ATHLETE-->
         <TextView
             android:id="@+id/textViewTrainerInfoBox2"
             android:layout_width="wrap_content"
@@ -60,6 +63,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewTrainerInfoBox1" />
 
+        <!--TEXT VIEW FOR LIST OF FOLLOWED ATHLETE-->
         <TextView
             android:id="@+id/textViewListClientReady"
             android:layout_width="wrap_content"
@@ -77,6 +81,7 @@
             app:layout_constraintTop_toBottomOf="@id/titleAppListClientTrainer"
             app:layout_constraintVertical_chainStyle="packed" />
 
+        <!--RECYCLE FOR FOLLOWED ATHLETE-->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleViewListClientFollowed"
             android:layout_width="match_parent"
@@ -94,6 +99,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewListClientReady" />
 
+        <!--FAB FOR THE RESEARCH-->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabSearchAllClient"
             android:layout_width="wrap_content"

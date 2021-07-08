@@ -12,6 +12,11 @@ import it.app.mytrainer.R
 import it.app.mytrainer.ui.activities.home.schedule.athlete.ActivityScheduleViewAthlete
 import kotlinx.android.synthetic.main.card_recycle_view_schedule_athlete.view.*
 
+/**
+ * Adapter use to manage the recycle in the scheduleViewAthlete.
+ * It fill the card with the name of schedule days
+ */
+
 class RecyclerScheduleAdapter(private val context: Context, private val data: ArrayList<String>) :
     RecyclerView.Adapter<RecyclerScheduleAdapter.ViewHolder>() {
 
@@ -36,6 +41,7 @@ class RecyclerScheduleAdapter(private val context: Context, private val data: Ar
         return data.size
     }
 
+    //Setting the card, with the right name at the right position
     inner class ViewHolder(
         itemView: View,
         val textViewTypeOfWO: TextView = itemView.textViewCardTypeOfWO,

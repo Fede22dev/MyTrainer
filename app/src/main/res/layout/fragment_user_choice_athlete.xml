@@ -47,5 +47,5 @@
             app:layout_constraintTop_toBottomOf="@+id/textViewChoiceAthlete" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    
+
 </ScrollView>

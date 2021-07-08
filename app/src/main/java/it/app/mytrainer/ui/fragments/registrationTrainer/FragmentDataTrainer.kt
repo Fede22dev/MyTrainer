@@ -1,11 +1,13 @@
 package it.app.mytrainer.ui.fragments.registrationTrainer
 
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import com.google.android.material.datepicker.CalendarConstraints
@@ -16,19 +18,31 @@ import it.app.mytrainer.firebase.fireauth.FireAuth
 import it.app.mytrainer.models.MapTrainer
 import it.app.mytrainer.utils.CheckRegistrationFieldUser
 import kotlinx.android.synthetic.main.fragment_data_trainer.*
+import smartdevelop.ir.eram.showcaseviewlib.GuideView
+import smartdevelop.ir.eram.showcaseviewlib.config.DismissType
 import java.text.SimpleDateFormat
 import java.util.*
+
+/**
+ * Fragment to manage the data of the
+ * trainer (Name, surname, mail, pass, date)
+ */
 
 class FragmentDataTrainer : Fragment() {
 
     private val TAG = "FRAGMENT_TRAINER_DATA"
     private val currentUser = FireAuth.getCurrentUserAuth()
+    private var prefs: SharedPreferences? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
+
+        prefs = requireContext().getSharedPreferences("it.app.mytrainer",
+            AppCompatActivity.MODE_PRIVATE)
+
         return inflater.inflate(R.layout.fragment_data_trainer, container, false)
     }
 
@@ -66,22 +80,26 @@ class FragmentDataTrainer : Fragment() {
             }
         }
 
+        //Setting the format of the date
         val outputDateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).apply {
             timeZone = TimeZone.getTimeZone("UTC")
         }
 
+        // Crating the variable for the constraint of the calendar
         val startDate = outputDateFormat.parse("01/01/1920")!!.time
         val endDate = outputDateFormat.parse("31/12/2010")!!.time
+        val openDate = outputDateFormat.parse("01/01/1999")!!.time
 
+        // Creating the calendar
         dateFieldTrainer.setOnClickListener {
             val datePicker = MaterialDatePicker.Builder.datePicker()
-                .setTitleText("Select date")
-                .setSelection(endDate)
+                .setTitleText(getString(R.string.viewcase_title_select_date_data))
+                .setSelection(openDate)
                 .setCalendarConstraints(
                     CalendarConstraints.Builder()
                         .setStart(startDate)
                         .setEnd(endDate)
-                        .setOpenAt(endDate)
+                        .setOpenAt(openDate)
                         .build()
                 )
                 .build()
@@ -95,8 +113,11 @@ class FragmentDataTrainer : Fragment() {
         }
     }
 
+    //Setting the field for an FB user
     private fun setFieldForFBUser() {
+        //Checking if is an FB user 100%
         if (currentUser != null) {
+            //If is an FB user, an user on auth is already created.
             emailFieldTrainer.isEnabled = false
             currentUser.email?.let { MapTrainer.putEmail(it) }
             emailFieldTrainer.setText(currentUser.email)
@@ -121,8 +142,10 @@ class FragmentDataTrainer : Fragment() {
         }
     }
 
+    //Fun for the email
     private fun setEditTextEmail(text: CharSequence?) {
         val txt = text.toString().trim()
+        //Sending to the check created
         if (CheckRegistrationFieldUser.checkEmail(txt)) {
             MapTrainer.putEmail(txt)
             layoutTrainerEditTextEmail.error = null
@@ -134,8 +157,10 @@ class FragmentDataTrainer : Fragment() {
         }
     }
 
+    //Fun for the pass
     private fun setEditTextPass(text: CharSequence?) {
         val txt = text.toString().trim()
+        //Sending to the check created
         if (CheckRegistrationFieldUser.checkPass(txt)) {
             MapTrainer.putPass(txt)
             layoutTrainerEditTextPassword.error = null
@@ -147,8 +172,10 @@ class FragmentDataTrainer : Fragment() {
         }
     }
 
+    //Fun for the name
     private fun setEditTextName(text: CharSequence?) {
         val txt = text.toString().trim().capitalize(Locale.ROOT)
+        //Sending to the check created
         if (CheckRegistrationFieldUser.checkName(txt)) {
             MapTrainer.putName(txt)
             layoutTrainerEditTextName.error = null
@@ -160,8 +187,10 @@ class FragmentDataTrainer : Fragment() {
         }
     }
 
+    //Fun for the surname
     private fun setEditTextSurname(text: CharSequence?) {
         val txt = text.toString().trim().capitalize(Locale.ROOT)
+        //Sending to the check created
         if (CheckRegistrationFieldUser.checkSurname(txt)) {
             MapTrainer.putSurname(txt)
             layoutTrainerEditTextSurname.boxStrokeColor = Color.GREEN
@@ -170,6 +199,28 @@ class FragmentDataTrainer : Fragment() {
             MapTrainer.removeSurname()
             layoutTrainerEditTextSurname.error = getString(R.string.invalid_surname)
             layoutTrainerEditTextSurname.errorIconDrawable = null
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (prefs!!.getBoolean("FirstRunActivityFragmentDataTrainer", true)
+        ) {
+            GuideView.Builder(requireContext())
+                .setTitle(getString(R.string.viewcase_title_select_date_data))
+                .setContentText(getString(R.string.viewcase_text_select_date_data))
+                .setTitleTextSize(16)
+                .setContentTextSize(14)
+                .setTargetView(dateFieldTrainer)
+                .setDismissType(DismissType.outside)
+                .setGuideListener {
+                    prefs!!.edit()
+                        .putBoolean("FirstRunActivityFragmentDataTrainer", false)
+                        .apply()
+
+                }
+                .build()
+                .show()
         }
     }
 }

@@ -7,6 +7,11 @@ import it.app.mytrainer.ui.fragments.registrationAthlete.FragmentBodyInfoTypeWOG
 import it.app.mytrainer.ui.fragments.registrationAthlete.FragmentDataAthlete
 import it.app.mytrainer.ui.fragments.registrationAthlete.FragmentExtraInfoAthlete
 
+/**
+ * Adapter use to manage the registration of
+ * the athlete
+ */
+
 class AthleteRegistrationPageAdapter(fa: FragmentActivity, private val tabCount: Int) :
     FragmentStateAdapter(fa) {
 

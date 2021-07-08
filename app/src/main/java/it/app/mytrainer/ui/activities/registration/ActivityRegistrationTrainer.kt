@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -69,15 +70,28 @@ class ActivityRegistrationTrainer : AppCompatActivity() {
     override fun onBackPressed() {
         if (viewPagerTrainer.currentItem == 0) {
             //Delete all trace and go to login
-            MapTrainer.clearHashMap()
-            FireAuth.deleteCurrentUser()
-            FireAuth.signOut()
+            MaterialAlertDialogBuilder(this)
+                .setTitle(getString(R.string.popup_title_back_login))
+                .setMessage(getString(R.string.popup_text_back_login))
 
-            val intent = Intent(this, ActivityLogin::class.java)
-            startActivity(intent)
+                //If cancel has pressed anything happens
+                .setNegativeButton(getString(R.string.cancel_button)) { _, _ ->
+                }
+                //If accept button has pressed, the user will be send back to login and all
+                //the data will be cancel from the hashmap
+                .setPositiveButton(getString(R.string.accept_button)) { _, _ ->
+                    MapTrainer.clearHashMap()
+                    FireAuth.deleteCurrentUser()
+                    FireAuth.signOut()
 
-            super.onBackPressed()
-            finish()
+                    val intent = Intent(this, ActivityLogin::class.java)
+                    startActivity(intent)
+
+                    super.onBackPressed()
+                    finish()
+
+
+                }.show()
         } else {
             viewPagerTrainer.currentItem = viewPagerTrainer.currentItem - 1
         }
@@ -143,6 +157,7 @@ class ActivityRegistrationTrainer : AppCompatActivity() {
             MapTrainer.getPass(),
             this
         ) { result, currentUserId ->
+
             if (result) {
                 MapTrainer.removePass()
                 MapTrainer.printHashMap()

@@ -35,13 +35,13 @@
             app:layout_constraintVertical_bias="0.30"
             app:layout_constraintVertical_chainStyle="packed" />
 
-        <!--TEXT VIEW FOR LEVEL-->
+        <!--TEXT VIEW FOR LABEL LEVEL-->
         <TextView
             android:id="@+id/textViewLevelAthlete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:text="@string/scroll_the_slider_registration_athlete"
+            android:text="@string/beginner_athlete"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@id/sliderLevelAthlete"
@@ -123,7 +123,7 @@
                 tools:ignore="LabelFor" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!--TEXT VIEW QUESTION FOR EQUIPMENT-->
+        <!--TEXT VIEW QUESTION FOR LABEL EQUIPMENT-->
         <TextView
             android:id="@+id/textViewAvailableEquipmentAthlete"
             android:layout_width="wrap_content"

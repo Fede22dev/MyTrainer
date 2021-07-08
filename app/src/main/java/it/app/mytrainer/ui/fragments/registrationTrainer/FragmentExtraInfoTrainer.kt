@@ -12,6 +12,11 @@ import kotlinx.android.synthetic.main.fragment_extra_info_trainer.*
 import kotlinx.android.synthetic.main.fragment_extra_info_trainer.view.*
 import java.util.*
 
+/**
+ * Managing all the data that are insert
+ * in that fragment (Gym, Specialization)
+ */
+
 class FragmentExtraInfoTrainer : Fragment() {
 
     override fun onCreateView(
@@ -22,6 +27,8 @@ class FragmentExtraInfoTrainer : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_extra_info_trainer, container, false)
 
+        //Setting the action on chips. If selected it will be put in the
+        //trainer map
         view.chip1SpecTrainer.setOnClickListener {
             MapTrainer.putSpec(view.chip1SpecTrainer.text.toString())
         }
@@ -66,6 +73,8 @@ class FragmentExtraInfoTrainer : Fragment() {
         setupGymField()
     }
 
+    // Fun for the gym field, when it change, if is not blank or null,
+    // it will be putted in the trainer map
     private fun setupGymField() {
         gymFieldTrainer.doOnTextChanged { text, _, _, _ ->
             if (text != null) {

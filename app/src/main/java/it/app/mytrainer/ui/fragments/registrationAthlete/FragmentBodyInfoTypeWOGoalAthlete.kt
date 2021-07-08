@@ -14,6 +14,11 @@ import it.app.mytrainer.utils.CheckRegistrationFieldAthlete
 import kotlinx.android.synthetic.main.fragment_bodyinfo_typewo_goal_athlete.*
 import kotlinx.android.synthetic.main.fragment_bodyinfo_typewo_goal_athlete.view.*
 
+/**
+ * Fragment to manage the body info of the
+ * athlete (Height, weight, goal, typeOfWo)
+ */
+
 class FragmentBodyInfoTypeWOGoalAthlete : Fragment() {
 
     override fun onCreateView(
@@ -24,6 +29,7 @@ class FragmentBodyInfoTypeWOGoalAthlete : Fragment() {
         val view =
             inflater.inflate(R.layout.fragment_bodyinfo_typewo_goal_athlete, container, false)
 
+        //Setting the click listener, if selected it will be added in the hashmap
         view.chip1GoalAthlete.setOnClickListener {
             MapAthlete.putGoal(view.chip1GoalAthlete.text.toString())
         }
@@ -65,6 +71,11 @@ class FragmentBodyInfoTypeWOGoalAthlete : Fragment() {
         }
 
         //Setting the dropdown menu of the type of workout
+
+    }
+
+    override fun onResume() {
+        super.onResume()
         setDropDownMenuTypeOfWO()
     }
 
@@ -116,6 +127,7 @@ class FragmentBodyInfoTypeWOGoalAthlete : Fragment() {
         }
     }
 
+    //Set dropDown for type of WO
     private fun setDropDownMenuTypeOfWO() {
         val typeOfWO = arrayOf(
             getString(R.string.weight_workout_registration_athlete),

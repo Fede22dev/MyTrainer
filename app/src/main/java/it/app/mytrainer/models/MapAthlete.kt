@@ -24,10 +24,11 @@ class MapAthlete {
                 "Weight",
                 "TypeOfWO",
                 "Goal",
-                "Level",
                 "DaysOfWorkout",
                 "Equipment"
             )
+
+        //PUT
 
         //Creation of the method to fill the hashmap (First Fragment)
         fun putEmail(email: String) {
@@ -80,6 +81,8 @@ class MapAthlete {
             hashMapAthlete["Equipment"] = list
         }
 
+        //REMOVE
+
         //Creation the method to remove the element from the hashmap (First Fragment)
         fun removeEmail() {
             hashMapAthlete.remove("Email")
@@ -110,7 +113,7 @@ class MapAthlete {
             hashMapAthlete.remove("Equipment")
         }
 
-        //Get
+        //GET
         fun getEmail(): String {
             return hashMapAthlete["Email"].toString()
         }
@@ -140,7 +143,7 @@ class MapAthlete {
                     numFieldRequired++
                 }
             }
-            return numFieldRequired == 12
+            return numFieldRequired == arrayKey.size
         }
 
         //Utilities for the creation of the schedule
@@ -148,6 +151,10 @@ class MapAthlete {
             hashMapAthlete["AthleteId"] = FireAuth.getCurrentUserAuth()!!.uid
             hashMapAthlete["Schedule"] = ""
             hashMapAthlete["TrainerId"] = ""
+        }
+
+        fun mapContainsLevel(): Boolean {
+            return hashMapAthlete.contains("Level")
         }
     }
 }

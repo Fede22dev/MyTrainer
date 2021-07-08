@@ -17,6 +17,12 @@ import it.app.mytrainer.models.ObjAthlete
 import it.app.mytrainer.ui.activities.home.schedule.trainer.ActivityViewDataAthlete
 import kotlinx.android.synthetic.main.card_recycle_view_list_client_trainer.view.*
 import me.zhanghai.android.fastscroll.PopupTextProvider
+import java.util.*
+
+/**
+ * Adapter use to manage the recycler for the
+ * list client of trainer (all and followed)
+ */
 
 class RecyclerListClientTrainerAdapter(
     private val context: Context,
@@ -33,8 +39,8 @@ class RecyclerListClientTrainerAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val athlete = data[position]
-        holder.textViewName.text = athlete.nameAthlete
-        holder.textViewSurname.text = athlete.surnameAthlete
+        holder.textViewName.text = athlete.nameAthlete.capitalize(Locale.ROOT)
+        holder.textViewSurname.text = athlete.surnameAthlete.capitalize(Locale.ROOT)
 
         if (athlete.urlPhotoAthlete.isNotBlank()) {
             Glide.with(context).load(athlete.urlPhotoAthlete.toUri()).into(holder.photoClient)
@@ -54,10 +60,12 @@ class RecyclerListClientTrainerAdapter(
         return data.size
     }
 
+    // Used for the fast scrolling
     override fun getPopupText(position: Int): String {
         return data[position].surnameAthlete.first().toUpperCase().toString()
     }
 
+    //Creating the single card
     inner class ViewHolder(
         itemView: View,
         val photoClient: ImageView = itemView.photoClient,

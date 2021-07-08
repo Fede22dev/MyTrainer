@@ -15,7 +15,7 @@ class MapTrainer {
         private val arrayKey =
             arrayOf("Email", "Password", "Name", "Surname", "BirthDate", "Specialization")
 
-        //Creation of yhe method to fill the hashmap
+        //Creation of the method to fill the hashmap
         fun putEmail(email: String) {
             hashMapTrainer["Email"] = email
         }
@@ -95,7 +95,7 @@ class MapTrainer {
                     numFieldRequired++
                 }
             }
-            return numFieldRequired == 6
+            return numFieldRequired == arrayKey.size
         }
     }
 }

@@ -134,7 +134,7 @@
                 tools:ignore="LabelFor" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!--TEXT VIEW FOR THE GOALS-->
+        <!--TEXT VIEW FOR THE LABEL GOALS-->
         <TextView
             android:id="@+id/textViewInfoGoalsAthlete"
             android:layout_width="wrap_content"

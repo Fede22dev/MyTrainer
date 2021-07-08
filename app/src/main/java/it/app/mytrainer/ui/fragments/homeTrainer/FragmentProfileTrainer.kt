@@ -41,6 +41,11 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.concurrent.thread
 
+/**
+ * Fragment to manage the profile info of trainer,
+ * managing the edit mode, upload of photo and save mode
+ */
+
 class FragmentProfileTrainer : Fragment() {
 
     private val REQUEST_IMAGE_GALLERY = 0
@@ -64,6 +69,7 @@ class FragmentProfileTrainer : Fragment() {
         //Loading the photo
         loadPhotoOnImageView()
 
+        // Assigning to a val the eventual permission of user to use camera
         val requestPermissionLauncher =
             registerForActivityResult(ActivityResultContracts.RequestPermission()
             ) { isGranted ->
@@ -85,6 +91,7 @@ class FragmentProfileTrainer : Fragment() {
             }
         }
 
+        // Assigning to a val the eventual permission of user to use gallery
         val requestPermissionStorageLauncher =
             registerForActivityResult(ActivityResultContracts.RequestPermission()
             ) { isGranted ->
@@ -128,6 +135,7 @@ class FragmentProfileTrainer : Fragment() {
             val imageBitmapCamera = BitmapFactory.decodeFile(currentPhotoPath)
             imageViewPersonalTrainer.setImageBitmap(imageBitmapCamera)
 
+            //Compress the photo before loading it on storage
             rotateResizeCompressUploadPhoto(imageBitmapCamera, currentPhotoPath)
         }
 
@@ -139,6 +147,7 @@ class FragmentProfileTrainer : Fragment() {
                 MediaStore.Images.Media.getBitmap(requireActivity().contentResolver,
                     selectedImageUri)
 
+            //Compress the photo before loading it on storage
             rotateResizeCompressUploadPhoto(imageBitmapGallery,
                 getRealPathFromURI(selectedImageUri)!!)
         }
@@ -195,6 +204,7 @@ class FragmentProfileTrainer : Fragment() {
         }
     }
 
+    //To compress the image
     private fun rotateResizeCompressUploadPhoto(imageBitmap: Bitmap, photoPath: String) {
         thread {
             val rotatedBitmap = rotateBitmap(imageBitmap, photoPath)
@@ -205,10 +215,12 @@ class FragmentProfileTrainer : Fragment() {
             resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, arrayByte)
             val imageByte = arrayByte.toByteArray()
 
+            //Uploading a smaller photo
             Storage.uploadPhoto(currentUserId, imageByte)
         }
     }
 
+    //Rotate image properly by reading the metadata
     private fun rotateBitmap(imageBitmap: Bitmap, photoPath: String): Bitmap {
         val ei = ExifInterface(photoPath)
         val orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
@@ -223,6 +235,7 @@ class FragmentProfileTrainer : Fragment() {
         }
     }
 
+    //Resize image keeping aspect ratio
     private fun resizeBitmapWithAspectRatio(rotatedBitmap: Bitmap): Bitmap {
         val maxLength = MAXLENGTHPHOTO
 
@@ -307,7 +320,7 @@ class FragmentProfileTrainer : Fragment() {
             TextInputLayout.END_ICON_DROPDOWN_MENU
     }
 
-    //Filling the dropdown
+    //Filling the dropdown specialization
     private fun setDropDownMenu() {
         val specializations = arrayOf(
             getString(R.string.bodyweight_trainer),
@@ -359,7 +372,6 @@ class FragmentProfileTrainer : Fragment() {
         super.onResume()
         if (prefs!!.getBoolean("FirstRunProfileTrainer", true)
         ) {
-
             GuideView.Builder(requireContext())
                 .setTitle(getString(R.string.viewcase_title_button_camera))
                 .setContentText(getString(R.string.viewcase_text_button_camera))

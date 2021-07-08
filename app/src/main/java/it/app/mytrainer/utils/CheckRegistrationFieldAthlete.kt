@@ -1,17 +1,21 @@
 package it.app.mytrainer.utils
 
+/**
+ * Check for registration (Athlete side)
+ */
+
 class CheckRegistrationFieldAthlete {
 
     companion object {
 
-        //Check for the eventual empty name field
+        //Check to see if the height is in that range
         fun checkHeight(height: Int): Boolean {
-            return height in 230 downTo 120
+            return height in 260 downTo 80
         }
 
-        //Check for the eventual empty surname field
+        //Check to see if the weight is in that range
         fun checkWeight(weight: Int): Boolean {
-            return weight in 250 downTo 30
+            return weight in 400 downTo 20
         }
     }
 }

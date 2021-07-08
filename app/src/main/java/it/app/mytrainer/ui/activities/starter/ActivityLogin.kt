@@ -23,6 +23,10 @@ import it.app.mytrainer.ui.activities.home.trainer.ActivityHomeTrainer
 import it.app.mytrainer.ui.activities.registration.ActivityUserChoice
 import kotlinx.android.synthetic.main.activity_login.*
 
+/**
+ * Class dedicated to the login, FB and not FB
+ */
+
 class ActivityLogin : AppCompatActivity() {
 
     private val TAG = "ACTIVITY_LOGIN"
@@ -135,7 +139,7 @@ class ActivityLogin : AppCompatActivity() {
                 }
 
                 -1 -> {
-                    //If -1 is not registered yet
+                    //If -1 user not registered yet
                     startUserChoice()
                 }
             }
@@ -189,7 +193,7 @@ class ActivityLogin : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
     }
 
-    //On click for the login
+    //On click for the login button
     fun onClickLogin(v: View) {
 
         val email = emailFieldLogin.text.toString().trim()

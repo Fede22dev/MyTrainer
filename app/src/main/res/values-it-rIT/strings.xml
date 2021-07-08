@@ -3,7 +3,7 @@
     <string name="insert_password">Inserisci password</string>
     <string name="insert_email">Inserisci email</string>
     <string name="login">Login</string>
-    <string name="text_choice_athlete">Diventa un vero atleta! Vuoi essere in grado di raggiungere i tuoi obbiettivi, personalizzare l\'esperienza e avere un contatto diretto col tuo trainer?</string>
+    <string name="text_choice_athlete">Diventa un vero atleta! Vuoi essere in grado di raggiungere i tuoi obiettivi, personalizzare l\'esperienza e avere un contatto diretto col tuo trainer?</string>
     <string name="text_choice_trainer">Inizia una nuova esperienza come un vero trainer! Con questa app sarai in grado di creare un programma per il tuo atleta, scegliendo tra oltre 150 esercizi.</string>
     <string name="sign_in_trainer">Registati ora come trainer</string>
     <string name="sign_in_athlete">Registrati ora come atleta</string>
@@ -38,7 +38,7 @@
     <string name="insert_height_athlete">Altezza</string>
     <string name="insert_weight_athlete">Peso</string>
     <string name="choice_type_of_workout_athlete">Scegli il tipo di allenamento</string>
-    <string name="selects_your_goals_athlete">Scelgi il tuo obbiettivo</string>
+    <string name="selects_your_goals_athlete">Scelgi il tuo obiettivo</string>
     <string name="fat_loss">Bruciare grassi</string>
     <string name="gain_muscle">Aumentare la massa</string>
     <string name="athletic_preparation">Preparazione atletica</string>
@@ -84,11 +84,10 @@
     <string name="delete_account_text">Sei sicuro di voler cancellare questo account? L\'operazione non è reversibile!</string>
     <string name="accept_button">ACCETTO</string>
     <string name="type_of_workout_profile_athlete">Tipo di workout:</string>
-    <string name="goal_profile_athlete">Obbiettivo:</string>
+    <string name="goal_profile_athlete">Obiettivo:</string>
     <string name="level_profile_athlete">Livello:</string>
     <string name="equipment_profile_athlete">Attrezzatura disponibile:</string>
     <string name="error_edit_profile_athlete">ERRORE: UNO O PIU\' CAMPI NON CORRETTI. AGGIORNAMENTO FALLITO!</string>
-    <string name="scroll_the_slider_registration_athlete">Scorri lo slider! ;]</string>
     <string name="cancel_button">ANNULLA</string>
     <string name="height_profile_athlete">Altezza:</string>
     <string name="weight_profile_athlete">Peso:</string>
@@ -188,4 +187,8 @@
     <string name="popup_title_back_info_creation_schedule">Torna alle info</string>
     <string name="popup_title_save_creation_schedule">Salva</string>
     <string name="popup_text_save_creation_schedule">Dai un occhio prima di salvare. Se sei sicuro, salva questo giorno!</string>
+    <string name="viewcase_title_select_date_data">Seleziona data</string>
+    <string name="viewcase_text_select_date_data">Cliccando qui si\naprirà il calendario.\nClicca sulla matita per\nselezionare manualmente,\nclicca sul mese per\nselzezionare automaticamente\nla data!</string>
+    <string name="popup_title_back_login">Torna alla login</string>
+    <string name="popup_text_back_login">Sei sicuro di tornare alla login? Tutti i dati inseriti andranno persi!</string>
 </resources>

@@ -6,7 +6,12 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import it.app.mytrainer.models.ObjExercise
 import it.app.mytrainer.ui.fragments.homeAthlete.schedule.FragmentScheduleViewAthlete
 
-class ViewScheduleAthleteAdapter(
+/**
+ * Adapter used for the schedule,
+ * to see all the exercise
+ */
+
+class ViewScheduleAthletePageAdapter(
     fa: FragmentActivity,
     private val listExercises: ArrayList<ObjExercise>,
 ) :

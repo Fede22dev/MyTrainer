@@ -45,6 +45,11 @@ import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.concurrent.thread
 
+/**
+ * Fragment to manage the profile info of athlete,
+ * managing the edit mode, upload of photo and save mode
+ */
+
 class FragmentProfileAthlete : Fragment() {
 
     private val REQUEST_IMAGE_GALLERY = 0
@@ -260,6 +265,7 @@ class FragmentProfileAthlete : Fragment() {
         floatingActionButtonEditProfileAthlete.setOnClickListener {
             //Setting the visibility for the edit
             setVisibilityForEdit()
+
             //Setting all drop down menu
             setDropDownMenusForEdit()
 

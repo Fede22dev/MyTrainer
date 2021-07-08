@@ -15,6 +15,11 @@ import kotlinx.android.synthetic.main.card_recycle_view_search_exercise.view.*
 import me.zhanghai.android.fastscroll.PopupTextProvider
 import java.util.*
 
+/**
+ * Adapter used to manage the recycler used in the
+ * search option, inside the creation of the schedule.
+ */
+
 class RecyclerListExerciseAdapter(
     private val activity: Activity,
     private val data: ArrayList<ObjSearchExercise>,
@@ -48,6 +53,7 @@ class RecyclerListExerciseAdapter(
         return data[position].muscle.toString()
     }
 
+    //Creating the single card
     inner class ViewHolder(
         itemView: View,
         val textViewTypeExercise: TextView = itemView.textViewTypeExercise,

@@ -93,7 +93,6 @@
     <string name="level_profile_athlete">Level:</string>
     <string name="equipment_profile_athlete">Available equipment:</string>
     <string name="error_edit_profile_athlete">ERROR: HEIGHT, WEIGHT OR EQUIPMENT NOT VALID. UPDATE FAILED.</string>
-    <string name="scroll_the_slider_registration_athlete">Scroll the slider! ;]</string>
     <string name="height_profile_athlete">Height:</string>
     <string name="weight_profile_athlete">Weight:</string>
     <string name="number_of_workout_profile_athlete">Number of workout:</string>
@@ -198,4 +197,8 @@
     <string name="popup_title_save_creation_schedule">Save</string>
     <string name="popup_text_save_creation_schedule">Make a look before save. If you\'re sure, save this day!</string>
     <string name="stop_timer" translatable="false">STOP\nTIMER</string>
+    <string name="viewcase_title_select_date_data">Select date</string>
+    <string name="viewcase_text_select_date_data">Clicking here it\nwill be open a calendar.\nClick on the pencil\nto set manually, click\non the month to\nset automate the date!</string>
+    <string name="popup_title_back_login">Back to login</string>
+    <string name="popup_text_back_login">Are you sure to go back to login? All the data insert will be lost!</string>
 </resources>

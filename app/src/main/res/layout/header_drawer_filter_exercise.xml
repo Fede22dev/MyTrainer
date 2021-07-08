@@ -12,6 +12,7 @@
     android:paddingBottom="8dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
+    <!--SETTING THE IMAGE-->
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
@@ -20,11 +21,13 @@
         app:srcCompat="@mipmap/ic_launcher"
         tools:ignore="ContentDescription" />
 
+    <!--SETTING THE SUBTITLE-->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/info_checkbox_filter_muscle"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="14sp" />
 
 </LinearLayout>

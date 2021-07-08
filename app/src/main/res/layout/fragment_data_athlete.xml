@@ -123,7 +123,7 @@
             app:startIconDrawable="@drawable/ic_person"
             app:startIconTint="@color/white">
 
-            <!--TEXT FIELD FOR NAME-->
+            <!--TEXT FIELD FOR SURNAME-->
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/surnameFieldAthlete"
                 android:layout_width="match_parent"

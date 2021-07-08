@@ -39,6 +39,7 @@ class ActivitySearchExercise : AppCompatActivity() {
         //fireStore.createListExerciseIta()
         //fireStore.createListExerciseEng()
 
+        // Check for the device language, to download the right one
         if (Locale.getDefault().displayLanguage.equals("English")) {
             fireStore.downloadAvailableExerciseEng { listEng ->
                 recycleViewAvailableExercise.adapter =
@@ -113,6 +114,9 @@ class ActivitySearchExercise : AppCompatActivity() {
 
     private fun filterMuscle(muscleFilter: String) {
         if (muscleFilter != getString(R.string.no_filter)) {
+
+            searchField.setText("")
+
             listExerciseFiltered =
                 listExercise.filter { exercises -> exercises.muscle == muscleFilter } as ArrayList<ObjSearchExercise>
 
@@ -130,6 +134,7 @@ class ActivitySearchExercise : AppCompatActivity() {
         super.onStart()
         searchField.doOnTextChanged { text, _, _, _ ->
             filterNameExercise(text.toString().trim().toLowerCase(Locale.ROOT))
+
             if (currentItemMenuSelectedId != R.id.radioSearchNoFilter) {
                 navigationDrawerSearchExercises.setCheckedItem(R.id.radioSearchNoFilter)
             }

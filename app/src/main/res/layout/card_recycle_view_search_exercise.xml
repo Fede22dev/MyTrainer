@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-
+    <!--DECLARING CARD-->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardSearchExercise"
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
             android:layout_height="match_parent"
             android:paddingStart="4dp"
             android:paddingEnd="4dp">
-
+            <!--TEXT VIEW FOR MUSCLE GROUP-->
             <TextView
                 android:id="@+id/textViewTypeExercise"
                 android:layout_width="wrap_content"
@@ -39,7 +39,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="HardcodedText" />
-
+            <!--TEXT VIEW FOR EXERCISE NAME-->
             <TextView
                 android:id="@+id/textViewCardNameOfExercise"
                 android:layout_width="0dp"

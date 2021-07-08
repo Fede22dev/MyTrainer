@@ -19,6 +19,7 @@
         android:paddingEnd="24dp"
         tools:context=".ui.fragments.homeAthlete.schedule.FragmentCreationExercise">
 
+        <!--TEXT VIEW FOR THE NUMBER OF EXERCISE-->
         <TextView
             android:id="@+id/textViewNumExercisesCreationExercise"
             android:layout_width="wrap_content"
@@ -36,6 +37,7 @@
             app:layout_constraintVertical_chainStyle="packed"
             tools:ignore="HardcodedText" />
 
+        <!--LINEAR LAYOUT FOR NAME OF EXERCISE-->
         <LinearLayout
             android:id="@+id/linearLayoutNameExerciseCreationExercise"
             android:layout_width="match_parent"
@@ -47,7 +49,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewNumExercisesCreationExercise">
-
+            <!--EDIT FOR THE EFFECTIVE NAME-->
             <EditText
                 android:id="@+id/editTextNameExerciseCreationExercise"
                 android:layout_width="match_parent"
@@ -65,6 +67,7 @@
 
         </LinearLayout>
 
+        <!--LINEAR LAYOUT FOR SERIES AND RECOVERY-->
         <LinearLayout
             android:id="@+id/linearLayoutRepsCreationExercise"
             android:layout_width="match_parent"
@@ -77,6 +80,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linearLayoutNameExerciseCreationExercise">
 
+            <!--LINEAR LAYOUT FOR SERIES-->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -85,7 +89,7 @@
                 android:background="@drawable/custom_stroke"
                 android:gravity="center"
                 android:orientation="vertical">
-
+                <!--TEXT VIEW LABEL SERIES-->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -96,12 +100,12 @@
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textSize="26sp" />
-
+                <!--LINEARE LAYOUT FOR SERIES AND REPS-->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center">
-
+                    <!--EDIT FOR THE SERIES-->
                     <EditText
                         android:id="@+id/editTextSeriesCreationExercise"
                         android:layout_width="wrap_content"
@@ -117,7 +121,7 @@
                         android:textColorHint="@color/hint"
                         android:textSize="24sp"
                         tools:ignore="HardcodedText" />
-
+                    <!--STANDARD TEXT VIEW-->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -128,7 +132,7 @@
                         android:textColor="@color/white"
                         android:textSize="24sp"
                         tools:ignore="HardcodedText" />
-
+                    <!--EDIT TEXT FOR REPS-->
                     <EditText
                         android:id="@+id/editTextRepsCreationExercise"
                         android:layout_width="wrap_content"
@@ -147,7 +151,7 @@
 
                 </LinearLayout>
             </LinearLayout>
-
+            <!--LINEAR LAYOUT FOR RECOVERY-->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -156,7 +160,7 @@
                 android:background="@drawable/custom_stroke"
                 android:gravity="center"
                 android:orientation="vertical">
-
+                <!--TEXT VIEW LABEL RECOVERY-->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -166,12 +170,12 @@
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textSize="26sp" />
-
+                <!--LINEAR LAYOUT FOR MINS AND SECOND-->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center">
-
+                    <!--EDIT TEXT FOR MINS-->
                     <EditText
                         android:id="@+id/editTextRecoveryMinutCreationExercise"
                         android:layout_width="wrap_content"
@@ -187,7 +191,7 @@
                         android:textColorHint="@color/hint"
                         android:textSize="24sp"
                         tools:ignore="HardcodedText" />
-
+                    <!--STANDARD TEXT VIEW -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -198,7 +202,7 @@
                         android:textColor="@color/white"
                         android:textSize="24sp"
                         tools:ignore="HardcodedText" />
-
+                    <!--EDIT TEXT FOR SEC-->
                     <EditText
                         android:id="@+id/editTextRecoverySecondCreationExercise"
                         android:layout_width="wrap_content"
@@ -219,6 +223,7 @@
             </LinearLayout>
         </LinearLayout>
 
+        <!--FAB F0R SEARCH-->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabSearchExerciseCreationExercise"
             android:layout_width="wrap_content"

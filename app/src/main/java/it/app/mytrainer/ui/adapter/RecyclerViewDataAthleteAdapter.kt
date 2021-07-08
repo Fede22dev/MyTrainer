@@ -16,6 +16,10 @@ import kotlinx.android.synthetic.main.activity_view_data_athlete.*
 import kotlinx.android.synthetic.main.card_recycle_view_schedule_athlete.view.*
 import java.util.*
 
+/**
+ * Adapter use to manage the recycle in the viewDataAthlete
+ */
+
 class RecycleViewScheduleAthlete(
     private val activity: Activity,
     private val data: ArrayList<String>,
@@ -32,6 +36,7 @@ class RecycleViewScheduleAthlete(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.textViewTypeOfWO.text = data[position]
+
         holder.card.setOnLongClickListener {
             MaterialAlertDialogBuilder(activity)
                 .setTitle(activity.getString(R.string.title_cancel_day_schedule))
@@ -77,6 +82,7 @@ class RecycleViewScheduleAthlete(
         return data.size
     }
 
+    //Setting the card, with the right name at the right position
     inner class ViewHolder(
         itemView: View,
         val textViewTypeOfWO: TextView = itemView.textViewCardTypeOfWO,

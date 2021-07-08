@@ -6,60 +6,61 @@
         android:checkableBehavior="single"
         android:visible="true">
 
+        <!--NO FILTER-->
         <item
             android:id="@+id/radioSearchNoFilter"
             android:checked="true"
             android:title="@string/no_filter"
             app:showAsAction="ifRoom" />
-
+        <!--CHEST FILTER-->
         <item
             android:id="@+id/radioSearchChest"
             android:checked="false"
             android:title="@string/search_chest"
             app:showAsAction="ifRoom" />
-
+        <!--LEG FILTER-->
         <item
             android:id="@+id/radioSearchLegs"
             android:checked="false"
             android:title="@string/search_legs"
             app:showAsAction="ifRoom" />
-
+        <!--BICEPS FILTER-->
         <item
             android:id="@+id/radioSearchBiceps"
             android:checked="false"
             android:title="@string/search_biceps"
             app:showAsAction="ifRoom" />
-
+        <!--TRICEPS FILTER-->
         <item
             android:id="@+id/radioSearchTriceps"
             android:checked="false"
             android:title="@string/search_triceps"
             app:showAsAction="ifRoom" />
-
+        <!--CALVES FILTER-->
         <item
             android:id="@+id/radioSearchCalves"
             android:checked="false"
             android:title="@string/search_calves"
             app:showAsAction="ifRoom" />
-
+        <!--BACK FILTER-->
         <item
             android:id="@+id/radioSearchBack"
             android:checked="false"
             android:title="@string/search_back"
             app:showAsAction="ifRoom" />
-
+        <!--SHOULDER FILTER-->
         <item
             android:id="@+id/radioSearchShoulders"
             android:checked="false"
             android:title="@string/search_shoulders"
             app:showAsAction="ifRoom" />
-
+        <!--ABS FILTER-->
         <item
             android:id="@+id/radioSearchAbdominals"
             android:checked="false"
             android:title="@string/search_abdominals"
             app:showAsAction="ifRoom" />
-
+        <!--CARDIO FILTER-->
         <item
             android:id="@+id/radioSearchCardio"
             android:checked="false"

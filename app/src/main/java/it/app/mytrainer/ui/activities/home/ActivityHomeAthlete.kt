@@ -31,6 +31,7 @@ class ActivityHomeAthlete : AppCompatActivity() {
 
         prefs = getSharedPreferences("it.app.mytrainer", MODE_PRIVATE)
 
+        // Bottom nav
         val navController = findNavController(R.id.navHostFragmentHomeAthlete)
         bottomNavHomeAthlete.setupWithNavController(navController)
 
@@ -72,9 +73,9 @@ class ActivityHomeAthlete : AppCompatActivity() {
 
             //If cancel has pressed anything happens
             .setNegativeButton(getString(R.string.cancel_button)) { _, _ ->
-
             }
-            //If accept button has pressed, the current id will be delete from auth, store and storage
+            //If accept button has pressed, if is a facebook user all of the data will be canceled
+            // else, we need one more step
             .setPositiveButton(getString(R.string.accept_button)) { _, _ ->
 
                 deleteDataAccount()
@@ -83,7 +84,7 @@ class ActivityHomeAthlete : AppCompatActivity() {
     }
 
     private fun deleteDataAccount() {
-        //Appuring the reauth has been alright
+        // Check if is an FB user or not. If not we go on reauth
         if (FireAuth.getCurrentUserAuth()!!
                 .getIdToken(false).result?.signInProvider!! == "password"
         ) {
@@ -93,6 +94,7 @@ class ActivityHomeAthlete : AppCompatActivity() {
         }
     }
 
+    // Opening the activity for the final check
     private fun reauthenticationDelete() {
         val intent = Intent(this, ActivityReauthDeleteAccount::class.java)
         intent.putExtra("Type", "Athlete")
@@ -100,7 +102,7 @@ class ActivityHomeAthlete : AppCompatActivity() {
         finish()
     }
 
-    //Deleting from firestore and storage
+    //Deleting from firestore, storage and fireAuth
     private fun deleteAllDataOfAccount() {
         fireStore = FireStore()
 

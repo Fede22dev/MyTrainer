@@ -16,6 +16,11 @@ import it.app.mytrainer.ui.activities.home.trainer.ActivityHomeTrainer
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.concurrent.thread
 
+/**
+ * Class used to send to the right place user
+ * already logged
+ */
+
 class ActivityMain : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +31,7 @@ class ActivityMain : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
+        //Check for internet connection
         if (checkNetworkStatus()) {
             startRightActivity()
         } else {

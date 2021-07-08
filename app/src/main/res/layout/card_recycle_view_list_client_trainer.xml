@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:foreground="?android:selectableItemBackground">
-
+    <!--DECLARING CARD-->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardListClientTrainer"
         android:layout_width="match_parent"
@@ -22,14 +22,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="@color/orange_title_app"
         app:strokeWidth="0.7dp">
-
-
+        <!--LINEAR LAYOUT CONTAINING PHOTO NAME AND SURNAME-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingStart="24dp"
             android:paddingEnd="24dp">
-
+            <!--FOR THE ATHLETE PHOTO-->
             <ImageView
                 android:id="@+id/photoClient"
                 android:layout_width="55dp"
@@ -39,7 +38,7 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/person_placeholder"
                 tools:ignore="ContentDescription" />
-
+            <!--LINEAR LAYOUT FOR NAME AND SURNAME-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -48,7 +47,7 @@
                 android:layout_marginBottom="4dp"
                 android:gravity="center"
                 android:orientation="vertical">
-
+                <!--TEXT VIEW NAME-->
                 <TextView
                     android:id="@+id/textViewNameClientTrainer"
                     android:layout_width="wrap_content"
@@ -62,7 +61,7 @@
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     tools:ignore="HardcodedText" />
-
+                <!--TEXT VIEW SURNAME-->
                 <TextView
                     android:id="@+id/textViewSurnameClientTrainer"
                     android:layout_width="wrap_content"

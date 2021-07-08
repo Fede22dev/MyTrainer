@@ -18,6 +18,10 @@ import smartdevelop.ir.eram.showcaseviewlib.GuideView
 import smartdevelop.ir.eram.showcaseviewlib.config.DismissType
 import java.util.*
 
+/**
+ * Class used see all the athlete registered
+ */
+
 class ActivityViewAllAthleteRegistered : AppCompatActivity() {
 
     private lateinit var fireStore: FireStore
@@ -36,6 +40,9 @@ class ActivityViewAllAthleteRegistered : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+
+        //Getting all the athlete registered with the method created,
+        //which send back a list
         fireStore.getAllAthlete { listAthlete, result ->
             if (result) {
                 listAthleteNotFiltered = listAthlete
@@ -60,6 +67,7 @@ class ActivityViewAllAthleteRegistered : AppCompatActivity() {
             }
         }
 
+        //Downloading again the latest list
         fabRefreshListClientViewAllAthleteRegistered.setOnClickListener {
             fireStore.getAllAthlete { listAthlete, result ->
                 if (result) {
@@ -86,10 +94,12 @@ class ActivityViewAllAthleteRegistered : AppCompatActivity() {
 
         addDividerRecycler()
 
+        //Fun for the arrow back
         topAppBarViewAllAthleteRegistered.setNavigationOnClickListener {
             finish()
         }
 
+        //Filtering the athlete
         editTextSearchAthleteRegistered.doOnTextChanged { text, _, _, _ ->
             filterNameAthlete(text.toString().trim().toLowerCase(Locale.ROOT))
         }
@@ -130,6 +140,7 @@ class ActivityViewAllAthleteRegistered : AppCompatActivity() {
         }
     }
 
+    //Setting the fastscroll on  the recycler
     private fun setFastScrollerRecycler() {
         val fastSc = FastScrollerBuilder(recycleViewViewAllAthleteRegistered).useMd2Style()
         fastSc.disableScrollbarAutoHide()
@@ -146,6 +157,8 @@ class ActivityViewAllAthleteRegistered : AppCompatActivity() {
     }
 
     private fun filterNameAthlete(filter: String) {
+        //If the filter is empty we load the whole list,
+        //else we check all the name which contains the word insert
         if (filter != "") {
             listAthleteFiltered =
                 listAthleteNotFiltered.filter { athlete ->

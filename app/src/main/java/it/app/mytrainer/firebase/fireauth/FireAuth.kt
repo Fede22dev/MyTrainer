@@ -10,7 +10,7 @@ import it.app.mytrainer.firebase.firestore.FireStore
 
 /**
  * In this class we're gonna implements
- * all the method that we are to interface us
+ * all the method that we are using to interface us
  * on fireAuth and to redirect users in the right
  * side of the app (athlete/trainer)
  */
@@ -22,7 +22,7 @@ class FireAuth {
         private val auth = Firebase.auth
         private const val TAG = "FIREAUTH"
 
-        //Getting the type, for the redirecting athlete/trainer already logged
+        //Getting the type, for redirecting athlete/trainer already logged
         fun getCurrentUserType(callback: (Int) -> Unit) {
             val currentUser = auth.currentUser
             if (currentUser != null) {
@@ -36,7 +36,7 @@ class FireAuth {
             }
         }
 
-        //Fun to check the email and pass
+        //Fun to check email and pass
         fun login(email: String, password: String, callback: (Boolean, Int) -> Unit) {
             if (email.isBlank() || password.isBlank()) {
                 callback(false, -1)
@@ -51,6 +51,8 @@ class FireAuth {
                             //Looking for user type
                             val fireStore = FireStore()
                             fireStore.findType(currentUserId) { type ->
+
+                                //If return -1 it means that this user doesn't exist
                                 if (type == -1) {
                                     callback(false, type)
                                 } else {
@@ -106,7 +108,7 @@ class FireAuth {
             auth.signOut()
         }
 
-        //Used for reauth of user, before deleting of the account
+        //Used for reauth of user, before deleting the account.
         //We used that to avoid the eventual fail delete from fireAuth
         fun userReauthenticate(password: String, callback: (Boolean) -> Unit) {
             if (password != "") {

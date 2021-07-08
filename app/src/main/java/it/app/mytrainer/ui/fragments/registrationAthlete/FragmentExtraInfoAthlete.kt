@@ -14,6 +14,11 @@ import it.app.mytrainer.models.MapAthlete
 import kotlinx.android.synthetic.main.fragment_extra_info_athlete.*
 import kotlinx.android.synthetic.main.fragment_extra_info_athlete.view.*
 
+/**
+ * Managing all the extra info that are insert
+ * in that fragment (level, equipment)
+ */
+
 class FragmentExtraInfoAthlete : Fragment() {
 
     private val listToSave = ArrayList<String>()
@@ -74,6 +79,7 @@ class FragmentExtraInfoAthlete : Fragment() {
         return view
     }
 
+    // Fun for the slider
     private fun setSliderLevel(value: Float) {
         when (value) {
             1f -> {
@@ -102,6 +108,7 @@ class FragmentExtraInfoAthlete : Fragment() {
         }
     }
 
+    // Fun to manage all the check box (equipment)
     private fun managerList(buttonView: CompoundButton, isChecked: Boolean) {
         if (isChecked) {
             listToSave.add(buttonView.text.toString())
@@ -130,6 +137,7 @@ class FragmentExtraInfoAthlete : Fragment() {
         setDropDownDaysOfWO()
     }
 
+    //Filling the dropdown menu
     private fun setDropDownDaysOfWO() {
         val days = arrayOf("1", "2", "3", "4", "5", "6", "7")
 

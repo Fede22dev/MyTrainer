@@ -202,7 +202,6 @@ class ActivityViewDataAthlete : AppCompatActivity() {
                         .setDismissType(DismissType.outside)
                         .setGuideListener {
 
-
                             scrollViewViewDataAthlete.post {
                                 scrollViewViewDataAthlete.smoothScrollTo(0, 0)
                             }

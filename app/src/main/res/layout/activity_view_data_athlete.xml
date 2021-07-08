@@ -146,7 +146,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/linerLayoutImageAndNameAndSurnameViewDataAthlete">
 
-                <!--TEXT VIEW DATE-->
+                <!--TEXT VIEW LABEL DATE-->
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -191,7 +191,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/linearLayoutDateViewDataAthlete">
 
-                <!--TEXT VIEW HEIGHT-->
+                <!--TEXT VIEW LABEL HEIGHT-->
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -233,7 +233,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/linearLayoutHeightViewDataAthlete">
 
-                <!--TEXT VIEW WEIGHT-->
+                <!--TEXT VIEW LABEL WEIGHT-->
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -275,7 +275,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/linearLayoutWeightViewDataAthlete">
 
-                <!--TEXT VIEW FOR TYPE OF WO-->
+                <!--TEXT VIEW FOR LABEL TYPE OF WO-->
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -319,7 +319,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/linearLayoutTypeOfWOViewDataAthlete">
 
-                <!--TEXT VIEW FOR GOAL-->
+                <!--TEXT VIEW FOR LABEL GOAL-->
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -365,7 +365,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/linearLayoutGoalViewDataAthlete">
 
-                <!--TEXT VIEW FOR LEVEL-->
+                <!--TEXT VIEW FOR LABEL LEVEL-->
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -409,7 +409,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/linearLayoutLevelViewDataAthlete">
 
-                <!--TEXT VIEW FOR NUMBER OF WORK OUT-->
+                <!--TEXT VIEW FOR LABEL NUMBER OF WORK OUT-->
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -454,7 +454,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/linearLayoutNumOfWOViewDataAthlete">
 
-                <!--TEXT VIEW FOLLOWED TRAINER-->
+                <!--TEXT VIEW LABEL FOLLOWED TRAINER-->
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -640,7 +640,7 @@
                 </LinearLayout>
 
             </LinearLayout>
-
+            <!--TEXT VIEW LABEL ACTIVE SCHEDULE-->
             <TextView
                 android:id="@+id/textViewInfoScheduleViewDataAthlete"
                 android:layout_width="wrap_content"
@@ -655,6 +655,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/linearLayoutCheckBoxEquipmentsViewDataAthlete" />
 
+            <!--RECYCLE FOR ACTIVE SCHEDULE-->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewScheduleViewDataAthlete"
                 android:layout_width="match_parent"

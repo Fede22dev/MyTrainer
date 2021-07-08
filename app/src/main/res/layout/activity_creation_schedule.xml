@@ -32,6 +32,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <!--FAB FOR DELETE-->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabDeleteExerciseCreationExercise"
         android:layout_width="wrap_content"
@@ -46,6 +47,7 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="ContentDescription" />
 
+    <!--FAB FOR ADD AN EXERCISE-->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddExerciseCreationExercise"
         android:layout_width="wrap_content"
@@ -59,6 +61,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="ContentDescription" />
 
+    <!--VIEWPAGER FILLED WITH FRAGMENT-->
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPagerCreationSchedule"
         android:layout_width="match_parent"

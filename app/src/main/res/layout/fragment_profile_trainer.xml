@@ -57,7 +57,7 @@
                 app:layout_constraintStart_toEndOf="@id/imageViewPersonalTrainer"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <!--LAYOUT PER N-->
+                <!--LAYOUT FOR NAME-->
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/layoutTrainerEditTextNameEditable"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -105,6 +105,7 @@
 
         </LinearLayout>
 
+        <!--LINEAR LAYOUT DEDICATED TO PHOTO-->
         <LinearLayout
             android:id="@+id/linearLayoutBtnTakePhotoTrainer"
             android:layout_width="match_parent"
@@ -160,7 +161,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linearLayoutBtnTakePhotoTrainer">
 
-            <!--TEXT VIEW FOR DATE-->
+            <!--TEXT VIEW FOR LABEL DATE-->
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

@@ -6,6 +6,11 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import it.app.mytrainer.ui.fragments.userChoice.FragmentUserChoiceAthlete
 import it.app.mytrainer.ui.fragments.userChoice.FragmentUserChoiceTrainer
 
+/**
+ * Adapter use to manage the user choice,
+ * to fill the activity of choice
+ */
+
 class UserChoiceRegistrationPageAdapter(fa: FragmentActivity, private val tabCount: Int) :
     FragmentStateAdapter(fa) {
 

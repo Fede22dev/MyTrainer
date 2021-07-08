@@ -5,6 +5,11 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import it.app.mytrainer.ui.fragments.homeTrainer.creationSchedule.FragmentCreationExercise
 
+/**
+ * Adapter use to manage the fragment in the
+ * creation of the schedule.
+ */
+
 class CreationSchedulePageAdapter(
     fa: FragmentActivity,
     private val exerciseCount: Int,
