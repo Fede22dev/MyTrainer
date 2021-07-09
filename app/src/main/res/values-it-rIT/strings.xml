@@ -167,7 +167,7 @@
     <string name="error_used_email">Questa e-mail e\' gia\' in uso! Per favore, prova con un\'altra.</string>
     <string name="error_blank_field_fragment_profile_athlete">ERRORE: TUTTI I CAMPI DEVONO ESSERE COMPILATI! UPDATE FAILED!</string>
     <string name="viewcase_title_recycle_view_data_athlete">Scheda</string>
-    <string name="viewcase_text_recycle_view_data_athlete">Qui potrai trovare\nla scheda attiva\nper questo atleta.\nPremi per eliminare\nun giorno!</string>
+    <string name="viewcase_text_recycle_view_data_athlete">Qui potrai trovare\nla scheda attiva\nper questo atleta.\nClicca per\nvisualizzare le\noperazioni disponibili!</string>
     <string name="viewcase_title_fab_view_data_athlete">Aggiungi</string>
     <string name="viewcase_text_fab_view_data_athlete">Premi questo bottone\nper aggiungere un\ngiorno alla scheda\ndell\'atleta!</string>
     <string name="top_app_bar_view_all_athlete_registered">Atleti registrati</string>
@@ -191,4 +191,8 @@
     <string name="viewcase_text_select_date_data">Cliccando qui si\naprirà il calendario.\nClicca sulla matita per\nselezionare manualmente,\nclicca sul mese per\nselzezionare automaticamente\nla data!</string>
     <string name="popup_title_back_login">Torna alla login</string>
     <string name="popup_text_back_login">Sei sicuro di tornare alla login? Tutti i dati inseriti andranno persi!</string>
+    <string name="popup_update_view_data_athlete">Modifica</string>
+    <string name="popup_delete_view_data_athlete">Cancella</string>
+    <string name="popup_manage_view_data_athlete">Modifiche</string>
+    <string name="popup_manage_text_view_data_athlete">Scegli l\'operazione da eseguire!</string>
 </resources>

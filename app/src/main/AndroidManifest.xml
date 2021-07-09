@@ -91,6 +91,10 @@
             android:screenOrientation="portrait" />
         <!-- END OF HOME ACTIVITY TRAINER -->
 
+        <activity
+            android:name=".ui.activities.home.schedule.trainer.ActivityUpdateSchedule"
+            android:screenOrientation="portrait" />
+
         <!-- START OF THE ACTIVITY SEARCH -->
         <activity
             android:name=".ui.activities.home.schedule.trainer.ActivitySearchExercise"

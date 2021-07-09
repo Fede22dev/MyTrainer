@@ -176,7 +176,7 @@
     <string name="error_blank_field_fragment_profile_athlete">ERROR: ALL FIELDS MUST BE FILLED! UPDATE FAILED!</string>
     <string name="error_empty_schedule">All the fields of single exercises has to be filled!</string>
     <string name="viewcase_title_recycle_view_data_athlete">Schedule</string>
-    <string name="viewcase_text_recycle_view_data_athlete">Here you will\nfind the active schedule\nfor this athlete.\nMake a long press\nto cancel a day!</string>
+    <string name="viewcase_text_recycle_view_data_athlete">Here you will\nfind the active schedule\nfor this athlete.\nClick to see\nthe available\noperation!</string>
     <string name="viewcase_title_fab_view_data_athlete">Add button</string>
     <string name="viewcase_text_fab_view_data_athlete">Press this button\nto add a day to\nthe athlete\'s schedule!</string>
     <string name="top_app_bar_view_all_athlete_registered">Athlete Registered</string>
@@ -201,4 +201,8 @@
     <string name="viewcase_text_select_date_data">Clicking here it\nwill be open a calendar.\nClick on the pencil\nto set manually, click\non the month to\nset automate the date!</string>
     <string name="popup_title_back_login">Back to login</string>
     <string name="popup_text_back_login">Are you sure to go back to login? All the data insert will be lost!</string>
+    <string name="popup_update_view_data_athlete">Update</string>
+    <string name="popup_delete_view_data_athlete">Delete</string>
+    <string name="popup_manage_view_data_athlete">Changes</string>
+    <string name="popup_manage_text_view_data_athlete">Choose the operation!</string>
 </resources>

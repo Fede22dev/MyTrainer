@@ -115,6 +115,27 @@ class FireStore {
         }
     }
 
+    //To manage an existing schedule
+    @Suppress("UNCHECKED_CAST")
+    fun updateExistingSchedule(athleteId: String, dayOfWo: ObjDayOfWo) {
+        getAthlete(athleteId) { athlete ->
+            val schedule = athlete!!["Schedule"]
+
+            schedule as HashMap<String, ArrayList<HashMap<String, Any>>>
+
+            //Getting the array called "listOfDays" on firestore
+            schedule["listOfDays"]!!.forEach { mapDay ->
+                Log.d("MAPPAAAAAAAAAAAA PRIMAAAAAAAAAAAA", mapDay.toString())
+                //Looking for the right day, on the map inside listOfDays
+                if (mapDay["nameOfDay"]!! == dayOfWo.nameOfDay) {
+                    mapDay["listOfExercise"] = dayOfWo.listOfExercise
+                    Log.d("MAPPAAAAAAAAAAAA DOPOOOOOOOOOOOOOOOOOO", mapDay.toString())
+                    db.collection(COLLECTIONATHLETE).document(athleteId).update("Schedule", schedule)
+                }
+            }
+        }
+    }
+
     //Fun to avoid that one trainer will override/delete schedule not created  by him
     fun checkIdTrainer(athleteId: String, trainerId: String, callback: (Boolean) -> Unit) {
         getAthlete(athleteId) { athlete ->

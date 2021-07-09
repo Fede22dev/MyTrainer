@@ -1,6 +1,5 @@
 package it.app.mytrainer.ui.activities.home.schedule.trainer
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,22 +9,19 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import it.app.mytrainer.R
-import it.app.mytrainer.firebase.fireauth.FireAuth
 import it.app.mytrainer.firebase.firestore.FireStore
 import it.app.mytrainer.models.ObjDayOfWo
 import it.app.mytrainer.models.ObjExercise
-import it.app.mytrainer.ui.adapter.CreationSchedulePageAdapter
+import it.app.mytrainer.ui.adapter.UpdateSchedulePageAdapter
 import kotlinx.android.synthetic.main.activity_creation_schedule.*
-import smartdevelop.ir.eram.showcaseviewlib.GuideView
-import smartdevelop.ir.eram.showcaseviewlib.config.DismissType
 
-class ActivityCreationSchedule : AppCompatActivity() {
+class ActivityUpdateSchedule : AppCompatActivity() {
 
     private val MAXPAGE = 13
     private var exerciseCount = 1
-    private var prefs: SharedPreferences? = null
-    private val currentUserId = FireAuth.getCurrentUserAuth()?.uid!!
+    private var listExerciseCount = 0
     private lateinit var fireStore: FireStore
+    private var firstExercise = true
 
     // We declare this method static cause they are unique for all the fragment
     companion object {
@@ -64,15 +60,25 @@ class ActivityCreationSchedule : AppCompatActivity() {
             dayOfWo.listOfExercise.add(null)
         }
 
-        prefs = getSharedPreferences("it.app.mytrainer", MODE_PRIVATE)
-
-        viewPagerCreationSchedule.adapter = CreationSchedulePageAdapter(this,
-            exerciseCount)
-        viewPagerCreationSchedule.offscreenPageLimit = exerciseCount
-
-        wormDotsIndicatorCreationSchedule.setViewPager2(viewPagerCreationSchedule)
-
         fireStore = FireStore()
+        fireStore.getScheduleExercise(intent.getStringExtra("UserId")!!, typeOfWo) { listExercise ->
+
+            if (!firstExercise) {
+                ++exerciseCount
+            }
+
+            firstExercise = false
+
+            dayOfWo.listOfExercise[listExerciseCount] = listExercise[listExercise.size - 1]
+
+            viewPagerCreationSchedule.adapter = UpdateSchedulePageAdapter(this,
+                exerciseCount)
+            viewPagerCreationSchedule.offscreenPageLimit = exerciseCount
+
+            wormDotsIndicatorCreationSchedule.setViewPager2(viewPagerCreationSchedule)
+
+            listExerciseCount++
+        }
     }
 
     override fun onStart() {
@@ -100,7 +106,7 @@ class ActivityCreationSchedule : AppCompatActivity() {
 
         fabAddExerciseCreationExercise.setOnClickListener {
 
-            viewPagerCreationSchedule.adapter = CreationSchedulePageAdapter(this,
+            viewPagerCreationSchedule.adapter = UpdateSchedulePageAdapter(this,
                 ++exerciseCount)
 
             viewPagerCreationSchedule.currentItem = exerciseCount
@@ -113,7 +119,7 @@ class ActivityCreationSchedule : AppCompatActivity() {
 
             dayOfWo.listOfExercise[exerciseCount - 1] = null
 
-            viewPagerCreationSchedule.adapter = CreationSchedulePageAdapter(this,
+            viewPagerCreationSchedule.adapter = UpdateSchedulePageAdapter(this,
                 --exerciseCount)
 
             viewPagerCreationSchedule.currentItem = exerciseCount
@@ -156,7 +162,7 @@ class ActivityCreationSchedule : AppCompatActivity() {
     private fun saveSchedule() {
         dayOfWo.listOfExercise.removeIf { obj -> obj == null }
         if (dayOfWo.listOfExercise.isNotEmpty() && fieldOk) {
-            fireStore.updateSchedule(intent.getStringExtra("UserId")!!, currentUserId, dayOfWo)
+            fireStore.updateExistingSchedule(intent.getStringExtra("UserId")!!, dayOfWo)
             finish()
         } else {
             //If there's a problem we reset the previous element to null again
@@ -170,52 +176,6 @@ class ActivityCreationSchedule : AppCompatActivity() {
                 .setBackgroundTint(ContextCompat.getColor(this,
                     R.color.app_foreground))
                 .setTextColor(ContextCompat.getColor(this, R.color.white))
-                .show()
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        if (prefs!!.getBoolean("FirstRunActivityCreationSchedule", true)
-        ) {
-            GuideView.Builder(this)
-                .setTitle(getString(R.string.viewcase_title_save_activity_creation_schedule))
-                .setContentText(getString(R.string.viewcase_text_save_activity_creation_schedule))
-                .setTitleTextSize(16)
-                .setContentTextSize(14)
-                .setTargetView(findViewById(R.id.saveSchedule))
-                .setDismissType(DismissType.outside)
-                .setGuideListener {
-
-                    GuideView.Builder(this)
-                        .setTitle(getString(R.string.viewcase_title_fab_delete_activity_creation_schedule))
-                        .setContentText(getString(R.string.viewcase_text_fab_delete_activity_creation_schedule))
-                        .setTitleTextSize(16)
-                        .setContentTextSize(14)
-                        .setTargetView(fabDeleteExerciseCreationExercise)
-                        .setDismissType(DismissType.outside)
-                        .setGuideListener {
-
-                            GuideView.Builder(this)
-                                .setTitle(getString(R.string.viewcase_title_fab_add_activity_creation_schedule))
-                                .setContentText(getString(R.string.viewcase_text_fab_add_activity_creation_schedule))
-                                .setTitleTextSize(16)
-                                .setContentTextSize(14)
-                                .setTargetView(fabAddExerciseCreationExercise)
-                                .setDismissType(DismissType.outside)
-                                .setGuideListener {
-                                    prefs!!.edit()
-                                        .putBoolean("FirstRunActivityCreationSchedule", false)
-                                        .apply()
-                                }
-                                .build()
-                                .show()
-                        }
-                        .build()
-                        .show()
-
-                }
-                .build()
                 .show()
         }
     }
