@@ -69,27 +69,27 @@ class ActivityViewDataAthlete : AppCompatActivity() {
         athlete.equipment.forEach { equip ->
             when (equip) {
 
-                "Dumbbells", "Manubri" -> {
+                "Dumbbells", "Manubri"                     -> {
                     checkbox1ViewDataAthlete.isChecked = true
                 }
 
-                "Ropes", "Corde" -> {
+                "Ropes", "Corde"                           -> {
                     checkbox2ViewDataAthlete.isChecked = true
                 }
 
-                "Rack" -> {
+                "Rack"                                     -> {
                     checkbox3ViewDataAthlete.isChecked = true
                 }
 
-                "Bench", "Panca" -> {
+                "Bench", "Panca"                           -> {
                     checkbox4ViewDataAthlete.isChecked = true
                 }
 
-                "Pull-up bar" -> {
+                "Pull-up bar"                              -> {
                     checkbox5ViewDataAthlete.isChecked = true
                 }
 
-                "Dip station" -> {
+                "Dip station"                              -> {
                     checkbox6ViewDataAthlete.isChecked = true
                 }
 
@@ -97,7 +97,7 @@ class ActivityViewDataAthlete : AppCompatActivity() {
                     checkbox7ViewDataAthlete.isChecked = true
                 }
 
-                "Gym membership", "Abbonamento palestra" -> {
+                "Gym membership", "Abbonamento palestra"   -> {
                     checkbox8ViewDataAthlete.isChecked = true
                 }
             }
@@ -160,7 +160,7 @@ class ActivityViewDataAthlete : AppCompatActivity() {
                     }
                 } else {
                     Snackbar.make(linearLayoutViewDataAthlete,
-                        "DA METTTTTTTTTTTTTTTTTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEERRRRRRRRRRRRRRRRREEEEEEEEEEEEEEEEEEEEEEEEE",
+                        getString(R.string.athlete_not_exist),
                         Snackbar.LENGTH_LONG)
                         .setBackgroundTint(ContextCompat.getColor(this,
                             R.color.app_foreground))

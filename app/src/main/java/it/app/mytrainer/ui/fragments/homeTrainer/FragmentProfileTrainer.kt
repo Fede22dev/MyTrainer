@@ -227,10 +227,10 @@ class FragmentProfileTrainer : Fragment() {
             ExifInterface.ORIENTATION_UNDEFINED)
 
         return when (orientation) {
-            ExifInterface.ORIENTATION_ROTATE_90 -> rotateImage(imageBitmap, 90)
+            ExifInterface.ORIENTATION_ROTATE_90  -> rotateImage(imageBitmap, 90)
             ExifInterface.ORIENTATION_ROTATE_180 -> rotateImage(imageBitmap, 180)
             ExifInterface.ORIENTATION_ROTATE_270 -> rotateImage(imageBitmap, 270)
-            ExifInterface.ORIENTATION_NORMAL -> imageBitmap
+            ExifInterface.ORIENTATION_NORMAL     -> imageBitmap
             else                                 -> imageBitmap
         }
     }

@@ -21,6 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <!--TEXT VIEW TITLE APP-->
     <TextView
         android:id="@+id/titleAppReauth"
@@ -38,6 +39,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.3"
         app:layout_constraintVertical_chainStyle="packed" />
+
     <!--TEXT VIEW WITH INFO-->
     <TextView
         android:id="@+id/textViewInfoDelete"
@@ -80,6 +82,7 @@
             android:inputType="textPassword"
             android:textColor="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>
+
     <!--BUTTON FOR DELETE-->
     <Button
         android:id="@+id/reauthBtnConfirmation"
@@ -94,8 +97,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layoutReauthEditTextPassword" />
+
     <!--BUTTON FOR CANCEL-->
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/reauthBtnCancel"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
@@ -105,6 +109,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/reauthBtnConfirmation" />
+        app:layout_constraintTop_toBottomOf="@id/reauthBtnConfirmation"
+        app:strokeColor="@color/green_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

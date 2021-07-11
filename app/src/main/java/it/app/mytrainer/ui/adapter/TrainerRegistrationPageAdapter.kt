@@ -16,8 +16,8 @@ class TrainerRegistrationPageAdapter(fa: FragmentActivity, private val tabCount:
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> FragmentDataTrainer()
-            1 -> FragmentExtraInfoTrainer()
+            0    -> FragmentDataTrainer()
+            1    -> FragmentExtraInfoTrainer()
             else -> createFragment(position)
         }
     }

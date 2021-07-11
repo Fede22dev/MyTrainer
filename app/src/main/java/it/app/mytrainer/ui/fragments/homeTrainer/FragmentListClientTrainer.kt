@@ -13,22 +13,18 @@ import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration
 import it.app.mytrainer.R
 import it.app.mytrainer.firebase.fireauth.FireAuth
 import it.app.mytrainer.firebase.firestore.FireStore
-import it.app.mytrainer.models.ObjAthlete
 import it.app.mytrainer.ui.activities.home.trainer.ActivityViewAllAthleteRegistered
 import it.app.mytrainer.ui.adapter.RecyclerListClientTrainerAdapter
 import kotlinx.android.synthetic.main.fragment_list_client_trainer.*
 import smartdevelop.ir.eram.showcaseviewlib.GuideView
 import smartdevelop.ir.eram.showcaseviewlib.config.DismissType
 import java.util.*
-import kotlin.concurrent.thread
 
 class FragmentListClientTrainer : Fragment() {
 
     private lateinit var fireStore: FireStore
     private var prefs: SharedPreferences? = null
     private val currentUserId = FireAuth.getCurrentUserAuth()?.uid!!
-    private lateinit var adapter: RecyclerListClientTrainerAdapter
-    private val listVisualAthleteFollowed = ArrayList<ObjAthlete>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,15 +53,9 @@ class FragmentListClientTrainer : Fragment() {
 
                     listAthlete.sortBy { it.surnameAthlete.toLowerCase(Locale.ROOT) }
 
-                    listVisualAthleteFollowed.clear()
-
-                    listAthlete.forEach { athlete ->
-                        listVisualAthleteFollowed.add(athlete)
-                    }
-
-                    adapter = RecyclerListClientTrainerAdapter(requireContext(),
-                        listVisualAthleteFollowed)
-                    recycleViewListClientFollowed.adapter = adapter
+                    recycleViewListClientFollowed.adapter =
+                        RecyclerListClientTrainerAdapter(requireContext(),
+                            listAthlete)
 
                 } else {
                     textViewListClientReady.visibility = View.INVISIBLE
@@ -86,20 +76,6 @@ class FragmentListClientTrainer : Fragment() {
 
     override fun onResume() {
         super.onResume()
-
-        if (recycleViewListClientFollowed.visibility != View.INVISIBLE) {
-            thread {
-                Thread.sleep(1000)
-                fireStore.getAllAthleteFollowedByTrainer(currentUserId) { listAthlete, _ ->
-                    listVisualAthleteFollowed.clear()
-                    listAthlete.forEach { athlete ->
-                        listVisualAthleteFollowed.add(athlete)
-                    }
-
-                    adapter.notifyDataSetChanged()
-                }
-            }
-        }
 
         if (prefs!!.getBoolean("FirstRunFragmentClientTrainer", true)
         ) {

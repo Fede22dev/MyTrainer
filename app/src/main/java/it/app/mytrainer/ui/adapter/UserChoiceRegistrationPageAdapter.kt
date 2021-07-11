@@ -16,8 +16,8 @@ class UserChoiceRegistrationPageAdapter(fa: FragmentActivity, private val tabCou
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> FragmentUserChoiceAthlete()
-            1 -> FragmentUserChoiceTrainer()
+            0    -> FragmentUserChoiceAthlete()
+            1    -> FragmentUserChoiceTrainer()
             else -> createFragment(position)
         }
     }

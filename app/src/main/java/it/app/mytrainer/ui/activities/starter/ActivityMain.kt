@@ -74,11 +74,11 @@ class ActivityMain : AppCompatActivity() {
             FireAuth.getCurrentUserType { type ->
                 // Check if the user is already logged in
                 when (type) {
-                    0 -> {
+                    0  -> {
                         startHomeTrainer()
                     }
 
-                    1 -> {
+                    1  -> {
                         startHomeAthlete()
                     }
 

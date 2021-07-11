@@ -14,7 +14,7 @@
 
 Iscrivendoti come atleta potrai effettuare le seguenti operazioni:
 
- * Accesso con Facebook
+ * Accesso con Password o con Facebook.
  * Registrarti inserendo le tue informazioni fisiche e atletiche, in modo da poter avere una scheda perfetta per te.
  * Visualizzazione scheda. Potrai visionare la scheda creata appositamente per te dal tuo trainer di fiducia.
  * Utilizzare un timer integrato e un conta-serie.
@@ -27,7 +27,7 @@ Iscrivendoti come atleta potrai effettuare le seguenti operazioni:
 
 Iscrivendoti come trainer potrai effettuare le seguenti operazioni:
 
- * Accesso con Facebook
+ * Accesso con Password o con Facebook.
  * Registrarti specificando la tua specializzazione e la tua palestra di riferimento.
  * Visualizzare in maniera efficace e rapida tutti gli atleti seguiti.
  * Tramite un comodo tasto per la ricerca potrai accedere all'elenco di tutti gli atleti registrati, ampliando il numero dei tuoi clienti.

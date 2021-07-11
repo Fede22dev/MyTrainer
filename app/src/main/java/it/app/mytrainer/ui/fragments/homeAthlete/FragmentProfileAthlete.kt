@@ -224,12 +224,12 @@ class FragmentProfileAthlete : Fragment() {
             ExifInterface.ORIENTATION_UNDEFINED)
 
         return when (orientation) {
-            ExifInterface.ORIENTATION_ROTATE_90 -> TransformationUtils.rotateImage(imageBitmap, 90)
+            ExifInterface.ORIENTATION_ROTATE_90  -> TransformationUtils.rotateImage(imageBitmap, 90)
             ExifInterface.ORIENTATION_ROTATE_180 -> TransformationUtils.rotateImage(imageBitmap,
                 180)
             ExifInterface.ORIENTATION_ROTATE_270 -> TransformationUtils.rotateImage(imageBitmap,
                 270)
-            ExifInterface.ORIENTATION_NORMAL -> imageBitmap
+            ExifInterface.ORIENTATION_NORMAL     -> imageBitmap
             else                                 -> imageBitmap
         }
     }
@@ -346,32 +346,32 @@ class FragmentProfileAthlete : Fragment() {
                     checkBox.forEach { equip ->
                         when (equip.toString()) {
 
-                            "Dumbells", "Manubri" -> {
+                            "Dumbells", "Manubri"                      -> {
                                 checkbox1ProfileAthlete.isChecked = true
                                 setForCheckBox.add(getString(R.string.dumbbells_athlete))
                             }
 
-                            "Rope", "Corde" -> {
+                            "Rope", "Corde"                            -> {
                                 checkbox2ProfileAthlete.isChecked = true
                                 setForCheckBox.add(getString(R.string.rope_athlete))
                             }
 
-                            "Rack" -> {
+                            "Rack"                                     -> {
                                 checkbox3ProfileAthlete.isChecked = true
                                 setForCheckBox.add(getString(R.string.rack_athlete))
                             }
 
-                            "Benches", "Panca" -> {
+                            "Benches", "Panca"                         -> {
                                 checkbox4ProfileAthlete.isChecked = true
                                 setForCheckBox.add(getString(R.string.benches_athlete))
                             }
 
-                            "Pull-up bar" -> {
+                            "Pull-up bar"                              -> {
                                 checkbox5ProfileAthlete.isChecked = true
                                 setForCheckBox.add(getString(R.string.pull_up_bar_athlete))
                             }
 
-                            "Dip station" -> {
+                            "Dip station"                              -> {
                                 checkbox6ProfileAthlete.isChecked = true
                                 setForCheckBox.add(getString(R.string.dip_station_athlete))
                             }
@@ -381,7 +381,7 @@ class FragmentProfileAthlete : Fragment() {
                                 setForCheckBox.add(getString(R.string.barbell_and_discs_athlete))
                             }
 
-                            "Gym membership", "Abbonamento palestra" -> {
+                            "Gym membership", "Abbonamento palestra"   -> {
                                 checkbox8ProfileAthlete.isChecked = true
                                 setForCheckBox.add(getString(R.string.gym_membership_athlete))
                             }

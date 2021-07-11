@@ -194,4 +194,5 @@
     <string name="popup_manage_text_view_data_athlete">Scegli l\'operazione da eseguire!</string>
     <string name="update_schedule">Modifica scheda</string>
     <string name="app_bar_view_profile_athlete">Dati atleta</string>
+    <string name="athlete_not_exist">Ci dispiace, questo utente non esiste più!</string>
 </resources>

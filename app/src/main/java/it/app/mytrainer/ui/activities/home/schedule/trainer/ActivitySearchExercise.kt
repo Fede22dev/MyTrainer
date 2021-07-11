@@ -65,35 +65,35 @@ class ActivitySearchExercise : AppCompatActivity() {
         navigationDrawerSearchExercises.setNavigationItemSelectedListener { menuItem ->
             // Handle menu item selected
             when (menuItem.itemId) {
-                R.id.radioSearchNoFilter -> {
+                R.id.radioSearchNoFilter   -> {
                     filterMuscle(menuItem.title.toString())
                 }
 
-                R.id.radioSearchChest -> {
+                R.id.radioSearchChest      -> {
                     filterMuscle(menuItem.title.toString())
                 }
 
-                R.id.radioSearchLegs -> {
+                R.id.radioSearchLegs       -> {
                     filterMuscle(menuItem.title.toString())
                 }
 
-                R.id.radioSearchBiceps -> {
+                R.id.radioSearchBiceps     -> {
                     filterMuscle(menuItem.title.toString())
                 }
 
-                R.id.radioSearchTriceps -> {
+                R.id.radioSearchTriceps    -> {
                     filterMuscle(menuItem.title.toString())
                 }
 
-                R.id.radioSearchCalves -> {
+                R.id.radioSearchCalves     -> {
                     filterMuscle(menuItem.title.toString())
                 }
 
-                R.id.radioSearchBack -> {
+                R.id.radioSearchBack       -> {
                     filterMuscle(menuItem.title.toString())
                 }
 
-                R.id.radioSearchShoulders -> {
+                R.id.radioSearchShoulders  -> {
                     filterMuscle(menuItem.title.toString())
                 }
 
@@ -101,7 +101,7 @@ class ActivitySearchExercise : AppCompatActivity() {
                     filterMuscle(menuItem.title.toString())
                 }
 
-                R.id.radioSearchCardio -> {
+                R.id.radioSearchCardio     -> {
                     filterMuscle(menuItem.title.toString())
                 }
             }

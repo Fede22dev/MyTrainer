@@ -128,12 +128,12 @@ class ActivityLogin : AppCompatActivity() {
             // Check if the user is already logged in
             when (type) {
 
-                0 -> {
+                0  -> {
                     //If 0 is a trainer, calling the right method
                     startHomeTrainer()
                 }
 
-                1 -> {
+                1  -> {
                     //If 1 is an athlete, calling the right method
                     startHomeAthlete()
                 }
@@ -194,7 +194,7 @@ class ActivityLogin : AppCompatActivity() {
     }
 
     //On click for the login button
-    fun onClickLogin(v: View) {
+    fun onClickLogin(@Suppress("UNUSED_PARAMETER")v: View) {
 
         val email = emailFieldLogin.text.toString().trim()
         val password = passwordFieldLogin.text.toString().trim()
@@ -277,7 +277,7 @@ class ActivityLogin : AppCompatActivity() {
     }
 
     //Starting the choice activity
-    fun onClickRegistration(v: View) {
+    fun onClickRegistration(@Suppress("UNUSED_PARAMETER")v: View) {
         FireAuth.signOut()
         val intent = Intent(this, ActivityUserChoice::class.java)
         startActivity(intent)

@@ -81,17 +81,24 @@ class FragmentUpdateSchedule(private val position: Int) :
             "${getString(R.string.exercise)} ${position + 1}"
 
         editTextNameExerciseCreationExercise.doAfterTextChanged { text ->
-            exercise.nameExercise = text.toString().trim().capitalize(Locale.ROOT)
-            exerciseManager()
+            if (text.toString().trim() != "") {
+                exercise.nameExercise = text.toString().trim().capitalize(Locale.ROOT)
+                exerciseManager()
+            } else {
+                exercise.nameExercise = null
+                ActivityUpdateSchedule.setFieldOk(false)
+                editTextNameExerciseCreationExercise.error = "!!"
+            }
         }
 
         editTextSeriesCreationExercise.doAfterTextChanged { text ->
             val txt = text.toString().trim()
-            if (txt != "0" && txt != "00") {
+            if (txt != "0" && txt != "00" && txt != "") {
                 editTextSeriesCreationExercise.error = null
                 exercise.numSeries = txt.trimStart('0')
                 exerciseManager()
             } else {
+                exercise.numSeries = null
                 editTextSeriesCreationExercise.error = "!!"
                 ActivityUpdateSchedule.setFieldOk(false)
             }
@@ -99,11 +106,12 @@ class FragmentUpdateSchedule(private val position: Int) :
 
         editTextRepsCreationExercise.doAfterTextChanged { text ->
             val txt = text.toString().trim()
-            if (txt != "0" && txt != "00") {
+            if (txt != "0" && txt != "00" && txt != "") {
                 editTextRepsCreationExercise.error = null
                 exercise.numReps = txt.trimStart('0')
                 exerciseManager()
             } else {
+                exercise.numReps = null
                 editTextRepsCreationExercise.error = "!!"
                 ActivityUpdateSchedule.setFieldOk(false)
             }

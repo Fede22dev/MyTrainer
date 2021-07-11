@@ -17,9 +17,9 @@ class AthleteRegistrationPageAdapter(fa: FragmentActivity, private val tabCount:
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> FragmentDataAthlete()
-            1 -> FragmentBodyInfoTypeWOGoalAthlete()
-            2 -> FragmentExtraInfoAthlete()
+            0    -> FragmentDataAthlete()
+            1    -> FragmentBodyInfoTypeWOGoalAthlete()
+            2    -> FragmentExtraInfoAthlete()
             else -> createFragment(position)
         }
     }

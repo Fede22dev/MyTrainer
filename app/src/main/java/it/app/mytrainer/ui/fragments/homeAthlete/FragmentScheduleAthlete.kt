@@ -65,7 +65,7 @@ class FragmentScheduleAthlete : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        fireStore.setListenerDayScheduleChange(currentUserId) { listOfDays ->
+        fireStore.setListenerNameDayScheduleChange(currentUserId) { listOfDays ->
             if (listOfDays.isNotEmpty()) {
                 setVisibilityForSchedule()
 
@@ -103,7 +103,7 @@ class FragmentScheduleAthlete : Fragment() {
 
     override fun onPause() {
         super.onPause()
-        fireStore.removeListenerDayScheduleChange()
+        fireStore.removeListenerNameDayScheduleChange()
     }
 
     private fun setVisibilityForSchedule() {

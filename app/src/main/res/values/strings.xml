@@ -204,4 +204,5 @@
     <string name="popup_manage_text_view_data_athlete">Choose the operation!</string>
     <string name="update_schedule">Update schedule</string>
     <string name="app_bar_view_profile_athlete">Data athlete</string>
+    <string name="athlete_not_exist">Sorry, this user doesn\'t exist anymore!</string>
 </resources>

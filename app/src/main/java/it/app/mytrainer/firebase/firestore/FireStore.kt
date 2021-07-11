@@ -21,7 +21,6 @@ class FireStore {
     private val COLLECTIONTRAINER = "Trainers"
     private val COLLECTIONEXERCISES = "Exercises"
 
-    private lateinit var listenerDayScheduleChange: ListenerRegistration
     private lateinit var listenerNameDayScheduleChange: ListenerRegistration
 
     //Fun to find the type of user. if is an athlete we send back "1"
@@ -176,17 +175,22 @@ class FireStore {
     fun deleteReferencesTrainer(trainerId: String, callback: (Boolean) -> Unit) {
         db.collection(COLLECTIONATHLETE).whereEqualTo("TrainerId", trainerId).get()
             .addOnSuccessListener { documents ->
-                for ((pos, document) in documents.withIndex()) {
-                    db.collection(COLLECTIONATHLETE).document(document.data["AthleteId"].toString())
-                        .update("TrainerId", "").addOnSuccessListener {
-                            if (pos + 1 == documents.size()) {
-                                callback(true)
+                if (documents.size() > 0) {
+                    for ((pos, document) in documents.withIndex()) {
+                        db.collection(COLLECTIONATHLETE)
+                            .document(document.data["AthleteId"].toString())
+                            .update("TrainerId", "").addOnSuccessListener {
+                                if (pos + 1 == documents.size()) {
+                                    callback(true)
+                                }
                             }
-                        }
-                        .addOnFailureListener { e ->
-                            Log.w(TAG, "Error deleteReferencesTrainer update document: ", e)
-                            callback(false)
-                        }
+                            .addOnFailureListener { e ->
+                                Log.w(TAG, "Error deleteReferencesTrainer update document: ", e)
+                                callback(false)
+                            }
+                    }
+                } else {
+                    callback(true)
                 }
             }
             .addOnFailureListener { exception ->
@@ -490,42 +494,6 @@ class FireStore {
                 }
             }
         }
-    }
-
-    @Suppress("UNCHECKED_CAST")
-    fun setListenerDayScheduleChange(athleteId: String, callback: (ArrayList<String>) -> Unit) {
-        listenerDayScheduleChange = db.collection(COLLECTIONATHLETE).document(athleteId)
-            .addSnapshotListener { snapshot, e ->
-                if (e != null) {
-                    Log.w(TAG, "Listen failed athlete.", e)
-                    return@addSnapshotListener
-                }
-
-                if (snapshot != null && snapshot.exists()) {
-                    Log.d(TAG, "Current data athlete: ${snapshot.data}")
-                    val athlete = snapshot.data
-
-                    val schedule = athlete?.get("Schedule")
-                    //Declaring the list that is gonna be fill with the days
-                    val listOfDays = ArrayList<String>()
-
-                    if (schedule != "") {
-                        schedule as HashMap<String, ArrayList<HashMap<String, Any>>>
-                        schedule["listOfDays"]?.forEach { hashMapDay ->
-                            listOfDays.add(hashMapDay["nameOfDay"].toString())
-                            callback(listOfDays)
-                        }
-                    } else {
-                        callback(listOfDays)
-                    }
-                } else {
-                    Log.d(TAG, "Current data athlete: null")
-                }
-            }
-    }
-
-    fun removeListenerDayScheduleChange() {
-        listenerDayScheduleChange.remove()
     }
 
     @Suppress("UNCHECKED_CAST")

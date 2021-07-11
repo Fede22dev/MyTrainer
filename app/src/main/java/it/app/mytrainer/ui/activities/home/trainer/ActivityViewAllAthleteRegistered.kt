@@ -91,7 +91,7 @@ class ActivityViewAllAthleteRegistered : AppCompatActivity() {
                     Handler(Looper.getMainLooper()).postDelayed(
                         {
                             refreshLayoutAllAthlete.isRefreshing = false
-                        }, 1500)
+                        }, 2000)
 
                 } else {
                     Snackbar.make(constraintActivityViewAllAthlete,

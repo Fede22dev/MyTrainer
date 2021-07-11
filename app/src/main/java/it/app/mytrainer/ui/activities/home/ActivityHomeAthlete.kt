@@ -39,7 +39,7 @@ class ActivityHomeAthlete : AppCompatActivity() {
         topAppBarHomeAthlete.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
 
-                R.id.signOut -> {
+                R.id.signOut       -> {
                     //Calling the fun to get out from the account
                     signOut()
                     true
