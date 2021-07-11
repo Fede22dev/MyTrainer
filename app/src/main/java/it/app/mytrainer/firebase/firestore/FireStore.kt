@@ -1,6 +1,7 @@
 package it.app.mytrainer.firebase.firestore
 
 import android.util.Log
+import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import it.app.mytrainer.firebase.storage.Storage
@@ -13,11 +14,15 @@ import it.app.mytrainer.models.*
 
 class FireStore {
 
-    private val db = Firebase.firestore
     private val TAG = "FIRESTORE"
+
+    private val db = Firebase.firestore
     private val COLLECTIONATHLETE = "Athletes"
     private val COLLECTIONTRAINER = "Trainers"
     private val COLLECTIONEXERCISES = "Exercises"
+
+    private lateinit var listenerDayScheduleChange: ListenerRegistration
+    private lateinit var listenerNameDayScheduleChange: ListenerRegistration
 
     //Fun to find the type of user. if is an athlete we send back "1"
     //if is a trainer "0"
@@ -84,9 +89,8 @@ class FireStore {
 
     //Fun used in profile trainer, for the eventual changes.
     fun updateTrainer(currentUserId: String, gym: String, specialization: String) {
-        db.collection(COLLECTIONTRAINER).document(currentUserId).update("Gym", gym)
         db.collection(COLLECTIONTRAINER).document(currentUserId)
-            .update("Specialization", specialization)
+            .update("Gym", gym, "Specialization", specialization)
     }
 
     //Adding a day on the schedule
@@ -101,16 +105,16 @@ class FireStore {
                 schedule as HashMap<String, ArrayList<Any>>
                 schedule["listOfDays"]?.add(dayOfWo)
 
-                db.collection(COLLECTIONATHLETE).document(athleteId).update("Schedule", schedule)
-                db.collection(COLLECTIONATHLETE).document(athleteId).update("TrainerId", trainerId)
+                db.collection(COLLECTIONATHLETE).document(athleteId)
+                    .update("Schedule", schedule, "TrainerId", trainerId)
 
             } else {
                 //If is the first time we add the day to an empty list
                 val firstWrite = ObjSchedule(ArrayList())
                 firstWrite.listOfDays.add(dayOfWo)
 
-                db.collection(COLLECTIONATHLETE).document(athleteId).update("Schedule", firstWrite)
-                db.collection(COLLECTIONATHLETE).document(athleteId).update("TrainerId", trainerId)
+                db.collection(COLLECTIONATHLETE).document(athleteId)
+                    .update("Schedule", firstWrite, "TrainerId", trainerId)
             }
         }
     }
@@ -125,12 +129,13 @@ class FireStore {
 
             //Getting the array called "listOfDays" on firestore
             schedule["listOfDays"]!!.forEach { mapDay ->
-                Log.d("MAPPAAAAAAAAAAAA PRIMAAAAAAAAAAAA", mapDay.toString())
+
                 //Looking for the right day, on the map inside listOfDays
                 if (mapDay["nameOfDay"]!! == dayOfWo.nameOfDay) {
                     mapDay["listOfExercise"] = dayOfWo.listOfExercise
-                    Log.d("MAPPAAAAAAAAAAAA DOPOOOOOOOOOOOOOOOOOO", mapDay.toString())
-                    db.collection(COLLECTIONATHLETE).document(athleteId).update("Schedule", schedule)
+
+                    db.collection(COLLECTIONATHLETE).document(athleteId)
+                        .update("Schedule", schedule)
                 }
             }
         }
@@ -205,15 +210,33 @@ class FireStore {
             }
     }
 
-    //Getting the document of the searched trainer
-    fun getAthlete(currentUserId: String, callback: (Map<String, Any>?) -> Unit) {
-        db.collection(COLLECTIONATHLETE).document(currentUserId).get()
+    //Getting the document of athlete
+    fun getAthlete(idAthlete: String, callback: (Map<String, Any>?) -> Unit) {
+        db.collection(COLLECTIONATHLETE).document(idAthlete).get()
             .addOnSuccessListener { document ->
                 Log.d(TAG, "Get athlete: success -> data: ${document.data}")
                 callback(document.data)
             }
             .addOnFailureListener { e ->
                 Log.w(TAG, "Get athlete: failed", e)
+            }
+    }
+
+    //Getting the document of athlete and check if currently exist
+    fun checkAthleteExist(idAthlete: String, callback: (Boolean) -> Unit) {
+        db.collection(COLLECTIONATHLETE).document(idAthlete).get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    Log.d(TAG, "Get athlete: success exist -> data: ${document.data}")
+                    callback(true)
+                } else {
+                    Log.d(TAG, "Get athlete: document not exist")
+                    callback(false)
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Get athlete: failed", e)
+                callback(false)
             }
     }
 
@@ -228,13 +251,21 @@ class FireStore {
         numOfWO: String,
         listCheckBox: ArrayList<String>,
     ) {
-        db.collection(COLLECTIONATHLETE).document(currentUserId).update("Height", height)
-        db.collection(COLLECTIONATHLETE).document(currentUserId).update("Weight", weight)
-        db.collection(COLLECTIONATHLETE).document(currentUserId).update("TypeOfWO", typeOfWo)
-        db.collection(COLLECTIONATHLETE).document(currentUserId).update("Goal", goal)
-        db.collection(COLLECTIONATHLETE).document(currentUserId).update("Level", level)
-        db.collection(COLLECTIONATHLETE).document(currentUserId).update("DaysOfWorkout", numOfWO)
-        db.collection(COLLECTIONATHLETE).document(currentUserId).update("Equipment", listCheckBox)
+        db.collection(COLLECTIONATHLETE).document(currentUserId).update(
+            "Height",
+            height,
+            "Weight",
+            weight,
+            "TypeOfWO",
+            typeOfWo,
+            "Goal",
+            goal,
+            "Level",
+            level,
+            "DaysOfWorkout",
+            numOfWO,
+            "Equipment",
+            listCheckBox)
     }
 
     //Fun in the option menu, for the delete on fireStore
@@ -385,10 +416,7 @@ class FireStore {
                             callback(true)
                         } else {
                             db.collection(COLLECTIONATHLETE).document(athleteId)
-                                .update("Schedule", "")
-
-                            db.collection(COLLECTIONATHLETE).document(athleteId)
-                                .update("TrainerId", "")
+                                .update("Schedule", "", "TrainerId", "")
 
                             callback(true)
                         }
@@ -462,6 +490,80 @@ class FireStore {
                 }
             }
         }
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    fun setListenerDayScheduleChange(athleteId: String, callback: (ArrayList<String>) -> Unit) {
+        listenerDayScheduleChange = db.collection(COLLECTIONATHLETE).document(athleteId)
+            .addSnapshotListener { snapshot, e ->
+                if (e != null) {
+                    Log.w(TAG, "Listen failed athlete.", e)
+                    return@addSnapshotListener
+                }
+
+                if (snapshot != null && snapshot.exists()) {
+                    Log.d(TAG, "Current data athlete: ${snapshot.data}")
+                    val athlete = snapshot.data
+
+                    val schedule = athlete?.get("Schedule")
+                    //Declaring the list that is gonna be fill with the days
+                    val listOfDays = ArrayList<String>()
+
+                    if (schedule != "") {
+                        schedule as HashMap<String, ArrayList<HashMap<String, Any>>>
+                        schedule["listOfDays"]?.forEach { hashMapDay ->
+                            listOfDays.add(hashMapDay["nameOfDay"].toString())
+                            callback(listOfDays)
+                        }
+                    } else {
+                        callback(listOfDays)
+                    }
+                } else {
+                    Log.d(TAG, "Current data athlete: null")
+                }
+            }
+    }
+
+    fun removeListenerDayScheduleChange() {
+        listenerDayScheduleChange.remove()
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    fun setListenerNameDayScheduleChange(athleteId: String, callback: (ArrayList<String>) -> Unit) {
+        listenerNameDayScheduleChange = db.collection(COLLECTIONATHLETE).document(athleteId)
+            .addSnapshotListener { snapshot, e ->
+                if (e != null) {
+                    Log.w(TAG, "Listen failed athlete.", e)
+                    return@addSnapshotListener
+                }
+
+                if (snapshot != null && snapshot.exists()) {
+                    Log.d(TAG, "Current data athlete: ${snapshot.data}")
+
+                    val athlete = snapshot.data
+
+                    val schedule = athlete?.get("Schedule")
+
+                    //Declaring the list that is gonna be fill with the days
+                    val listOfDays = ArrayList<String>()
+
+                    if (schedule != "") {
+                        schedule as HashMap<String, ArrayList<HashMap<String, Any>>>
+                        schedule["listOfDays"]?.forEach { hashMapDay ->
+                            listOfDays.add(hashMapDay["nameOfDay"].toString())
+                            callback(listOfDays)
+                        }
+                    } else {
+                        callback(listOfDays)
+                    }
+                } else {
+                    Log.d(TAG, "Current data athlete: null")
+                }
+            }
+    }
+
+    fun removeListenerNameDayScheduleChange() {
+        listenerNameDayScheduleChange.remove()
     }
 
     //Fun used to fill the list of the available exercise. It could be modified.

@@ -39,21 +39,21 @@ class RecycleViewScheduleAthlete(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.textViewTypeOfWO.text = data[position]
         val fireStore = FireStore()
-        
-        holder.card.setOnClickListener() {
+
+        holder.card.setOnClickListener {
             MaterialAlertDialogBuilder(activity)
                 .setTitle(activity.getString(R.string.popup_manage_view_data_athlete))
                 .setMessage(activity.getString(R.string.popup_manage_text_view_data_athlete))
 
                 //If update button has pressed, the day will open and the edit mode is available
                 .setNegativeButton(activity.getString(R.string.popup_update_view_data_athlete)) { _, _ ->
-                    fireStore.checkIdTrainer(athleteId, trainerId){result->
-                        if(result){
+                    fireStore.checkIdTrainer(athleteId, trainerId) { result ->
+                        if (result) {
                             val intent = Intent(activity, ActivityUpdateSchedule::class.java)
                             intent.putExtra("UserId", athleteId)
                             intent.putExtra("TypeWO", data[position])
                             activity.startActivity(intent)
-                        }else{
+                        } else {
                             Snackbar.make(activity.linearLayoutViewDataAthlete,
                                 activity.getString(R.string.id_trainer_mismatch),
                                 Snackbar.LENGTH_SHORT)

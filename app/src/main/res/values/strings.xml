@@ -97,7 +97,6 @@
     <string name="weight_profile_athlete">Weight:</string>
     <string name="number_of_workout_profile_athlete">Number of workout:</string>
     <string name="no_schedule_athlete">There\'s no schedule for you at the moment!</string>
-    <string name="try_to_refresh_schedule_athlete">Try to refresh the page clicking the button down below!</string>
     <string name="keep_pushing_schedule_athlete" translatable="false">Keep pushing!</string>
     <string name="schedule_fetch_athlete">Active schedule:</string>
     <string name="series_schedule_athlete">Series</string>
@@ -147,8 +146,8 @@
     <string name="viewcase_text_search_exercise_filter">Type here to use filter.\nEnjoy!</string>
     <string name="viewcase_titlekeyboard_search_exercise_filter">Keyboard filter</string>
     <string name="viewcase_textkeyboard_search_exercise_filter">Type here to\nfilter in base of\nexercise name!</string>
-    <string name="viewcase_title_fab_fragment_list_client">Refresh button</string>
-    <string name="viewcase_text_fab_fragment_list_client">Press here to\nrefresh the list!</string>
+    <string name="viewcase_title_fab_fragment_list_client">Refresh</string>
+    <string name="viewcase_text_fab_fragment_list_client">Swipe to\nrefresh the list!</string>
     <string name="viewcase_title_recycle_fragment_list_client">List\nsubmitted client</string>
     <string name="viewcase_text_recycle_fragment_list_client">Click here to\nsearch above all\nregistered athletes!</string>
     <string name="viewcase_title_fab_fragment_creation_exercises">Search button</string>
@@ -162,8 +161,6 @@
     <string name="viewcase_text_menu_activity_home_trainer">Press on this\nmenu to manage\nthe log-out and\nthe delete of\nthe account</string>
     <string name="viewcase_title_recycle_fragment_schedule_athlete">Schedule</string>
     <string name="viewcase_text_recycle_fragment_schedule_athlete">When a trainer create\na schedule for you\nit will appear here!\nClick on the day to\nsee it!</string>
-    <string name="viewcase_title_fab_refresh_fragment_schedule_athlete">Refresh button</string>
-    <string name="viewcase_text_fab_refresh_fragment_schedule_athlete">Press to refresh\nthe list of days\nor to see if their\navailable schedule!</string>
     <string name="viewcase_title_button_camera">Camera button</string>
     <string name="viewcase_text_button_camera">Click here to\ntake a picture\nof yourself!</string>
     <string name="viewcase_title_button_gallery">Gallery button</string>
@@ -205,4 +202,6 @@
     <string name="popup_delete_view_data_athlete">Delete</string>
     <string name="popup_manage_view_data_athlete">Changes</string>
     <string name="popup_manage_text_view_data_athlete">Choose the operation!</string>
+    <string name="update_schedule">Update schedule</string>
+    <string name="app_bar_view_profile_athlete">Data athlete</string>
 </resources>

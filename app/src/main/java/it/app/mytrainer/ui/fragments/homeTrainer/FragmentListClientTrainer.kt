@@ -108,7 +108,7 @@ class FragmentListClientTrainer : Fragment() {
                 .setContentText(getString(R.string.viewcase_text_recycle_followed_athlete))
                 .setTitleTextSize(16)
                 .setContentTextSize(14)
-                .setTargetView(recycleViewListClientFollowed)
+                .setTargetView(textViewListClientReady)
                 .setDismissType(DismissType.outside)
                 .setGuideListener {
 

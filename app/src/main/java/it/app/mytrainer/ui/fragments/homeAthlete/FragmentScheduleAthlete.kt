@@ -59,64 +59,56 @@ class FragmentScheduleAthlete : Fragment() {
             }
         }
 
-        fabRefreshScheduleAthlete.setOnClickListener {
-
-            fireStore.getNameDayScheduleAthlete(currentUserId) { listOfDays ->
-                if (listOfDays.isNotEmpty()) {
-                    setVisibilityForSchedule()
-
-                    recycleViewSchedule.adapter =
-                        RecyclerScheduleAdapter(requireContext(), listOfDays)
-
-                } else {
-                    setVisibilityForNoSchedule()
-
-                    Snackbar.make(constraintFragmentScheduleAthlete,
-                        getString(R.string.no_schedule_available),
-                        Snackbar.LENGTH_SHORT)
-                        .setBackgroundTint(ContextCompat.getColor(requireContext(),
-                            R.color.app_foreground))
-                        .setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-                        .show()
-                }
-            }
-        }
-
         addDividerRecycler()
     }
 
     override fun onResume() {
         super.onResume()
+
+        fireStore.setListenerDayScheduleChange(currentUserId) { listOfDays ->
+            if (listOfDays.isNotEmpty()) {
+                setVisibilityForSchedule()
+
+                recycleViewSchedule.adapter =
+                    RecyclerScheduleAdapter(requireContext(), listOfDays)
+
+            } else {
+                setVisibilityForNoSchedule()
+
+                Snackbar.make(constraintFragmentScheduleAthlete,
+                    getString(R.string.no_schedule_available),
+                    Snackbar.LENGTH_SHORT)
+                    .setBackgroundTint(ContextCompat.getColor(requireContext(),
+                        R.color.app_foreground))
+                    .setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+                    .show()
+            }
+        }
+
         if (prefs!!.getBoolean("FirstRunFragmentScheduleAthlete", true)
         ) {
             GuideView.Builder(requireContext())
                 .setTitle(getString(R.string.viewcase_title_recycle_fragment_schedule_athlete))
                 .setContentText(getString(R.string.viewcase_text_recycle_fragment_schedule_athlete))
-                .setTargetView(recycleViewSchedule)
+                .setTargetView(textViewScheduleReady)
                 .setDismissType(DismissType.outside)
                 .setGuideListener {
-
-                    GuideView.Builder(requireContext())
-                        .setTitle(getString(R.string.viewcase_title_fab_refresh_fragment_schedule_athlete))
-                        .setContentText(getString(R.string.viewcase_text_fab_refresh_fragment_schedule_athlete))
-                        .setTargetView(fabRefreshScheduleAthlete)
-                        .setDismissType(DismissType.outside)
-                        .setGuideListener {
-                            prefs!!.edit().putBoolean("FirstRunFragmentScheduleAthlete", false)
-                                .apply()
-                        }
-                        .build()
-                        .show()
+                    prefs!!.edit().putBoolean("FirstRunFragmentScheduleAthlete", false)
+                        .apply()
                 }
                 .build()
                 .show()
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        fireStore.removeListenerDayScheduleChange()
+    }
+
     private fun setVisibilityForSchedule() {
         textViewInfoBox1.visibility = View.INVISIBLE
         textViewInfoBox2.visibility = View.INVISIBLE
-        textViewInfoBox3.visibility = View.INVISIBLE
         textViewScheduleReady.visibility = View.VISIBLE
         recycleViewSchedule.visibility = View.VISIBLE
     }
@@ -124,7 +116,6 @@ class FragmentScheduleAthlete : Fragment() {
     private fun setVisibilityForNoSchedule() {
         textViewInfoBox1.visibility = View.VISIBLE
         textViewInfoBox2.visibility = View.VISIBLE
-        textViewInfoBox3.visibility = View.VISIBLE
         textViewScheduleReady.visibility = View.INVISIBLE
         recycleViewSchedule.visibility = View.INVISIBLE
     }

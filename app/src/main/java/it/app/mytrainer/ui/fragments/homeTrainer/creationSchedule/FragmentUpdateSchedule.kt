@@ -37,6 +37,22 @@ class FragmentUpdateSchedule(private val position: Int) :
         return inflater.inflate(R.layout.fragment_creation_exercise, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val resultLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == RESULT_OK) {
+                    // There are no request codes
+                    editTextNameExerciseCreationExercise.setText(result.data?.getStringExtra("NameExercise"))
+                }
+            }
+
+        fabSearchExerciseCreationExercise.setOnClickListener {
+            val intent = Intent(requireContext(), ActivitySearchExercise::class.java)
+            resultLauncher.launch(intent)
+        }
+    }
+
     @SuppressLint("SetTextI18n")
     override fun onStart() {
         super.onStart()
@@ -71,9 +87,9 @@ class FragmentUpdateSchedule(private val position: Int) :
 
         editTextSeriesCreationExercise.doAfterTextChanged { text ->
             val txt = text.toString().trim()
-            if (txt != "0") {
+            if (txt != "0" && txt != "00") {
                 editTextSeriesCreationExercise.error = null
-                exercise.numSeries = txt
+                exercise.numSeries = txt.trimStart('0')
                 exerciseManager()
             } else {
                 editTextSeriesCreationExercise.error = "!!"
@@ -83,9 +99,9 @@ class FragmentUpdateSchedule(private val position: Int) :
 
         editTextRepsCreationExercise.doAfterTextChanged { text ->
             val txt = text.toString().trim()
-            if (txt != "0") {
+            if (txt != "0" && txt != "00") {
                 editTextRepsCreationExercise.error = null
-                exercise.numReps = txt
+                exercise.numReps = txt.trimStart('0')
                 exerciseManager()
             } else {
                 editTextRepsCreationExercise.error = "!!"
@@ -110,29 +126,28 @@ class FragmentUpdateSchedule(private val position: Int) :
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val resultLauncher =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                if (result.resultCode == RESULT_OK) {
-                    // There are no request codes
-                    editTextNameExerciseCreationExercise.setText(result.data?.getStringExtra("NameExercise"))
-                }
-            }
-
-        fabSearchExerciseCreationExercise.setOnClickListener {
-            val intent = Intent(requireContext(), ActivitySearchExercise::class.java)
-            resultLauncher.launch(intent)
-        }
-    }
-
     //Checking if all the fields are null or not
     private fun exerciseManager() {
         if (exercise.nameExercise != null && exercise.numSeries != null && exercise.numReps != null && exercise.recovery != null) {
 
-            ActivityUpdateSchedule.setFieldOk(true)
-            ActivityUpdateSchedule.removeExercise(position)
-            ActivityUpdateSchedule.addExercise(position, exercise)
+            var recoveryOk = 0
+
+            if (editTextRecoveryMinutCreationExercise.text.toString() != "") {
+                recoveryOk += editTextRecoveryMinutCreationExercise.text.toString().toInt() * 60
+            }
+
+            if (editTextRecoverySecondCreationExercise.text.toString() != "") {
+                recoveryOk += editTextRecoverySecondCreationExercise.text.toString().toInt()
+            }
+
+            if (recoveryOk > 0) {
+                exercise.recovery = recoveryOk
+                ActivityUpdateSchedule.setFieldOk(true)
+                ActivityUpdateSchedule.removeExercise(position)
+                ActivityUpdateSchedule.addExercise(position, exercise)
+            } else {
+                ActivityUpdateSchedule.setFieldOk(false)
+            }
         } else {
             ActivityUpdateSchedule.setFieldOk(false)
         }

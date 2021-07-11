@@ -16,7 +16,6 @@ import it.app.mytrainer.R
 import it.app.mytrainer.models.ObjAthlete
 import it.app.mytrainer.ui.activities.home.schedule.trainer.ActivityViewDataAthlete
 import kotlinx.android.synthetic.main.card_recycle_view_list_client_trainer.view.*
-import me.zhanghai.android.fastscroll.PopupTextProvider
 import java.util.*
 
 /**
@@ -27,8 +26,7 @@ import java.util.*
 class RecyclerListClientTrainerAdapter(
     private val context: Context,
     private val data: ArrayList<ObjAthlete>,
-) :
-    RecyclerView.Adapter<RecyclerListClientTrainerAdapter.ViewHolder>(), PopupTextProvider {
+) : RecyclerView.Adapter<RecyclerListClientTrainerAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -58,11 +56,6 @@ class RecyclerListClientTrainerAdapter(
 
     override fun getItemCount(): Int {
         return data.size
-    }
-
-    // Used for the fast scrolling
-    override fun getPopupText(position: Int): String {
-        return data[position].surnameAthlete.first().toUpperCase().toString()
     }
 
     //Creating the single card

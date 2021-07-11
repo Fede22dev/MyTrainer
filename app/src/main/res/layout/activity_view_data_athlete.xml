@@ -25,7 +25,7 @@
             android:backgroundTint="@color/orange_title_app"
             app:navigationIcon="@drawable/ic_arrow_back"
             app:navigationIconTint="@color/black"
-            app:title="View profile athlete"
+            app:title="@string/app_bar_view_profile_athlete"
             app:titleTextColor="@color/black" />
 
     </com.google.android.material.appbar.AppBarLayout>

@@ -3,6 +3,8 @@ package it.app.mytrainer.ui.activities.home.trainer
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
@@ -13,7 +15,6 @@ import it.app.mytrainer.firebase.firestore.FireStore
 import it.app.mytrainer.models.ObjAthlete
 import it.app.mytrainer.ui.adapter.RecyclerListClientTrainerAdapter
 import kotlinx.android.synthetic.main.activity_view_all_athlete_registered.*
-import me.zhanghai.android.fastscroll.FastScrollerBuilder
 import smartdevelop.ir.eram.showcaseviewlib.GuideView
 import smartdevelop.ir.eram.showcaseviewlib.config.DismissType
 import java.util.*
@@ -53,8 +54,6 @@ class ActivityViewAllAthleteRegistered : AppCompatActivity() {
 
                     recycleViewViewAllAthleteRegistered.adapter =
                         RecyclerListClientTrainerAdapter(this, listAthlete)
-
-                    setFastScrollerRecycler()
                 } else {
 
                     Snackbar.make(constraintActivityViewAllAthlete,
@@ -67,8 +66,18 @@ class ActivityViewAllAthleteRegistered : AppCompatActivity() {
             }
         }
 
+        refreshLayoutAllAthlete.setProgressBackgroundColorSchemeResource(
+            R.color.app_foreground
+        )
+
+        refreshLayoutAllAthlete.setColorSchemeResources(
+            R.color.orange_title_app,
+            android.R.color.holo_red_dark,
+            android.R.color.holo_blue_dark,
+            R.color.green_button)
+
         //Downloading again the latest list
-        fabRefreshListClientViewAllAthleteRegistered.setOnClickListener {
+        refreshLayoutAllAthlete.setOnRefreshListener {
             fireStore.getAllAthlete { listAthlete, result ->
                 if (result) {
 
@@ -79,7 +88,10 @@ class ActivityViewAllAthleteRegistered : AppCompatActivity() {
                     recycleViewViewAllAthleteRegistered.adapter =
                         RecyclerListClientTrainerAdapter(this, listAthlete)
 
-                    setFastScrollerRecycler()
+                    Handler(Looper.getMainLooper()).postDelayed(
+                        {
+                            refreshLayoutAllAthlete.isRefreshing = false
+                        }, 1500)
 
                 } else {
                     Snackbar.make(constraintActivityViewAllAthlete,
@@ -116,7 +128,7 @@ class ActivityViewAllAthleteRegistered : AppCompatActivity() {
                 .setContentText(getString(R.string.viewcase_text_fab_fragment_list_client))
                 .setTitleTextSize(16)
                 .setContentTextSize(14)
-                .setTargetView(fabRefreshListClientViewAllAthleteRegistered)
+                .setTargetView(appBarLayoutViewAllAthleteRegistered)
                 .setDismissType(DismissType.outside)
                 .setGuideListener {
 
@@ -133,18 +145,10 @@ class ActivityViewAllAthleteRegistered : AppCompatActivity() {
                         }
                         .build()
                         .show()
-
                 }
                 .build()
                 .show()
         }
-    }
-
-    //Setting the fastscroll on  the recycler
-    private fun setFastScrollerRecycler() {
-        val fastSc = FastScrollerBuilder(recycleViewViewAllAthleteRegistered).useMd2Style()
-        fastSc.disableScrollbarAutoHide()
-        fastSc.build()
     }
 
     private fun addDividerRecycler() {

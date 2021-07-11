@@ -93,7 +93,6 @@
     <string name="weight_profile_athlete">Peso:</string>
     <string name="number_of_workout_profile_athlete">Numero di allenamenti:</string>
     <string name="no_schedule_athlete">Non c\'e\' nessuna scheda per te al momento!</string>
-    <string name="try_to_refresh_schedule_athlete">Prova a ricaricare la pagina cliccando il bottone in basso!</string>
     <string name="schedule_fetch_athlete">Scheda attiva:</string>
     <string name="series_schedule_athlete">Serie</string>
     <string name="recovery_schedule_athlete">Recupero</string>
@@ -141,8 +140,8 @@
     <string name="viewcase_titlekeyboard_search_exercise_filter">Filtro da tastiera</string>
     <string name="viewcase_textkeyboard_search_exercise_filter">Clicca qui per filtrare\nin base al nome dell\'esercizio!</string>
     <string name="viewcase_title_fab_fragment_list_client">Refresh</string>
-    <string name="viewcase_text_fab_fragment_list_client">Clicca qui\nper aggiornare la lista!</string>
-    <string name="viewcase_title_recycle_fragment_list_client">LIsta clienti iscritti</string>
+    <string name="viewcase_text_fab_fragment_list_client">Fai swipe per\naggiornare la lista!</string>
+    <string name="viewcase_title_recycle_fragment_list_client">Lista clienti iscritti</string>
     <string name="viewcase_text_recycle_fragment_list_client">Clicca qui per\ncercare fra tutti\ngli atleti\nregistrati!</string>
     <string name="viewcase_title_fab_fragment_creation_exercises">Bottone per\nla ricerca</string>
     <string name="viewcase_text_fab_fragment_creation_exercise">Usa questo bottone\nper cercare tra\noltre 100 esercizi!</string>
@@ -155,8 +154,6 @@
     <string name="viewcase_text_menu_activity_home_trainer">Clicca su questo\nmenu per gestire il\nlogout e l\'eliminazione\ndell\'account</string>
     <string name="viewcase_title_recycle_fragment_schedule_athlete">Scheda</string>
     <string name="viewcase_text_recycle_fragment_schedule_athlete">Quando un trainer\ncreerà una scheda per\nte apparià qui!\nClicca su un giorno\nper vederlo!</string>
-    <string name="viewcase_title_fab_refresh_fragment_schedule_athlete">Refresh</string>
-    <string name="viewcase_text_fab_refresh_fragment_schedule_athlete">Clicca per aggiornare\nla lista dei giorni o\nper vedere se ci\nsono schede\ndisponibili!</string>
     <string name="viewcase_title_button_camera">Camera</string>
     <string name="viewcase_text_button_camera">Clicca qui per\nfarti una foto!</string>
     <string name="viewcase_title_button_gallery">Galleria</string>
@@ -195,4 +192,6 @@
     <string name="popup_delete_view_data_athlete">Cancella</string>
     <string name="popup_manage_view_data_athlete">Modifiche</string>
     <string name="popup_manage_text_view_data_athlete">Scegli l\'operazione da eseguire!</string>
+    <string name="update_schedule">Modifica scheda</string>
+    <string name="app_bar_view_profile_athlete">Dati atleta</string>
 </resources>

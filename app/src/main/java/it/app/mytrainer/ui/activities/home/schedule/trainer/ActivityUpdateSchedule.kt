@@ -53,6 +53,8 @@ class ActivityUpdateSchedule : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_creation_schedule)
 
+        topAppBarCreationSchedule.title = getString(R.string.update_schedule)
+
         val typeOfWo = intent.getStringExtra("TypeWO")
         dayOfWo = ObjDayOfWo(typeOfWo!!)
 
