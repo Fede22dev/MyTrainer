@@ -194,7 +194,7 @@ class ActivityLogin : AppCompatActivity() {
     }
 
     //On click for the login button
-    fun onClickLogin(@Suppress("UNUSED_PARAMETER")v: View) {
+    fun onClickLogin(@Suppress("UNUSED_PARAMETER") v: View) {
 
         val email = emailFieldLogin.text.toString().trim()
         val password = passwordFieldLogin.text.toString().trim()
@@ -277,7 +277,7 @@ class ActivityLogin : AppCompatActivity() {
     }
 
     //Starting the choice activity
-    fun onClickRegistration(@Suppress("UNUSED_PARAMETER")v: View) {
+    fun onClickRegistration(@Suppress("UNUSED_PARAMETER") v: View) {
         FireAuth.signOut()
         val intent = Intent(this, ActivityUserChoice::class.java)
         startActivity(intent)

@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="it.app.mytrainer">
+
     <!-- START USER PERMISSION -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -35,7 +36,7 @@
         <!-- START MAIN AND LAUNCHER ACTIVITY -->
         <activity
             android:name=".ui.activities.starter.ActivityMain"
-            android:screenOrientation="portrait">
+            android:screenOrientation="nosensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -47,7 +48,7 @@
         <!-- START OF LOGIN ACTIVITY -->
         <activity
             android:name=".ui.activities.starter.ActivityLogin"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="nosensor" />
         <!-- END OF LOGIN ACTIVITY -->
 
         <!-- START FOR FACEBOOK -->
@@ -76,72 +77,72 @@
         <!-- START OF HOME ACTIVITY ATHLETE -->
         <activity
             android:name=".ui.activities.home.ActivityHomeAthlete"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="nosensor" />
         <!-- END OF HOME ACTIVITY ATHLETE -->
 
         <!-- START OF HOME SCHEDULE ATHLETE -->
         <activity
             android:name=".ui.activities.home.schedule.athlete.ActivityScheduleViewAthlete"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="nosensor" />
         <!-- END OF HOME SCHEDULE ATHLETE -->
 
         <!-- START OF HOME ACTIVITY TRAINER -->
         <activity
             android:name=".ui.activities.home.trainer.ActivityHomeTrainer"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="nosensor" />
         <!-- END OF HOME ACTIVITY TRAINER -->
 
         <activity
             android:name=".ui.activities.home.schedule.trainer.ActivityUpdateSchedule"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="nosensor" />
 
         <!-- START OF THE ACTIVITY SEARCH -->
         <activity
             android:name=".ui.activities.home.schedule.trainer.ActivitySearchExercise"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="nosensor" />
         <!-- END OF THE ACTIVITY SEARCH -->
 
         <!-- START OF THE ACTIVITY VIEW DATA ATHLETE -->
         <activity
             android:name=".ui.activities.home.schedule.trainer.ActivityViewDataAthlete"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="nosensor" />
         <!-- END OF THE ACTIVITY VIEW DATA ATHLETE -->
 
         <!-- START OF THE ACTIVITY VIEW DATA ATHLETE -->
         <activity
             android:name=".ui.activities.home.trainer.ActivityViewAllAthleteRegistered"
-            android:screenOrientation="portrait"
+            android:screenOrientation="nosensor"
             android:windowSoftInputMode="adjustNothing" />
         <!-- END OF THE ACTIVITY VIEW DATA ATHLETE -->
 
         <!-- START OF THE ACTIVITY CREATION SCHEDULE-->
         <activity
             android:name=".ui.activities.home.schedule.trainer.ActivityCreationSchedule"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="nosensor" />
         <!-- END OF THE ACTIVITY CREATION SCHEDULE-->
 
         <!-- START OF REAUTH ACTIVITY -->
         <activity
             android:name=".ui.activities.home.ActivityReauthDeleteAccount"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="nosensor" />
         <!-- END OF REAUTH ACTIVITY -->
 
         <!-- START OF USER CHOICE ACTIVITY -->
         <activity
             android:name=".ui.activities.registration.ActivityUserChoice"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="nosensor" />
         <!-- END OF USER CHOICE ACTIVITY -->
 
         <!-- START OF REGISTRATION ACTIVITY TRAINER -->
         <activity
             android:name=".ui.activities.registration.ActivityRegistrationTrainer"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="nosensor" />
         <!-- END OF REGISTRATION ACTIVITY TRAINER -->
 
         <!-- START OF REGISTRATION ACTIVITY ATHLETE -->
         <activity
             android:name=".ui.activities.registration.ActivityRegistrationAthlete"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="nosensor" />
         <!-- END OF REGISTRATION ACTIVITY ATHLETE -->
     </application>
 

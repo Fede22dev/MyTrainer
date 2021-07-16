@@ -68,12 +68,9 @@
     <string name="intermediate_athlete">Intermedio</string>
     <string name="advanced_athlete">Avanzato</string>
     <string name="error_toast_equipment_athlete">ERRORE: Selezionare almeno un tipo di attrezzatura.</string>
-    <string name="first_select_date">Prima seleziona la data</string>
-    <string name="error_invalid_date">La data deve essere compresa tra il 2010 – 1920</string>
     <string name="error_creation_user_auth">CREAZIONE DELL\'UTENTE FALLITA, RIPROVA!</string>
     <string name="welcome_back_trainer_login">BENTORNATO TRAINER!</string>
     <string name="welcome_back_athlete_login">BENTORNATO ATLETA!</string>
-    <string name="error_login_user_not_found">ERRORE: UTENTE NON TROVATO/REGISTRATO.</string>
     <string name="profile">Profilo</string>
     <string name="sign_out">Esci</string>
     <string name="birth_profile">Data di nascita:</string>
@@ -115,8 +112,6 @@
     <string name="no_athlete_list_client">NON C\'E\' ANCORA NESSUN ATLETA REGISTRATO</string>
     <string name="take_photo_from_gallery">SCEGLI DALLA GALLERIA</string>
     <string name="save_day">Salva giorno</string>
-    <string name="no_athlete_registered">Non ci sono atleti registati al momento</string>
-    <string name="registered_athlete">Atleti registrati</string>
     <string name="search_chest">Petto</string>
     <string name="no_filter">Nessun filtro</string>
     <string name="search_exercises_bar">Cerca esercizio</string>
@@ -128,7 +123,6 @@
     <string name="search_abdominals">Addominali</string>
     <string name="search_shoulders">Spalle</string>
     <string name="search_calves">Polpacci</string>
-    <string name="search_exercise_title">Cerca l\'esercizio!</string>
     <string name="search_exercise">Inserisci l\'esercizio da cercare</string>
     <string name="no_connection">NESSUNA CONNESSIONE INTERNET, RIPROVA DOPO!</string>
     <string name="id_trainer_mismatch">Le operazioni non sono abilitate, questo atleta è seguito da un altro trainer!</string>
@@ -165,13 +159,10 @@
     <string name="error_blank_field_fragment_profile_athlete">ERRORE: TUTTI I CAMPI DEVONO ESSERE COMPILATI! UPDATE FAILED!</string>
     <string name="viewcase_title_recycle_view_data_athlete">Scheda</string>
     <string name="viewcase_text_recycle_view_data_athlete">Qui potrai trovare\nla scheda attiva\nper questo atleta.\nClicca per\nvisualizzare le\noperazioni disponibili!</string>
-    <string name="viewcase_title_fab_view_data_athlete">Aggiungi</string>
-    <string name="viewcase_text_fab_view_data_athlete">Premi questo bottone\nper aggiungere un\ngiorno alla scheda\ndell\'atleta!</string>
     <string name="top_app_bar_view_all_athlete_registered">Atleti registrati</string>
     <string name="insert_the_athlete_to_search">Inserisci l\'atleta da cercare!</string>
     <string name="no_athlete_followed">Non stai seguendo nessun atleta per il momento.</string>
     <string name="followed_athletes">Atleti seguiti:</string>
-    <string name="no_athlete_followed_yet">Non stai seguendo nessun atleta. Prova a cercare qualche atleta da seguire!</string>
     <string name="viewcase_title_recycle_followed_athlete">Atleti seguiti</string>
     <string name="viewcase_text_recycle_followed_athlete">Qui potrai trovare\ngli atleti che segui!</string>
     <string name="viewcase_title_fab_followed_athlete">Cerca</string>

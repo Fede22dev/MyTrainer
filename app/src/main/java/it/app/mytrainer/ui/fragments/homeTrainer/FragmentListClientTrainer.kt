@@ -51,7 +51,7 @@ class FragmentListClientTrainer : Fragment() {
                     textViewListClientReady.visibility = View.VISIBLE
                     recycleViewListClientFollowed.visibility = View.VISIBLE
 
-                    listAthlete.sortBy { it.surnameAthlete.toLowerCase(Locale.ROOT) }
+                    listAthlete.sortBy { it.surnameAthlete?.lowercase(Locale.ROOT) }
 
                     recycleViewListClientFollowed.adapter =
                         RecyclerListClientTrainerAdapter(requireContext(),

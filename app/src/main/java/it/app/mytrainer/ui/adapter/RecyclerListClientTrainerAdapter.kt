@@ -37,11 +37,17 @@ class RecyclerListClientTrainerAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val athlete = data[position]
-        holder.textViewName.text = athlete.nameAthlete.capitalize(Locale.ROOT)
-        holder.textViewSurname.text = athlete.surnameAthlete.capitalize(Locale.ROOT)
 
-        if (athlete.urlPhotoAthlete.isNotBlank()) {
-            Glide.with(context).load(athlete.urlPhotoAthlete.toUri()).into(holder.photoClient)
+        holder.textViewName.text = athlete.nameAthlete?.replaceFirstChar {
+            if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString()
+        }
+
+        holder.textViewSurname.text = athlete.surnameAthlete?.replaceFirstChar {
+            if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString()
+        }
+
+        if (athlete.urlPhotoAthlete?.isNotBlank() == true) {
+            Glide.with(context).load(athlete.urlPhotoAthlete!!.toUri()).into(holder.photoClient)
         } else {
             holder.photoClient.setImageDrawable(ContextCompat.getDrawable(context,
                 R.drawable.person_placeholder))

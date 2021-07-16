@@ -46,7 +46,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription" />
 
-            <!--LAYOUT FOR NAME AND SURNAME-->
+            <!--LAYOUT FOR THE NAME AND SURNAME-->
             <LinearLayout
                 android:id="@+id/linerLayoutEditProfileTrainer"
                 android:layout_width="match_parent"

@@ -50,7 +50,7 @@ class ActivityViewAllAthleteRegistered : AppCompatActivity() {
 
                 if (listAthlete.size > 0) {
 
-                    listAthlete.sortBy { it.surnameAthlete.toLowerCase(Locale.ROOT) }
+                    listAthlete.sortBy { it.surnameAthlete?.lowercase(Locale.ROOT) }
 
                     recycleViewViewAllAthleteRegistered.adapter =
                         RecyclerListClientTrainerAdapter(this, listAthlete)
@@ -83,7 +83,7 @@ class ActivityViewAllAthleteRegistered : AppCompatActivity() {
 
                     listAthleteNotFiltered = listAthlete
 
-                    listAthlete.sortBy { it.surnameAthlete.toLowerCase(Locale.ROOT) }
+                    listAthlete.sortBy { it.surnameAthlete?.lowercase(Locale.ROOT) }
 
                     recycleViewViewAllAthleteRegistered.adapter =
                         RecyclerListClientTrainerAdapter(this, listAthlete)
@@ -113,7 +113,7 @@ class ActivityViewAllAthleteRegistered : AppCompatActivity() {
 
         //Filtering the athlete
         editTextSearchAthleteRegistered.doOnTextChanged { text, _, _, _ ->
-            filterNameAthlete(text.toString().trim().toLowerCase(Locale.ROOT))
+            filterNameAthlete(text.toString().trim().lowercase(Locale.ROOT))
         }
     }
 
@@ -167,7 +167,7 @@ class ActivityViewAllAthleteRegistered : AppCompatActivity() {
             listAthleteFiltered =
                 listAthleteNotFiltered.filter { athlete ->
                     val nameSurname = athlete.nameAthlete + athlete.surnameAthlete
-                    nameSurname.toLowerCase(Locale.ROOT).contains(filter)
+                    nameSurname.lowercase(Locale.ROOT).contains(filter)
                 } as ArrayList<ObjAthlete>
 
             recycleViewViewAllAthleteRegistered.adapter =

@@ -9,7 +9,6 @@
 
     <!--APP BAR LAYOUT-->
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayoutViewDataAthlete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -88,7 +87,6 @@
 
                     <!--LAYOUT FOR NAME-->
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/layoutViewDataAthleteTextName"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
@@ -110,7 +108,6 @@
 
                     <!--LAYOUT FOR SURNAME-->
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/layoutViewDataAthleteTextSurname"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
@@ -158,7 +155,6 @@
 
                 <!--DATE-->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/layoutAthleteTextViewDateViewData"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -202,7 +198,6 @@
 
                 <!--LAYOUT FOR HEIGHT-->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/layoutViewDataAthleteTextHeight"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -244,7 +239,6 @@
 
                 <!--LAYOUT FOR WEIGHT-->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/layoutViewDataAthleteTextWeight"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -286,7 +280,6 @@
 
                 <!--LAYOUT FOR TYPE OF WO-->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/layoutDropMenuTypeOfWOViewDataAthlete"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -331,7 +324,6 @@
 
                 <!--LAYOUT FOR GOAL-->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/layoutDropMenuGoalViewDataAthlete"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -376,7 +368,6 @@
 
                 <!--LAYOUT FOR LEVEL-->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/layoutDropMenuLevelViewDataAthlete"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -421,7 +412,6 @@
 
                 <!--LAYOUT FOR NUMBER OF WO-->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/layoutDropMenuNumOfWOViewDataAthlete"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -465,7 +455,6 @@
 
                 <!--LAYOUT FOR FOLLOWED TRAINER-->
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/layoutViewDataAthleteTextFollowedTrainer"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

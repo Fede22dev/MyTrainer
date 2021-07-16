@@ -74,12 +74,13 @@ class FragmentExtraInfoTrainer : Fragment() {
     }
 
     // Fun for the gym field, when it change, if is not blank or null,
-    // it will be putted in the trainer map
+    // it will be puttied in the trainer map
     private fun setupGymField() {
         gymFieldTrainer.doOnTextChanged { text, _, _, _ ->
             if (text != null) {
                 if (text.isNotBlank()) {
-                    MapTrainer.putGym(text.toString().trim().capitalize(Locale.ROOT))
+                    MapTrainer.putGym(text.toString().trim()
+                        .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString() })
                 } else {
                     MapTrainer.removeGym()
                 }

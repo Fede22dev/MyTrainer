@@ -362,7 +362,8 @@ class FragmentProfileTrainer : Fragment() {
 
     //Saving new stats
     private fun saveNewStats() {
-        val newGym = gymFieldTrainerEditable.text.toString().capitalize(Locale.ROOT)
+        val newGym = gymFieldTrainerEditable.text.toString()
+            .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString() }
         val newSpec = autoTextViewDropMenuSpecializationProfileTrainer.text.toString()
 
         fireStore.updateTrainer(currentUserId, newGym, newSpec)

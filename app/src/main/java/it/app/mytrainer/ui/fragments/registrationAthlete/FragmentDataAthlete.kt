@@ -177,7 +177,8 @@ class FragmentDataAthlete : Fragment() {
 
     //Fun for the name
     private fun setEditTextName(text: CharSequence?) {
-        val txt = text.toString().trim().capitalize(Locale.ROOT)
+        val txt = text.toString().trim()
+            .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString() }
         //Sending to the check created
         if (CheckRegistrationFieldUser.checkName(txt)) {
             MapAthlete.putName(txt)
@@ -192,7 +193,8 @@ class FragmentDataAthlete : Fragment() {
 
     //Fun for the surname
     private fun setEditTextSurname(text: CharSequence?) {
-        val txt = text.toString().trim().capitalize(Locale.ROOT)
+        val txt = text.toString().trim()
+            .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString() }
         //Sending to the check created
         if (CheckRegistrationFieldUser.checkSurname(txt)) {
             MapAthlete.putSurname(txt)

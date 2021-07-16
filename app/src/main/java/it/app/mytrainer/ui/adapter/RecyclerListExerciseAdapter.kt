@@ -39,7 +39,8 @@ class RecyclerListExerciseAdapter(
 
         holder.card.setOnClickListener {
             val intent = Intent()
-            intent.putExtra("NameExercise", exercise.nameExercise!!.capitalize(Locale.ROOT))
+            intent.putExtra("NameExercise",
+                exercise.nameExercise!!.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString() })
             activity.setResult(RESULT_OK, intent)
             activity.finish()
         }

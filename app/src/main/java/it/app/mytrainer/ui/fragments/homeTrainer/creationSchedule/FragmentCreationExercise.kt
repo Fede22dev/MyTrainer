@@ -91,7 +91,8 @@ class FragmentCreationExercise(private val position: Int) :
         editTextNameExerciseCreationExercise.doAfterTextChanged { text ->
 
             if (text.toString().trim() != "") {
-                exercise.nameExercise = text.toString().trim().capitalize(Locale.ROOT)
+                exercise.nameExercise = text.toString().trim()
+                    .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString() }
                 exerciseManager()
             } else {
                 exercise.nameExercise = null

@@ -38,7 +38,7 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/person_placeholder"
                 tools:ignore="ContentDescription" />
-            <!--LINEAR LAYOUT FOR NAME AND SURNAME-->
+            <!--LINEAR LAYOUT FOR THE NAME AND SURNAME-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

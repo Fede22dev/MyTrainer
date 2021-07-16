@@ -70,10 +70,7 @@
     <string name="intermediate_athlete">Intermediate</string>
     <string name="advanced_athlete">Advanced</string>
     <string name="error_toast_equipment_athlete">ERROR: Select at least one type of equipment.</string>
-    <string name="first_select_date">First select date</string>
-    <string name="error_invalid_date">Date must be between 2010 – 1920</string>
     <string name="error_creation_user_auth">CREATION OF THE USER FAILED, RETRY!</string>
-    <string name="error_login_user_not_found">ERROR: USER NOT FOUND OR NOT REGISTERED.</string>
     <string name="welcome_back_trainer_login">WELCOME BACK TRAINER!</string>
     <string name="welcome_back_athlete_login">WELCOME BACK ATHLETE!</string>
     <string name="string_welcome_main" translatable="false">Train like there\'s no\ntomorrow!</string>
@@ -114,16 +111,13 @@
     <string name="finish">Finished</string>
     <string name="no_athlete_list_client">THERE\'S NO ATHLETE REGISTERED YET!</string>
     <string name="type_workout">Type of workout</string>
-    <string name="explain_insert_dialog_type_workout">Insert the type of workout (leg, chest, exc..)</string>
+    <string name="explain_insert_dialog_type_workout">Insert the type of workout (leg, chest, exc…)</string>
     <string name="invalid_type_workout">Cannot create a schedule without specify the type of workout!</string>
     <string name="creation_schedule">Creation schedule</string>
     <string name="exercise_name">Exercise name</string>
     <string name="active_schedule">Active schedule:</string>
     <string name="take_photo_from_gallery">PICK FROM THE GALLERY</string>
     <string name="save_day">Save day</string>
-    <string name="no_athlete_registered">There\'s no athlete registered at the moment</string>
-    <string name="registered_athlete">Registered athlete</string>
-    <string name="search_exercise_title">Search the exercise!</string>
     <string name="search_exercise">Insert the exercise to search</string>
     <string name="search_calves">Calves</string>
     <string name="search_shoulders">Shoulders</string>
@@ -174,13 +168,10 @@
     <string name="error_empty_schedule">All the fields of single exercises has to be filled!</string>
     <string name="viewcase_title_recycle_view_data_athlete">Schedule</string>
     <string name="viewcase_text_recycle_view_data_athlete">Here you will\nfind the active schedule\nfor this athlete.\nClick to see\nthe available\noperation!</string>
-    <string name="viewcase_title_fab_view_data_athlete">Add button</string>
-    <string name="viewcase_text_fab_view_data_athlete">Press this button\nto add a day to\nthe athlete\'s schedule!</string>
     <string name="top_app_bar_view_all_athlete_registered">Athlete Registered</string>
     <string name="insert_the_athlete_to_search">Insert the athlete to search!</string>
     <string name="no_athlete_followed">You are not following any athlete for the moment.</string>
     <string name="followed_athletes">Followed athletes:</string>
-    <string name="no_athlete_followed_yet">You are not following any athlete. Try to search some athlete to follow!</string>
     <string name="viewcase_title_recycle_followed_athlete">Followed athlete</string>
     <string name="viewcase_text_recycle_followed_athlete">Here you will\nfind all the athlete\nfollowed by you!</string>
     <string name="viewcase_title_fab_followed_athlete">Search button</string>

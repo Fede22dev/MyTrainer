@@ -38,9 +38,9 @@ class ActivityViewDataAthlete : AppCompatActivity() {
 
         prefs = getSharedPreferences("it.app.mytrainer", MODE_PRIVATE)
 
-        athlete = intent.getSerializableExtra("Athlete") as ObjAthlete
+        athlete = intent.getParcelableExtra("Athlete")!!
 
-        if (athlete.urlPhotoAthlete.isNotBlank()) {
+        if (athlete.urlPhotoAthlete?.isNotBlank() == true) {
             Glide.with(this).load(athlete.urlPhotoAthlete).into(imageViewViewDataAthlete)
         }
 
@@ -57,16 +57,18 @@ class ActivityViewDataAthlete : AppCompatActivity() {
         val trainerId = athlete.idTrainer
         fireStore = FireStore()
         if (trainerId != "") {
-            fireStore.getTrainer(trainerId) { trainer ->
-                if (trainer != null) {
-                    followedTrainerFieldViewDataAthlete.setText(trainer["Name"].toString() + " " + trainer["Surname"].toString())
+            if (trainerId != null) {
+                fireStore.getTrainer(trainerId) { trainer ->
+                    if (trainer != null) {
+                        followedTrainerFieldViewDataAthlete.setText(trainer["Name"].toString() + " " + trainer["Surname"].toString())
+                    }
                 }
             }
         } else {
             followedTrainerFieldViewDataAthlete.setText("")
         }
 
-        athlete.equipment.forEach { equip ->
+        athlete.equipment?.forEach { equip ->
             when (equip) {
 
                 "Dumbbells", "Manubri"                     -> {
@@ -103,10 +105,12 @@ class ActivityViewDataAthlete : AppCompatActivity() {
             }
         }
 
-        fireStore.getNameDayScheduleAthlete(athlete.idAthlete) { listOfDays ->
+        athlete.idAthlete?.let {
+            fireStore.getNameDayScheduleAthlete(it) { listOfDays ->
 
-            recyclerViewScheduleViewDataAthlete.adapter =
-                RecycleViewScheduleAthlete(this, listOfDays, currentUserId, athlete.idAthlete)
+                recyclerViewScheduleViewDataAthlete.adapter =
+                    RecycleViewScheduleAthlete(this, listOfDays, currentUserId, athlete.idAthlete!!)
+            }
         }
 
         addDividerRecycler()
@@ -116,56 +120,58 @@ class ActivityViewDataAthlete : AppCompatActivity() {
         super.onStart()
 
         fabAddScheduleViewDataAthlete.setOnClickListener {
-            fireStore.checkAthleteExist(athlete.idAthlete) { docExist ->
-                if (docExist) {
-                    fireStore.checkIdTrainer(athlete.idAthlete, currentUserId) { permission ->
-                        if (permission) {
-                            val dialogView =
-                                LayoutInflater.from(this)
-                                    .inflate(R.layout.dialog_choice_type_of_wo, null)
-                            MaterialAlertDialogBuilder(this)
-                                .setTitle(getString(R.string.type_workout))
-                                .setMessage(getString(R.string.explain_insert_dialog_type_workout))
-                                .setView(dialogView)
-                                .setPositiveButton(getString(R.string.accept_button)) { _, _ ->
+            athlete.idAthlete?.let { it1 ->
+                fireStore.checkAthleteExist(it1) { docExist ->
+                    if (docExist) {
+                        fireStore.checkIdTrainer(athlete.idAthlete!!, currentUserId) { permission ->
+                            if (permission) {
+                                val dialogView =
+                                    LayoutInflater.from(this)
+                                        .inflate(R.layout.dialog_choice_type_of_wo, null)
+                                MaterialAlertDialogBuilder(this)
+                                    .setTitle(getString(R.string.type_workout))
+                                    .setMessage(getString(R.string.explain_insert_dialog_type_workout))
+                                    .setView(dialogView)
+                                    .setPositiveButton(getString(R.string.accept_button)) { _, _ ->
 
-                                    val typeOfWO =
-                                        dialogView.editTextTypeOfWO.text.toString().trim()
-                                    if (typeOfWO != "") {
-                                        startCreationSchedule(typeOfWO)
-                                    } else {
-                                        Snackbar.make(linearLayoutViewDataAthlete,
-                                            getString(R.string.invalid_type_workout),
-                                            Snackbar.LENGTH_LONG)
-                                            .setBackgroundTint(ContextCompat.getColor(this,
-                                                R.color.app_foreground))
-                                            .setTextColor(ContextCompat.getColor(this,
-                                                R.color.white))
-                                            .show()
+                                        val typeOfWO =
+                                            dialogView.editTextTypeOfWO.text.toString().trim()
+                                        if (typeOfWO != "") {
+                                            startCreationSchedule(typeOfWO)
+                                        } else {
+                                            Snackbar.make(linearLayoutViewDataAthlete,
+                                                getString(R.string.invalid_type_workout),
+                                                Snackbar.LENGTH_LONG)
+                                                .setBackgroundTint(ContextCompat.getColor(this,
+                                                    R.color.app_foreground))
+                                                .setTextColor(ContextCompat.getColor(this,
+                                                    R.color.white))
+                                                .show()
+                                        }
                                     }
-                                }
-                                .setNegativeButton(getString(R.string.cancel_button)) { _, _ ->
-                                }
-                                .create()
-                                .show()
-                        } else {
-                            Snackbar.make(linearLayoutViewDataAthlete,
-                                getString(R.string.id_trainer_mismatch),
-                                Snackbar.LENGTH_LONG)
-                                .setBackgroundTint(ContextCompat.getColor(this,
-                                    R.color.app_foreground))
-                                .setTextColor(ContextCompat.getColor(this, R.color.white))
-                                .show()
+                                    .setNegativeButton(getString(R.string.cancel_button)) { _, _ ->
+                                    }
+                                    .create()
+                                    .show()
+                            } else {
+                                Snackbar.make(linearLayoutViewDataAthlete,
+                                    getString(R.string.id_trainer_mismatch),
+                                    Snackbar.LENGTH_LONG)
+                                    .setBackgroundTint(ContextCompat.getColor(this,
+                                        R.color.app_foreground))
+                                    .setTextColor(ContextCompat.getColor(this, R.color.white))
+                                    .show()
+                            }
                         }
+                    } else {
+                        Snackbar.make(linearLayoutViewDataAthlete,
+                            getString(R.string.athlete_not_exist),
+                            Snackbar.LENGTH_LONG)
+                            .setBackgroundTint(ContextCompat.getColor(this,
+                                R.color.app_foreground))
+                            .setTextColor(ContextCompat.getColor(this, R.color.white))
+                            .show()
                     }
-                } else {
-                    Snackbar.make(linearLayoutViewDataAthlete,
-                        getString(R.string.athlete_not_exist),
-                        Snackbar.LENGTH_LONG)
-                        .setBackgroundTint(ContextCompat.getColor(this,
-                            R.color.app_foreground))
-                        .setTextColor(ContextCompat.getColor(this, R.color.white))
-                        .show()
                 }
             }
         }
@@ -178,11 +184,13 @@ class ActivityViewDataAthlete : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        fireStore.setListenerNameDayScheduleChange(athlete.idAthlete) { listOfDays ->
+        athlete.idAthlete?.let {
+            fireStore.setListenerNameDayScheduleChange(it) { listOfDays ->
 
-            recyclerViewScheduleViewDataAthlete.adapter =
-                RecycleViewScheduleAthlete(this, listOfDays, currentUserId, athlete.idAthlete)
+                recyclerViewScheduleViewDataAthlete.adapter =
+                    RecycleViewScheduleAthlete(this, listOfDays, currentUserId, athlete.idAthlete!!)
 
+            }
         }
 
         if (prefs!!.getBoolean("FirstRunViewDataAthlete", true)

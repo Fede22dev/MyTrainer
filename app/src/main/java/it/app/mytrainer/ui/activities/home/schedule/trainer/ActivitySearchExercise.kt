@@ -133,7 +133,7 @@ class ActivitySearchExercise : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         searchField.doOnTextChanged { text, _, _, _ ->
-            filterNameExercise(text.toString().trim().toLowerCase(Locale.ROOT))
+            filterNameExercise(text.toString().trim().lowercase(Locale.ROOT))
 
             if (currentItemMenuSelectedId != R.id.radioSearchNoFilter) {
                 navigationDrawerSearchExercises.setCheckedItem(R.id.radioSearchNoFilter)

@@ -84,7 +84,9 @@ class RecycleViewScheduleAthlete(
                                 data.size) { result ->
                                 if (result) {
                                     Snackbar.make(activity.linearLayoutViewDataAthlete,
-                                        data[position].capitalize(Locale.ROOT) + " " + activity.getString(
+                                        data[position].replaceFirstChar {
+                                            if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString()
+                                        } + " " + activity.getString(
                                             R.string.succesfully_day_remove),
                                         Snackbar.LENGTH_LONG)
                                         .setBackgroundTint(ContextCompat.getColor(activity,

@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/goToHome"
         android:icon="@drawable/ic_home_black"
         android:title="@string/home"
         app:showAsAction="ifRoom" />
